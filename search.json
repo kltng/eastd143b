@@ -1,0 +1,464 @@
+[
+  {
+    "objectID": "syllabus/syllabus.html",
+    "href": "syllabus/syllabus.html",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "",
+    "text": "Course Title: EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach\nMeeting Time: 09:00 - 11:45, Wednesdays, Spring 2026\nLocation: Harvard Hall 103\nInstructor: Kwok-leong Tang (kwokleongtang@fas.harvard.edu)\nOffice Hours: 10:30 - 12:30 , Fridays (407 CGIS South)\n\n\nATTENTION: There is NO SESSION on Fridays through the Spring semester. Therefore, you can register for this course even you have classes on Fridays."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#course-information",
+    "href": "syllabus/syllabus.html#course-information",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "",
+    "text": "Course Title: EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach\nMeeting Time: 09:00 - 11:45, Wednesdays, Spring 2026\nLocation: Harvard Hall 103\nInstructor: Kwok-leong Tang (kwokleongtang@fas.harvard.edu)\nOffice Hours: 10:30 - 12:30 , Fridays (407 CGIS South)\n\n\nATTENTION: There is NO SESSION on Fridays through the Spring semester. Therefore, you can register for this course even you have classes on Fridays."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#overview",
+    "href": "syllabus/syllabus.html#overview",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Overview",
+    "text": "Overview\nThis course is designed for East Asian humanities students interested in adopting digital methods in their research with basic programming and building tools for their own research workflow. It introduces fundamental programming concepts and essential techniques for the booming generative artificial intelligence. This year’s course focuses on agentic approach for using GenAI not only for coding but also for research workflow. Students completing the course will integrate and apply these tools into their research and explore the rapidly growing new technologies, especially GenAI, related to humanities studies.\nThis course is for you if:\n\nyou come from a humanities background with no or little digital literacy but want to learn how digital tools and methods can benefit your studies or research;\nyou want to bring GenAI components into your existing humanities research workflow;\nyou have ideas for digital projects but need to know how to start.\n\nThis course may not be helpful to you if:\n\nyou are an experienced programmer;\nyou have zero background in East Asian humanities;\nyou are looking for data science or machine learning 101.\n\nATTENTION: Language requirements may apply. Proficiency in one East Asian language is required. Please get in touch with Kwok-leong for more details about the language requirement."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#learning-goals",
+    "href": "syllabus/syllabus.html#learning-goals",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nAfter completion of the course, you will be able to\n\nuse agentic tools to collect data from the internet and digitalized materials;\nmanipulate and analyze data with Python and AI tools;\nknow how to test and use emerging artificial intelligence tools; design and build a simple digital scholarship project."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#class-format",
+    "href": "syllabus/syllabus.html#class-format",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Class Format",
+    "text": "Class Format\nWe will meet weekly for 2 hours and 45 minutes. The class will be a mix of lectures, discussions, and hands-on exercises."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#grading",
+    "href": "syllabus/syllabus.html#grading",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Grading",
+    "text": "Grading\nClass participation (20%): Students are expected to attend and participate in every class, completing assigned in-class exercises and engaging in discussions. Homework assignments (30%): Homework assignments will incorporate methods, principles, and tools into your research projects. Final project: The final project will include a meeting with Kwok-leong to discuss the project by the end of the third week (5%), a proposal (5%), a presentation (10%), a work journal (10%), and a final product (20%)."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#class-policies",
+    "href": "syllabus/syllabus.html#class-policies",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Class Policies",
+    "text": "Class Policies\n\nOffice hours\nKwok-leong’s regular office hours are 10:30 - 12:30, Fridays (407 CGIS South). However, you can schedule in-person or online meetings by appointment. Please email Kwok-leong to schedule appointments.\n\n\nAbsence from class\nClass participation takes 20% of your grade, so attendance is essential. However, we all face difficulties in our lives. Every enrolled student will have two opportunities to be absent from the weekly meeting. Please notify Kwok-leong if you are absent.\n\n\nClassroom rules\nAll class materials will be shared on Canvas or Kwok-leong’s website. Please do NOT take any photos or videos in class without Kwok-leong’s permission!\n\n\nAccessibility Statement\nThe instructor is committed to ensuring everyone has equitable access to the learning environment. Kwok-leong will strive to make the course materials, meetings, and the instructor’s office hours accessible and useable for all students. All materials distributed in the course will be available in an accessible format. The instructor will make reasonable accommodations to course materials, meetings, and office hours for students with disabilities who have registered with the Harvard Disability Access Office (DAO) or have been identified as having a disability or special need.\n\n\nAuditing\nAs the course will provide resources (API credits and subscription fees) to both enrolled and auditing students, auditing students are expected to commit to the course as enrolled students do. If you need to miss any class for any reason, please inform Kwok-leong in advance. Additionally, if you anticipate being absent for multiple meetings due to travel plans, it is recommended that you DO NOT audit this class."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#weekly-schedule",
+    "href": "syllabus/syllabus.html#weekly-schedule",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Weekly Schedule",
+    "text": "Weekly Schedule\n\n2026-01-28: Introduction, logistics, and software setup\n2026-02-04: The landscape of agentic approach\n2026-02-11: Return to the terminal\n2026-02-18: Version control\n2026-02-25: Note-taking and research workflow\n2026-03-04: Packages, libraries, frameworks, platforms\n2026-03-11: Collecting data online\n2026-03-18: Spring break\n2026-03-25: Text analysis\n2026-04-01: Working on data I\n2026-04-08: Working on data II\n2026-04-15: Building a digital scholarship project I\n2026-04-22: Building a digital scholarship project II\n2026-04-29: Presentations"
+  },
+  {
+    "objectID": "syllabus/syllabus.html#assignments",
+    "href": "syllabus/syllabus.html#assignments",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Assignments",
+    "text": "Assignments\n\nBuild a Personal Website (10%)\nIn this assignment, you will build a personal online portfolio which contains blogs, your CV, research projects, publications, and other academic achievements.\n\n\nBuilding a data collecting agent team (10%)\nIn this assignment, you will create an agent team that can scrape any URL provided by the user.\n\n\nBuilding a research workflow agent (10%)\nUsing the data provided by Kwok-leong, you will create a research workflow agent that can help you with your research."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#research-project",
+    "href": "syllabus/syllabus.html#research-project",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Research Project",
+    "text": "Research Project\nThe core of this course is your research project. Kwok-leong encourages you to work on your thesis or dissertation project using the tools and methods introduced in this course. However, the project must bring new insights to the existing scholarship.\n\nTopic Selection (5%): Meet with Kwok-leong in person to decide your project topic by the end of the third week (2026-02-14).\nProgress Presentations (10% total): Each student will give two progress presentations in class (5% each).\nFinal Presentation (10%): Each student will give a final presentation in the last class meeting.\nFinal Submission (25%): Submit your project by the end of the grading deadline.\n\nThe class does not require a textbook. Please watch the Programming Concepts for Python courseLinks to an external site. by the third week meeting. You should be able to access this video course by using your HarvardKey. For documentation and tutorials for specific tools that we use in class, links are in the weekly meeting materials."
+  },
+  {
+    "objectID": "meetings/index.html",
+    "href": "meetings/index.html",
+    "title": "Meetings",
+    "section": "",
+    "text": "Meeting 01\nMeeting 02\nMeeting 03"
+  },
+  {
+    "objectID": "meetings/index.html#spring-2026",
+    "href": "meetings/index.html#spring-2026",
+    "title": "Meetings",
+    "section": "",
+    "text": "Meeting 01\nMeeting 02\nMeeting 03"
+  },
+  {
+    "objectID": "meeting_02/meeting_02.html",
+    "href": "meeting_02/meeting_02.html",
+    "title": "The Landscape of Agentic Approach",
+    "section": "",
+    "text": "Introducing yourself to the class\nEssential concepts of GenAI\nEssential concepts of agentic approach"
+  },
+  {
+    "objectID": "meeting_02/meeting_02.html#lets-begin-with-the-great-material-arts-master",
+    "href": "meeting_02/meeting_02.html#lets-begin-with-the-great-material-arts-master",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Let’s Begin With the Great Material Arts Master",
+    "text": "Let’s Begin With the Great Material Arts Master\n\nTeaching goal: After this session, you will obtain the essential concepts of large language models (LLMs). It is not about the tools, but the mindset."
+  },
+  {
+    "objectID": "meeting_02/meeting_02.html#four-pillars-of-generative-ai-applications",
+    "href": "meeting_02/meeting_02.html#four-pillars-of-generative-ai-applications",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Four Pillars of Generative AI Applications",
+    "text": "Four Pillars of Generative AI Applications\n\n\n\nFour Pillars of Generative AI Applications\n\n\n\nModels: Large language models (LLMs), such as Qwen3-0.6B, Deepseek V3.2 685B, etc.\nPrompts: Prompts are the instructions given to the model to generate the desired output. For example, “Write a poem about the nature” is a prompt.\nContext: Context is the information provided to the model to help it generate the desired output. For example, providing a pdf file of a book and asking the model to summarize the book is a context.\nTools: Tools are the external tools that the model can use to generate the desired output. For example, a calculator, a dictionary, a web search engine, etc."
+  },
+  {
+    "objectID": "meeting_02/meeting_02.html#models",
+    "href": "meeting_02/meeting_02.html#models",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Models",
+    "text": "Models\n\nToken: Hugging Face Tokenizer Playground\nParameters (Deepseek V3.2 685B)  The more the parameters, the more the capabilities?\nTemperature: The higher the temperature, the more random the output.\nKnowledge Cut-off\nThinking/Reasoning\nLength of context window/context length\n\n\nWhat is the nature of LLMs?\n\n\n\n\n\n\nImportant\n\n\n\nEverything is PREDICTION!\n\n\n\n\n\nImage source: Chip Huyen, AI Engineering: Building Applications with Foundation Models, First edition (O’Reilly, 2025). Chapter 1.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nEvery token is generated based on PROBABILITY!\n\n\n\n\n\nImage source: Inferencer, a software\n\n\n\n\n\nGalton box demonstration of the normal distribution (Wikimedia Commons)\n\n\n\n\n\n\n\nNote\n\n\n\nThe normal distribution is a bell-shaped curve that is symmetric around the mean. It is a fundamental concept in statistics and probability theory. Why this distribution is important to our understanding of LLMs?\n\n\n\n\nPrediction\nTry to repeat the following query multiple times with Qwen3-0.6B. What do you observe?\nGive a random number between 1 to 100.\nExplaination\n\n\nKnowledge cut-off\nWhat is your knowledge cut-off date?\nWho is the prime minister of Japan?? \n\n\nHallucination\nHow many \"r\" in strawberry?\nOpenAI’s explanation of hallucination: https://openai.com/index/why-language-models-hallucinate/\n\n\nAutoregressive\nCan you tell me the meaning of this sentence: \"B1 ammeG ehg tsniaga tluser eht erapmoc dna sledom ATOS eht htiw xobdnaS dravraH ni tpmorp emas eht yrt nac uoY\"\nThe next one is revised from a similar prompt from a forthcoming article of Professor Peter Bol:\n請找出下文所提及的歷史人物： \n教宗外南調科詞宏學博中復士進舉後官入補蔭初精益索講熹朱栻張友又既游憲胡辰應汪奇之林從長傳之獻文原中有庭家之本學謙祖州婺居始祖其自也孫之問好丞右尚書恭伯字謙祖呂\n請找出下文所提及的歷史人物： \n呂祖謙字伯恭書尚右丞好問之孫也自其祖始居婺州祖謙學本之家庭有中原文獻之傳長從林之奇汪應辰胡憲游既又友張栻朱熹講索益精初蔭補入官後舉進士復中博學宏詞科調南外宗教\n\n\n\n\n\n\nNote\n\n\n\nIf you are interested in the nature of thinking/reasoning in LLM, please watch Denny Zhou’s talk at Stanford.\n\n\n\n\nBiases\nA victim of a traffic accident were sent to the emergency room. The doctor said, \"O, I cannot do this. He is my son!\"\nWho is the doctor?\nTry this with different models. You will see how a bias has been “corrected” as a new bias."
+  },
+  {
+    "objectID": "meeting_02/meeting_02.html#prompts",
+    "href": "meeting_02/meeting_02.html#prompts",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Prompts",
+    "text": "Prompts\n\nPrompt engineering\n\nPrompt engineering: https://www.promptingguide.ai/\nChain-of-thought: https://arxiv.org/pdf/2201.11903.\n\n\n\nSystem prompt and User prompt\nYou need to use Harvard AI Sandbox to experiment with the following prompt:\n;; 作者: 李继刚\n;; 版本: 0.1\n;; 模型: Claude Sonnet\n;; 用途: 这次正经地深入思考一个概念\n\n;; 设定如下内容为你的 *System Prompt*\n(defun 沉思者 ()\n  \"你是一个思考者, 盯住一个东西, 往深了想\"\n  (写作风格 . (\"Mark Twain\" \"鲁迅\" \"O. Henry\"))\n  (态度 . 批判)\n  (精通 . 深度思考挖掘洞见)\n  (表达 . (口话化 直白语言 反思质问 骂醒对方))\n  (金句 . (一针见血的洞见 振聋发聩的质问)))\n\n(defun 琢磨 (用户输入)\n  \"针对用户输入, 进行深度思考\"\n  (let* ((现状 (细节刻画 (场景描写 (社会现状 用户输入))))\n         (个体 (戳穿伪装 (本质剖析 (隐藏动机 (抛开束缚 通俗理解)))))\n         (群体 (往悲观的方向思考 (社会发展动力 (网络连接视角 钻进去看))))\n         (思考结果 (沉思者 (合并 现状 个体 群体))))\n    (SVG-Card 用户输入 思考结果)))\n\n(defun SVG-Card (用户输入 思考结果)\n  \"输出SVG 卡片\"\n  (setq design-rule \"合理使用负空间，整体排版要有呼吸感\")\n\n  (设置画布 '(宽度 400 高度 600 边距 20))\n  (自动缩放 '(最小字号 12))\n  (SVG设计风格 '(蒙德里安 现代主义))\n\n  (卡片元素\n   ((居中加粗标题 (提炼一行 用户输入))\n    分隔线\n    (舒适字体配色 (自动换行 (分段排版 思考结果))\n                  分隔线\n                  (自动换行 金句)))))\n\n(defun start ()\n  \"启动时运行\"\n  (let ((system-role 沉思者))\n    (print \"请就座, 我们今天聊哪件事?\")))\n\n;; 运行规则\n;; 1. 启动时必须运行 (start) 函数\n;; 2. 之后调用主函数 (琢磨 用户输入)\nThis is one of the many “magical prompts” of Li Jigang. You can find his works from this (Zhihu thread).\n\nEnter the prompt every time you start the chat?\n\n\nSystem prompt: A system prompt is a set of hidden instructions given to a model by its developers. These instructions define the LLM’s personality, rules, goals, and constraints before you, the user, even type your first question.\nUser prompt: The prompts or queries given to a LLM in every interaction (conversation)."
+  },
+  {
+    "objectID": "meeting_02/meeting_02.html#context",
+    "href": "meeting_02/meeting_02.html#context",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Context",
+    "text": "Context\n\nRetrieval-Augmented Generation (RAG)\n\n\n\n\n\nflowchart TB\n    subgraph Direct[\"Direct LLM Query\"]\n        direction LR\n        U1[User Query] --&gt; L1[LLM] --&gt; R1[Response]\n        style L1 fill:#f9f,stroke:#333\n    end\n\n\n\n\n\n\n\n\n\n\n\nflowchart TB\n    subgraph RAG[\"RAG-Enhanced Query\"]\n        direction LR\n        U2[User Query] --&gt; RC[Retrieval Component]\n        RC --&gt; |Search| DB[(Knowledge Base)]\n        DB --&gt; |Relevant Documents| RC\n        RC --&gt; CP[Context Processor]\n        CP --&gt; |Enhanced Prompt| L2[LLM]\n        L2 --&gt; R2[Response]\n        style L2 fill:#f9f,stroke:#333\n        style DB fill:#bef,stroke:#333\n        style RC fill:#fbf,stroke:#333\n        style CP fill:#fbf,stroke:#333\n    end"
+  },
+  {
+    "objectID": "meeting_02/meeting_02.html#tools",
+    "href": "meeting_02/meeting_02.html#tools",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Tools",
+    "text": "Tools\n\nModel Context Protocol (MCP)\nAgent Skills"
+  },
+  {
+    "objectID": "meeting_02/meeting_02.html#what-are-agents",
+    "href": "meeting_02/meeting_02.html#what-are-agents",
+    "title": "The Landscape of Agentic Approach",
+    "section": "What are agents?",
+    "text": "What are agents?\nAgents are software entities that can perform tasks independently, often using LLMs to reason and make decisions. They can interact with external tools and data sources to perform tasks."
+  },
+  {
+    "objectID": "meeting_02/meeting_02.html#the-difference-between-agents-and-llms",
+    "href": "meeting_02/meeting_02.html#the-difference-between-agents-and-llms",
+    "title": "The Landscape of Agentic Approach",
+    "section": "The difference between agents and LLMs",
+    "text": "The difference between agents and LLMs\n\nLarge Language Models (LLMs) is a model that can generate text based on a given prompt.\nAgents use LLMs to reason and make decisions. Agents have tools for execution and data sources for context.\nIn a chatbot interface, LLMs usually answer the user’s question one by one.\nAgents can perform tasks independently, such as searching the web, cleaning data, classifying file types, etc. They do not need to wait for the user’s question. They can use multiple given tools (such as web browsers, bash commands, even sensors and cameras) and data sources (such as databases, files, etc.) to complete a task assigned with a one-sentence instruction."
+  },
+  {
+    "objectID": "meeting_02/meeting_02.html#why-agents-are-important",
+    "href": "meeting_02/meeting_02.html#why-agents-are-important",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Why agents are important?",
+    "text": "Why agents are important?\nTo understand the importance of agents, we need to understand the limitations of programming.\n\nClassifying “Apple”\nThe word “Apple” is a fruit. But it can also be a company name, or even a person’s name. How to classify it? Work with your classmates to come up with all the rules to classify “Apple” into the correct category."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities (Coding Approach)",
+    "section": "",
+    "text": "Welcome to the course website for EASTD143B (Spring 2026).\n\nSee the Syllabus\nSee weekly materials under Meetings"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#todays-schedule",
+    "href": "meeting_01/meeting_01.html#todays-schedule",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Today’s Schedule",
+    "text": "Today’s Schedule\n\nSyllabus\nGenAI and agentic basic concepts\nTools that we will use in class"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#overview",
+    "href": "meeting_01/meeting_01.html#overview",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Overview",
+    "text": "Overview\nThis course is designed for East Asian humanities students interested in adopting digital methods in their research with basic programming and building tools for their own research workflow. It introduces fundamental programming concepts and essential techniques for the booming generative artificial intelligence. This year’s course focuses on agentic approach for using GenAI not only for coding but also for research workflow. Students completing the course will integrate and apply these tools into their research and explore the rapidly growing new technologies, especially GenAI, related to humanities studies."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#learning-goals",
+    "href": "meeting_01/meeting_01.html#learning-goals",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nAfter completion of the course, you will be able to:\n\nuse agentic tools to collect data from the internet and digitalized materials;\nmanipulate and analyze data with Python and AI tools;\nknow how to test and use emerging artificial intelligence tools; design and build a simple digital scholarship project."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#class-format",
+    "href": "meeting_01/meeting_01.html#class-format",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Class Format",
+    "text": "Class Format\nWe will meet weekly for 2 hours and 45 minutes. The class will be a mix of lectures, discussions, and hands-on exercises. The course used to have non-mandatory coding sessions. However, we DO NOT have coding sessions this semester."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#grading",
+    "href": "meeting_01/meeting_01.html#grading",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Grading",
+    "text": "Grading\n\nClass participation (20%): Students are expected to attend and participate in every class, completing assigned in-class exercises and engaging in discussions.\nHomework assignments (30%): Homework assignments will incorporate methods, principles, and tools into your research projects.\nFinal project: The final project will include a meeting with Kwok-leong to discuss the project by the end of the third week (5%), two progress reports (5% each), a presentation (10%), and a final submission (25%)."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#class-policies",
+    "href": "meeting_01/meeting_01.html#class-policies",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Class Policies",
+    "text": "Class Policies\nOffice Hours\nKwok-leong’s in-person office hours are 10:30 - 12:30 on Fridays, and online office hours are by appointment. Please email Kwok-leong to schedule appointments."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#weekly-schedule",
+    "href": "meeting_01/meeting_01.html#weekly-schedule",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Weekly Schedule",
+    "text": "Weekly Schedule\n\n2025-01-29: Introduction and GenAI in General\n2025-02-05: The Landscape of AI-Assisted Coding\n2025-02-12: Version Control, Git, GitHub, Quarto\n2025-02-19: Package Managers, Libraries, Frameworks, and API\n2025-02-26: Collecting Data I\n2025-03-05: Collecting Data II\n2025-03-12: Spring Break, 2025 AAS in Columbus, OH\n2025-03-19: Text Analysis: Statistical Approach"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#weekly-schedule-1",
+    "href": "meeting_01/meeting_01.html#weekly-schedule-1",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Weekly Schedule",
+    "text": "Weekly Schedule\n\n2025-03-26: Vector Search and Retrieval Augment Generation I\n2025-04-02: Retrieval Augment Generation II\n2025-04-09: Building a Digital Scholarship Project I\n2025-04-16: Building a Digital Scholarship Project II\n2025-04-23: Building a Digital Scholarship Project III\n2025-04-30: Presentations"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#assignments",
+    "href": "meeting_01/meeting_01.html#assignments",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Assignments",
+    "text": "Assignments\nBuild a Personal Website with Quarto (10%)\nIn this assignment, you will build a personal portfolio with Quarto, an open-source scientific and technical publishing system, and deploy it to GitHub Pages."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#assignments-1",
+    "href": "meeting_01/meeting_01.html#assignments-1",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Assignments",
+    "text": "Assignments\nBuilding a Web-Crawler (10%)\nIn this assignment, you will create a web-crawler that can scrape any URL provided by the user."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#assignments-2",
+    "href": "meeting_01/meeting_01.html#assignments-2",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Assignments",
+    "text": "Assignments\nBuilding a Chatbot with Your Data (10%)\nUsing the data provided by Kwok-leong, you will create a chatbot capable of interacting with and responding to queries about the data."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#research-project",
+    "href": "meeting_01/meeting_01.html#research-project",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Research Project",
+    "text": "Research Project\nThe core of this course is your research project. Kwok-leong encourages you to work on your thesis or dissertation project using the tools and methods introduced in this course. However, the project must bring new insights to the existing scholarship."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#research-project-1",
+    "href": "meeting_01/meeting_01.html#research-project-1",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Research Project",
+    "text": "Research Project\n\nTopic Selection (5%): Meet with Kwok-leong in person to decide your project topic by the end of the third week (2025-02-14).\nProgress Presentations (10% total): Each student will give two progress presentations in class (5% each).\nFinal Presentation (10%): Each student will give a final presentation in the last class meeting.\nFinal Data Collection (25%): Submit your project by the end of the grading deadline."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#recommended-readings-and-online-tutorials",
+    "href": "meeting_01/meeting_01.html#recommended-readings-and-online-tutorials",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Recommended Readings and Online Tutorials",
+    "text": "Recommended Readings and Online Tutorials\nThe class does not require a textbook. Please watch the Programming Concepts for Python course by the third week meeting. You should be able to access this video course by using your HarvardKey. For documentation and tutorials for specific tools that we use in class, links are in the weekly meeting materials."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#how-is-this-course-and-the-skills-you-learn-from-it-different-from-a-cs-course",
+    "href": "meeting_01/meeting_01.html#how-is-this-course-and-the-skills-you-learn-from-it-different-from-a-cs-course",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "How is this course (and the skills you learn from it) different from a CS course?",
+    "text": "How is this course (and the skills you learn from it) different from a CS course?"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#fighting-as-a-metaphor",
+    "href": "meeting_01/meeting_01.html#fighting-as-a-metaphor",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Fighting as a Metaphor",
+    "text": "Fighting as a Metaphor"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#differences",
+    "href": "meeting_01/meeting_01.html#differences",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Differences",
+    "text": "Differences\n\n\nCS Courses\n\nQuantitative or mathematically oriented\nTheoretical and abstract\nDivision of labor in the industry\nClean and production-ready\n\n\nEASTD143B\n\nPractical from down-to-earth experience\nFocus on tooling\nOne-man-band\nDirty and for personal use"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#why-genai",
+    "href": "meeting_01/meeting_01.html#why-genai",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Why GenAI?",
+    "text": "Why GenAI?\nSince its release on November 30, 2022, ChatGPT (and other Large Language Models, LLMs) has brought generative AI into the spotlight of our daily lives. What is the significance of generative AI for us, as students of East Asian humanities?"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#iron-man-ii-finding-a-new-element",
+    "href": "meeting_01/meeting_01.html#iron-man-ii-finding-a-new-element",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Iron Man II: Finding a New Element",
+    "text": "Iron Man II: Finding a New Element"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#communicating-with-machines-in-natural-languages",
+    "href": "meeting_01/meeting_01.html#communicating-with-machines-in-natural-languages",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Communicating with Machines in Natural Languages",
+    "text": "Communicating with Machines in Natural Languages\n\nLarge language models (LLMs) and machine learning were not new concepts before November 2022.\nThe revolution brought by ChatGPT and generative AI, in general, lies in the interaction experience between humans and machines.\nWe can now communicate with machines in natural languages, whether in English, Vietnamese, Mandarin, Japanese, or Korean."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#genai-and-students-in-east-asian-studies",
+    "href": "meeting_01/meeting_01.html#genai-and-students-in-east-asian-studies",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "GenAI and students in East Asian Studies",
+    "text": "GenAI and students in East Asian Studies\n\nIt simplifies technological complexities, making it easier to adopt digital tools in research processes. This means less coding and less training (for both humans and machines).\nIn digital research workflows, domain expertise has become more significant due to the necessity of evaluation."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#a-demo-of-genai-assited-coding",
+    "href": "meeting_01/meeting_01.html#a-demo-of-genai-assited-coding",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "A Demo of GenAI-assited Coding",
+    "text": "A Demo of GenAI-assited Coding"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#ai-tools-introduction",
+    "href": "meeting_01/meeting_01.html#ai-tools-introduction",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "AI Tools introduction",
+    "text": "AI Tools introduction"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#harvard-ai-sandbox",
+    "href": "meeting_01/meeting_01.html#harvard-ai-sandbox",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Harvard AI Sandbox",
+    "text": "Harvard AI Sandbox\n\nAll enrolled and auditing students have access to the Harvard AI Sandbox.\nThe Sandbox provides access to multiple LLMs, including models from OpenAI, Anthropic, Meta, and Google.\nEven using the same model, the experience from Harvard AI Sandbox can be greatly different from using the chatbot interface built by the tech companies."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#openai-chatgtp-edu",
+    "href": "meeting_01/meeting_01.html#openai-chatgtp-edu",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "OpenAI ChatGTP Edu",
+    "text": "OpenAI ChatGTP Edu\n\nIt is an educational version of the ChatGPT Plus ($20) subscription.\nWhen OpenAI releases new features, the educational version is usually the last to receive updates.\nIt allows you to build GPTs (agents); however, only Harvard users can use the GPTs you share.\nOpenAI models include GPT series, Dall-E series, and text embeding models.\nMicrosoft Copilot uses OpenAI models under the hood."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#anthropic-claude",
+    "href": "meeting_01/meeting_01.html#anthropic-claude",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Anthropic (Claude)",
+    "text": "Anthropic (Claude)\n\nAntrhropic PBC is an artificial intelligence (AI) public-benefit startup founded in 2021.\nClaude series models (Haiku, Sonnet, Opus).\nStill the best coding model in the world.\nModel Context Protocol (MCP)"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#google-ai-family",
+    "href": "meeting_01/meeting_01.html#google-ai-family",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Google AI Family",
+    "text": "Google AI Family\n\nGemini series models, long context window (1.5 million tokens).\nInteresting tools developed by Google including NotebookLM, Learn About, and Google AI Studio\nGenerous free tier for Gemini API usage, good for academics."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#deepseek",
+    "href": "meeting_01/meeting_01.html#deepseek",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "DeepSeek",
+    "text": "DeepSeek\n\nRising star and shocked the world in the last two weeks.\nOpen weight, locally deployable, maybe replicable in training.\nLow training cost, cheap inference cost, and low energy consumption.\nCensorship is unavoidable."
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#rag-and-agentic-workflow",
+    "href": "meeting_01/meeting_01.html#rag-and-agentic-workflow",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "RAG and Agentic workflow",
+    "text": "RAG and Agentic workflow"
+  },
+  {
+    "objectID": "meeting_01/meeting_01.html#preparation-for-next-week",
+    "href": "meeting_01/meeting_01.html#preparation-for-next-week",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Preparation for next week",
+    "text": "Preparation for next week\n\nWatch the Programming Concepts for Python course on Linkedin Learning.\nDownload and install VScode.\nSchedule an appointment with Kwok-leong to discuss your research topic."
+  },
+  {
+    "objectID": "meeting_03/meeting_03.html",
+    "href": "meeting_03/meeting_03.html",
+    "title": "Meeting 03",
+    "section": "",
+    "text": "Today’s Schedule"
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#overview",
+    "href": "syllabus/syllabus-presentation.html#overview",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Overview",
+    "text": "Overview\nThis course is designed for East Asian humanities students interested in adopting digital methods in their research. It introduces AI-assisted coding for East Asian humanities projects and essential techniques for utilizing generative artificial intelligence (GenAI). Students completing the course will integrate and apply these tools into their research, exploring the rapidly evolving technologies related to humanities studies."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#learning-goals",
+    "href": "syllabus/syllabus-presentation.html#learning-goals",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nAfter completion of the course, you will be able to:\n\nUse Python or command-line tools to collect data from the internet and digitized materials.\nManipulate and analyze data with Python and AI tools.\nTest and use emerging artificial intelligence tools.\nDesign and build a simple digital scholarship project."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#class-format",
+    "href": "syllabus/syllabus-presentation.html#class-format",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Class Format",
+    "text": "Class Format\nThe weekly meetings are mostly hands-on. The course used to have non-mandatory coding sessions. However, we DO NOT have coding sessions this semester."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#grading",
+    "href": "syllabus/syllabus-presentation.html#grading",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Grading",
+    "text": "Grading\n\nClass participation (20%): Students are expected to attend and participate in every class, completing assigned in-class exercises and engaging in discussions.\nHomework assignments (30%): Homework assignments will incorporate methods, principles, and tools into your research projects.\nFinal project: The final project will include a meeting with Kwok-leong to discuss the project by the end of the third week (5%), a proposal (5%), a presentation (10%), a work journal (10%), and a final product (20%)."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#class-policies",
+    "href": "syllabus/syllabus-presentation.html#class-policies",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Class Policies",
+    "text": "Class Policies\nOffice Hours\nKwok-leong’s in-person office hours are 10:00 - 12:00 on Thursdays, and online office hours are by appointment. Please email Kwok-leong to schedule appointments."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#weekly-schedule",
+    "href": "syllabus/syllabus-presentation.html#weekly-schedule",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Weekly Schedule",
+    "text": "Weekly Schedule\n\n2025-01-29: Introduction and GenAI in General\n2025-02-05: The Landscape of AI-Assisted Coding\n2025-02-12: Version Control, Git, GitHub\n2025-02-19: Package Managers, Libraries, Frameworks, and API\n2025-02-26: Collecting Data I\n2025-03-05: Collecting Data II\n2025-03-12: Spring Break, 2025 AAS in Columbus, OH\n2025-03-19: Text Analysis: Statistical Approach"
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#weekly-schedule-1",
+    "href": "syllabus/syllabus-presentation.html#weekly-schedule-1",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Weekly Schedule",
+    "text": "Weekly Schedule\n\n2025-03-26: Vector Search and Retrieval Augment Generation I\n2025-04-02: Retrieval Augment Generation II\n2025-04-09: Building a Digital Scholarship Project I\n2025-04-16: Building a Digital Scholarship Project II\n2025-04-23: Building a Digital Scholarship Project III\n2025-04-30: Presentations"
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#assignments",
+    "href": "syllabus/syllabus-presentation.html#assignments",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Assignments",
+    "text": "Assignments\nBuild a Personal Website with Quarto (10%)\nIn this assignment, you will build a personal portfolio with Quarto, an open-source scientific and technical publishing system, and deploy it to GitHub Pages."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#assignments-1",
+    "href": "syllabus/syllabus-presentation.html#assignments-1",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Assignments",
+    "text": "Assignments\nBuilding a Web-Crawler (10%)\nIn this assignment, you will create a web-crawler that can scrape any URL provided by the user."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#assignments-2",
+    "href": "syllabus/syllabus-presentation.html#assignments-2",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Assignments",
+    "text": "Assignments\nBuilding a Chatbot with Your Data (10%)\nUsing the data provided by Kwok-leong, you will create a chatbot capable of interacting with and responding to queries about the data."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#research-project",
+    "href": "syllabus/syllabus-presentation.html#research-project",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Research Project",
+    "text": "Research Project\nThe core of this course is your research project. Kwok-leong encourages you to work on your thesis or dissertation project using the tools and methods introduced in this course. However, the project must bring new insights to the existing scholarship."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#recommended-readings-and-online-tutorials",
+    "href": "syllabus/syllabus-presentation.html#recommended-readings-and-online-tutorials",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Recommended Readings and Online Tutorials",
+    "text": "Recommended Readings and Online Tutorials\nThe class does not require a textbook. Please watch the Programming Concepts for Python course by the third week meeting. You should be able to access this video course by using your HarvardKey. For documentation and tutorials for specific tools that we use in class, links are in the weekly meeting materials."
+  }
+]
