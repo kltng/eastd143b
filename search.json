@@ -105,27 +105,6 @@
     "text": "Welcome to the course website for EASTD143B (Spring 2026).\n\nSee the Syllabus\nSee weekly materials under Meetings"
   },
   {
-    "objectID": "meeting_03/meeting_03.html",
-    "href": "meeting_03/meeting_03.html",
-    "title": "Meeting 03",
-    "section": "",
-    "text": "Return to the terminal\nA little bit about version control\nLet’s try Openwork"
-  },
-  {
-    "objectID": "meeting_03/meeting_03.html#what-is-the-terminal",
-    "href": "meeting_03/meeting_03.html#what-is-the-terminal",
-    "title": "Meeting 03",
-    "section": "What is the terminal?",
-    "text": "What is the terminal?\n\n\n\n\n\n\nImportant\n\n\n\nA terminal is a text-based interface for your computer.\n\n\nThink of it as a conversation window. Instead of clicking icons (which is like pointing at things on a menu), you type commands (like speaking to a waiter) to tell the computer exactly what to do."
-  },
-  {
-    "objectID": "meeting_03/meeting_03.html#in-class-exercise-terminal-github-codespaces-pull-request",
-    "href": "meeting_03/meeting_03.html#in-class-exercise-terminal-github-codespaces-pull-request",
-    "title": "Meeting 03",
-    "section": "In-class exercise: Terminal + GitHub Codespaces + Pull Request",
-    "text": "In-class exercise: Terminal + GitHub Codespaces + Pull Request\n\nGoal\nBy the end of this exercise, you will be able to:\n\nnavigate a project using basic terminal commands;\ncreate a Markdown file in the correct folder;\ncommit and push changes to your own branch;\nopen a Pull Request (PR) to submit your work.\n\n\n\nSetup (Codespaces)\n\nOpen the course repo on GitHub: kltng/eastd143b\nClick Code → Codespaces → Create codespace on 2026\nIn Codespaces, open the Terminal.\n\n\n\nPart A — Basic terminal commands (practice)\nRun these commands and briefly note what each one shows:\n\nWhere am I?\n\npwd\n\nWhat files/folders are here?\n\nls\n\nMove into a folder and list again:\n\ncd in-class\nls\n\nMove back to the repo root:\n\ncd ..\npwd\n\nFind the Meeting 03 in-class folder:\n\nls in-class\nls in-class/meeting_03\n\n\nPart B — Create your submission file\nCreate a Markdown file inside in-class/meeting_03/.\nFile name format: use your initials in the format:\n\nt_ab.md\n\n(Example in the repo: in-class/meeting_03/t_kl.md)\nCreate the file (choose one method):\nMethod 1 (quick, terminal):\ncat &gt; in-class/meeting_03/t_ab.md &lt;&lt;'MD'\n# Meeting 03 — Terminal practice\n\n## 1) Three commands I learned today\n-\n-\n-\n\n## 2) One thing that confused me\n-\n\n## 3) One question for next class\n-\nMD\nMethod 2 (editor): create the file in the file explorer and type the same content.\n\n\nPart C — Git workflow (branch → commit → push → PR)\n\nConfirm you are on the 2026 branch:\n\ngit status\ngit branch --show-current\n\nCreate your own branch:\n\ngit checkout -b meeting03/t_ab\n\nCheck what changed:\n\ngit status\ngit diff\n\nStage + commit:\n\ngit add in-class/meeting_03/t_ab.md\ngit commit -m \"Add Meeting 03 in-class submission (t_ab)\"\n\nPush your branch:\n\ngit push -u origin meeting03/t_ab\n\nOpen a Pull Request:\n\n\nIn GitHub, click Compare & pull request\nBase branch: 2026\nTitle: Meeting 03 submission: t_ab\nSubmit the PR\n\n\n\nSubmission checklist\nBefore you submit your PR, confirm:\n\nyour file is in in-class/meeting_03/\nfilename matches t_ab.md\nPR base branch is 2026"
-  },
-  {
     "objectID": "meeting_02/meeting_02.html",
     "href": "meeting_02/meeting_02.html",
     "title": "The Landscape of Agentic Approach",
@@ -196,32 +175,18 @@
     "text": "Why agents are important?\nTo understand the importance of agents, we need to understand the limitations of programming.\n\nClassifying “Apple”\nThe word “Apple” is a fruit. But it can also be a company name, or even a person’s name. How to classify it? Work with your classmates to come up with all the rules to classify “Apple” into the correct category."
   },
   {
-    "objectID": "in-class/meeting_03/t_kl.html",
-    "href": "in-class/meeting_03/t_kl.html",
-    "title": "Meeting 03 — Terminal practice (example)",
+    "objectID": "meeting_03/meeting_03.html",
+    "href": "meeting_03/meeting_03.html",
+    "title": "Meeting 03",
     "section": "",
-    "text": "pwd: prints the current working directory.\nls: lists files/folders in the current directory.\ncd: changes directory.\n\n\n\n\n\nWhen should I use a new branch vs committing directly to the current branch?\n\n\n\n\n\nWhat is the difference between git pull and git fetch?"
+    "text": "Return to the terminal\nA litte bit about version control\nLet’s try Openwork"
   },
   {
-    "objectID": "in-class/meeting_03/t_kl.html#three-commands-i-learned-today",
-    "href": "in-class/meeting_03/t_kl.html#three-commands-i-learned-today",
-    "title": "Meeting 03 — Terminal practice (example)",
-    "section": "",
-    "text": "pwd: prints the current working directory.\nls: lists files/folders in the current directory.\ncd: changes directory."
-  },
-  {
-    "objectID": "in-class/meeting_03/t_kl.html#one-thing-that-confused-me",
-    "href": "in-class/meeting_03/t_kl.html#one-thing-that-confused-me",
-    "title": "Meeting 03 — Terminal practice (example)",
-    "section": "",
-    "text": "When should I use a new branch vs committing directly to the current branch?"
-  },
-  {
-    "objectID": "in-class/meeting_03/t_kl.html#one-question-for-next-class",
-    "href": "in-class/meeting_03/t_kl.html#one-question-for-next-class",
-    "title": "Meeting 03 — Terminal practice (example)",
-    "section": "",
-    "text": "What is the difference between git pull and git fetch?"
+    "objectID": "meeting_03/meeting_03.html#what-is-the-terminal",
+    "href": "meeting_03/meeting_03.html#what-is-the-terminal",
+    "title": "Meeting 03",
+    "section": "What is the terminal?",
+    "text": "What is the terminal?\n\n\n\n\n\n\nImportant\n\n\n\nA Terminal is a text-based interface for your computer.\n\n\nThink of it as a conversation window. Instead of clicking icons (which is like pointing at things on a menu), you type commands (like speaking to a waiter) to tell the computer exactly what to do."
   },
   {
     "objectID": "syllabus/syllabus.html",

@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -179,18 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#what-is-the-terminal" id="toc-what-is-the-terminal" class="nav-link" data-scroll-target="#what-is-the-terminal">What is the terminal?</a></li>
   </ul></li>
-  <li><a href="#a-little-bit-about-version-control" id="toc-a-little-bit-about-version-control" class="nav-link" data-scroll-target="#a-little-bit-about-version-control">A little bit about version control</a>
-  <ul class="collapse">
-  <li><a href="#in-class-exercise-terminal-github-codespaces-pull-request" id="toc-in-class-exercise-terminal-github-codespaces-pull-request" class="nav-link" data-scroll-target="#in-class-exercise-terminal-github-codespaces-pull-request">In-class exercise: Terminal + GitHub Codespaces + Pull Request</a>
-  <ul class="collapse">
-  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal">Goal</a></li>
-  <li><a href="#setup-codespaces" id="toc-setup-codespaces" class="nav-link" data-scroll-target="#setup-codespaces">Setup (Codespaces)</a></li>
-  <li><a href="#part-a-basic-terminal-commands-practice" id="toc-part-a-basic-terminal-commands-practice" class="nav-link" data-scroll-target="#part-a-basic-terminal-commands-practice">Part A — Basic terminal commands (practice)</a></li>
-  <li><a href="#part-b-create-your-submission-file" id="toc-part-b-create-your-submission-file" class="nav-link" data-scroll-target="#part-b-create-your-submission-file">Part B — Create your submission file</a></li>
-  <li><a href="#part-c-git-workflow-branch-commit-push-pr" id="toc-part-c-git-workflow-branch-commit-push-pr" class="nav-link" data-scroll-target="#part-c-git-workflow-branch-commit-push-pr">Part C — Git workflow (branch → commit → push → PR)</a></li>
-  <li><a href="#submission-checklist" id="toc-submission-checklist" class="nav-link" data-scroll-target="#submission-checklist">Submission checklist</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#a-litte-bit-about-version-control" id="toc-a-litte-bit-about-version-control" class="nav-link" data-scroll-target="#a-litte-bit-about-version-control">A litte bit about version control</a></li>
   <li><a href="#lets-try-openwork" id="toc-lets-try-openwork" class="nav-link" data-scroll-target="#lets-try-openwork">Let’s try Openwork</a></li>
   </ul>
 </nav>
@@ -239,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Today’s Schedule</h1>
 <ul>
 <li>Return to the terminal</li>
-<li>A little bit about version control</li>
+<li>A litte bit about version control</li>
 <li>Let’s try Openwork</li>
 </ul>
 </section>
@@ -257,136 +211,18 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A terminal is a text-based interface for your computer.</p>
+<p>A Terminal is a text-based interface for your computer.</p>
 </div>
 </div>
 <p>Think of it as a conversation window. Instead of clicking icons (which is like pointing at things on a menu), you type commands (like speaking to a waiter) to tell the computer exactly what to do.</p>
 </section>
 </section>
-<section id="a-little-bit-about-version-control" class="level1">
-<h1>A little bit about version control</h1>
-<section id="in-class-exercise-terminal-github-codespaces-pull-request" class="level2">
-<h2 class="anchored" data-anchor-id="in-class-exercise-terminal-github-codespaces-pull-request">In-class exercise: Terminal + GitHub Codespaces + Pull Request</h2>
-<section id="goal" class="level3">
-<h3 class="anchored" data-anchor-id="goal">Goal</h3>
-<p>By the end of this exercise, you will be able to:</p>
-<ul>
-<li>navigate a project using basic terminal commands;</li>
-<li>create a Markdown file in the correct folder;</li>
-<li>commit and push changes to your own branch;</li>
-<li>open a Pull Request (PR) to submit your work.</li>
-</ul>
-</section>
-<section id="setup-codespaces" class="level3">
-<h3 class="anchored" data-anchor-id="setup-codespaces">Setup (Codespaces)</h3>
-<ol type="1">
-<li>Open the course repo on GitHub: <code>kltng/eastd143b</code></li>
-<li>Click <strong>Code → Codespaces → Create codespace on 2026</strong></li>
-<li>In Codespaces, open the <strong>Terminal</strong>.</li>
-</ol>
-</section>
-<section id="part-a-basic-terminal-commands-practice" class="level3">
-<h3 class="anchored" data-anchor-id="part-a-basic-terminal-commands-practice">Part A — Basic terminal commands (practice)</h3>
-<p>Run these commands and briefly note what each one shows:</p>
-<ol type="1">
-<li>Where am I?</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="2" type="1">
-<li>What files/folders are here?</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="3" type="1">
-<li>Move into a folder and list again:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> in-class</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="4" type="1">
-<li>Move back to the repo root:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="5" type="1">
-<li>Find the Meeting 03 in-class folder:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> in-class</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> in-class/meeting_03</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="part-b-create-your-submission-file" class="level3">
-<h3 class="anchored" data-anchor-id="part-b-create-your-submission-file">Part B — Create your submission file</h3>
-<p>Create a Markdown file inside <code>in-class/meeting_03/</code>.</p>
-<p><strong>File name format</strong>: use your initials in the format:</p>
-<ul>
-<li><code>t_ab.md</code></li>
-</ul>
-<p>(Example in the repo: <code>in-class/meeting_03/t_kl.md</code>)</p>
-<p>Create the file (choose one method):</p>
-<p><strong>Method 1 (quick, terminal):</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&gt;</span> in-class/meeting_03/t_ab.md <span class="op">&lt;&lt;'MD'</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st"># Meeting 03 — Terminal practice</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">## 1) Three commands I learned today</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">-</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">-</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">-</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">## 2) One thing that confused me</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">-</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">## 3) One question for next class</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">-</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="op">MD</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Method 2 (editor):</strong> create the file in the file explorer and type the same content.</p>
-</section>
-<section id="part-c-git-workflow-branch-commit-push-pr" class="level3">
-<h3 class="anchored" data-anchor-id="part-c-git-workflow-branch-commit-push-pr">Part C — Git workflow (branch → commit → push → PR)</h3>
-<ol type="1">
-<li>Confirm you are on the <code>2026</code> branch:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">--show-current</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="2" type="1">
-<li>Create your own branch:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> meeting03/t_ab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="3" type="1">
-<li>Check what changed:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="4" type="1">
-<li>Stage + commit:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add in-class/meeting_03/t_ab.md</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add Meeting 03 in-class submission (t_ab)"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="5" type="1">
-<li>Push your branch:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin meeting03/t_ab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="6" type="1">
-<li>Open a Pull Request:</li>
-</ol>
-<ul>
-<li>In GitHub, click <strong>Compare &amp; pull request</strong></li>
-<li>Base branch: <code>2026</code></li>
-<li>Title: <code>Meeting 03 submission: t_ab</code></li>
-<li>Submit the PR</li>
-</ul>
-</section>
-<section id="submission-checklist" class="level3">
-<h3 class="anchored" data-anchor-id="submission-checklist">Submission checklist</h3>
-<p>Before you submit your PR, confirm:</p>
-<ul class="task-list">
-<li><label><input type="checkbox">your file is in <code>in-class/meeting_03/</code></label></li>
-<li><label><input type="checkbox">filename matches <code>t_ab.md</code></label></li>
-<li><label><input type="checkbox">PR base branch is <code>2026</code></label></li>
-</ul>
-</section>
-</section>
+<section id="a-litte-bit-about-version-control" class="level1">
+<h1>A litte bit about version control</h1>
 </section>
 <section id="lets-try-openwork" class="level1">
 <h1>Let’s try Openwork</h1>
-<p>To start using an agentic approach for your research as soon as possible, we will use <strong>Openwork</strong>, an easy-to-use version of <strong>OpenCode</strong>.</p>
+<p>In order to start using agentic approach for your research as soon as possible, we will use Openwork, an easy-to-use version of OpenCode. We will</p>
 
 
 </section>
