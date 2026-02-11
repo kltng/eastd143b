@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -90,6 +125,9 @@ ul.task-list li input[type="checkbox"] {
     }
   })();
 </script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -144,8 +182,33 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#what-is-the-terminal" id="toc-what-is-the-terminal" class="nav-link" data-scroll-target="#what-is-the-terminal">What is the terminal?</a></li>
   </ul></li>
-  <li><a href="#a-litte-bit-about-version-control" id="toc-a-litte-bit-about-version-control" class="nav-link" data-scroll-target="#a-litte-bit-about-version-control">A litte bit about version control</a></li>
-  <li><a href="#lets-try-openwork" id="toc-lets-try-openwork" class="nav-link" data-scroll-target="#lets-try-openwork">Let’s try Openwork</a></li>
+  <li><a href="#a-little-bit-about-version-control" id="toc-a-little-bit-about-version-control" class="nav-link" data-scroll-target="#a-little-bit-about-version-control">A little bit about version control</a>
+  <ul class="collapse">
+  <li><a href="#package-managers" id="toc-package-managers" class="nav-link" data-scroll-target="#package-managers">Package Managers</a>
+  <ul class="collapse">
+  <li><a href="#homebrew-macos" id="toc-homebrew-macos" class="nav-link" data-scroll-target="#homebrew-macos">Homebrew (macOS)</a></li>
+  <li><a href="#winget-windows" id="toc-winget-windows" class="nav-link" data-scroll-target="#winget-windows">Winget (Windows)</a></li>
+  </ul></li>
+  <li><a href="#shortcut" id="toc-shortcut" class="nav-link" data-scroll-target="#shortcut">Shortcut</a></li>
+  <li><a href="#what-is-version-control" id="toc-what-is-version-control" class="nav-link" data-scroll-target="#what-is-version-control">What is Version Control?</a></li>
+  <li><a href="#what-is-git" id="toc-what-is-git" class="nav-link" data-scroll-target="#what-is-git">What is Git?</a>
+  <ul class="collapse">
+  <li><a href="#install-git-and-github" id="toc-install-git-and-github" class="nav-link" data-scroll-target="#install-git-and-github">Install Git and GitHub</a></li>
+  <li><a href="#how-to-register-a-github-account" id="toc-how-to-register-a-github-account" class="nav-link" data-scroll-target="#how-to-register-a-github-account">How to Register a GitHub Account?</a></li>
+  </ul></li>
+  <li><a href="#what-is-quarto" id="toc-what-is-quarto" class="nav-link" data-scroll-target="#what-is-quarto">What is Quarto?</a>
+  <ul class="collapse">
+  <li><a href="#install-the-quarto-cli" id="toc-install-the-quarto-cli" class="nav-link" data-scroll-target="#install-the-quarto-cli">Install the Quarto CLI</a></li>
+  <li><a href="#install-the-quarto-extension-for-antigravity" id="toc-install-the-quarto-extension-for-antigravity" class="nav-link" data-scroll-target="#install-the-quarto-extension-for-antigravity">Install the Quarto extension for Antigravity</a></li>
+  <li><a href="#structure-of-a-.qmd-file" id="toc-structure-of-a-.qmd-file" class="nav-link" data-scroll-target="#structure-of-a-.qmd-file">Structure of a .qmd File</a></li>
+  </ul></li>
+  <li><a href="#practice-creating-a-quarto-document-and-pushing-to-github" id="toc-practice-creating-a-quarto-document-and-pushing-to-github" class="nav-link" data-scroll-target="#practice-creating-a-quarto-document-and-pushing-to-github">Practice: Creating a Quarto Document and Pushing to GitHub</a></li>
+  <li><a href="#in-class-exercise-terminal-codespaces-pull-request" id="toc-in-class-exercise-terminal-codespaces-pull-request" class="nav-link" data-scroll-target="#in-class-exercise-terminal-codespaces-pull-request">In-class exercise (Terminal + Codespaces + Pull Request)</a></li>
+  </ul></li>
+  <li><a href="#lets-try-openwork" id="toc-lets-try-openwork" class="nav-link" data-scroll-target="#lets-try-openwork">Let’s try Openwork</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -192,9 +255,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="todays-schedule" class="level1">
 <h1>Today’s Schedule</h1>
 <ul>
+<li>A little bit about version control</li>
 <li>Return to the terminal</li>
-<li>A litte bit about version control</li>
 <li>Let’s try Openwork</li>
+<li>In-class exercise (Terminal + Codespaces + Pull Request)</li>
 </ul>
 </section>
 <section id="return-to-the-terminal" class="level1">
@@ -211,20 +275,375 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A Terminal is a text-based interface for your computer.</p>
+<p>A terminal is a text-based interface for your computer.</p>
 </div>
 </div>
 <p>Think of it as a conversation window. Instead of clicking icons (which is like pointing at things on a menu), you type commands (like speaking to a waiter) to tell the computer exactly what to do.</p>
 </section>
 </section>
-<section id="a-litte-bit-about-version-control" class="level1">
-<h1>A litte bit about version control</h1>
+<section id="a-little-bit-about-version-control" class="level1">
+<h1>A little bit about version control</h1>
+<section id="package-managers" class="level2">
+<h2 class="anchored" data-anchor-id="package-managers">Package Managers</h2>
+<p>Homebrew and Winget are package managers designed to simplify the installation, update, and management of software on macOS and Windows systems, respectively. They streamline the process of handling software packages, making it more efficient for users to maintain their systems.</p>
+<section id="homebrew-macos" class="level3">
+<h3 class="anchored" data-anchor-id="homebrew-macos">Homebrew (macOS)</h3>
+<p><a href="https://brew.sh/">Homebrew</a> is a package manager for macOS (and Linux) that allows users to install and manage free and open-source software via the command line. It’s particularly favored by developers for its simplicity and the vast array of packages available.</p>
+<section id="installation-on-macos" class="level4">
+<h4 class="anchored" data-anchor-id="installation-on-macos">Installation on macOS:</h4>
+<ol type="1">
+<li><strong>Open Terminal</strong>: You can find Terminal in the Utilities folder within your Applications, or by searching for it using Spotlight (press Command + Space and type “Terminal”).</li>
+<li><strong>Install Xcode Command Line Tools</strong>: Before installing Homebrew, ensure that you have the necessary command line tools. Execute the following command:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xcode-select</span> <span class="at">--install</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li><strong>Install Homebrew</strong>: Once you have Xcode Command Line Tools installed, run the following command to install Homebrew:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This script will download and install Homebrew on your system. Follow the on-screen instructions during the installation process.</p>
+<ol start="4" type="1">
+<li><strong>Verify Installation</strong>: After installation, confirm that Homebrew is correctly installed by running:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This command should display the version number of Homebrew.</p>
+</section>
+<section id="basic-homebrew-commands" class="level4">
+<h4 class="anchored" data-anchor-id="basic-homebrew-commands">Basic Homebrew Commands</h4>
+<ol type="1">
+<li><strong>Install a Package</strong>: To install a package, use the <code>brew install</code> command followed by the package name.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="op">&lt;</span>package_name<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li><strong>Update Homebrew</strong>: To update Homebrew itself, use the <code>brew update</code> command.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> update</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li><strong>List Installed Packages</strong>: To list all installed packages, use the <code>brew list</code> command.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="4" type="1">
+<li><strong>Uninstall a Package</strong>: To uninstall a package, use the <code>brew uninstall</code> command followed by the package name.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> uninstall <span class="op">&lt;</span>package_name<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="5" type="1">
+<li><strong>Upgrade a Package</strong>: To upgrade a package, use the <code>brew upgrade</code> command followed by the package name.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> upgrade <span class="op">&lt;</span>package_name<span class="op">&gt;</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="winget-windows" class="level3">
+<h3 class="anchored" data-anchor-id="winget-windows">Winget (Windows)</h3>
+<p>Winget, or the Windows Package Manager, is a command-line tool for Windows 10 and Windows 11 that enables users to discover, install, upgrade, remove, and configure applications. It serves as a convenient method to manage software installations on Windows systems.</p>
+<section id="installation-on-windows" class="level4">
+<h4 class="anchored" data-anchor-id="installation-on-windows">Installation on Windows:</h4>
+<p>Winget comes pre-installed on Windows 11 and modern versions of Windows 10 as part of the App Installer. To verify if Winget is installed, open the Command Prompt or PowerShell and type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>winget  <span class="op">--</span>version  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If Winget is installed, this command will display the version number. If it’s not installed, you can download the App Installer from the Microsoft Store.</p>
+</section>
+<section id="using-winget" class="level4">
+<h4 class="anchored" data-anchor-id="using-winget">Using Winget</h4>
+<ol type="1">
+<li><p><strong>Open PowerShell</strong>: Open the Windows PowerShell console by right-clicking on the Start button and selecting “PowerShell”.</p></li>
+<li><p><strong>Search for a Package</strong>: To search for a specific application:</p></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>winget search <span class="op">&lt;</span>package_name<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li><strong>Install a Package</strong>: To install a package, use the <code>winget install</code> command followed by the package name.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">&lt;</span>package_name<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="4" type="1">
+<li><strong>Uninstall a Package</strong>: To uninstall a package, use the <code>winget uninstall</code> command followed by the package name.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>winget uninstall <span class="op">&lt;</span>package_name<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="5" type="1">
+<li><strong>Upgrade a Package</strong>: To upgrade a package, use the <code>winget upgrade</code> command followed by the package name.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>winget upgrade <span class="op">&lt;</span>package_name<span class="op">&gt;</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="shortcut" class="level2">
+<h2 class="anchored" data-anchor-id="shortcut">Shortcut</h2>
+<ul>
+<li>Open Antigravity.</li>
+<li>In the extension settings, search for “Topcoder Fullstack” and install it.</li>
+<li></li>
+</ul>
+</section>
+<section id="what-is-version-control" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-version-control">What is Version Control?</h2>
+<ul>
+<li>Version control is a system for tracking changes to files over time.<br>
+</li>
+<li>It lets you <strong>save snapshots</strong> of your work, revert to earlier versions, and track who made which changes.<br>
+</li>
+<li>Think of it like the <strong>track changes</strong> feature in Word or Google Docs, but more powerful and for all kinds of files.<br>
+</li>
+<li><strong>Why it matters:</strong> No more files named “Essay_final_v5_FINAL.docx” – version control keeps a <em>history</em> so you always have every version.</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    v1["File Version 1"] --&gt; v2["File Version 2"] --&gt; v3["File Version 3"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="what-is-git" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-git">What is Git?</h2>
+<ul>
+<li>Git is the most widely used version control tool (VCS) in the world.</li>
+<li>It runs on your computer to track changes in a project (a local repository).</li>
+<li>Git lets you record commits (snapshots of your files) and then sync with a remote server (e.g., GitHub) to share those changes.</li>
+<li>You can experiment on separate branches without affecting the main project, then merge your work when it’s ready.</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    WD[Working Directory] --&gt;|git add| Index[Staging Area] --&gt;|git commit| Repo[Local Repository]
+    Repo --&gt;|git push| Remote[GitHub Repository]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><img src="./images/distributed.png" class="img-fluid"> (Image source: <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control">Git</a>)</p>
+<p>In most of the cases, the “Server Computer” is the code repositories. In our case, it is GitHub.</p>
+<section id="install-git-and-github" class="level3">
+<h3 class="anchored" data-anchor-id="install-git-and-github">Install Git and GitHub</h3>
+<section id="homebrew" class="level4">
+<h4 class="anchored" data-anchor-id="homebrew">Homebrew</h4>
+<ol type="1">
+<li>Open Terminal</li>
+<li>Run the following command to install Homebrew:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>Try the following command to check if Git is installed:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="4" type="1">
+<li>Run the following command to install GitHub CLI:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install gh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="5" type="1">
+<li>Try the following command to check if GitHub CLI is installed:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="winget" class="level4">
+<h4 class="anchored" data-anchor-id="winget">Winget</h4>
+<ol type="1">
+<li>Open PowerShell</li>
+<li>Run the following command to install Git:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id Git<span class="op">.</span><span class="fu">Git</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Try the following command to check if Git is installed:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>git <span class="op">--</span>version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Run the following command to install GitHub CLI:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>winget install <span class="op">--</span>id GitHub<span class="op">.</span><span class="fu">cli</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Try the following command to check if GitHub CLI is installed:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>gh <span class="op">--</span>version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="how-to-register-a-github-account" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-register-a-github-account">How to Register a GitHub Account?</h3>
+<ul>
+<li>Go to <a href="https://github.com">GitHub.com</a> and click Sign Up.</li>
+<li>Choose a username (this will be your handle on GitHub).</li>
+<li>Enter your email (use your Harvard email or EDU email if you want to use the Education benefits) and create a password.</li>
+<li>Verify your account via the email sent by GitHub. -Choose the free plan (it’s sufficient for almost all academic projects).</li>
+<li>Tip: You can skip creating a repository during sign-up – we’ll do that ourselves.</li>
+</ul>
+</section>
+</section>
+<section id="what-is-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-quarto">What is Quarto?</h2>
+<p>Quarto is an open-source scientific and technical publishing system. It:</p>
+<ul>
+<li>Uses a .qmd (Quarto Markdown) file to combine text, code, and outputs.</li>
+<li>Can render to multiple formats (HTML, PDF, Word, reveal.js slides, etc.).</li>
+<li>Supports Python, R, Julia, and more.</li>
+<li>Ideal for reproducible documents, such as articles, presentations, or data analyses.</li>
+</ul>
+<section id="install-the-quarto-cli" class="level3">
+<h3 class="anchored" data-anchor-id="install-the-quarto-cli">Install the Quarto CLI</h3>
+<p>Using the official installer:</p>
+<ol type="1">
+<li>Download Installer: Visit the <a href="https://quarto.org/docs/download/">Quarto Downloads page</a> and download the installer for your OS.</li>
+<li>Run Installer.</li>
+<li>Verify Installation: Open Terminal and run:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="install-the-quarto-extension-for-antigravity" class="level3">
+<h3 class="anchored" data-anchor-id="install-the-quarto-extension-for-antigravity">Install the Quarto extension for Antigravity</h3>
+<ol type="1">
+<li>Open Antigravity.</li>
+<li>Click the “Extensions” button on the left sidebar.</li>
+<li>Search for “Quarto” and click “Install”.</li>
+</ol>
+</section>
+<section id="structure-of-a-.qmd-file" class="level3">
+<h3 class="anchored" data-anchor-id="structure-of-a-.qmd-file">Structure of a .qmd File</h3>
+<p>A .qmd (Quarto Markdown) file typically has: 1. YAML Header (between — lines):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Document Title"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li>Body Content in Markdown:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>This is normal text written in Markdown.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>When you run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render your_file.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Quarto processes the .qmd file and produces the output format(s) you specified (e.g., .html, .pdf, etc.).</p>
+</section>
+</section>
+<section id="practice-creating-a-quarto-document-and-pushing-to-github" class="level2">
+<h2 class="anchored" data-anchor-id="practice-creating-a-quarto-document-and-pushing-to-github">Practice: Creating a Quarto Document and Pushing to GitHub</h2>
+<p>This guide will walk you through the process of creating a folder, initializing a Git repository, creating a Quarto (<code>.qmd</code>) file, making initial commits, revising the file, and pushing the changes to a remote repository on GitHub.</p>
+<p><strong>Prerequisites</strong>:</p>
+<ul>
+<li><strong>Git</strong>: Ensure Git is installed on your system. Verify by running <code>git --version</code> in your terminal.</li>
+<li><strong>Quarto</strong>: Ensure Quarto is installed. Verify by running <code>quarto --version</code> in your terminal.</li>
+<li><strong>GitHub Account</strong>: Ensure you have an account on <a href="https://github.com">GitHub</a>.</li>
+</ul>
+<p><strong>Instructions</strong>:</p>
+<ol type="1">
+<li><strong>Create a Folder</strong>:
+<ul>
+<li><p>Open your terminal or command prompt.</p></li>
+<li><p>Navigate to your desired parent directory using the <code>cd</code> command.</p></li>
+<li><p>Create a new folder named <code>my_project</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> my_project</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Navigate into the newly created folder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my_project</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><strong>Initialize a Git Repository</strong>:
+<ul>
+<li><p>Initialize an empty Git repository in the current directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>This command creates a <code>.git</code> subdirectory, setting up the necessary files and structures for version control.</p></li>
+</ul></li>
+<li><strong>Create a Quarto (<code>.qmd</code>) File</strong>:
+<ul>
+<li><p>Open your preferred text editor (e.g., Visual Studio Code).</p></li>
+<li><p>Create a new file named <code>document.qmd</code> with the following content:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "My First Quarto Document"</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Your Name"</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2025-02-11"</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>This is my first Quarto document.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Save the file in the <code>my_project</code> directory.</p></li>
+</ul></li>
+<li><strong>Make the First Commit</strong>:
+<ul>
+<li><p>In the terminal, ensure you’re in the <code>my_project</code> directory.</p></li>
+<li><p>Stage the new file for commit:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add document.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Commit the staged file with a descriptive message:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add initial Quarto document"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><strong>Revise the <code>.qmd</code> File</strong>:
+<ul>
+<li><p>Open <code>document.qmd</code> in your text editor.</p></li>
+<li><p>Add a new section:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>This concludes my first Quarto document.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Save the changes.</p></li>
+</ul></li>
+<li><strong>Make a Second Commit</strong>:
+<ul>
+<li><p>Stage the modified file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add document.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Commit the changes with an appropriate message:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add conclusion section to Quarto document"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><strong>Push to a Remote Repository on GitHub</strong>:
+<ul>
+<li><strong>Create a Remote Repository</strong>:
+<ul>
+<li>Log in to your GitHub account.</li>
+<li>Click the <strong>“+”</strong> icon in the top-right corner and select <strong>“New repository”</strong>.</li>
+<li>Name the repository <code>my_project</code> and choose its visibility (public or private).</li>
+<li>Click <strong>“Create repository”</strong>.</li>
+</ul></li>
+<li><strong>Connect Local Repository to GitHub</strong>:
+<ul>
+<li><p>In the terminal, add the remote repository:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/your-username/my_project.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Replace <code>your-username</code> with your GitHub username.</p></li>
+</ul></li>
+<li><strong>Push Local Changes to GitHub</strong>:
+<ul>
+<li><p>Push your commits to the remote repository:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If your local branch is named <code>master</code>, replace <code>main</code> with <code>master</code>.</p></li>
+</ul></li>
+</ul></li>
+</ol>
+<p><strong>Notes</strong>:</p>
+<ul>
+<li>The <code>git add</code> command stages changes, preparing them for a commit.</li>
+<li>The <code>git commit</code> command records the staged changes in the repository’s history.</li>
+<li>The <code>git push</code> command uploads local repository content to a remote repository.</li>
+</ul>
+<p>By following these steps, you’ve successfully created a project, tracked its versions using Git, and published it to GitHub.</p>
+</section>
+<section id="in-class-exercise-terminal-codespaces-pull-request" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-exercise-terminal-codespaces-pull-request">In-class exercise (Terminal + Codespaces + Pull Request)</h2>
+<p>Please complete the in-class exercise here:</p>
+<ul>
+<li><a href="../meetings/in-class-exercise-meeting-03.html">In-class Exercise (Meeting 03)</a></li>
+</ul>
+</section>
 </section>
 <section id="lets-try-openwork" class="level1">
 <h1>Let’s try Openwork</h1>
-<p>In order to start using agentic approach for your research as soon as possible, we will use Openwork, an easy-to-use version of OpenCode. We will</p>
+<p>In order to start using agentic approach for your research as soon as possible, we will use Openwork, an easy-to-use version of OpenCode. We will use Openwork to build a research workflow agent.</p>
+<ul>
+<li>Download Openwork from <a href="https://openwork.software">Openwork</a>.</li>
+<li>The “Big Pickle” model in Openwork is free for limited time use. It is the GLM-4.6 model from <a href="https://z.ai">Z.ai</a>.</li>
+</ul>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li><a href="https://brew.sh/">Homebrew for MacOS</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows/wsl/install">Winget for Windows</a></li>
+<li><a href="https://git-scm.com/book/en/v2/">Git Documentation</a></li>
+<li><a href="https://docs.github.com">GitHub Documentation</a></li>
+<li><a href="https://quarto.org/docs/get-started/">Quarto Documentation</a></li>
+<li><a href="https://openwork.software">Openwork Documentation</a></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
