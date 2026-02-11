@@ -1,75 +1,5 @@
 [
   {
-    "objectID": "syllabus/syllabus.html",
-    "href": "syllabus/syllabus.html",
-    "title": "2026 Spring EASTD143B Syllabus",
-    "section": "",
-    "text": "Course Title: EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach\nMeeting Time: 09:00 - 11:45, Wednesdays, Spring 2026\nLocation: Harvard Hall 103\nInstructor: Kwok-leong Tang (kwokleongtang@fas.harvard.edu)\nOffice Hours: 10:30 - 12:30 , Fridays (407 CGIS South)\n\n\nATTENTION: There is NO SESSION on Fridays through the Spring semester. Therefore, you can register for this course even you have classes on Fridays."
-  },
-  {
-    "objectID": "syllabus/syllabus.html#course-information",
-    "href": "syllabus/syllabus.html#course-information",
-    "title": "2026 Spring EASTD143B Syllabus",
-    "section": "",
-    "text": "Course Title: EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach\nMeeting Time: 09:00 - 11:45, Wednesdays, Spring 2026\nLocation: Harvard Hall 103\nInstructor: Kwok-leong Tang (kwokleongtang@fas.harvard.edu)\nOffice Hours: 10:30 - 12:30 , Fridays (407 CGIS South)\n\n\nATTENTION: There is NO SESSION on Fridays through the Spring semester. Therefore, you can register for this course even you have classes on Fridays."
-  },
-  {
-    "objectID": "syllabus/syllabus.html#overview",
-    "href": "syllabus/syllabus.html#overview",
-    "title": "2026 Spring EASTD143B Syllabus",
-    "section": "Overview",
-    "text": "Overview\nThis course is designed for East Asian humanities students interested in adopting digital methods in their research with basic programming and building tools for their own research workflow. It introduces fundamental programming concepts and essential techniques for the booming generative artificial intelligence. This year’s course focuses on agentic approach for using GenAI not only for coding but also for research workflow. Students completing the course will integrate and apply these tools into their research and explore the rapidly growing new technologies, especially GenAI, related to humanities studies.\nThis course is for you if:\n\nyou come from a humanities background with no or little digital literacy but want to learn how digital tools and methods can benefit your studies or research;\nyou want to bring GenAI components into your existing humanities research workflow;\nyou have ideas for digital projects but need to know how to start.\n\nThis course may not be helpful to you if:\n\nyou are an experienced programmer;\nyou have zero background in East Asian humanities;\nyou are looking for data science or machine learning 101.\n\nATTENTION: Language requirements may apply. Proficiency in one East Asian language is required. Please get in touch with Kwok-leong for more details about the language requirement."
-  },
-  {
-    "objectID": "syllabus/syllabus.html#learning-goals",
-    "href": "syllabus/syllabus.html#learning-goals",
-    "title": "2026 Spring EASTD143B Syllabus",
-    "section": "Learning Goals",
-    "text": "Learning Goals\nAfter completion of the course, you will be able to\n\nuse agentic tools to collect data from the internet and digitalized materials;\nmanipulate and analyze data with Python and AI tools;\nknow how to test and use emerging artificial intelligence tools; design and build a simple digital scholarship project."
-  },
-  {
-    "objectID": "syllabus/syllabus.html#class-format",
-    "href": "syllabus/syllabus.html#class-format",
-    "title": "2026 Spring EASTD143B Syllabus",
-    "section": "Class Format",
-    "text": "Class Format\nWe will meet weekly for 2 hours and 45 minutes. The class will be a mix of lectures, discussions, and hands-on exercises."
-  },
-  {
-    "objectID": "syllabus/syllabus.html#grading",
-    "href": "syllabus/syllabus.html#grading",
-    "title": "2026 Spring EASTD143B Syllabus",
-    "section": "Grading",
-    "text": "Grading\nClass participation (20%): Students are expected to attend and participate in every class, completing assigned in-class exercises and engaging in discussions. Homework assignments (30%): Homework assignments will incorporate methods, principles, and tools into your research projects. Final project: The final project will include a meeting with Kwok-leong to discuss the project by the end of the third week (5%), a proposal (5%), a presentation (10%), a work journal (10%), and a final product (20%)."
-  },
-  {
-    "objectID": "syllabus/syllabus.html#class-policies",
-    "href": "syllabus/syllabus.html#class-policies",
-    "title": "2026 Spring EASTD143B Syllabus",
-    "section": "Class Policies",
-    "text": "Class Policies\n\nOffice hours\nKwok-leong’s regular office hours are 10:30 - 12:30, Fridays (407 CGIS South). However, you can schedule in-person or online meetings by appointment. Please email Kwok-leong to schedule appointments.\n\n\nAbsence from class\nClass participation takes 20% of your grade, so attendance is essential. However, we all face difficulties in our lives. Every enrolled student will have two opportunities to be absent from the weekly meeting. Please notify Kwok-leong if you are absent.\n\n\nClassroom rules\nAll class materials will be shared on Canvas or Kwok-leong’s website. Please do NOT take any photos or videos in class without Kwok-leong’s permission!\n\n\nAccessibility Statement\nThe instructor is committed to ensuring everyone has equitable access to the learning environment. Kwok-leong will strive to make the course materials, meetings, and the instructor’s office hours accessible and useable for all students. All materials distributed in the course will be available in an accessible format. The instructor will make reasonable accommodations to course materials, meetings, and office hours for students with disabilities who have registered with the Harvard Disability Access Office (DAO) or have been identified as having a disability or special need.\n\n\nAuditing\nAs the course will provide resources (API credits and subscription fees) to both enrolled and auditing students, auditing students are expected to commit to the course as enrolled students do. If you need to miss any class for any reason, please inform Kwok-leong in advance. Additionally, if you anticipate being absent for multiple meetings due to travel plans, it is recommended that you DO NOT audit this class."
-  },
-  {
-    "objectID": "syllabus/syllabus.html#weekly-schedule",
-    "href": "syllabus/syllabus.html#weekly-schedule",
-    "title": "2026 Spring EASTD143B Syllabus",
-    "section": "Weekly Schedule",
-    "text": "Weekly Schedule\n\n2026-01-28: Introduction, logistics, and software setup\n2026-02-04: The landscape of agentic approach\n2026-02-11: Return to the terminal\n2026-02-18: Version control\n2026-02-25: Note-taking and research workflow\n2026-03-04: Packages, libraries, frameworks, platforms\n2026-03-11: Collecting data online\n2026-03-18: Spring break\n2026-03-25: Text analysis\n2026-04-01: Working on data I\n2026-04-08: Working on data II\n2026-04-15: Building a digital scholarship project I\n2026-04-22: Building a digital scholarship project II\n2026-04-29: Presentations"
-  },
-  {
-    "objectID": "syllabus/syllabus.html#assignments",
-    "href": "syllabus/syllabus.html#assignments",
-    "title": "2026 Spring EASTD143B Syllabus",
-    "section": "Assignments",
-    "text": "Assignments\n\nBuild a Personal Website (10%)\nIn this assignment, you will build a personal online portfolio which contains blogs, your CV, research projects, publications, and other academic achievements.\n\n\nBuilding a data collecting agent team (10%)\nIn this assignment, you will create an agent team that can scrape any URL provided by the user.\n\n\nBuilding a research workflow agent (10%)\nUsing the data provided by Kwok-leong, you will create a research workflow agent that can help you with your research."
-  },
-  {
-    "objectID": "syllabus/syllabus.html#research-project",
-    "href": "syllabus/syllabus.html#research-project",
-    "title": "2026 Spring EASTD143B Syllabus",
-    "section": "Research Project",
-    "text": "Research Project\nThe core of this course is your research project. Kwok-leong encourages you to work on your thesis or dissertation project using the tools and methods introduced in this course. However, the project must bring new insights to the existing scholarship.\n\nTopic Selection (5%): Meet with Kwok-leong in person to decide your project topic by the end of the third week (2026-02-14).\nProgress Presentations (10% total): Each student will give two progress presentations in class (5% each).\nFinal Presentation (10%): Each student will give a final presentation in the last class meeting.\nFinal Submission (25%): Submit your project by the end of the grading deadline.\n\nThe class does not require a textbook. Please watch the Programming Concepts for Python courseLinks to an external site. by the third week meeting. You should be able to access this video course by using your HarvardKey. For documentation and tutorials for specific tools that we use in class, links are in the weekly meeting materials."
-  },
-  {
     "objectID": "meetings/index.html",
     "href": "meetings/index.html",
     "title": "Meetings",
@@ -82,6 +12,97 @@
     "title": "Meetings",
     "section": "",
     "text": "Meeting 01\nMeeting 02\nMeeting 03"
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#overview",
+    "href": "syllabus/syllabus-presentation.html#overview",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Overview",
+    "text": "Overview\nThis course is designed for East Asian humanities students interested in adopting digital methods in their research. It introduces AI-assisted coding for East Asian humanities projects and essential techniques for utilizing generative artificial intelligence (GenAI). Students completing the course will integrate and apply these tools into their research, exploring the rapidly evolving technologies related to humanities studies."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#learning-goals",
+    "href": "syllabus/syllabus-presentation.html#learning-goals",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nAfter completion of the course, you will be able to:\n\nUse Python or command-line tools to collect data from the internet and digitized materials.\nManipulate and analyze data with Python and AI tools.\nTest and use emerging artificial intelligence tools.\nDesign and build a simple digital scholarship project."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#class-format",
+    "href": "syllabus/syllabus-presentation.html#class-format",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Class Format",
+    "text": "Class Format\nThe weekly meetings are mostly hands-on. The course used to have non-mandatory coding sessions. However, we DO NOT have coding sessions this semester."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#grading",
+    "href": "syllabus/syllabus-presentation.html#grading",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Grading",
+    "text": "Grading\n\nClass participation (20%): Students are expected to attend and participate in every class, completing assigned in-class exercises and engaging in discussions.\nHomework assignments (30%): Homework assignments will incorporate methods, principles, and tools into your research projects.\nFinal project: The final project will include a meeting with Kwok-leong to discuss the project by the end of the third week (5%), a proposal (5%), a presentation (10%), a work journal (10%), and a final product (20%)."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#class-policies",
+    "href": "syllabus/syllabus-presentation.html#class-policies",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Class Policies",
+    "text": "Class Policies\nOffice Hours\nKwok-leong’s in-person office hours are 10:00 - 12:00 on Thursdays, and online office hours are by appointment. Please email Kwok-leong to schedule appointments."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#weekly-schedule",
+    "href": "syllabus/syllabus-presentation.html#weekly-schedule",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Weekly Schedule",
+    "text": "Weekly Schedule\n\n2025-01-29: Introduction and GenAI in General\n2025-02-05: The Landscape of AI-Assisted Coding\n2025-02-12: Version Control, Git, GitHub\n2025-02-19: Package Managers, Libraries, Frameworks, and API\n2025-02-26: Collecting Data I\n2025-03-05: Collecting Data II\n2025-03-12: Spring Break, 2025 AAS in Columbus, OH\n2025-03-19: Text Analysis: Statistical Approach"
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#weekly-schedule-1",
+    "href": "syllabus/syllabus-presentation.html#weekly-schedule-1",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Weekly Schedule",
+    "text": "Weekly Schedule\n\n2025-03-26: Vector Search and Retrieval Augment Generation I\n2025-04-02: Retrieval Augment Generation II\n2025-04-09: Building a Digital Scholarship Project I\n2025-04-16: Building a Digital Scholarship Project II\n2025-04-23: Building a Digital Scholarship Project III\n2025-04-30: Presentations"
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#assignments",
+    "href": "syllabus/syllabus-presentation.html#assignments",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Assignments",
+    "text": "Assignments\nBuild a Personal Website with Quarto (10%)\nIn this assignment, you will build a personal portfolio with Quarto, an open-source scientific and technical publishing system, and deploy it to GitHub Pages."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#assignments-1",
+    "href": "syllabus/syllabus-presentation.html#assignments-1",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Assignments",
+    "text": "Assignments\nBuilding a Web-Crawler (10%)\nIn this assignment, you will create a web-crawler that can scrape any URL provided by the user."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#assignments-2",
+    "href": "syllabus/syllabus-presentation.html#assignments-2",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Assignments",
+    "text": "Assignments\nBuilding a Chatbot with Your Data (10%)\nUsing the data provided by Kwok-leong, you will create a chatbot capable of interacting with and responding to queries about the data."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#research-project",
+    "href": "syllabus/syllabus-presentation.html#research-project",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Research Project",
+    "text": "Research Project\nThe core of this course is your research project. Kwok-leong encourages you to work on your thesis or dissertation project using the tools and methods introduced in this course. However, the project must bring new insights to the existing scholarship."
+  },
+  {
+    "objectID": "syllabus/syllabus-presentation.html#recommended-readings-and-online-tutorials",
+    "href": "syllabus/syllabus-presentation.html#recommended-readings-and-online-tutorials",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
+    "section": "Recommended Readings and Online Tutorials",
+    "text": "Recommended Readings and Online Tutorials\nThe class does not require a textbook. Please watch the Programming Concepts for Python course by the third week meeting. You should be able to access this video course by using your HarvardKey. For documentation and tutorials for specific tools that we use in class, links are in the weekly meeting materials."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities (Coding Approach)",
+    "section": "",
+    "text": "Welcome to the course website for EASTD143B (Spring 2026).\n\nSee the Syllabus\nSee weekly materials under Meetings"
   },
   {
     "objectID": "meeting_02/meeting_02.html",
@@ -154,11 +175,137 @@
     "text": "Why agents are important?\nTo understand the importance of agents, we need to understand the limitations of programming.\n\nClassifying “Apple”\nThe word “Apple” is a fruit. But it can also be a company name, or even a person’s name. How to classify it? Work with your classmates to come up with all the rules to classify “Apple” into the correct category."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities (Coding Approach)",
+    "objectID": "meeting_03/meeting_03.html",
+    "href": "meeting_03/meeting_03.html",
+    "title": "Meeting 03",
     "section": "",
-    "text": "Welcome to the course website for EASTD143B (Spring 2026).\n\nSee the Syllabus\nSee weekly materials under Meetings"
+    "text": "A litte bit about version control\nReturn to the terminal\nLet’s try Openwork"
+  },
+  {
+    "objectID": "meeting_03/meeting_03.html#what-is-the-terminal",
+    "href": "meeting_03/meeting_03.html#what-is-the-terminal",
+    "title": "Meeting 03",
+    "section": "What is the terminal?",
+    "text": "What is the terminal?\n\n\n\n\n\n\nImportant\n\n\n\nA Terminal is a text-based interface for your computer.\n\n\nThink of it as a conversation window. Instead of clicking icons (which is like pointing at things on a menu), you type commands (like speaking to a waiter) to tell the computer exactly what to do."
+  },
+  {
+    "objectID": "meeting_03/meeting_03.html#package-managers",
+    "href": "meeting_03/meeting_03.html#package-managers",
+    "title": "Meeting 03",
+    "section": "Package Managers",
+    "text": "Package Managers\nHomebrew and Winget are package managers designed to simplify the installation, update, and management of software on macOS and Windows systems, respectively. They streamline the process of handling software packages, making it more efficient for users to maintain their systems.\n\nHomebrew (macOS)\nHomebrew is a package manager for macOS (and Linux) that allows users to install and manage free and open-source software via the command line. It’s particularly favored by developers for its simplicity and the vast array of packages available.\n\nInstallation on macOS:\n\nOpen Terminal: You can find Terminal in the Utilities folder within your Applications, or by searching for it using Spotlight (press Command + Space and type “Terminal”).\nInstall Xcode Command Line Tools: Before installing Homebrew, ensure that you have the necessary command line tools. Execute the following command:\n\nxcode-select --install\n\nInstall Homebrew: Once you have Xcode Command Line Tools installed, run the following command to install Homebrew:\n\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\nThis script will download and install Homebrew on your system. Follow the on-screen instructions during the installation process.\n\nVerify Installation: After installation, confirm that Homebrew is correctly installed by running:\n\nbrew --version\nThis command should display the version number of Homebrew.\n\n\nBasic Homebrew Commands\n\nInstall a Package: To install a package, use the brew install command followed by the package name.\n\nbrew install &lt;package_name&gt;\n\nUpdate Homebrew: To update Homebrew itself, use the brew update command.\n\nbrew update\n\nList Installed Packages: To list all installed packages, use the brew list command.\n\nbrew list\n\nUninstall a Package: To uninstall a package, use the brew uninstall command followed by the package name.\n\nbrew uninstall &lt;package_name&gt;\n\nUpgrade a Package: To upgrade a package, use the brew upgrade command followed by the package name.\n\nbrew upgrade &lt;package_name&gt; \n\n\n\nWinget (Windows)\nWinget, or the Windows Package Manager, is a command-line tool for Windows 10 and Windows 11 that enables users to discover, install, upgrade, remove, and configure applications. It serves as a convenient method to manage software installations on Windows systems.\n\nInstallation on Windows:\nWinget comes pre-installed on Windows 11 and modern versions of Windows 10 as part of the App Installer. To verify if Winget is installed, open the Command Prompt or PowerShell and type:\nwinget  --version  \nIf Winget is installed, this command will display the version number. If it’s not installed, you can download the App Installer from the Microsoft Store.\n\n\nUsing Winget\n\nOpen PowerShell: Open the Windows PowerShell console by right-clicking on the Start button and selecting “PowerShell”.\nSearch for a Package: To search for a specific application:\n\nwinget search &lt;package_name&gt;\n\nInstall a Package: To install a package, use the winget install command followed by the package name.\n\nwinget install &lt;package_name&gt;\n\nUninstall a Package: To uninstall a package, use the winget uninstall command followed by the package name.\n\nwinget uninstall &lt;package_name&gt;\n\nUpgrade a Package: To upgrade a package, use the winget upgrade command followed by the package name.\n\nwinget upgrade &lt;package_name&gt;"
+  },
+  {
+    "objectID": "meeting_03/meeting_03.html#shortcut",
+    "href": "meeting_03/meeting_03.html#shortcut",
+    "title": "Meeting 03",
+    "section": "Shortcut",
+    "text": "Shortcut\n\nOpen Antigravity.\nIn the extension settings, search for “Topcoder Fullstack” and install it."
+  },
+  {
+    "objectID": "meeting_03/meeting_03.html#what-is-version-control",
+    "href": "meeting_03/meeting_03.html#what-is-version-control",
+    "title": "Meeting 03",
+    "section": "What is Version Control?",
+    "text": "What is Version Control?\n\nVersion control is a system for tracking changes to files over time.\n\nIt lets you save snapshots of your work, revert to earlier versions, and track who made which changes.\n\nThink of it like the track changes feature in Word or Google Docs, but more powerful and for all kinds of files.\n\nWhy it matters: No more files named “Essay_final_v5_FINAL.docx” – version control keeps a history so you always have every version.\n\n\n\n\n\n\nflowchart LR\n    v1[\"File Version 1\"] --&gt; v2[\"File Version 2\"] --&gt; v3[\"File Version 3\"]"
+  },
+  {
+    "objectID": "meeting_03/meeting_03.html#what-is-git",
+    "href": "meeting_03/meeting_03.html#what-is-git",
+    "title": "Meeting 03",
+    "section": "What is Git?",
+    "text": "What is Git?\n\nGit is the most widely used version control tool (VCS) in the world.\nIt runs on your computer to track changes in a project (a local repository).\nGit lets you record commits (snapshots of your files) and then sync with a remote server (e.g., GitHub) to share those changes.\nYou can experiment on separate branches without affecting the main project, then merge your work when it’s ready.\n\n\n\n\n\n\nflowchart LR\n    WD[Working Directory] --&gt;|git add| Index[Staging Area] --&gt;|git commit| Repo[Local Repository]\n    Repo --&gt;|git push| Remote[GitHub Repository]\n\n\n\n\n\n\n (Image source: Git)\nIn most of the cases, the “Server Computer” is the code repositories. In our case, it is GitHub.\n\nInstall Git and GitHub\n\nHomebrew\n\nOpen Terminal\nRun the following command to install Homebrew:\n\nbrew install git\n\nTry the following command to check if Git is installed:\n\ngit --version\n\nRun the following command to install GitHub CLI:\n\nbrew install gh\n\nTry the following command to check if GitHub CLI is installed:\n\ngh --version\n\n\nWinget\n\nOpen PowerShell\nRun the following command to install Git:\n\nwinget install --id Git.Git\n\nTry the following command to check if Git is installed:\n\ngit --version\n\nRun the following command to install GitHub CLI:\n\nwinget install --id GitHub.cli\n\nTry the following command to check if GitHub CLI is installed:\n\ngh --version\n\n\n\nHow to Register a GitHub Account?\n\nGo to GitHub.com and click Sign Up.\nChoose a username (this will be your handle on GitHub).\nEnter your email (use your Harvard email or EDU email if you want to use the Education benefits) and create a password.\nVerify your account via the email sent by GitHub. -Choose the free plan (it’s sufficient for almost all academic projects).\nTip: You can skip creating a repository during sign-up – we’ll do that ourselves."
+  },
+  {
+    "objectID": "meeting_03/meeting_03.html#what-is-quarto",
+    "href": "meeting_03/meeting_03.html#what-is-quarto",
+    "title": "Meeting 03",
+    "section": "What is Quarto?",
+    "text": "What is Quarto?\nQuarto is an open-source scientific and technical publishing system. It:\n\nUses a .qmd (Quarto Markdown) file to combine text, code, and outputs.\nCan render to multiple formats (HTML, PDF, Word, reveal.js slides, etc.).\nSupports Python, R, Julia, and more.\nIdeal for reproducible documents, such as articles, presentations, or data analyses.\n\n\nInstall of Quarto CLI\nUsing the Official Installer:\n\nDownload Installer: Visit the Quarto Downloads page and download the installer for your OS.\nRun Installer.\nVerify Installation: Open Terminal and run:\n\nquarto --version\n\n\nInstall Quarto Extension for VSCode\n\nOpen VSCode.\nClick the “Extensions” button on the left sidebar.\nSearch for “Quarto” and click “Install”.\n\n\n\nStructure of a .qmd File\nA .qmd (Quarto Markdown) file typically has: 1. YAML Header (between — lines):\n---\ntitle: \"Document Title\"\nauthor: \"Your Name\"\nformat: html\n---\n\nBody Content in Markdown:\n\n# Introduction\n\nThis is normal text written in Markdown.\nWhen you run:\nquarto render your_file.qmd\nQuarto processes the .qmd file and produces the output format(s) you specified (e.g., .html, .pdf, etc.)."
+  },
+  {
+    "objectID": "meeting_03/meeting_03.html#practice-creating-a-quarto-document-and-pushing-to-github",
+    "href": "meeting_03/meeting_03.html#practice-creating-a-quarto-document-and-pushing-to-github",
+    "title": "Meeting 03",
+    "section": "Practice: Creating a Quarto Document and Pushing to GitHub",
+    "text": "Practice: Creating a Quarto Document and Pushing to GitHub\nThis guide will walk you through the process of creating a folder, initializing a Git repository, creating a Quarto (.qmd) file, making initial commits, revising the file, and pushing the changes to a remote repository on GitHub.\nPrerequisites:\n\nGit: Ensure Git is installed on your system. Verify by running git --version in your terminal.\nQuarto: Ensure Quarto is installed. Verify by running quarto --version in your terminal.\nGitHub Account: Ensure you have an account on GitHub.\n\nInstructions:\n\nCreate a Folder:\n\nOpen your terminal or command prompt.\nNavigate to your desired parent directory using the cd command.\nCreate a new folder named my_project:\nmkdir my_project\nNavigate into the newly created folder:\ncd my_project\n\nInitialize a Git Repository:\n\nInitialize an empty Git repository in the current directory:\ngit init\nThis command creates a .git subdirectory, setting up the necessary files and structures for version control.\n\nCreate a Quarto (.qmd) File:\n\nOpen your preferred text editor (e.g., Visual Studio Code).\nCreate a new file named document.qmd with the following content:\n---\ntitle: \"My First Quarto Document\"\nauthor: \"Your Name\"\ndate: \"2025-02-11\"\nformat: html\n---\n\n# Introduction\n\nThis is my first Quarto document.\nSave the file in the my_project directory.\n\nMake the First Commit:\n\nIn the terminal, ensure you’re in the my_project directory.\nStage the new file for commit:\ngit add document.qmd\nCommit the staged file with a descriptive message:\ngit commit -m \"Add initial Quarto document\"\n\nRevise the .qmd File:\n\nOpen document.qmd in your text editor.\nAdd a new section:\n# Conclusion\n\nThis concludes my first Quarto document.\nSave the changes.\n\nMake a Second Commit:\n\nStage the modified file:\ngit add document.qmd\nCommit the changes with an appropriate message:\ngit commit -m \"Add conclusion section to Quarto document\"\n\nPush to a Remote Repository on GitHub:\n\nCreate a Remote Repository:\n\nLog in to your GitHub account.\nClick the “+” icon in the top-right corner and select “New repository”.\nName the repository my_project and choose its visibility (public or private).\nClick “Create repository”.\n\nConnect Local Repository to GitHub:\n\nIn the terminal, add the remote repository:\ngit remote add origin https://github.com/your-username/my_project.git\nReplace your-username with your GitHub username.\n\nPush Local Changes to GitHub:\n\nPush your commits to the remote repository:\ngit push -u origin main\nIf your local branch is named master, replace main with master.\n\n\n\nNotes:\n\nThe git add command stages changes, preparing them for a commit.\nThe git commit command records the staged changes in the repository’s history.\nThe git push command uploads local repository content to a remote repository.\n\nBy following these steps, you’ve successfully created a project, tracked its versions using Git, and published it to GitHub."
+  },
+  {
+    "objectID": "meeting_03/meeting_03.html#references",
+    "href": "meeting_03/meeting_03.html#references",
+    "title": "Meeting 03",
+    "section": "References",
+    "text": "References\n\nHomebrew for MacOS\nWinget for Windows\nGit Documentation\nGitHub Documentation\nQuarto Documentation\nOpenwork Documentation"
+  },
+  {
+    "objectID": "syllabus/syllabus.html",
+    "href": "syllabus/syllabus.html",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "",
+    "text": "Course Title: EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach\nMeeting Time: 09:00 - 11:45, Wednesdays, Spring 2026\nLocation: Harvard Hall 103\nInstructor: Kwok-leong Tang (kwokleongtang@fas.harvard.edu)\nOffice Hours: 10:30 - 12:30 , Fridays (407 CGIS South)\n\n\nATTENTION: There is NO SESSION on Fridays through the Spring semester. Therefore, you can register for this course even you have classes on Fridays."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#course-information",
+    "href": "syllabus/syllabus.html#course-information",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "",
+    "text": "Course Title: EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach\nMeeting Time: 09:00 - 11:45, Wednesdays, Spring 2026\nLocation: Harvard Hall 103\nInstructor: Kwok-leong Tang (kwokleongtang@fas.harvard.edu)\nOffice Hours: 10:30 - 12:30 , Fridays (407 CGIS South)\n\n\nATTENTION: There is NO SESSION on Fridays through the Spring semester. Therefore, you can register for this course even you have classes on Fridays."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#overview",
+    "href": "syllabus/syllabus.html#overview",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Overview",
+    "text": "Overview\nThis course is designed for East Asian humanities students interested in adopting digital methods in their research with basic programming and building tools for their own research workflow. It introduces fundamental programming concepts and essential techniques for the booming generative artificial intelligence. This year’s course focuses on agentic approach for using GenAI not only for coding but also for research workflow. Students completing the course will integrate and apply these tools into their research and explore the rapidly growing new technologies, especially GenAI, related to humanities studies.\nThis course is for you if:\n\nyou come from a humanities background with no or little digital literacy but want to learn how digital tools and methods can benefit your studies or research;\nyou want to bring GenAI components into your existing humanities research workflow;\nyou have ideas for digital projects but need to know how to start.\n\nThis course may not be helpful to you if:\n\nyou are an experienced programmer;\nyou have zero background in East Asian humanities;\nyou are looking for data science or machine learning 101.\n\nATTENTION: Language requirements may apply. Proficiency in one East Asian language is required. Please get in touch with Kwok-leong for more details about the language requirement."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#learning-goals",
+    "href": "syllabus/syllabus.html#learning-goals",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nAfter completion of the course, you will be able to\n\nuse agentic tools to collect data from the internet and digitalized materials;\nmanipulate and analyze data with Python and AI tools;\nknow how to test and use emerging artificial intelligence tools; design and build a simple digital scholarship project."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#class-format",
+    "href": "syllabus/syllabus.html#class-format",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Class Format",
+    "text": "Class Format\nWe will meet weekly for 2 hours and 45 minutes. The class will be a mix of lectures, discussions, and hands-on exercises."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#grading",
+    "href": "syllabus/syllabus.html#grading",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Grading",
+    "text": "Grading\nClass participation (20%): Students are expected to attend and participate in every class, completing assigned in-class exercises and engaging in discussions. Homework assignments (30%): Homework assignments will incorporate methods, principles, and tools into your research projects. Final project: The final project will include a meeting with Kwok-leong to discuss the project by the end of the third week (5%), a proposal (5%), a presentation (10%), a work journal (10%), and a final product (20%)."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#class-policies",
+    "href": "syllabus/syllabus.html#class-policies",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Class Policies",
+    "text": "Class Policies\n\nOffice hours\nKwok-leong’s regular office hours are 10:30 - 12:30, Fridays (407 CGIS South). However, you can schedule in-person or online meetings by appointment. Please email Kwok-leong to schedule appointments.\n\n\nAbsence from class\nClass participation takes 20% of your grade, so attendance is essential. However, we all face difficulties in our lives. Every enrolled student will have two opportunities to be absent from the weekly meeting. Please notify Kwok-leong if you are absent.\n\n\nClassroom rules\nAll class materials will be shared on Canvas or Kwok-leong’s website. Please do NOT take any photos or videos in class without Kwok-leong’s permission!\n\n\nAccessibility Statement\nThe instructor is committed to ensuring everyone has equitable access to the learning environment. Kwok-leong will strive to make the course materials, meetings, and the instructor’s office hours accessible and useable for all students. All materials distributed in the course will be available in an accessible format. The instructor will make reasonable accommodations to course materials, meetings, and office hours for students with disabilities who have registered with the Harvard Disability Access Office (DAO) or have been identified as having a disability or special need.\n\n\nAuditing\nAs the course will provide resources (API credits and subscription fees) to both enrolled and auditing students, auditing students are expected to commit to the course as enrolled students do. If you need to miss any class for any reason, please inform Kwok-leong in advance. Additionally, if you anticipate being absent for multiple meetings due to travel plans, it is recommended that you DO NOT audit this class."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#weekly-schedule",
+    "href": "syllabus/syllabus.html#weekly-schedule",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Weekly Schedule",
+    "text": "Weekly Schedule\n\n2026-01-28: Introduction, logistics, and software setup\n2026-02-04: The landscape of agentic approach\n2026-02-11: Return to the terminal\n2026-02-18: Version control\n2026-02-25: Note-taking and research workflow\n2026-03-04: Packages, libraries, frameworks, platforms\n2026-03-11: Collecting data online\n2026-03-18: Spring break\n2026-03-25: Text analysis\n2026-04-01: Working on data I\n2026-04-08: Working on data II\n2026-04-15: Building a digital scholarship project I\n2026-04-22: Building a digital scholarship project II\n2026-04-29: Presentations"
+  },
+  {
+    "objectID": "syllabus/syllabus.html#assignments",
+    "href": "syllabus/syllabus.html#assignments",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Assignments",
+    "text": "Assignments\n\nBuild a Personal Website (10%)\nIn this assignment, you will build a personal online portfolio which contains blogs, your CV, research projects, publications, and other academic achievements.\n\n\nBuilding a data collecting agent team (10%)\nIn this assignment, you will create an agent team that can scrape any URL provided by the user.\n\n\nBuilding a research workflow agent (10%)\nUsing the data provided by Kwok-leong, you will create a research workflow agent that can help you with your research."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#research-project",
+    "href": "syllabus/syllabus.html#research-project",
+    "title": "2026 Spring EASTD143B Syllabus",
+    "section": "Research Project",
+    "text": "Research Project\nThe core of this course is your research project. Kwok-leong encourages you to work on your thesis or dissertation project using the tools and methods introduced in this course. However, the project must bring new insights to the existing scholarship.\n\nTopic Selection (5%): Meet with Kwok-leong in person to decide your project topic by the end of the third week (2026-02-14).\nProgress Presentations (10% total): Each student will give two progress presentations in class (5% each).\nFinal Presentation (10%): Each student will give a final presentation in the last class meeting.\nFinal Submission (25%): Submit your project by the end of the grading deadline.\n\nThe class does not require a textbook. Please watch the Programming Concepts for Python courseLinks to an external site. by the third week meeting. You should be able to access this video course by using your HarvardKey. For documentation and tutorials for specific tools that we use in class, links are in the weekly meeting materials."
   },
   {
     "objectID": "meeting_01/meeting_01.html#todays-schedule",
@@ -369,96 +516,5 @@
     "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
     "section": "Preparation for next week",
     "text": "Preparation for next week\n\nWatch the Programming Concepts for Python course on Linkedin Learning.\nDownload and install VScode.\nSchedule an appointment with Kwok-leong to discuss your research topic."
-  },
-  {
-    "objectID": "meeting_03/meeting_03.html",
-    "href": "meeting_03/meeting_03.html",
-    "title": "Meeting 03",
-    "section": "",
-    "text": "Today’s Schedule"
-  },
-  {
-    "objectID": "syllabus/syllabus-presentation.html#overview",
-    "href": "syllabus/syllabus-presentation.html#overview",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
-    "section": "Overview",
-    "text": "Overview\nThis course is designed for East Asian humanities students interested in adopting digital methods in their research. It introduces AI-assisted coding for East Asian humanities projects and essential techniques for utilizing generative artificial intelligence (GenAI). Students completing the course will integrate and apply these tools into their research, exploring the rapidly evolving technologies related to humanities studies."
-  },
-  {
-    "objectID": "syllabus/syllabus-presentation.html#learning-goals",
-    "href": "syllabus/syllabus-presentation.html#learning-goals",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
-    "section": "Learning Goals",
-    "text": "Learning Goals\nAfter completion of the course, you will be able to:\n\nUse Python or command-line tools to collect data from the internet and digitized materials.\nManipulate and analyze data with Python and AI tools.\nTest and use emerging artificial intelligence tools.\nDesign and build a simple digital scholarship project."
-  },
-  {
-    "objectID": "syllabus/syllabus-presentation.html#class-format",
-    "href": "syllabus/syllabus-presentation.html#class-format",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
-    "section": "Class Format",
-    "text": "Class Format\nThe weekly meetings are mostly hands-on. The course used to have non-mandatory coding sessions. However, we DO NOT have coding sessions this semester."
-  },
-  {
-    "objectID": "syllabus/syllabus-presentation.html#grading",
-    "href": "syllabus/syllabus-presentation.html#grading",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
-    "section": "Grading",
-    "text": "Grading\n\nClass participation (20%): Students are expected to attend and participate in every class, completing assigned in-class exercises and engaging in discussions.\nHomework assignments (30%): Homework assignments will incorporate methods, principles, and tools into your research projects.\nFinal project: The final project will include a meeting with Kwok-leong to discuss the project by the end of the third week (5%), a proposal (5%), a presentation (10%), a work journal (10%), and a final product (20%)."
-  },
-  {
-    "objectID": "syllabus/syllabus-presentation.html#class-policies",
-    "href": "syllabus/syllabus-presentation.html#class-policies",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
-    "section": "Class Policies",
-    "text": "Class Policies\nOffice Hours\nKwok-leong’s in-person office hours are 10:00 - 12:00 on Thursdays, and online office hours are by appointment. Please email Kwok-leong to schedule appointments."
-  },
-  {
-    "objectID": "syllabus/syllabus-presentation.html#weekly-schedule",
-    "href": "syllabus/syllabus-presentation.html#weekly-schedule",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
-    "section": "Weekly Schedule",
-    "text": "Weekly Schedule\n\n2025-01-29: Introduction and GenAI in General\n2025-02-05: The Landscape of AI-Assisted Coding\n2025-02-12: Version Control, Git, GitHub\n2025-02-19: Package Managers, Libraries, Frameworks, and API\n2025-02-26: Collecting Data I\n2025-03-05: Collecting Data II\n2025-03-12: Spring Break, 2025 AAS in Columbus, OH\n2025-03-19: Text Analysis: Statistical Approach"
-  },
-  {
-    "objectID": "syllabus/syllabus-presentation.html#weekly-schedule-1",
-    "href": "syllabus/syllabus-presentation.html#weekly-schedule-1",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
-    "section": "Weekly Schedule",
-    "text": "Weekly Schedule\n\n2025-03-26: Vector Search and Retrieval Augment Generation I\n2025-04-02: Retrieval Augment Generation II\n2025-04-09: Building a Digital Scholarship Project I\n2025-04-16: Building a Digital Scholarship Project II\n2025-04-23: Building a Digital Scholarship Project III\n2025-04-30: Presentations"
-  },
-  {
-    "objectID": "syllabus/syllabus-presentation.html#assignments",
-    "href": "syllabus/syllabus-presentation.html#assignments",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
-    "section": "Assignments",
-    "text": "Assignments\nBuild a Personal Website with Quarto (10%)\nIn this assignment, you will build a personal portfolio with Quarto, an open-source scientific and technical publishing system, and deploy it to GitHub Pages."
-  },
-  {
-    "objectID": "syllabus/syllabus-presentation.html#assignments-1",
-    "href": "syllabus/syllabus-presentation.html#assignments-1",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
-    "section": "Assignments",
-    "text": "Assignments\nBuilding a Web-Crawler (10%)\nIn this assignment, you will create a web-crawler that can scrape any URL provided by the user."
-  },
-  {
-    "objectID": "syllabus/syllabus-presentation.html#assignments-2",
-    "href": "syllabus/syllabus-presentation.html#assignments-2",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
-    "section": "Assignments",
-    "text": "Assignments\nBuilding a Chatbot with Your Data (10%)\nUsing the data provided by Kwok-leong, you will create a chatbot capable of interacting with and responding to queries about the data."
-  },
-  {
-    "objectID": "syllabus/syllabus-presentation.html#research-project",
-    "href": "syllabus/syllabus-presentation.html#research-project",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
-    "section": "Research Project",
-    "text": "Research Project\nThe core of this course is your research project. Kwok-leong encourages you to work on your thesis or dissertation project using the tools and methods introduced in this course. However, the project must bring new insights to the existing scholarship."
-  },
-  {
-    "objectID": "syllabus/syllabus-presentation.html#recommended-readings-and-online-tutorials",
-    "href": "syllabus/syllabus-presentation.html#recommended-readings-and-online-tutorials",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities: Coding Approach",
-    "section": "Recommended Readings and Online Tutorials",
-    "text": "Recommended Readings and Online Tutorials\nThe class does not require a textbook. Please watch the Programming Concepts for Python course by the third week meeting. You should be able to access this video course by using your HarvardKey. For documentation and tutorials for specific tools that we use in class, links are in the weekly meeting materials."
   }
 ]
