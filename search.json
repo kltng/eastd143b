@@ -105,6 +105,27 @@
     "text": "Welcome to the course website for EASTD143B (Spring 2026).\n\nSee the Syllabus\nSee weekly materials under Meetings"
   },
   {
+    "objectID": "meeting_03/meeting_03.html",
+    "href": "meeting_03/meeting_03.html",
+    "title": "Meeting 03",
+    "section": "",
+    "text": "Return to the terminal\nA little bit about version control\nLet’s try Openwork"
+  },
+  {
+    "objectID": "meeting_03/meeting_03.html#what-is-the-terminal",
+    "href": "meeting_03/meeting_03.html#what-is-the-terminal",
+    "title": "Meeting 03",
+    "section": "What is the terminal?",
+    "text": "What is the terminal?\n\n\n\n\n\n\nImportant\n\n\n\nA terminal is a text-based interface for your computer.\n\n\nThink of it as a conversation window. Instead of clicking icons (which is like pointing at things on a menu), you type commands (like speaking to a waiter) to tell the computer exactly what to do."
+  },
+  {
+    "objectID": "meeting_03/meeting_03.html#in-class-exercise-terminal-github-codespaces-pull-request",
+    "href": "meeting_03/meeting_03.html#in-class-exercise-terminal-github-codespaces-pull-request",
+    "title": "Meeting 03",
+    "section": "In-class exercise: Terminal + GitHub Codespaces + Pull Request",
+    "text": "In-class exercise: Terminal + GitHub Codespaces + Pull Request\n\nGoal\nBy the end of this exercise, you will be able to:\n\nnavigate a project using basic terminal commands;\ncreate a Markdown file in the correct folder;\ncommit and push changes to your own branch;\nopen a Pull Request (PR) to submit your work.\n\n\n\nSetup (Codespaces)\n\nOpen the course repo on GitHub: kltng/eastd143b\nClick Code → Codespaces → Create codespace on 2026\nIn Codespaces, open the Terminal.\n\n\n\nPart A — Basic terminal commands (practice)\nRun these commands and briefly note what each one shows:\n\nWhere am I?\n\npwd\n\nWhat files/folders are here?\n\nls\n\nMove into a folder and list again:\n\ncd in-class\nls\n\nMove back to the repo root:\n\ncd ..\npwd\n\nFind the Meeting 03 in-class folder:\n\nls in-class\nls in-class/meeting_03\n\n\nPart B — Create your submission file\nCreate a Markdown file inside in-class/meeting_03/.\nFile name format: use your initials in the format:\n\nt_ab.md\n\n(Example in the repo: in-class/meeting_03/t_kl.md)\nCreate the file (choose one method):\nMethod 1 (quick, terminal):\ncat &gt; in-class/meeting_03/t_ab.md &lt;&lt;'MD'\n# Meeting 03 — Terminal practice\n\n## 1) Three commands I learned today\n-\n-\n-\n\n## 2) One thing that confused me\n-\n\n## 3) One question for next class\n-\nMD\nMethod 2 (editor): create the file in the file explorer and type the same content.\n\n\nPart C — Git workflow (branch → commit → push → PR)\n\nConfirm you are on the 2026 branch:\n\ngit status\ngit branch --show-current\n\nCreate your own branch:\n\ngit checkout -b meeting03/t_ab\n\nCheck what changed:\n\ngit status\ngit diff\n\nStage + commit:\n\ngit add in-class/meeting_03/t_ab.md\ngit commit -m \"Add Meeting 03 in-class submission (t_ab)\"\n\nPush your branch:\n\ngit push -u origin meeting03/t_ab\n\nOpen a Pull Request:\n\n\nIn GitHub, click Compare & pull request\nBase branch: 2026\nTitle: Meeting 03 submission: t_ab\nSubmit the PR\n\n\n\nSubmission checklist\nBefore you submit your PR, confirm:\n\nyour file is in in-class/meeting_03/\nfilename matches t_ab.md\nPR base branch is 2026"
+  },
+  {
     "objectID": "meeting_02/meeting_02.html",
     "href": "meeting_02/meeting_02.html",
     "title": "The Landscape of Agentic Approach",
@@ -175,67 +196,32 @@
     "text": "Why agents are important?\nTo understand the importance of agents, we need to understand the limitations of programming.\n\nClassifying “Apple”\nThe word “Apple” is a fruit. But it can also be a company name, or even a person’s name. How to classify it? Work with your classmates to come up with all the rules to classify “Apple” into the correct category."
   },
   {
-    "objectID": "meeting_03/meeting_03.html",
-    "href": "meeting_03/meeting_03.html",
-    "title": "Meeting 03",
+    "objectID": "in-class/meeting_03/t_kl.html",
+    "href": "in-class/meeting_03/t_kl.html",
+    "title": "Meeting 03 — Terminal practice (example)",
     "section": "",
-    "text": "A litte bit about version control\nReturn to the terminal\nLet’s try Openwork"
+    "text": "pwd: prints the current working directory.\nls: lists files/folders in the current directory.\ncd: changes directory.\n\n\n\n\n\nWhen should I use a new branch vs committing directly to the current branch?\n\n\n\n\n\nWhat is the difference between git pull and git fetch?"
   },
   {
-    "objectID": "meeting_03/meeting_03.html#what-is-the-terminal",
-    "href": "meeting_03/meeting_03.html#what-is-the-terminal",
-    "title": "Meeting 03",
-    "section": "What is the terminal?",
-    "text": "What is the terminal?\n\n\n\n\n\n\nImportant\n\n\n\nA Terminal is a text-based interface for your computer.\n\n\nThink of it as a conversation window. Instead of clicking icons (which is like pointing at things on a menu), you type commands (like speaking to a waiter) to tell the computer exactly what to do."
+    "objectID": "in-class/meeting_03/t_kl.html#three-commands-i-learned-today",
+    "href": "in-class/meeting_03/t_kl.html#three-commands-i-learned-today",
+    "title": "Meeting 03 — Terminal practice (example)",
+    "section": "",
+    "text": "pwd: prints the current working directory.\nls: lists files/folders in the current directory.\ncd: changes directory."
   },
   {
-    "objectID": "meeting_03/meeting_03.html#package-managers",
-    "href": "meeting_03/meeting_03.html#package-managers",
-    "title": "Meeting 03",
-    "section": "Package Managers",
-    "text": "Package Managers\nHomebrew and Winget are package managers designed to simplify the installation, update, and management of software on macOS and Windows systems, respectively. They streamline the process of handling software packages, making it more efficient for users to maintain their systems.\n\nHomebrew (macOS)\nHomebrew is a package manager for macOS (and Linux) that allows users to install and manage free and open-source software via the command line. It’s particularly favored by developers for its simplicity and the vast array of packages available.\n\nInstallation on macOS:\n\nOpen Terminal: You can find Terminal in the Utilities folder within your Applications, or by searching for it using Spotlight (press Command + Space and type “Terminal”).\nInstall Xcode Command Line Tools: Before installing Homebrew, ensure that you have the necessary command line tools. Execute the following command:\n\nxcode-select --install\n\nInstall Homebrew: Once you have Xcode Command Line Tools installed, run the following command to install Homebrew:\n\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\nThis script will download and install Homebrew on your system. Follow the on-screen instructions during the installation process.\n\nVerify Installation: After installation, confirm that Homebrew is correctly installed by running:\n\nbrew --version\nThis command should display the version number of Homebrew.\n\n\nBasic Homebrew Commands\n\nInstall a Package: To install a package, use the brew install command followed by the package name.\n\nbrew install &lt;package_name&gt;\n\nUpdate Homebrew: To update Homebrew itself, use the brew update command.\n\nbrew update\n\nList Installed Packages: To list all installed packages, use the brew list command.\n\nbrew list\n\nUninstall a Package: To uninstall a package, use the brew uninstall command followed by the package name.\n\nbrew uninstall &lt;package_name&gt;\n\nUpgrade a Package: To upgrade a package, use the brew upgrade command followed by the package name.\n\nbrew upgrade &lt;package_name&gt; \n\n\n\nWinget (Windows)\nWinget, or the Windows Package Manager, is a command-line tool for Windows 10 and Windows 11 that enables users to discover, install, upgrade, remove, and configure applications. It serves as a convenient method to manage software installations on Windows systems.\n\nInstallation on Windows:\nWinget comes pre-installed on Windows 11 and modern versions of Windows 10 as part of the App Installer. To verify if Winget is installed, open the Command Prompt or PowerShell and type:\nwinget  --version  \nIf Winget is installed, this command will display the version number. If it’s not installed, you can download the App Installer from the Microsoft Store.\n\n\nUsing Winget\n\nOpen PowerShell: Open the Windows PowerShell console by right-clicking on the Start button and selecting “PowerShell”.\nSearch for a Package: To search for a specific application:\n\nwinget search &lt;package_name&gt;\n\nInstall a Package: To install a package, use the winget install command followed by the package name.\n\nwinget install &lt;package_name&gt;\n\nUninstall a Package: To uninstall a package, use the winget uninstall command followed by the package name.\n\nwinget uninstall &lt;package_name&gt;\n\nUpgrade a Package: To upgrade a package, use the winget upgrade command followed by the package name.\n\nwinget upgrade &lt;package_name&gt;"
+    "objectID": "in-class/meeting_03/t_kl.html#one-thing-that-confused-me",
+    "href": "in-class/meeting_03/t_kl.html#one-thing-that-confused-me",
+    "title": "Meeting 03 — Terminal practice (example)",
+    "section": "",
+    "text": "When should I use a new branch vs committing directly to the current branch?"
   },
   {
-    "objectID": "meeting_03/meeting_03.html#shortcut",
-    "href": "meeting_03/meeting_03.html#shortcut",
-    "title": "Meeting 03",
-    "section": "Shortcut",
-    "text": "Shortcut\n\nOpen Antigravity.\nIn the extension settings, search for “Topcoder Fullstack” and install it."
-  },
-  {
-    "objectID": "meeting_03/meeting_03.html#what-is-version-control",
-    "href": "meeting_03/meeting_03.html#what-is-version-control",
-    "title": "Meeting 03",
-    "section": "What is Version Control?",
-    "text": "What is Version Control?\n\nVersion control is a system for tracking changes to files over time.\n\nIt lets you save snapshots of your work, revert to earlier versions, and track who made which changes.\n\nThink of it like the track changes feature in Word or Google Docs, but more powerful and for all kinds of files.\n\nWhy it matters: No more files named “Essay_final_v5_FINAL.docx” – version control keeps a history so you always have every version.\n\n\n\n\n\n\nflowchart LR\n    v1[\"File Version 1\"] --&gt; v2[\"File Version 2\"] --&gt; v3[\"File Version 3\"]"
-  },
-  {
-    "objectID": "meeting_03/meeting_03.html#what-is-git",
-    "href": "meeting_03/meeting_03.html#what-is-git",
-    "title": "Meeting 03",
-    "section": "What is Git?",
-    "text": "What is Git?\n\nGit is the most widely used version control tool (VCS) in the world.\nIt runs on your computer to track changes in a project (a local repository).\nGit lets you record commits (snapshots of your files) and then sync with a remote server (e.g., GitHub) to share those changes.\nYou can experiment on separate branches without affecting the main project, then merge your work when it’s ready.\n\n\n\n\n\n\nflowchart LR\n    WD[Working Directory] --&gt;|git add| Index[Staging Area] --&gt;|git commit| Repo[Local Repository]\n    Repo --&gt;|git push| Remote[GitHub Repository]\n\n\n\n\n\n\n (Image source: Git)\nIn most of the cases, the “Server Computer” is the code repositories. In our case, it is GitHub.\n\nInstall Git and GitHub\n\nHomebrew\n\nOpen Terminal\nRun the following command to install Homebrew:\n\nbrew install git\n\nTry the following command to check if Git is installed:\n\ngit --version\n\nRun the following command to install GitHub CLI:\n\nbrew install gh\n\nTry the following command to check if GitHub CLI is installed:\n\ngh --version\n\n\nWinget\n\nOpen PowerShell\nRun the following command to install Git:\n\nwinget install --id Git.Git\n\nTry the following command to check if Git is installed:\n\ngit --version\n\nRun the following command to install GitHub CLI:\n\nwinget install --id GitHub.cli\n\nTry the following command to check if GitHub CLI is installed:\n\ngh --version\n\n\n\nHow to Register a GitHub Account?\n\nGo to GitHub.com and click Sign Up.\nChoose a username (this will be your handle on GitHub).\nEnter your email (use your Harvard email or EDU email if you want to use the Education benefits) and create a password.\nVerify your account via the email sent by GitHub. -Choose the free plan (it’s sufficient for almost all academic projects).\nTip: You can skip creating a repository during sign-up – we’ll do that ourselves."
-  },
-  {
-    "objectID": "meeting_03/meeting_03.html#what-is-quarto",
-    "href": "meeting_03/meeting_03.html#what-is-quarto",
-    "title": "Meeting 03",
-    "section": "What is Quarto?",
-    "text": "What is Quarto?\nQuarto is an open-source scientific and technical publishing system. It:\n\nUses a .qmd (Quarto Markdown) file to combine text, code, and outputs.\nCan render to multiple formats (HTML, PDF, Word, reveal.js slides, etc.).\nSupports Python, R, Julia, and more.\nIdeal for reproducible documents, such as articles, presentations, or data analyses.\n\n\nInstall of Quarto CLI\nUsing the Official Installer:\n\nDownload Installer: Visit the Quarto Downloads page and download the installer for your OS.\nRun Installer.\nVerify Installation: Open Terminal and run:\n\nquarto --version\n\n\nInstall Quarto Extension for VSCode\n\nOpen VSCode.\nClick the “Extensions” button on the left sidebar.\nSearch for “Quarto” and click “Install”.\n\n\n\nStructure of a .qmd File\nA .qmd (Quarto Markdown) file typically has: 1. YAML Header (between — lines):\n---\ntitle: \"Document Title\"\nauthor: \"Your Name\"\nformat: html\n---\n\nBody Content in Markdown:\n\n# Introduction\n\nThis is normal text written in Markdown.\nWhen you run:\nquarto render your_file.qmd\nQuarto processes the .qmd file and produces the output format(s) you specified (e.g., .html, .pdf, etc.)."
-  },
-  {
-    "objectID": "meeting_03/meeting_03.html#practice-creating-a-quarto-document-and-pushing-to-github",
-    "href": "meeting_03/meeting_03.html#practice-creating-a-quarto-document-and-pushing-to-github",
-    "title": "Meeting 03",
-    "section": "Practice: Creating a Quarto Document and Pushing to GitHub",
-    "text": "Practice: Creating a Quarto Document and Pushing to GitHub\nThis guide will walk you through the process of creating a folder, initializing a Git repository, creating a Quarto (.qmd) file, making initial commits, revising the file, and pushing the changes to a remote repository on GitHub.\nPrerequisites:\n\nGit: Ensure Git is installed on your system. Verify by running git --version in your terminal.\nQuarto: Ensure Quarto is installed. Verify by running quarto --version in your terminal.\nGitHub Account: Ensure you have an account on GitHub.\n\nInstructions:\n\nCreate a Folder:\n\nOpen your terminal or command prompt.\nNavigate to your desired parent directory using the cd command.\nCreate a new folder named my_project:\nmkdir my_project\nNavigate into the newly created folder:\ncd my_project\n\nInitialize a Git Repository:\n\nInitialize an empty Git repository in the current directory:\ngit init\nThis command creates a .git subdirectory, setting up the necessary files and structures for version control.\n\nCreate a Quarto (.qmd) File:\n\nOpen your preferred text editor (e.g., Visual Studio Code).\nCreate a new file named document.qmd with the following content:\n---\ntitle: \"My First Quarto Document\"\nauthor: \"Your Name\"\ndate: \"2025-02-11\"\nformat: html\n---\n\n# Introduction\n\nThis is my first Quarto document.\nSave the file in the my_project directory.\n\nMake the First Commit:\n\nIn the terminal, ensure you’re in the my_project directory.\nStage the new file for commit:\ngit add document.qmd\nCommit the staged file with a descriptive message:\ngit commit -m \"Add initial Quarto document\"\n\nRevise the .qmd File:\n\nOpen document.qmd in your text editor.\nAdd a new section:\n# Conclusion\n\nThis concludes my first Quarto document.\nSave the changes.\n\nMake a Second Commit:\n\nStage the modified file:\ngit add document.qmd\nCommit the changes with an appropriate message:\ngit commit -m \"Add conclusion section to Quarto document\"\n\nPush to a Remote Repository on GitHub:\n\nCreate a Remote Repository:\n\nLog in to your GitHub account.\nClick the “+” icon in the top-right corner and select “New repository”.\nName the repository my_project and choose its visibility (public or private).\nClick “Create repository”.\n\nConnect Local Repository to GitHub:\n\nIn the terminal, add the remote repository:\ngit remote add origin https://github.com/your-username/my_project.git\nReplace your-username with your GitHub username.\n\nPush Local Changes to GitHub:\n\nPush your commits to the remote repository:\ngit push -u origin main\nIf your local branch is named master, replace main with master.\n\n\n\nNotes:\n\nThe git add command stages changes, preparing them for a commit.\nThe git commit command records the staged changes in the repository’s history.\nThe git push command uploads local repository content to a remote repository.\n\nBy following these steps, you’ve successfully created a project, tracked its versions using Git, and published it to GitHub."
-  },
-  {
-    "objectID": "meeting_03/meeting_03.html#references",
-    "href": "meeting_03/meeting_03.html#references",
-    "title": "Meeting 03",
-    "section": "References",
-    "text": "References\n\nHomebrew for MacOS\nWinget for Windows\nGit Documentation\nGitHub Documentation\nQuarto Documentation\nOpenwork Documentation"
+    "objectID": "in-class/meeting_03/t_kl.html#one-question-for-next-class",
+    "href": "in-class/meeting_03/t_kl.html#one-question-for-next-class",
+    "title": "Meeting 03 — Terminal practice (example)",
+    "section": "",
+    "text": "What is the difference between git pull and git fetch?"
   },
   {
     "objectID": "syllabus/syllabus.html",
