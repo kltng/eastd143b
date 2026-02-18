@@ -469,6 +469,13 @@
     "text": "Why agents are important?\nTo understand the importance of agents, we need to understand the limitations of programming.\n\nClassifying “Apple”\nThe word “Apple” is a fruit. But it can also be a company name, or even a person’s name. How to classify it? Work with your classmates to come up with all the rules to classify “Apple” into the correct category."
   },
   {
+    "objectID": "meeting_04/meeting_04.html",
+    "href": "meeting_04/meeting_04.html",
+    "title": "Meeting 04",
+    "section": "",
+    "text": "Today’s Schedule\n\n\n\n\n\nThe importance of building “Big Tables”\nI met with some of you about your research projects, and I noticed some confusion about how to start a new research topic. From my perspective, building “big tables” is always the first step.\nThese big tables include:\n\nprimary sources\nrelated scholarship\nother relevant materials\n\n\n\nIntroduction of Today’s Task\nThere are two PDF files in the pdf/ folder. They are extracted pages from Wolfgang Frank’s famous book Introduction of Ming sources (see a newer edition on WorldCat: https://search.worldcat.org/title/779242963). For this class, we are using an edition published in the 1960s.\n\npdf/wf_abbreviations.pdf is the abbreviations list.\npdf/wf_five_pages.pdf contains five pages from the first chapter.\n\nYour tasks:\n\nExtract the abbreviations and their meanings from the list into a table.\nTurn the abbreviations in the content into clickable links.\n\n\n\nGoogle NotebookLM\nLanding page: https://notebooklm.google/\n\n\nOCR tool for Apple\nThe software is called glm-ocr-mlx. It is provided as ocr_software/glm-ocr-mlx-main.zip. Download the file and unzip it, then read the README.md file for instructions on how to use it.\nCurrently, it only works on Apple Silicon computers. If you have a Windows/Linux/Intel Mac, you can use the OCR tool for LM Studio/Ollama, which we will introduce in the next section.\n\n\n\n\n\n\nImportant\n\n\n\nWhy do we need JSON files for OCR output?\n\n\n\n\nOCR tool for LM Studio/Ollama\nRepository: https://github.com/kltng/ocr_batch_processor\nOllama: https://ollama.com/\n\n\nUse Openwork or chatbots to clean the OCR output and turn them into clickable links.\nIf you cannot get OCR output, you can use the JSON files in the ocr_results/ folder. They are the output of glm-ocr-mlx. You can use Openwork or chatbots to clean the OCR output and extract the abbreviations and their meanings into a table."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "EASTD143B Digital Tools and Methods in East Asian Humanities (Coding Approach)",
@@ -564,13 +571,13 @@
     "href": "meetings/index.html",
     "title": "Meetings",
     "section": "",
-    "text": "Meeting 01\nMeeting 02\nMeeting 03\nIn-class Exercise (Meeting 03)"
+    "text": "Meeting 01\nMeeting 02\nMeeting 03\nIn-class Exercise (Meeting 03)\nMeeting 04"
   },
   {
     "objectID": "meetings/index.html#spring-2026",
     "href": "meetings/index.html#spring-2026",
     "title": "Meetings",
     "section": "",
-    "text": "Meeting 01\nMeeting 02\nMeeting 03\nIn-class Exercise (Meeting 03)"
+    "text": "Meeting 01\nMeeting 02\nMeeting 03\nIn-class Exercise (Meeting 03)\nMeeting 04"
   }
 ]
