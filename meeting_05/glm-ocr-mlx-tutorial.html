@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLM-OCR MLX — Tutorial Slides</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d0e12;--surface:#1a1c23;--surface2:#262a35;
+  --primary:#6366f1;--primary-glow:rgba(99,102,241,.25);
+  --pink:#ec4899;--pink-glow:rgba(236,72,153,.2);
+  --green:#22c55e;--amber:#f59e0b;--cyan:#06b6d4;--red:#ef4444;
+  --text:#f8fafc;--muted:#94a3b8;--border:rgba(255,255,255,.1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow:hidden;height:100vh}
+
+/* ── slide engine ── */
+.deck{position:relative;width:100vw;height:100vh;overflow:hidden}
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:4rem 6rem;opacity:0;pointer-events:none;
+  transition:opacity .5s ease,transform .5s ease;transform:translateX(60px);
+}
+.slide.active{opacity:1;pointer-events:auto;transform:translateX(0)}
+.slide.exit-left{opacity:0;transform:translateX(-60px)}
+
+/* backgrounds */
+.slide::before{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(ellipse at 20% 20%,var(--primary-glow),transparent 60%),
+             radial-gradient(ellipse at 80% 80%,var(--pink-glow),transparent 60%);
+}
+
+/* ── typography ── */
+h1{font-size:3.2rem;font-weight:900;letter-spacing:-.04em;line-height:1.15;margin-bottom:1rem}
+h2{font-size:2.4rem;font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:1.2rem}
+h3{font-size:1.5rem;font-weight:700;margin-bottom:.8rem}
+p,.desc{font-size:1.15rem;color:var(--muted);line-height:1.7;max-width:54rem}
+.gradient-text{
+  background:linear-gradient(135deg,var(--primary),var(--pink));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.tag{
+  display:inline-block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  padding:.35rem .9rem;border-radius:99px;
+  background:rgba(99,102,241,.15);color:var(--primary);border:1px solid rgba(99,102,241,.3);
+  margin-bottom:1rem;
+}
+
+/* ── cards / boxes ── */
+.card-grid{display:grid;gap:1.5rem;width:100%;max-width:60rem;margin-top:1.5rem}
+.card-grid.cols-2{grid-template-columns:1fr 1fr}
+.card-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+.card-grid.cols-4{grid-template-columns:1fr 1fr 1fr 1fr}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  padding:1.5rem;transition:all .25s ease;
+}
+.card:hover{border-color:var(--primary);transform:translateY(-2px)}
+.card .icon{font-size:2rem;margin-bottom:.6rem}
+.card h3{font-size:1.1rem;margin-bottom:.4rem}
+.card p{font-size:.92rem;color:var(--muted);line-height:1.55}
+
+/* ── code blocks ── */
+pre{
+  background:#0a0b0f;border:1px solid var(--border);border-radius:12px;
+  padding:1.2rem 1.5rem;font-family:'JetBrains Mono',monospace;font-size:.88rem;
+  line-height:1.7;overflow-x:auto;max-width:56rem;width:100%;margin-top:1rem;
+  color:#c9d1d9;
+}
+code{font-family:'JetBrains Mono',monospace;font-size:.88rem}
+.hl-comment{color:#6a737d}
+.hl-keyword{color:#ff7b72}
+.hl-string{color:#a5d6ff}
+.hl-flag{color:#79c0ff}
+.hl-path{color:#ffa657}
+.hl-prompt{color:var(--green);user-select:none}
+
+/* ── lists ── */
+.step-list{list-style:none;counter-reset:step;max-width:54rem;width:100%;margin-top:1rem}
+.step-list li{
+  counter-increment:step;display:flex;gap:1rem;align-items:flex-start;
+  padding:1rem 0;border-bottom:1px solid var(--border);font-size:1.05rem;line-height:1.6;
+}
+.step-list li::before{
+  content:counter(step);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  width:2.2rem;height:2.2rem;border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--pink));
+  font-weight:800;font-size:.95rem;color:#fff;
+}
+.step-list li:last-child{border-bottom:none}
+
+/* ── badges ── */
+.badge{
+  display:inline-block;padding:.2rem .6rem;border-radius:6px;font-size:.78rem;font-weight:600;
+  margin-right:.3rem;
+}
+.badge-green{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3)}
+.badge-amber{background:rgba(245,158,11,.15);color:var(--amber);border:1px solid rgba(245,158,11,.3)}
+.badge-cyan{background:rgba(6,182,212,.15);color:var(--cyan);border:1px solid rgba(6,182,212,.3)}
+.badge-pink{background:rgba(236,72,153,.15);color:var(--pink);border:1px solid rgba(236,72,153,.3)}
+.badge-primary{background:rgba(99,102,241,.15);color:var(--primary);border:1px solid rgba(99,102,241,.3)}
+
+/* ── file tree ── */
+.tree{
+  font-family:'JetBrains Mono',monospace;font-size:.88rem;line-height:1.9;
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:1.2rem 1.5rem;max-width:40rem;margin-top:1rem;
+}
+.tree .dir{color:var(--primary);font-weight:600}
+.tree .file{color:var(--muted)}
+.tree .important{color:var(--green);font-weight:600}
+
+/* ── two-col layout ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;width:100%;max-width:60rem;align-items:start;margin-top:1rem}
+.two-col > *{min-width:0}
+
+/* ── architecture diagram ── */
+.arch-flow{
+  display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;
+  max-width:56rem;margin-top:1.5rem;
+}
+.arch-box{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:.9rem 1.4rem;text-align:center;font-weight:600;font-size:.95rem;
+  min-width:120px;
+}
+.arch-arrow{color:var(--primary);font-size:1.3rem;font-weight:700}
+
+/* ── nav ── */
+.nav{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);z-index:100;
+  display:flex;align-items:center;gap:1rem;
+  background:rgba(26,28,35,.9);backdrop-filter:blur(16px);
+  border:1px solid var(--border);border-radius:99px;padding:.5rem 1.2rem;
+}
+.nav button{
+  width:2.4rem;height:2.4rem;border-radius:50%;border:none;cursor:pointer;
+  background:var(--surface2);color:var(--text);font-size:1rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+.nav button:hover{background:var(--primary);transform:scale(1.1)}
+.nav button:disabled{opacity:.3;cursor:default;transform:none}
+.nav .counter{font-size:.85rem;color:var(--muted);min-width:4rem;text-align:center;font-variant-numeric:tabular-nums}
+
+/* ── key hint ── */
+.key-hint{
+  position:fixed;bottom:2rem;right:2rem;z-index:100;
+  font-size:.75rem;color:var(--muted);
+}
+kbd{
+  display:inline-block;padding:.15rem .45rem;border-radius:4px;
+  background:var(--surface2);border:1px solid var(--border);font-family:inherit;font-size:.7rem;
+}
+
+/* ── config table ── */
+.config-table{width:100%;max-width:56rem;border-collapse:collapse;margin-top:1rem;font-size:.92rem}
+.config-table th{text-align:left;padding:.7rem 1rem;background:var(--surface2);border:1px solid var(--border);font-weight:600;color:var(--primary)}
+.config-table td{padding:.7rem 1rem;border:1px solid var(--border);color:var(--muted)}
+.config-table td:first-child{color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.82rem;white-space:nowrap}
+
+/* ── responsive ── */
+@media(max-width:900px){
+  .slide{padding:2rem 2rem}
+  h1{font-size:2.2rem}h2{font-size:1.8rem}
+  .card-grid.cols-3,.card-grid.cols-4{grid-template-columns:1fr 1fr}
+  .two-col{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- ═══════════════════ SLIDE 1: TITLE ═══════════════════ -->
+<section class="slide active" data-slide="0">
+  <div class="tag">Tutorial</div>
+  <h1><span class="gradient-text">GLM-OCR MLX</span></h1>
+  <p style="font-size:1.4rem;color:var(--text);margin-bottom:.6rem;font-weight:500">
+    High-Fidelity OCR on Apple Silicon
+  </p>
+  <p style="max-width:42rem;text-align:center">
+    A local, zero-config OCR inference tool powered by GLM-4V and MLX.<br>
+    Designed for macOS M-series Macs with a beautiful web interface.
+  </p>
+  <div style="display:flex;gap:.8rem;margin-top:2rem;flex-wrap:wrap;justify-content:center">
+    <span class="badge badge-green">Zero-Config</span>
+    <span class="badge badge-primary">MLX Accelerated</span>
+    <span class="badge badge-pink">Web UI</span>
+    <span class="badge badge-amber">PDF + Images</span>
+    <span class="badge badge-cyan">Layout Detection</span>
+  </div>
+</section>
+
+<!-- ═══════════════════ SLIDE 2: WHAT IS THIS? ═══════════════════ -->
+<section class="slide" data-slide="1">
+  <div class="tag">Overview</div>
+  <h2>What does this project do?</h2>
+  <p style="margin-bottom:1.5rem">
+    GLM-OCR MLX wraps the GLM-OCR model in a turnkey macOS application. You upload a PDF or image, and it returns structured Markdown with tables, formulas, and layout-aware text — all running locally on your Mac's GPU.
+  </p>
+  <div class="card-grid cols-4">
+    <div class="card"><div class="icon">📄</div><h3>PDF & Images</h3><p>Upload multi-page PDFs, PNGs, or JPEGs for instant OCR.</p></div>
+    <div class="card"><div class="icon">🧠</div><h3>GLM-4V Model</h3><p>State-of-the-art 0.9B param model scoring 94.6 on OmniDocBench.</p></div>
+    <div class="card"><div class="icon">⚡</div><h3>MLX Native</h3><p>Runs on Apple Metal GPU via mlx-vlm for fast local inference.</p></div>
+    <div class="card"><div class="icon">🔍</div><h3>Layout Detection</h3><p>PP-DocLayoutV3 detects tables, formulas, images, and text blocks.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SLIDE 3: ARCHITECTURE ═══════════════════ -->
+<section class="slide" data-slide="2">
+  <div class="tag">Architecture</div>
+  <h2>How it works</h2>
+  <p>Two servers work together: an MLX inference server and a Flask web UI.</p>
+  <div class="arch-flow">
+    <div class="arch-box" style="border-color:var(--pink)">Browser<br><small style="color:var(--muted)">:5003</small></div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box" style="border-color:var(--primary)">Flask App<br><small style="color:var(--muted)">app.py</small></div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box" style="border-color:var(--green)">GLM-OCR SDK<br><small style="color:var(--muted)">glmocr</small></div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box" style="border-color:var(--amber)">MLX Server<br><small style="color:var(--muted)">:8080</small></div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box" style="border-color:var(--cyan)">Metal GPU<br><small style="color:var(--muted)">Unified Memory</small></div>
+  </div>
+  <div class="two-col" style="margin-top:2rem">
+    <div>
+      <h3 style="color:var(--primary)">MLX Server (:8080)</h3>
+      <p style="font-size:.95rem">Serves the GLM-OCR-bf16 model via an OpenAI-compatible chat/completions endpoint. Handles the actual neural network inference on the Metal GPU.</p>
+    </div>
+    <div>
+      <h3 style="color:var(--pink)">Flask Web UI (:5003)</h3>
+      <p style="font-size:.95rem">Accepts uploads, splits PDFs to images, queues OCR jobs, and displays results page-by-page with a live progress bar and Markdown rendering.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SLIDE 4: PREREQUISITES ═══════════════════ -->
+<section class="slide" data-slide="3">
+  <div class="tag">Before You Start</div>
+  <h2>Prerequisites</h2>
+  <div class="card-grid cols-3" style="margin-top:.5rem">
+    <div class="card">
+      <div class="icon">🍎</div>
+      <h3>macOS + Apple Silicon</h3>
+      <p>M1, M2, M3, or M4 Mac required. MLX uses the Metal GPU and unified memory architecture.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🐍</div>
+      <h3>Python 3.12+</h3>
+      <p>Download from <code>python.org/downloads/macos</code> if not installed. The launcher checks automatically.</p>
+    </div>
+    <div class="card">
+      <div class="icon">📦</div>
+      <h3>Git</h3>
+      <p>Needed to clone the GLM-OCR SDK on first launch. Install via Xcode Command Line Tools or Homebrew.</p>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem;max-width:56rem">
+    <h3 style="color:var(--amber)">Disk Space & Memory</h3>
+    <p style="font-size:.95rem">
+      The model weights are ~20 GB (GLM-OCR-bf16 + PP-DocLayoutV3). They download automatically on first launch from Hugging Face. 16 GB unified memory is minimum; 32 GB+ recommended for multi-page PDFs.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════ SLIDE 5: PROJECT STRUCTURE ═══════════════════ -->
+<section class="slide" data-slide="4">
+  <div class="tag">Files</div>
+  <h2>Project Structure</h2>
+  <div class="two-col">
+    <div class="tree">
+      <div><span class="dir">glm-ocr-mlx/</span></div>
+      <div>&nbsp;&nbsp;<span class="important">launch.command</span>&nbsp;&nbsp;&nbsp;<span class="hl-comment">← double-click to start</span></div>
+      <div>&nbsp;&nbsp;<span class="file">app.py</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl-comment">← Flask web server</span></div>
+      <div>&nbsp;&nbsp;<span class="file">glm_config.yaml</span>&nbsp;&nbsp;&nbsp;<span class="hl-comment">← all settings</span></div>
+      <div>&nbsp;&nbsp;<span class="file">requirements.txt</span>&nbsp;&nbsp;<span class="hl-comment">← Python deps</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">templates/</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">index.html</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl-comment">← web UI</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">static/</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">css/</span> <span class="file">style.css</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="dir">js/</span>&nbsp; <span class="file">main.js</span></div>
+      <div>&nbsp;&nbsp;<span class="dir">utils/</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="file">download_weights.py</span></div>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="important">deep_clean.command</span></div>
+    </div>
+    <div>
+      <h3>Auto-generated directories</h3>
+      <p style="font-size:.95rem;margin-bottom:1rem">These folders are created at runtime:</p>
+      <div class="card" style="margin-bottom:.8rem;padding:1rem">
+        <p style="color:var(--text)"><code style="color:var(--green)">weights/</code> — Downloaded AI model files (~20 GB)</p>
+      </div>
+      <div class="card" style="margin-bottom:.8rem;padding:1rem">
+        <p style="color:var(--text)"><code style="color:var(--primary)">output/</code> — OCR results (Markdown + JSON + images)</p>
+      </div>
+      <div class="card" style="margin-bottom:.8rem;padding:1rem">
+        <p style="color:var(--text)"><code style="color:var(--pink)">sessions/</code> — Job state files (JSON per job)</p>
+      </div>
+      <div class="card" style="padding:1rem">
+        <p style="color:var(--text)"><code style="color:var(--amber)">glm-ocr/</code> — Cloned GLM-OCR SDK</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SLIDE 6: QUICK START ═══════════════════ -->
+<section class="slide" data-slide="5">
+  <div class="tag">Quick Start</div>
+  <h2>Launch in one click</h2>
+  <p>The entire setup is automated. Just double-click <code>launch.command</code> in Finder.</p>
+  <ol class="step-list">
+    <li><div><strong>Double-click</strong> <code>launch.command</code> in Finder.<br><span style="color:var(--muted);font-size:.92rem">If macOS blocks it: right-click → Open → confirm.</span></div></li>
+    <li><div><strong>First run auto-setup</strong> — The script clones the GLM-OCR SDK, creates a virtual environment, installs all Python dependencies, and downloads model weights from Hugging Face.</div></li>
+    <li><div><strong>MLX Server starts</strong> on port 8080. It loads the GLM-OCR-bf16 model into unified memory. The first load is slow (~30–60 s).</div></li>
+    <li><div><strong>Flask Web UI starts</strong> on port 5003 and your browser opens automatically to <code style="color:var(--green)">http://localhost:5003</code></div></li>
+    <li><div><strong>Keep the terminal open.</strong> Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to stop both servers when done.</div></li>
+  </ol>
+</section>
+
+<!-- ═══════════════════ SLIDE 7: WHAT LAUNCH.COMMAND DOES ═══════════════════ -->
+<section class="slide" data-slide="6">
+  <div class="tag">Under the Hood</div>
+  <h2>What <code>launch.command</code> does</h2>
+  <p>A breakdown of the automated startup sequence:</p>
+  <pre><span class="hl-comment"># Step 0 — Clone SDK if missing</span>
+<span class="hl-keyword">if</span> [ ! -d <span class="hl-string">"glm-ocr"</span> ]; <span class="hl-keyword">then</span>
+    git clone https://github.com/zai-org/GLM-OCR glm-ocr
+<span class="hl-keyword">fi</span>
+
+<span class="hl-comment"># Step 1 — Verify Python 3.12+</span>
+python3 -c <span class="hl-string">"import sys; sys.exit(0 if sys.version_info >= (3,12) else 1)"</span>
+
+<span class="hl-comment"># Step 2 — Create venv & install deps (first run only)</span>
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+<span class="hl-comment"># Step 3 — Download / verify model weights</span>
+python utils/download_weights.py
+
+<span class="hl-comment"># Step 4 — Start MLX server (background)</span>
+mlx_vlm.server --trust-remote-code &
+
+<span class="hl-comment"># Step 5 — Start Flask app (background)</span>
+python app.py &
+
+<span class="hl-comment"># Step 6 — Open browser</span>
+open http://localhost:5003</pre>
+</section>
+
+<!-- ═══════════════════ SLIDE 8: USING THE WEB UI ═══════════════════ -->
+<section class="slide" data-slide="7">
+  <div class="tag">Usage</div>
+  <h2>Using the Web UI</h2>
+  <div class="card-grid cols-2" style="max-width:56rem">
+    <div class="card" style="border-left:3px solid var(--primary)">
+      <h3>1. Upload</h3>
+      <p>Drag and drop a PDF, PNG, or JPEG onto the upload card — or click to browse. Accepted: <code>.pdf .png .jpg .jpeg</code></p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--pink)">
+      <h3>2. Processing</h3>
+      <p>A progress bar shows real-time status. PDFs are split into page images, then each page is OCR'd sequentially. Results stream as they finish.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--green)">
+      <h3>3. Review Results</h3>
+      <p>A split-panel view: original document on the left, rendered Markdown on the right. Navigate pages with Prev/Next or jump to any page.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--amber)">
+      <h3>4. Export</h3>
+      <p>Click <strong>Export</strong> to download results as <strong>Markdown</strong> or <strong>JSON</strong> — either the current page or the full document.</p>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem;max-width:56rem">
+    <h3>Additional features</h3>
+    <p style="font-size:.95rem">
+      <span class="badge badge-primary">Layout Toggle</span> Switch between the original image and the layout visualization overlay to see detected regions.
+      <span class="badge badge-cyan" style="margin-left:.5rem">History</span> Click the History button to browse and reload previous scan results.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════ SLIDE 9: API ENDPOINTS ═══════════════════ -->
+<section class="slide" data-slide="8">
+  <div class="tag">API</div>
+  <h2>REST API Endpoints</h2>
+  <p>The Flask app exposes these endpoints — useful for scripting or integration.</p>
+  <table class="config-table" style="margin-top:1rem">
+    <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+    <tr><td><span class="badge badge-green">POST</span></td><td><code>/api/upload</code></td><td>Upload a file and start OCR. Returns <code>job_id</code>.</td></tr>
+    <tr><td><span class="badge badge-primary">GET</span></td><td><code>/api/status/&lt;job_id&gt;</code></td><td>Poll job status, progress %, and page counts.</td></tr>
+    <tr><td><span class="badge badge-primary">GET</span></td><td><code>/api/page/&lt;job_id&gt;/&lt;idx&gt;</code></td><td>Get OCR result for a single page (JSON).</td></tr>
+    <tr><td><span class="badge badge-primary">GET</span></td><td><code>/api/jobs</code></td><td>List all jobs sorted by newest first.</td></tr>
+    <tr><td><span class="badge badge-primary">GET</span></td><td><code>/api/export/&lt;job_id&gt;</code></td><td>Export results. Params: <code>format</code>, <code>scope</code>, <code>page_idx</code>.</td></tr>
+    <tr><td><span class="badge badge-amber">POST</span></td><td><code>/api/last_page/&lt;job_id&gt;</code></td><td>Save the user's last-viewed page index.</td></tr>
+    <tr><td><span class="badge badge-primary">GET</span></td><td><code>/api/image/&lt;job_id&gt;/&lt;path&gt;</code></td><td>Serve an image file belonging to a job.</td></tr>
+  </table>
+</section>
+
+<!-- ═══════════════════ SLIDE 10: CONFIGURATION ═══════════════════ -->
+<section class="slide" data-slide="9">
+  <div class="tag">Config</div>
+  <h2>Configuration</h2>
+  <p>All settings live in <code>glm_config.yaml</code>. Key sections:</p>
+  <div class="card-grid cols-3" style="margin-top:1rem">
+    <div class="card">
+      <h3 style="color:var(--primary)">server</h3>
+      <p>MLX server host, port (8080), and debug flag.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--green)">pipeline.ocr_api</h3>
+      <p>Connection to the MLX server: host, port, model path, timeouts, retries.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--pink)">pipeline.layout</h3>
+      <p>PP-DocLayoutV3 settings: detection threshold, batch size, label-to-task mappings.</p>
+    </div>
+  </div>
+  <div class="two-col" style="margin-top:1.5rem">
+    <div>
+      <h3>Common tweaks</h3>
+      <table class="config-table">
+        <tr><th>Setting</th><th>Default</th></tr>
+        <tr><td>pipeline.enable_layout</td><td><code>true</code></td></tr>
+        <tr><td>pipeline.max_workers</td><td><code>4</code></td></tr>
+        <tr><td>pipeline.ocr_api.api_port</td><td><code>8080</code></td></tr>
+        <tr><td>pipeline.page_loader.max_tokens</td><td><code>4096</code></td></tr>
+        <tr><td>pipeline.layout.threshold</td><td><code>0.3</code></td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>MaaS Mode (Cloud API)</h3>
+      <p style="font-size:.95rem">
+        Set <code>pipeline.maas.enabled: true</code> and provide a Zhipu API key to use the cloud API instead of local inference. This bypasses the MLX server entirely — no GPU needed.
+      </p>
+      <pre style="font-size:.82rem;margin-top:.8rem"><span class="hl-keyword">pipeline</span>:
+  <span class="hl-keyword">maas</span>:
+    <span class="hl-flag">enabled</span>: <span class="hl-string">true</span>
+    <span class="hl-flag">api_key</span>: <span class="hl-string">your-zhipu-key</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SLIDE 11: LAYOUT DETECTION ═══════════════════ -->
+<section class="slide" data-slide="10">
+  <div class="tag">Feature Deep Dive</div>
+  <h2>Layout Detection Pipeline</h2>
+  <p>When <code>enable_layout: true</code>, documents go through a two-stage pipeline:</p>
+  <div class="arch-flow" style="margin-bottom:1.5rem">
+    <div class="arch-box" style="border-color:var(--amber)">Input Image</div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box" style="border-color:var(--primary)">PP-DocLayoutV3<br><small style="color:var(--muted)">Region Detection</small></div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box" style="border-color:var(--green)">Task Routing<br><small style="color:var(--muted)">text / table / formula</small></div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box" style="border-color:var(--pink)">GLM-OCR<br><small style="color:var(--muted)">Per-Region OCR</small></div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box" style="border-color:var(--cyan)">Markdown Output</div>
+  </div>
+  <div class="card-grid cols-4">
+    <div class="card"><h3 style="color:var(--green)">text</h3><p>Paragraphs, titles, references, seals, vertical text</p></div>
+    <div class="card"><h3 style="color:var(--primary)">table</h3><p>Tables → recognized with table prompt</p></div>
+    <div class="card"><h3 style="color:var(--pink)">formula</h3><p>Display & inline formulas → LaTeX output</p></div>
+    <div class="card"><h3 style="color:var(--muted)">skip / abandon</h3><p>Charts & images kept; headers, footers, page numbers discarded</p></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SLIDE 12: EXPORT OPTIONS ═══════════════════ -->
+<section class="slide" data-slide="11">
+  <div class="tag">Export</div>
+  <h2>Exporting Results</h2>
+  <p>Two formats, two scopes — choose what you need from the Export dropdown.</p>
+  <div class="card-grid cols-2" style="max-width:50rem">
+    <div class="card" style="border-top:3px solid var(--primary)">
+      <h3>Markdown (.md)</h3>
+      <p>Clean Markdown with headings, tables, and LaTeX formulas. Pages separated by horizontal rules. Ideal for docs, Notion, Obsidian.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--amber)">
+      <h3>JSON (.json)</h3>
+      <p>Structured JSON with page data, content strings, and image paths. Ideal for programmatic processing and data pipelines.</p>
+    </div>
+  </div>
+  <div class="card-grid cols-2" style="max-width:50rem;margin-top:1rem">
+    <div class="card">
+      <h3><span class="badge badge-green">Scope: All Pages</span></h3>
+      <p>Downloads the entire document's OCR output in one file.</p>
+    </div>
+    <div class="card">
+      <h3><span class="badge badge-cyan">Scope: Current Page</span></h3>
+      <p>Downloads only the page you're currently viewing.</p>
+    </div>
+  </div>
+  <pre style="max-width:50rem;margin-top:1rem"><span class="hl-comment"># Programmatic export via API</span>
+<span class="hl-prompt">$ </span>curl <span class="hl-string">"http://localhost:5003/api/export/JOB_ID?format=markdown&scope=all"</span> -o result.md
+<span class="hl-prompt">$ </span>curl <span class="hl-string">"http://localhost:5003/api/export/JOB_ID?format=json&scope=current&page_idx=0"</span> -o page1.json</pre>
+</section>
+
+<!-- ═══════════════════ SLIDE 13: TROUBLESHOOTING ═══════════════════ -->
+<section class="slide" data-slide="12">
+  <div class="tag">Troubleshooting</div>
+  <h2>Common Issues & Fixes</h2>
+  <div class="card-grid cols-2" style="max-width:56rem">
+    <div class="card">
+      <h3 style="color:var(--red)">"Python 3.12 or higher is required"</h3>
+      <p>Install the latest Python from <code>python.org/downloads/macos</code>. The system Python on macOS is too old.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--red)">macOS blocks launch.command</h3>
+      <p>Right-click the file → <strong>Open</strong> → confirm in the dialog. Or: <code>System Settings → Privacy → Allow</code>.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--red)">MLX Server won't start (port 8080)</h3>
+      <p>Another process may hold the port. Run <code>lsof -i :8080</code> to check. Use the deep clean script to kill stale processes.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--red)">First scan is very slow</h3>
+      <p>Normal — the model weights load into unified memory on the first request. Subsequent scans are much faster.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--red)">Out of memory</h3>
+      <p>The model needs ~8 GB of unified memory. Close other heavy apps. 16 GB Macs should work; 8 GB Macs may struggle.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--red)">Weight download fails</h3>
+      <p>Check your internet connection. Run <code>python utils/download_weights.py</code> manually to retry. Weights come from Hugging Face.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SLIDE 14: DEEP CLEAN ═══════════════════ -->
+<section class="slide" data-slide="13">
+  <div class="tag">Maintenance</div>
+  <h2>Deep Clean / Reset</h2>
+  <p>If something goes wrong, use the interactive reset utility:</p>
+  <pre style="max-width:50rem"><span class="hl-prompt">$ </span>./utils/deep_clean.command</pre>
+  <p style="margin-top:1rem">It prompts you to selectively reset each component:</p>
+  <div class="card-grid cols-2" style="max-width:56rem;margin-top:1rem">
+    <div class="card">
+      <h3><span class="badge badge-pink">Processes</span> Kill stale servers</h3>
+      <p>Stops any lingering processes on ports 8080 and 5003.</p>
+    </div>
+    <div class="card">
+      <h3><span class="badge badge-primary">Venv</span> Remove .venv</h3>
+      <p>Deletes the virtual environment. Recreated on next launch.</p>
+    </div>
+    <div class="card">
+      <h3><span class="badge badge-amber">SDK</span> Delete glm-ocr/</h3>
+      <p>Removes the cloned SDK. Re-cloned on next launch.</p>
+    </div>
+    <div class="card">
+      <h3><span class="badge badge-green">Data</span> Clear uploads/sessions/output</h3>
+      <p>Wipes all OCR results and job history.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:1rem;max-width:56rem;border-color:var(--red)">
+    <h3><span class="badge badge-pink">Weights</span> Delete AI models (20 GB+)</h3>
+    <p>Nuclear option — deletes all downloaded weights. They'll re-download on next launch (requires internet).</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ SLIDE 15: TIPS ═══════════════════ -->
+<section class="slide" data-slide="14">
+  <div class="tag">Tips & Tricks</div>
+  <h2>Getting the Best Results</h2>
+  <div class="card-grid cols-2" style="max-width:56rem">
+    <div class="card">
+      <div class="icon">📏</div>
+      <h3>Use high-resolution scans</h3>
+      <p>The default PDF rendering is 200 DPI. Higher-quality input images produce better OCR output, especially for small text.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔄</div>
+      <h3>Toggle layout mode</h3>
+      <p>For simple single-column docs, try <code>enable_layout: false</code> in the config for faster, direct whole-image OCR.</p>
+    </div>
+    <div class="card">
+      <div class="icon">⚙️</div>
+      <h3>Tune max_workers</h3>
+      <p>Default is 4 parallel workers for region OCR. Lower to 1–2 on 8 GB Macs, raise on 64 GB+ machines.</p>
+    </div>
+    <div class="card">
+      <div class="icon">📂</div>
+      <h3>Find raw output</h3>
+      <p>Full SDK output lives in the <code>output/</code> directory — including per-page Markdown, JSON, layout visualizations, and original images.</p>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem;text-align:center">
+    <p style="font-size:1.1rem;color:var(--text)">
+      Results persist across app restarts — the <strong>History</strong> button lets you reload any previous scan.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════ SLIDE 16: SUMMARY ═══════════════════ -->
+<section class="slide" data-slide="15">
+  <div class="tag">Summary</div>
+  <h1><span class="gradient-text">You're all set!</span></h1>
+  <p style="font-size:1.2rem;text-align:center;max-width:44rem;margin-bottom:2rem">
+    Double-click <code>launch.command</code>, upload a document, and get structured Markdown in minutes — all running locally on your Mac.
+  </p>
+  <div class="card-grid cols-3" style="max-width:50rem">
+    <div class="card" style="text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:.4rem">1️⃣</div>
+      <h3>Launch</h3>
+      <p><code>launch.command</code></p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:.4rem">2️⃣</div>
+      <h3>Upload</h3>
+      <p>PDF or image</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:.4rem">3️⃣</div>
+      <h3>Export</h3>
+      <p>Markdown or JSON</p>
+    </div>
+  </div>
+  <div style="margin-top:2.5rem;text-align:center">
+    <p style="color:var(--muted);font-size:.95rem">
+      GLM-OCR MLX &nbsp;·&nbsp; Powered by GLM-4V + Apple MLX &nbsp;·&nbsp; MIT License
+    </p>
+  </div>
+</section>
+
+</div><!-- /deck -->
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="prevBtn" disabled>‹</button>
+  <span class="counter" id="counter">1 / 16</span>
+  <button id="nextBtn">›</button>
+</div>
+<div class="key-hint"><kbd>←</kbd> <kbd>→</kbd> or click to navigate</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let current = 0;
+
+function goTo(n) {
+  if (n < 0 || n >= total) return;
+  slides[current].classList.remove('active');
+  slides[current].classList.add(n > current ? 'exit-left' : '');
+  current = n;
+  slides.forEach((s, i) => {
+    s.classList.remove('active', 'exit-left');
+    if (i === current) s.classList.add('active');
+  });
+  document.getElementById('counter').textContent = `${current + 1} / ${total}`;
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === total - 1;
+}
+
+document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+  if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+  if (e.key === 'End') { e.preventDefault(); goTo(total - 1); }
+});
+
+// Touch support
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+document.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].screenX;
+  if (Math.abs(diff) > 50) { diff > 0 ? goTo(current + 1) : goTo(current - 1); }
+});
+</script>
+
+</body>
+</html>

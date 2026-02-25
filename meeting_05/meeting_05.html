@@ -1,0 +1,2409 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kwok-leong Tang">
+<meta name="dcterms.date" content="2026-02-25">
+
+<title>Meeting 05 – EASTD143B (Spring 2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b3b235ae6ba71d6e5c2a90c00144237d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+  // Soft gate: redirect to auth page unless a matching token is present.
+  // NOTE: client-side only (not strong security).
+  (function () {
+    var expected = "__REPLACE_ME__"; // must match EXPECTED_HASH in auth.html
+    try {
+      var token = localStorage.getItem('eastd143b_access');
+      var path = window.location.pathname;
+      var isAuthPage = path.endsWith('/auth.html') || path.endsWith('/auth/') || path.endsWith('/auth');
+      if (!isAuthPage && expected !== "__REPLACE_ME__" && token !== expected) {
+        window.location.replace('auth.html');
+      }
+    } catch (e) {
+      // if storage is blocked, fail closed
+      if (!window.location.pathname.endsWith('/auth.html')) {
+        window.location.replace('auth.html');
+      }
+    }
+  })();
+</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">EASTD143B (Spring 2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus/syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../meetings/index.html"> 
+<span class="menu-text">Meetings</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#todays-schedule" id="toc-todays-schedule" class="nav-link active" data-scroll-target="#todays-schedule">Today’s Schedule</a></li>
+  <li><a href="#assignment-1-build-a-personal-website" id="toc-assignment-1-build-a-personal-website" class="nav-link" data-scroll-target="#assignment-1-build-a-personal-website">Assignment 1: Build a Personal Website</a></li>
+  <li><a href="#static-websites-vs.-dynamic-websites" id="toc-static-websites-vs.-dynamic-websites" class="nav-link" data-scroll-target="#static-websites-vs.-dynamic-websites">Static Websites vs.&nbsp;Dynamic Websites</a>
+  <ul class="collapse">
+  <li><a href="#static-websites" id="toc-static-websites" class="nav-link" data-scroll-target="#static-websites">Static Websites</a></li>
+  <li><a href="#dynamic-websites" id="toc-dynamic-websites" class="nav-link" data-scroll-target="#dynamic-websites">Dynamic Websites</a></li>
+  </ul></li>
+  <li><a href="#what-are-html-and-css" id="toc-what-are-html-and-css" class="nav-link" data-scroll-target="#what-are-html-and-css">What are HTML and CSS?</a>
+  <ul class="collapse">
+  <li><a href="#html-hypertext-markup-language" id="toc-html-hypertext-markup-language" class="nav-link" data-scroll-target="#html-hypertext-markup-language">HTML (HyperText Markup Language)</a>
+  <ul class="collapse">
+  <li><a href="#common-html-tags" id="toc-common-html-tags" class="nav-link" data-scroll-target="#common-html-tags">Common HTML Tags</a></li>
+  <li><a href="#how-html-tags-work" id="toc-how-html-tags-work" class="nav-link" data-scroll-target="#how-html-tags-work">How HTML Tags Work</a></li>
+  </ul></li>
+  <li><a href="#css-cascading-style-sheets" id="toc-css-cascading-style-sheets" class="nav-link" data-scroll-target="#css-cascading-style-sheets">CSS (Cascading Style Sheets)</a>
+  <ul class="collapse">
+  <li><a href="#how-css-works" id="toc-how-css-works" class="nav-link" data-scroll-target="#how-css-works">How CSS Works</a></li>
+  <li><a href="#three-ways-to-add-css" id="toc-three-ways-to-add-css" class="nav-link" data-scroll-target="#three-ways-to-add-css">Three Ways to Add CSS</a></li>
+  </ul></li>
+  <li><a href="#html-css-together" id="toc-html-css-together" class="nav-link" data-scroll-target="#html-css-together">HTML + CSS Together</a></li>
+  </ul></li>
+  <li><a href="#choosing-a-framework" id="toc-choosing-a-framework" class="nav-link" data-scroll-target="#choosing-a-framework">Choosing a Framework</a></li>
+  <li><a href="#build-the-website-together-htmlcss" id="toc-build-the-website-together-htmlcss" class="nav-link" data-scroll-target="#build-the-website-together-htmlcss">Build the Website Together (HTML/CSS)</a>
+  <ul class="collapse">
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#step-1-create-the-github-repository" id="toc-step-1-create-the-github-repository" class="nav-link" data-scroll-target="#step-1-create-the-github-repository">Step 1: Create the GitHub Repository</a></li>
+  <li><a href="#step-2-create-the-project-structure" id="toc-step-2-create-the-project-structure" class="nav-link" data-scroll-target="#step-2-create-the-project-structure">Step 2: Create the Project Structure</a></li>
+  <li><a href="#step-3-create-the-shared-stylesheet-style.css" id="toc-step-3-create-the-shared-stylesheet-style.css" class="nav-link" data-scroll-target="#step-3-create-the-shared-stylesheet-style.css">Step 3: Create the Shared Stylesheet (<code>style.css</code>)</a></li>
+  <li><a href="#step-4-create-the-pages" id="toc-step-4-create-the-pages" class="nav-link" data-scroll-target="#step-4-create-the-pages">Step 4: Create the Pages</a>
+  <ul class="collapse">
+  <li><a href="#about-me-index.html" id="toc-about-me-index.html" class="nav-link" data-scroll-target="#about-me-index.html">About Me (<code>index.html</code>)</a></li>
+  <li><a href="#publications-publications.html" id="toc-publications-publications.html" class="nav-link" data-scroll-target="#publications-publications.html">Publications (<code>publications.html</code>)</a></li>
+  <li><a href="#projects-projects.html" id="toc-projects-projects.html" class="nav-link" data-scroll-target="#projects-projects.html">Projects (<code>projects.html</code>)</a></li>
+  <li><a href="#blog-blog.html" id="toc-blog-blog.html" class="nav-link" data-scroll-target="#blog-blog.html">Blog (<code>blog.html</code>)</a></li>
+  </ul></li>
+  <li><a href="#step-5-preview-your-website-locally" id="toc-step-5-preview-your-website-locally" class="nav-link" data-scroll-target="#step-5-preview-your-website-locally">Step 5: Preview Your Website Locally</a></li>
+  <li><a href="#step-6-set-up-github-actions-for-deployment" id="toc-step-6-set-up-github-actions-for-deployment" class="nav-link" data-scroll-target="#step-6-set-up-github-actions-for-deployment">Step 6: Set Up GitHub Actions for Deployment</a>
+  <ul class="collapse">
+  <li><a href="#workflows-for-other-frameworks-for-reference" id="toc-workflows-for-other-frameworks-for-reference" class="nav-link" data-scroll-target="#workflows-for-other-frameworks-for-reference">Workflows for Other Frameworks (for reference)</a></li>
+  </ul></li>
+  <li><a href="#step-7-commit-and-push" id="toc-step-7-commit-and-push" class="nav-link" data-scroll-target="#step-7-commit-and-push">Step 7: Commit and Push</a></li>
+  <li><a href="#step-8-enable-github-pages" id="toc-step-8-enable-github-pages" class="nav-link" data-scroll-target="#step-8-enable-github-pages">Step 8: Enable GitHub Pages</a></li>
+  <li><a href="#step-9-making-updates" id="toc-step-9-making-updates" class="nav-link" data-scroll-target="#step-9-making-updates">Step 9: Making Updates</a></li>
+  </ul></li>
+  <li><a href="#using-antigravitys-ai-features-to-build-your-website" id="toc-using-antigravitys-ai-features-to-build-your-website" class="nav-link" data-scroll-target="#using-antigravitys-ai-features-to-build-your-website">Using Antigravity’s AI Features to Build Your Website</a>
+  <ul class="collapse">
+  <li><a href="#build-everything-at-once" id="toc-build-everything-at-once" class="nav-link" data-scroll-target="#build-everything-at-once">Build Everything at Once</a></li>
+  <li><a href="#customization-prompts" id="toc-customization-prompts" class="nav-link" data-scroll-target="#customization-prompts">Customization Prompts</a></li>
+  </ul></li>
+  <li><a href="#setting-up-python-in-antigravity-topcoder-fullstack" id="toc-setting-up-python-in-antigravity-topcoder-fullstack" class="nav-link" data-scroll-target="#setting-up-python-in-antigravity-topcoder-fullstack">Setting Up Python in Antigravity (Topcoder Fullstack)</a>
+  <ul class="collapse">
+  <li><a href="#step-1-open-the-topcoder-fullstack-extension-settings" id="toc-step-1-open-the-topcoder-fullstack-extension-settings" class="nav-link" data-scroll-target="#step-1-open-the-topcoder-fullstack-extension-settings">Step 1: Open the Topcoder Fullstack Extension Settings</a></li>
+  <li><a href="#step-2-check-your-current-python-version" id="toc-step-2-check-your-current-python-version" class="nav-link" data-scroll-target="#step-2-check-your-current-python-version">Step 2: Check Your Current Python Version</a></li>
+  <li><a href="#step-3-add-python-3.14.x" id="toc-step-3-add-python-3.14.x" class="nav-link" data-scroll-target="#step-3-add-python-3.14.x">Step 3: Add Python 3.14.x</a></li>
+  <li><a href="#step-4-verify-the-installation" id="toc-step-4-verify-the-installation" class="nav-link" data-scroll-target="#step-4-verify-the-installation">Step 4: Verify the Installation</a></li>
+  </ul></li>
+  <li><a href="#ocr-tool-glm-ocr" id="toc-ocr-tool-glm-ocr" class="nav-link" data-scroll-target="#ocr-tool-glm-ocr">OCR Tool: GLM-OCR</a>
+  <ul class="collapse">
+  <li><a href="#what-is-glm-ocr" id="toc-what-is-glm-ocr" class="nav-link" data-scroll-target="#what-is-glm-ocr">What is GLM-OCR?</a>
+  <ul class="collapse">
+  <li><a href="#macos-architecture-mlx" id="toc-macos-architecture-mlx" class="nav-link" data-scroll-target="#macos-architecture-mlx">macOS Architecture (MLX)</a></li>
+  <li><a href="#windows-architecture-ollama" id="toc-windows-architecture-ollama" class="nav-link" data-scroll-target="#windows-architecture-ollama">Windows Architecture (Ollama)</a></li>
+  </ul></li>
+  <li><a href="#prerequisites-1" id="toc-prerequisites-1" class="nav-link" data-scroll-target="#prerequisites-1">Prerequisites</a>
+  <ul class="collapse">
+  <li><a href="#macos-apple-silicon" id="toc-macos-apple-silicon" class="nav-link" data-scroll-target="#macos-apple-silicon">macOS (Apple Silicon)</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a></li>
+  </ul></li>
+  <li><a href="#installation-and-launch" id="toc-installation-and-launch" class="nav-link" data-scroll-target="#installation-and-launch">Installation and Launch</a>
+  <ul class="collapse">
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos">macOS</a></li>
+  <li><a href="#windows-1" id="toc-windows-1" class="nav-link" data-scroll-target="#windows-1">Windows</a></li>
+  </ul></li>
+  <li><a href="#project-structure" id="toc-project-structure" class="nav-link" data-scroll-target="#project-structure">Project Structure</a></li>
+  <li><a href="#using-the-web-ui" id="toc-using-the-web-ui" class="nav-link" data-scroll-target="#using-the-web-ui">Using the Web UI</a></li>
+  <li><a href="#configuration" id="toc-configuration" class="nav-link" data-scroll-target="#configuration">Configuration</a>
+  <ul class="collapse">
+  <li><a href="#maas-mode-cloud-api" id="toc-maas-mode-cloud-api" class="nav-link" data-scroll-target="#maas-mode-cloud-api">MaaS Mode (Cloud API)</a></li>
+  </ul></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a>
+  <ul class="collapse">
+  <li><a href="#macos-1" id="toc-macos-1" class="nav-link" data-scroll-target="#macos-1">macOS</a></li>
+  <li><a href="#windows-2" id="toc-windows-2" class="nav-link" data-scroll-target="#windows-2">Windows</a></li>
+  <li><a href="#deep-clean-reset-macos" id="toc-deep-clean-reset-macos" class="nav-link" data-scroll-target="#deep-clean-reset-macos">Deep Clean / Reset (macOS)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ocr-tool-ocr-batch-processor-for-windowslinuxintel-mac" id="toc-ocr-tool-ocr-batch-processor-for-windowslinuxintel-mac" class="nav-link" data-scroll-target="#ocr-tool-ocr-batch-processor-for-windowslinuxintel-mac">OCR Tool: OCR Batch Processor (for Windows/Linux/Intel Mac)</a>
+  <ul class="collapse">
+  <li><a href="#what-is-the-ocr-batch-processor" id="toc-what-is-the-ocr-batch-processor" class="nav-link" data-scroll-target="#what-is-the-ocr-batch-processor">What is the OCR Batch Processor?</a></li>
+  <li><a href="#what-is-lm-studio" id="toc-what-is-lm-studio" class="nav-link" data-scroll-target="#what-is-lm-studio">What is LM Studio?</a></li>
+  <li><a href="#step-1-install-lm-studio" id="toc-step-1-install-lm-studio" class="nav-link" data-scroll-target="#step-1-install-lm-studio">Step 1: Install LM Studio</a></li>
+  <li><a href="#step-2-download-a-vision-model" id="toc-step-2-download-a-vision-model" class="nav-link" data-scroll-target="#step-2-download-a-vision-model">Step 2: Download a Vision Model</a></li>
+  <li><a href="#step-3-start-the-lm-studio-local-server" id="toc-step-3-start-the-lm-studio-local-server" class="nav-link" data-scroll-target="#step-3-start-the-lm-studio-local-server">Step 3: Start the LM Studio Local Server</a></li>
+  <li><a href="#step-4-open-the-ocr-batch-processor" id="toc-step-4-open-the-ocr-batch-processor" class="nav-link" data-scroll-target="#step-4-open-the-ocr-batch-processor">Step 4: Open the OCR Batch Processor</a></li>
+  <li><a href="#step-5-configure-the-connection-to-lm-studio" id="toc-step-5-configure-the-connection-to-lm-studio" class="nav-link" data-scroll-target="#step-5-configure-the-connection-to-lm-studio">Step 5: Configure the Connection to LM Studio</a></li>
+  <li><a href="#step-6-open-a-folder-and-run-ocr" id="toc-step-6-open-a-folder-and-run-ocr" class="nav-link" data-scroll-target="#step-6-open-a-folder-and-run-ocr">Step 6: Open a Folder and Run OCR</a>
+  <ul class="collapse">
+  <li><a href="#opening-files" id="toc-opening-files" class="nav-link" data-scroll-target="#opening-files">Opening Files</a></li>
+  <li><a href="#running-ocr" id="toc-running-ocr" class="nav-link" data-scroll-target="#running-ocr">Running OCR</a></li>
+  <li><a href="#viewing-results" id="toc-viewing-results" class="nav-link" data-scroll-target="#viewing-results">Viewing Results</a></li>
+  </ul></li>
+  <li><a href="#step-7-pdf-tools" id="toc-step-7-pdf-tools" class="nav-link" data-scroll-target="#step-7-pdf-tools">Step 7: PDF Tools</a></li>
+  <li><a href="#step-8-export-results" id="toc-step-8-export-results" class="nav-link" data-scroll-target="#step-8-export-results">Step 8: Export Results</a></li>
+  <li><a href="#troubleshooting-1" id="toc-troubleshooting-1" class="nav-link" data-scroll-target="#troubleshooting-1">Troubleshooting</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Meeting 05</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kwok-leong Tang </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 25, 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">February 25, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="todays-schedule" class="level1">
+<h1>Today’s Schedule</h1>
+<ul>
+<li>Assignment 1: Build a Personal Website</li>
+<li>Static websites vs.&nbsp;dynamic websites</li>
+<li>What are HTML and CSS?</li>
+<li>Choosing a framework</li>
+<li>Build the website together with Antigravity (HTML/CSS demo)</li>
+<li>Setting up Python in Antigravity (Topcoder Fullstack)</li>
+<li>OCR tool: GLM-OCR (macOS + Windows)</li>
+<li>OCR tool: OCR Batch Processor with LM Studio (all platforms)</li>
+</ul>
+</section>
+<section id="assignment-1-build-a-personal-website" class="level1">
+<h1>Assignment 1: Build a Personal Website</h1>
+<p>In this assignment, you will build a personal website and host it on your GitHub account. Here are the requirements:</p>
+<ol type="1">
+<li>Include the following pages: About Me, Publications, Projects, and Blog (1 point each)</li>
+<li>Implement proper navigation, such as a navigation bar (1 point)</li>
+<li>Host the website on GitHub Pages through your GitHub account. The website should be updateable via commits and GitHub Actions (3 points)</li>
+<li>Deploy the website at <code>https://your-username.github.io</code> (2 points)</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The total score for this assignment is <strong>10 points</strong>. Your website must be live and accessible at <code>https://your-username.github.io</code> when graded.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You are free to use <strong>any framework</strong> to build your website. Quarto, Hugo, Jekyll, Next.js, plain HTML/CSS — whatever you are comfortable with. The only requirements are the four pages, navigation, GitHub Pages hosting, and automatic deployment via GitHub Actions.</p>
+</div>
+</div>
+</section>
+<section id="static-websites-vs.-dynamic-websites" class="level1">
+<h1>Static Websites vs.&nbsp;Dynamic Websites</h1>
+<p>Before choosing a framework, it is important to understand the difference between static and dynamic websites, because <strong>GitHub Pages can only host static websites</strong>.</p>
+<section id="static-websites" class="level2">
+<h2 class="anchored" data-anchor-id="static-websites">Static Websites</h2>
+<p>A static website is a collection of pre-built HTML, CSS, and JavaScript files. When a visitor requests a page, the server simply sends the file as-is — no processing happens on the server side.</p>
+<ul>
+<li>The content is the same for every visitor.</li>
+<li>No server-side language (Python, PHP, Ruby, etc.) runs when someone visits the page.</li>
+<li>No database is involved.</li>
+<li>Examples: personal portfolios, documentation sites, blogs built with static site generators.</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    Browser[Browser] --&gt;|Request| Server[Web Server]
+    Server --&gt;|Send HTML/CSS/JS files| Browser
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="dynamic-websites" class="level2">
+<h2 class="anchored" data-anchor-id="dynamic-websites">Dynamic Websites</h2>
+<p>A dynamic website generates pages on the fly. When a visitor requests a page, the server runs code to build the HTML before sending it back. This allows personalized content, user authentication, and real-time data.</p>
+<ul>
+<li>The content can change depending on the user, time, or database state.</li>
+<li>A server-side language (Python, PHP, Node.js, etc.) processes each request.</li>
+<li>Typically connected to a database.</li>
+<li>Examples: social media platforms, e-commerce sites, web applications like Canvas.</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    Browser[Browser] --&gt;|Request| Server[Application Server]
+    Server --&gt;|Query| DB[(Database)]
+    DB --&gt;|Data| Server
+    Server --&gt;|Generated HTML| Browser
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>GitHub Pages is a <strong>static site hosting</strong> service. It can only serve pre-built files — it cannot run server-side code or connect to a database. This means your website must be a static site. All the frameworks listed below are <strong>static site generators</strong>: they take your source files (Markdown, templates, etc.) and produce plain HTML/CSS/JS that GitHub Pages can serve.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="what-are-html-and-css" class="level1">
+<h1>What are HTML and CSS?</h1>
+<p>No matter which framework you choose, the final output of a static website is always <strong>HTML</strong> and <strong>CSS</strong>. Understanding these two languages is essential for building and customizing any website.</p>
+<section id="html-hypertext-markup-language" class="level2">
+<h2 class="anchored" data-anchor-id="html-hypertext-markup-language">HTML (HyperText Markup Language)</h2>
+<p>HTML is the <strong>structure</strong> of a web page. It defines <em>what</em> content appears on the page and how it is organized. HTML uses <strong>tags</strong> — pairs of angle brackets — to mark up content.</p>
+<p>Here is a minimal HTML page:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>My Page<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Hello, World!<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>This is a paragraph.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="common-html-tags" class="level3">
+<h3 class="anchored" data-anchor-id="common-html-tags">Common HTML Tags</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tag</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code></td>
+<td>Headings (h1 is the largest)</td>
+<td><code>&lt;h1&gt;Title&lt;/h1&gt;</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;p&gt;</code></td>
+<td>Paragraph</td>
+<td><code>&lt;p&gt;Some text.&lt;/p&gt;</code></td>
+</tr>
+<tr class="odd">
+<td><code>&lt;a&gt;</code></td>
+<td>Hyperlink</td>
+<td><code>&lt;a href="https://example.com"&gt;Click here&lt;/a&gt;</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;img&gt;</code></td>
+<td>Image</td>
+<td><code>&lt;img src="photo.jpg" alt="A photo"&gt;</code></td>
+</tr>
+<tr class="odd">
+<td><code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code></td>
+<td>Unordered list</td>
+<td><code>&lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;/ul&gt;</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;div&gt;</code></td>
+<td>Generic container (for grouping)</td>
+<td><code>&lt;div&gt;...&lt;/div&gt;</code></td>
+</tr>
+<tr class="odd">
+<td><code>&lt;nav&gt;</code></td>
+<td>Navigation section</td>
+<td><code>&lt;nav&gt;...&lt;/nav&gt;</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-html-tags-work" class="level3">
+<h3 class="anchored" data-anchor-id="how-html-tags-work">How HTML Tags Work</h3>
+<p>HTML tags come in pairs: an <strong>opening tag</strong> and a <strong>closing tag</strong>. The closing tag has a <code>/</code> before the tag name.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A["&amp;lt;p&amp;gt;"] --&gt; B["Content goes here"] --&gt; C["&amp;lt;/p&amp;gt;"]
+    style A fill:#e6f3ff,stroke:#333
+    style C fill:#ffe6e6,stroke:#333
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Tags can be <strong>nested</strong> inside each other, forming a tree structure:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"index.html"</span><span class="dt">&gt;</span>Home<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"about.html"</span><span class="dt">&gt;</span>About<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Welcome<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>This is my website.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="css-cascading-style-sheets" class="level2">
+<h2 class="anchored" data-anchor-id="css-cascading-style-sheets">CSS (Cascading Style Sheets)</h2>
+<p>CSS is the <strong>appearance</strong> of a web page. It defines <em>how</em> the content looks — colors, fonts, spacing, layout, and more. While HTML says “this is a heading,” CSS says “this heading should be blue, 24px, and centered.”</p>
+<p>Here is a simple example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>body {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span><span class="ch">:</span> <span class="dv">Arial</span><span class="op">,</span> <span class="dv">sans-serif</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#f5f5f5</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>h1 {</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span> <span class="cn">#333</span><span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-align</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>nav {</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#333</span><span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span><span class="ch">:</span> <span class="dv">10</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>nav a {</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span> <span class="cn">white</span><span class="op">;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-decoration</span><span class="ch">:</span> <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-right</span><span class="ch">:</span> <span class="dv">15</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="how-css-works" class="level3">
+<h3 class="anchored" data-anchor-id="how-css-works">How CSS Works</h3>
+<p>A CSS rule has two parts: a <strong>selector</strong> (which HTML element to style) and a <strong>declaration block</strong> (the styles to apply).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>selector {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    property<span class="ch">:</span> <span class="dv">value</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    property<span class="ch">:</span> <span class="dv">value</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>h1 {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span> <span class="cn">blue</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">24</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This rule says: “Find all <code>&lt;h1&gt;</code> elements and make them blue with a font size of 24px.”</p>
+</section>
+<section id="three-ways-to-add-css" class="level3">
+<h3 class="anchored" data-anchor-id="three-ways-to-add-css">Three Ways to Add CSS</h3>
+<ol type="1">
+<li><strong>Inline</strong> (inside an HTML tag — not recommended for large projects):</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="ot"> style</span><span class="op">=</span><span class="st">"color: blue;"</span><span class="dt">&gt;</span>Hello<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li><strong>Internal</strong> (inside a <code>&lt;style&gt;</code> tag in the HTML file):</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">style</span><span class="dt">&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        h1 { <span class="kw">color</span><span class="ch">:</span> <span class="cn">blue</span><span class="op">;</span> }</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">style</span><span class="dt">&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li><strong>External</strong> (in a separate <code>.css</code> file — recommended):</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"stylesheet"</span><span class="ot"> href</span><span class="op">=</span><span class="st">"style.css"</span><span class="dt">&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using an <strong>external CSS file</strong> is the best practice. It keeps your style separate from your content and allows you to share one stylesheet across multiple HTML pages, so your entire website looks consistent.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="html-css-together" class="level2">
+<h2 class="anchored" data-anchor-id="html-css-together">HTML + CSS Together</h2>
+<p>Think of building a website like building a house:</p>
+<ul>
+<li><strong>HTML</strong> is the structure: walls, rooms, doors, and windows.</li>
+<li><strong>CSS</strong> is the interior design: paint colors, furniture placement, lighting, and decorations.</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    HTML["HTML (Structure)"] --&gt; Page["Web Page"]
+    CSS["CSS (Style)"] --&gt; Page
+    JS["JavaScript (Behavior)"] -.-&gt;|optional| Page
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For this assignment, you only need HTML and CSS. JavaScript is optional and not required.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="choosing-a-framework" class="level1">
+<h1>Choosing a Framework</h1>
+<p>There are many static site generators and frameworks that work well with GitHub Pages. Here is a comparison to help you decide:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Framework</th>
+<th>Language</th>
+<th>Learning Curve</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Plain HTML/CSS</td>
+<td>HTML, CSS, JS</td>
+<td>Low–High</td>
+<td>Full control, no build step needed</td>
+</tr>
+<tr class="even">
+<td><a href="https://quarto.org">Quarto</a></td>
+<td>Markdown (<code>.qmd</code>)</td>
+<td>Low</td>
+<td>Academics, researchers, data-driven content</td>
+</tr>
+<tr class="odd">
+<td><a href="https://gohugo.io">Hugo</a></td>
+<td>Markdown + Go templates</td>
+<td>Medium</td>
+<td>Fast builds, rich theme ecosystem</td>
+</tr>
+<tr class="even">
+<td><a href="https://jekyllrb.com">Jekyll</a></td>
+<td>Markdown + Liquid</td>
+<td>Medium</td>
+<td>Native GitHub Pages support, blogging</td>
+</tr>
+<tr class="odd">
+<td><a href="https://nextjs.org">Next.js</a></td>
+<td>React (JavaScript)</td>
+<td>High</td>
+<td>Interactive sites, web developers</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you have no prior web development experience, <strong>plain HTML/CSS</strong> is a great starting point because it teaches you the fundamentals that every other framework builds upon. <strong>Quarto</strong> is also a good choice since we already use it in this course. If you are already familiar with a web framework, feel free to use it.</p>
+</div>
+</div>
+</section>
+<section id="build-the-website-together-htmlcss" class="level1">
+<h1>Build the Website Together (HTML/CSS)</h1>
+<p>In class, we will walk through building a personal website using <strong>plain HTML and CSS</strong> and <strong>Antigravity</strong> (VS Code) as our editor. By the end of this session, you will have a working website deployed on GitHub Pages.</p>
+<p>If you choose a different framework (Quarto, Hugo, Jekyll, etc.), you can still follow along for the GitHub setup steps (Steps 1, 7–10), which apply to all frameworks.</p>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<p>Before we begin, make sure you have the following installed (we covered these in Meeting 03):</p>
+<ul>
+<li><strong>Git</strong>: Verify by running <code>git --version</code></li>
+<li><strong>GitHub CLI</strong>: Verify by running <code>gh --version</code></li>
+<li><strong>Antigravity</strong> (VS Code)</li>
+<li>A <strong>GitHub account</strong></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are missing any of the above, refer to <a href="../meeting_03/meeting_03.html">Meeting 03</a> for installation instructions.</p>
+</div>
+</div>
+</section>
+<section id="step-1-create-the-github-repository" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-create-the-github-repository">Step 1: Create the GitHub Repository</h2>
+<p>This step applies to <strong>all frameworks</strong>.</p>
+<p>Your personal website must be hosted at <code>https://your-username.github.io</code>. GitHub Pages requires a repository with a specific name for this to work.</p>
+<ol type="1">
+<li>Open your terminal.</li>
+<li>Log in to GitHub CLI if you haven’t already:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth login</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>Create the repository:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo create your-username.github.io <span class="at">--public</span> <span class="at">--clone</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Replace <code>your-username</code> with your actual GitHub username. For example, if your username is <code>jzhang</code>, the command would be:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo create jzhang.github.io <span class="at">--public</span> <span class="at">--clone</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="4" type="1">
+<li>Navigate into the repository folder:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> your-username.github.io</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The repository name <strong>must</strong> be exactly <code>your-username.github.io</code>. If it does not match your GitHub username, GitHub Pages will not deploy to the root URL.</p>
+</div>
+</div>
+</section>
+<section id="step-2-create-the-project-structure" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-create-the-project-structure">Step 2: Create the Project Structure</h2>
+<p>Open the project folder in Antigravity:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We will create the following file structure:</p>
+<pre><code>your-username.github.io/
+├── index.html          (About Me - homepage)
+├── publications.html   (Publications page)
+├── projects.html       (Projects page)
+├── blog.html           (Blog page)
+├── style.css           (Shared stylesheet)
+└── .github/
+    └── workflows/
+        └── deploy.yml  (GitHub Actions workflow)</code></pre>
+</section>
+<section id="step-3-create-the-shared-stylesheet-style.css" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-create-the-shared-stylesheet-style.css">Step 3: Create the Shared Stylesheet (<code>style.css</code>)</h2>
+<p>Create a file called <code>style.css</code>. This single file will control the look of all your pages.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antigravity AI Prompt">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antigravity AI Prompt
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try this prompt in Antigravity’s chat panel (Ctrl+Shift+I / Cmd+Shift+I):</p>
+<pre><code>Create a style.css file for a personal academic website.
+The site has four pages: About Me, Publications, Projects, and Blog.
+I need styles for: a centered navigation bar with a dark background
+and white links, serif body font, headings, a blog entry layout
+with dates, and a simple footer. Keep it clean and minimal.</code></pre>
+</div>
+</div>
+<p>Here is an example of what your <code>style.css</code> might look like:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Reset and base styles */</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span><span class="ch">:</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">box-sizing</span><span class="ch">:</span> <span class="dv">border-box</span><span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>body {</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span><span class="ch">:</span> <span class="dv">Georgia</span><span class="op">,</span> <span class="st">'Times New Roman'</span><span class="op">,</span> <span class="dv">serif</span><span class="op">;</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">line-height</span><span class="ch">:</span> <span class="dv">1.8</span><span class="op">;</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span> <span class="cn">#333</span><span class="op">;</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">max-width</span><span class="ch">:</span> <span class="dv">800</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span><span class="ch">:</span> <span class="dv">0</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span><span class="ch">:</span> <span class="dv">20</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#fafafa</span><span class="op">;</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">/* Navigation bar */</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>nav {</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#2c3e50</span><span class="op">;</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span><span class="ch">:</span> <span class="dv">15</span><span class="dt">px</span> <span class="dv">20</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span><span class="ch">:</span> <span class="dv">-20</span><span class="dt">px</span> <span class="dv">-20</span><span class="dt">px</span> <span class="dv">30</span><span class="dt">px</span> <span class="dv">-20</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-align</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>nav a {</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span> <span class="cn">#ecf0f1</span><span class="op">;</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-decoration</span><span class="ch">:</span> <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span><span class="ch">:</span> <span class="dv">0</span> <span class="dv">15</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">16</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>nav a<span class="in">:hover</span> {</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-decoration</span><span class="ch">:</span> <span class="dv">underline</span><span class="op">;</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">/* Headings */</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>h1 {</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">28</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">15</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span> <span class="cn">#2c3e50</span><span class="op">;</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>h2 {</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">22</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-top</span><span class="ch">:</span> <span class="dv">30</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">10</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span> <span class="cn">#34495e</span><span class="op">;</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a><span class="co">/* Paragraphs and lists */</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>p {</span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">15</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>ul {</span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-left</span><span class="ch">:</span> <span class="dv">20</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">15</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>li {</span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a><span class="co">/* Links */</span></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>a {</span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span> <span class="cn">#2980b9</span><span class="op">;</span></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a><span class="co">/* Blog post entries */</span></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a><span class="fu">.blog-entry</span> {</span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-bottom</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="cn">#ddd</span><span class="op">;</span></span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span><span class="ch">:</span> <span class="dv">15</span><span class="dt">px</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a><span class="fu">.blog-entry</span> h3 {</span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-bottom</span><span class="ch">:</span> <span class="dv">5</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a><span class="fu">.blog-date</span> {</span>
+<span id="cb16-81"><a href="#cb16-81" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span> <span class="cn">#888</span><span class="op">;</span></span>
+<span id="cb16-82"><a href="#cb16-82" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">14</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-83"><a href="#cb16-83" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-84"><a href="#cb16-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-85"><a href="#cb16-85" aria-hidden="true" tabindex="-1"></a><span class="co">/* Footer */</span></span>
+<span id="cb16-86"><a href="#cb16-86" aria-hidden="true" tabindex="-1"></a>footer {</span>
+<span id="cb16-87"><a href="#cb16-87" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin-top</span><span class="ch">:</span> <span class="dv">40</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-88"><a href="#cb16-88" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding-top</span><span class="ch">:</span> <span class="dv">15</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-89"><a href="#cb16-89" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-top</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span> <span class="dv">solid</span> <span class="cn">#ddd</span><span class="op">;</span></span>
+<span id="cb16-90"><a href="#cb16-90" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-align</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb16-91"><a href="#cb16-91" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">14</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb16-92"><a href="#cb16-92" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span> <span class="cn">#888</span><span class="op">;</span></span>
+<span id="cb16-93"><a href="#cb16-93" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-4-create-the-pages" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-create-the-pages">Step 4: Create the Pages</h2>
+<section id="about-me-index.html" class="level3">
+<h3 class="anchored" data-anchor-id="about-me-index.html">About Me (<code>index.html</code>)</h3>
+<p>This is your homepage. Create a file called <code>index.html</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antigravity AI Prompt">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antigravity AI Prompt
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>Create an index.html file for my personal academic website.
+This is the "About Me" homepage. It should include:
+- A navigation bar linking to index.html (About Me),
+  publications.html, projects.html, and blog.html
+- My name as the main heading
+- Sections for "About Me", "Research Interests" (as a list),
+  and "Contact" (with email and GitHub link)
+- A footer with copyright 2026
+- Link to an external stylesheet called style.css</code></pre>
+</div>
+</div>
+<p>Here is an example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">"en"</span><span class="dt">&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">"UTF-8"</span><span class="dt">&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">"viewport"</span><span class="ot"> content</span><span class="op">=</span><span class="st">"width=device-width, initial-scale=1.0"</span><span class="dt">&gt;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Your Name<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"stylesheet"</span><span class="ot"> href</span><span class="op">=</span><span class="st">"style.css"</span><span class="dt">&gt;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"index.html"</span><span class="dt">&gt;</span>About Me<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"publications.html"</span><span class="dt">&gt;</span>Publications<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"projects.html"</span><span class="dt">&gt;</span>Projects<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"blog.html"</span><span class="dt">&gt;</span>Blog<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Your Name<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>About Me<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Welcome to my personal website. I am a graduate student at Harvard University studying ...<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>Research Interests<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>Interest 1<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>Interest 2<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>Interest 3<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>Contact<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>Email: your-email@example.com<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>GitHub: <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://github.com/your-username"</span><span class="dt">&gt;</span>your-username<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>        <span class="dv">&amp;copy;</span> 2026 Your Name</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notice the <code>&lt;nav&gt;</code> section at the top. This navigation bar appears on every page. When you create the other pages, you will copy this same <code>&lt;nav&gt;</code> block into each one, so visitors can navigate between pages.</p>
+</div>
+</div>
+</section>
+<section id="publications-publications.html" class="level3">
+<h3 class="anchored" data-anchor-id="publications-publications.html">Publications (<code>publications.html</code>)</h3>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antigravity AI Prompt">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antigravity AI Prompt
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>Create a publications.html page for my academic website.
+Use the same navigation bar and footer as index.html.
+Include sections for "Journal Articles", "Book Chapters",
+and "Conference Papers", each with placeholder entries
+in standard academic citation format. Link to style.css.</code></pre>
+</div>
+</div>
+<p>Create a file called <code>publications.html</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">"en"</span><span class="dt">&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">"UTF-8"</span><span class="dt">&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">"viewport"</span><span class="ot"> content</span><span class="op">=</span><span class="st">"width=device-width, initial-scale=1.0"</span><span class="dt">&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Publications - Your Name<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"stylesheet"</span><span class="ot"> href</span><span class="op">=</span><span class="st">"style.css"</span><span class="dt">&gt;</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"index.html"</span><span class="dt">&gt;</span>About Me<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"publications.html"</span><span class="dt">&gt;</span>Publications<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"projects.html"</span><span class="dt">&gt;</span>Projects<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"blog.html"</span><span class="dt">&gt;</span>Blog<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Publications<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>Journal Articles<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>Author(s). "Title of the Article." <span class="dt">&lt;</span><span class="kw">em</span><span class="dt">&gt;</span>Journal Name<span class="dt">&lt;/</span><span class="kw">em</span><span class="dt">&gt;</span> Volume, no. Issue (Year): Pages.<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>Book Chapters<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>Author(s). "Title of the Chapter." In <span class="dt">&lt;</span><span class="kw">em</span><span class="dt">&gt;</span>Book Title<span class="dt">&lt;/</span><span class="kw">em</span><span class="dt">&gt;</span>, edited by Editor(s), Pages. Publisher, Year.<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>Conference Papers<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>(Add your publications here as your academic career progresses.)<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>        <span class="dv">&amp;copy;</span> 2026 Your Name</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="projects-projects.html" class="level3">
+<h3 class="anchored" data-anchor-id="projects-projects.html">Projects (<code>projects.html</code>)</h3>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antigravity AI Prompt">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antigravity AI Prompt
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>Create a projects.html page for my academic website.
+Use the same navigation bar and footer as index.html.
+Include two placeholder project sections, each with a
+title and description paragraph. Link to style.css.</code></pre>
+</div>
+</div>
+<p>Create a file called <code>projects.html</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">"en"</span><span class="dt">&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">"UTF-8"</span><span class="dt">&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">"viewport"</span><span class="ot"> content</span><span class="op">=</span><span class="st">"width=device-width, initial-scale=1.0"</span><span class="dt">&gt;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Projects - Your Name<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"stylesheet"</span><span class="ot"> href</span><span class="op">=</span><span class="st">"style.css"</span><span class="dt">&gt;</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"index.html"</span><span class="dt">&gt;</span>About Me<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"publications.html"</span><span class="dt">&gt;</span>Publications<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"projects.html"</span><span class="dt">&gt;</span>Projects<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"blog.html"</span><span class="dt">&gt;</span>Blog<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Projects<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>Project 1: Title<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Description of your project.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>Project 2: Title<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Description of your project.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>        <span class="dv">&amp;copy;</span> 2026 Your Name</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="blog-blog.html" class="level3">
+<h3 class="anchored" data-anchor-id="blog-blog.html">Blog (<code>blog.html</code>)</h3>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antigravity AI Prompt">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antigravity AI Prompt
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>Create a blog.html page for my academic website.
+Use the same navigation bar and footer as index.html.
+Include one sample blog post entry with a title, date
+(February 25, 2026), and a short paragraph. Each blog
+entry should be in its own div with class "blog-entry",
+and the date should have class "blog-date". Link to style.css.</code></pre>
+</div>
+</div>
+<p>Create a file called <code>blog.html</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">"en"</span><span class="dt">&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">"UTF-8"</span><span class="dt">&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">"viewport"</span><span class="ot"> content</span><span class="op">=</span><span class="st">"width=device-width, initial-scale=1.0"</span><span class="dt">&gt;</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Blog - Your Name<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"stylesheet"</span><span class="ot"> href</span><span class="op">=</span><span class="st">"style.css"</span><span class="dt">&gt;</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"index.html"</span><span class="dt">&gt;</span>About Me<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"publications.html"</span><span class="dt">&gt;</span>Publications<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"projects.html"</span><span class="dt">&gt;</span>Projects<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"blog.html"</span><span class="dt">&gt;</span>Blog<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Blog<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"blog-entry"</span><span class="dt">&gt;</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">h3</span><span class="dt">&gt;</span>My First Blog Post<span class="dt">&lt;/</span><span class="kw">h3</span><span class="dt">&gt;</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"blog-date"</span><span class="dt">&gt;</span>February 25, 2026<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>This is my first blog post on my personal website!<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>        <span class="dv">&amp;copy;</span> 2026 Your Name</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>With plain HTML, you add new blog posts by adding new <code>&lt;div class="blog-entry"&gt;</code> blocks to <code>blog.html</code>. Put the newest post at the top so visitors see your latest writing first.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="step-5-preview-your-website-locally" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-preview-your-website-locally">Step 5: Preview Your Website Locally</h2>
+<p>You can preview your website by simply opening <code>index.html</code> in a browser:</p>
+<ul>
+<li><strong>macOS</strong>:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">open</span> index.html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><strong>Windows</strong>:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">start</span> index<span class="op">.</span><span class="fu">html</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Alternatively, you can install the <strong>Live Server</strong> extension in Antigravity for auto-refreshing preview:</p>
+<ol type="1">
+<li>Open Antigravity.</li>
+<li>Go to Extensions (left sidebar) and search for “Live Server”.</li>
+<li>Install it, then right-click <code>index.html</code> and select <strong>“Open with Live Server”</strong>.</li>
+</ol>
+<p>Check that:</p>
+<ul>
+<li>All four pages are accessible from the navigation bar.</li>
+<li>The navigation links work correctly.</li>
+<li>The content and styling display as expected.</li>
+</ul>
+</section>
+<section id="step-6-set-up-github-actions-for-deployment" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-set-up-github-actions-for-deployment">Step 6: Set Up GitHub Actions for Deployment</h2>
+<p>Since plain HTML/CSS does not require a build step, the GitHub Actions workflow simply deploys the files as-is to GitHub Pages.</p>
+<ol type="1">
+<li>Create the GitHub Actions workflow directory:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> .github/workflows</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li>Create a file called <code>.github/workflows/deploy.yml</code> with the following content:</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antigravity AI Prompt">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antigravity AI Prompt
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>Create a GitHub Actions workflow file (.github/workflows/deploy.yml)
+that deploys a plain HTML/CSS website to GitHub Pages.
+The site has no build step — just deploy all files from the root
+directory. It should trigger on push to the main branch and also
+support manual dispatch. Use the official GitHub Pages actions
+(configure-pages, upload-pages-artifact, deploy-pages).</code></pre>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> main</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy to GitHub Pages</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">permissions</span><span class="kw">:</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> read</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pages</span><span class="kw">:</span><span class="at"> write</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">id-token</span><span class="kw">:</span><span class="at"> write</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">deploy</span><span class="kw">:</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">environment</span><span class="kw">:</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">name</span><span class="kw">:</span><span class="at"> github-pages</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">url</span><span class="kw">:</span><span class="at"> ${{ steps.deployment.outputs.page_url }}</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check out repository</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Setup Pages</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/configure-pages@v4</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Upload artifact</span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-pages-artifact@v3</span></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> </span><span class="st">'.'</span></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Deploy to GitHub Pages</span></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">id</span><span class="kw">:</span><span class="at"> deployment</span></span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/deploy-pages@v4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This workflow tells GitHub to: (1) check out your repository, and (2) deploy all files directly to GitHub Pages every time you push to the <code>main</code> branch. No build step is needed because the HTML/CSS files are already ready to serve.</p>
+</div>
+</div>
+<section id="workflows-for-other-frameworks-for-reference" class="level3">
+<h3 class="anchored" data-anchor-id="workflows-for-other-frameworks-for-reference">Workflows for Other Frameworks (for reference)</h3>
+<p>If you choose a different framework, you will need a workflow that includes a build step. Here are examples:</p>
+<p><strong>Quarto:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/setup@v2</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/publish@v2</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">target</span><span class="kw">:</span><span class="at"> gh-pages</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Hugo:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> peaceiris/actions-hugo@v3</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">hugo-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'latest'</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> hugo --minify</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> peaceiris/actions-gh-pages@v4</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">github_token</span><span class="kw">:</span><span class="at"> ${{ secrets.GITHUB_TOKEN }}</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">publish_dir</span><span class="kw">:</span><span class="at"> ./public</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Jekyll:</strong></p>
+<p>Jekyll is natively supported by GitHub Pages. You can select <strong>“Deploy from a branch”</strong> in GitHub Pages settings without a custom workflow.</p>
+</section>
+</section>
+<section id="step-7-commit-and-push" class="level2">
+<h2 class="anchored" data-anchor-id="step-7-commit-and-push">Step 7: Commit and Push</h2>
+<p>Now let’s commit everything and push to GitHub:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial website with About, Publications, Projects, and Blog pages"</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-8-enable-github-pages" class="level2">
+<h2 class="anchored" data-anchor-id="step-8-enable-github-pages">Step 8: Enable GitHub Pages</h2>
+<ol type="1">
+<li>Go to your repository on GitHub: <code>https://github.com/your-username/your-username.github.io</code></li>
+<li>Click <strong>Settings</strong> → <strong>Pages</strong> (in the left sidebar).</li>
+<li>Under <strong>Source</strong>, select <strong>GitHub Actions</strong>.</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You must select <strong>GitHub Actions</strong> as the source, not “Deploy from a branch”. This is because we are using a GitHub Actions workflow to deploy the site.</p>
+</div>
+</div>
+<p>After the GitHub Actions workflow completes (you can check its progress under the <strong>Actions</strong> tab), your website should be live at:</p>
+<p><code>https://your-username.github.io</code></p>
+</section>
+<section id="step-9-making-updates" class="level2">
+<h2 class="anchored" data-anchor-id="step-9-making-updates">Step 9: Making Updates</h2>
+<p>From now on, every time you want to update your website:</p>
+<ol type="1">
+<li>Edit your HTML/CSS files in Antigravity.</li>
+<li>Preview locally by opening <code>index.html</code> in a browser or using Live Server.</li>
+<li>Commit and push:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Describe your changes"</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="4" type="1">
+<li>GitHub Actions will automatically deploy your updated site.</li>
+</ol>
+</section>
+</section>
+<section id="using-antigravitys-ai-features-to-build-your-website" class="level1">
+<h1>Using Antigravity’s AI Features to Build Your Website</h1>
+<p>You do not have to write every line of code yourself. You can use Antigravity’s built-in AI features (such as Copilot or the chat panel) to help you generate HTML pages, write CSS styles, create GitHub Actions workflows, and debug issues. This is an encouraged part of the agentic approach we practice in this course.</p>
+<section id="build-everything-at-once" class="level2">
+<h2 class="anchored" data-anchor-id="build-everything-at-once">Build Everything at Once</h2>
+<p>If you want to generate the entire website in one go, try this prompt:</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antigravity AI Prompt — Full Website">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antigravity AI Prompt — Full Website
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>Build a complete personal academic website using plain HTML and CSS.
+Create the following files:
+
+1. style.css — a shared stylesheet with a clean, minimal academic
+   design. Include styles for: navigation bar (dark background,
+   white links, centered), serif body font, headings, paragraphs,
+   lists, links, blog entry layout with dates, and a footer.
+
+2. index.html — "About Me" homepage with my name, a short bio,
+   research interests as a list, and contact info (email + GitHub).
+
+3. publications.html — "Publications" page with sections for
+   Journal Articles, Book Chapters, and Conference Papers,
+   each with placeholder citation entries.
+
+4. projects.html — "Projects" page with two placeholder project
+   sections, each with a title and description.
+
+5. blog.html — "Blog" page with one sample blog entry including
+   a title, date, and paragraph.
+
+All HTML pages should share the same navigation bar linking to
+all four pages and the same footer. All pages should link to
+style.css.</code></pre>
+</div>
+</div>
+</section>
+<section id="customization-prompts" class="level2">
+<h2 class="anchored" data-anchor-id="customization-prompts">Customization Prompts</h2>
+<p>Once you have the basic website, try these prompts to customize it further:</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antigravity AI Prompt — Add Your Photo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antigravity AI Prompt — Add Your Photo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>Add a profile photo to my index.html About Me page. The image
+file is called photo.jpg and should appear at the top of the
+page, centered, with a circular crop and a max width of 200px.
+Add the necessary CSS to style.css.</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antigravity AI Prompt — Responsive Design">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antigravity AI Prompt — Responsive Design
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>Make my website responsive for mobile devices. Update style.css
+so that: the navigation bar stacks vertically on small screens,
+the body padding adjusts, and text sizes scale appropriately.
+Use CSS media queries for screens smaller than 600px.</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Antigravity AI Prompt — Change the Theme">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antigravity AI Prompt — Change the Theme
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<pre><code>Change the color scheme of my website to use a light blue
+navigation bar (#3498db) with white text, and update the
+heading colors to match. Keep the overall design clean
+and professional.</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="setting-up-python-in-antigravity-topcoder-fullstack" class="level1">
+<h1>Setting Up Python in Antigravity (Topcoder Fullstack)</h1>
+<p>The GLM-OCR tool requires <strong>Python 3.12 or higher</strong>. Since you are using the <strong>Topcoder Fullstack</strong> extension in Antigravity (VS Code), you need to make sure the correct Python version is configured. Follow these steps to check and update your Python version.</p>
+<section id="step-1-open-the-topcoder-fullstack-extension-settings" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-open-the-topcoder-fullstack-extension-settings">Step 1: Open the Topcoder Fullstack Extension Settings</h2>
+<ol type="1">
+<li>Open <strong>Antigravity</strong> (VS Code).</li>
+<li>Click the <strong>gear icon</strong> (⚙️) at the bottom-left of the sidebar, then select <strong>Settings</strong>.</li>
+<li>In the search bar at the top, type <strong>Topcoder Fullstack</strong>.</li>
+<li>You will see the Topcoder Fullstack extension settings. Look for the <strong>Python</strong> section or the list of configured language runtimes.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can also press <code>Ctrl+,</code> (Windows/Linux) or <code>Cmd+,</code> (macOS) to open Settings quickly, then search for “Topcoder Fullstack”.</p>
+</div>
+</div>
+</section>
+<section id="step-2-check-your-current-python-version" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-check-your-current-python-version">Step 2: Check Your Current Python Version</h2>
+<p>In the Topcoder Fullstack settings, you should see a list of programming language runtimes that have been configured. Look for a <strong>Python</strong> entry — it will display the currently configured version number (e.g., <code>3.11.x</code>, <code>3.12.x</code>, etc.).</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you see a Python version <strong>lower than 3.12</strong> (such as 3.10 or 3.11), you <strong>must</strong> update it. GLM-OCR will not work with older Python versions.</p>
+</div>
+</div>
+</section>
+<section id="step-3-add-python-3.14.x" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-add-python-3.14.x">Step 3: Add Python 3.14.x</h2>
+<p>If Python 3.14.x is not already listed, you need to add it:</p>
+<ol type="1">
+<li>In the Topcoder Fullstack extension settings, find the option to <strong>add a new runtime</strong> or <strong>edit the Python version</strong>.</li>
+<li>Click <strong>Add</strong> or the <strong>+</strong> button next to the language runtimes list.</li>
+<li>Select <strong>Python</strong> as the language.</li>
+<li>Set the version to <strong>3.14</strong> (the extension will install the latest 3.14.x release automatically).</li>
+<li>Click <strong>Save</strong> or <strong>Apply</strong> to confirm.</li>
+</ol>
+<p>After adding Python 3.14.x, it should appear in your list of configured runtimes.</p>
+</section>
+<section id="step-4-verify-the-installation" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-verify-the-installation">Step 4: Verify the Installation</h2>
+<p>Open a new terminal in Antigravity (<code>Ctrl+``</code> or <code>Cmd+``</code>) and run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should see output like:</p>
+<pre><code>Python 3.14.x</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you have multiple Python versions installed, make sure the Topcoder Fullstack extension has set 3.14.x as the <strong>active</strong> version. You may also need to close and reopen the terminal for the change to take effect.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="ocr-tool-glm-ocr" class="level1">
+<h1>OCR Tool: GLM-OCR</h1>
+<p>In Meeting 04, we introduced OCR tools for extracting text from scanned documents and images. This week, we provide an updated version of the <strong>GLM-OCR</strong> tool that works on <strong>both macOS (Apple Silicon) and Windows</strong>.</p>
+<ul>
+<li><strong>macOS (Apple Silicon)</strong>: Uses the MLX framework for fast local inference on the Metal GPU. Download <code>glm-ocr-mlx-main.zip</code>.</li>
+<li><strong>Windows</strong>: Uses <strong>Ollama</strong> for local inference. Download <code>glm-ocr-mlx-windows.zip</code>.</li>
+</ul>
+<p>Both versions share the same web interface and the same GLM-OCR model. The difference is the inference backend. You can also view the tutorial slides at <a href="glm-ocr-mlx-tutorial.html">glm-ocr-mlx-tutorial.html</a>.</p>
+<section id="what-is-glm-ocr" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-glm-ocr">What is GLM-OCR?</h2>
+<p>GLM-OCR is a local OCR tool that uses the GLM-OCR model (a 0.9B parameter vision-language model) to convert scanned documents and images into structured Markdown with tables, formulas, and layout-aware text — all running locally on your machine.</p>
+<section id="macos-architecture-mlx" class="level3">
+<h3 class="anchored" data-anchor-id="macos-architecture-mlx">macOS Architecture (MLX)</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A["Browser\n(localhost:5003)"] --&gt; B["Flask App\n(app.py)"]
+    B --&gt; C["GLM-OCR SDK"]
+    C --&gt; D["MLX Server\n(:8080)"]
+    D --&gt; E["Metal GPU"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="windows-architecture-ollama" class="level3">
+<h3 class="anchored" data-anchor-id="windows-architecture-ollama">Windows Architecture (Ollama)</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A["Browser\n(localhost:5003)"] --&gt; B["Flask App\n(app.py)"]
+    B --&gt; C["GLM-OCR SDK"]
+    C --&gt; D["Ollama\n(:11434)"]
+    D --&gt; E["CPU / NVIDIA GPU"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="prerequisites-1" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites-1">Prerequisites</h2>
+<section id="macos-apple-silicon" class="level3">
+<h3 class="anchored" data-anchor-id="macos-apple-silicon">macOS (Apple Silicon)</h3>
+<ul>
+<li><strong>Apple Silicon Mac</strong> (M1, M2, M3, or M4)</li>
+<li><strong>Python 3.12 or higher</strong>: Download from <a href="https://www.python.org/downloads/macos/">python.org</a> if not installed.</li>
+<li><strong>Git</strong>: Install via Xcode Command Line Tools (<code>xcode-select --install</code>) or Homebrew (<code>brew install git</code>).</li>
+<li><strong>Disk space</strong>: ~20 GB for model weights (downloaded automatically on first launch).</li>
+<li><strong>Memory</strong>: 16 GB unified memory minimum; 32 GB+ recommended for multi-page PDFs.</li>
+</ul>
+</section>
+<section id="windows" class="level3">
+<h3 class="anchored" data-anchor-id="windows">Windows</h3>
+<ul>
+<li><strong>Python 3.12 or higher</strong>: Download from <a href="https://www.python.org/downloads/">python.org</a>. During installation, make sure to check <strong>“Add Python to PATH”</strong>.</li>
+<li><strong>Git</strong>: Download from <a href="https://git-scm.com/download/win">git-scm.com</a> or install via <code>winget install --id Git.Git</code>.</li>
+<li><strong>Ollama</strong>: The launcher will offer to install it automatically if not found. Or install manually from <a href="https://ollama.com/download">ollama.com</a>.</li>
+<li><strong>Disk space</strong>: ~5 GB for the Ollama model + layout detection weights.</li>
+<li><strong>GPU (optional)</strong>: An NVIDIA GPU with CUDA support speeds up inference significantly. Ollama also works on CPU, but will be slower.</li>
+</ul>
+</section>
+</section>
+<section id="installation-and-launch" class="level2">
+<h2 class="anchored" data-anchor-id="installation-and-launch">Installation and Launch</h2>
+<section id="macos" class="level3">
+<h3 class="anchored" data-anchor-id="macos">macOS</h3>
+<ol type="1">
+<li>Download <code>glm-ocr-mlx-main.zip</code> from the <code>meeting_05/</code> folder and unzip it.</li>
+<li><strong>Double-click <code>launch.command</code></strong> in Finder to start the application.
+<ul>
+<li>If macOS blocks it: right-click the file → <strong>Open</strong> → confirm in the dialog.</li>
+</ul></li>
+<li>On <strong>first run</strong>, the script automatically:
+<ul>
+<li>Clones the GLM-OCR SDK from GitHub</li>
+<li>Creates a Python virtual environment and installs dependencies</li>
+<li>Downloads model weights from Hugging Face (~20 GB)</li>
+</ul></li>
+<li>The <strong>MLX Server</strong> starts on port 8080 (loads the model into unified memory — the first load takes about 30–60 seconds).</li>
+<li>The <strong>Flask Web UI</strong> starts on port 5003 and your browser opens automatically to <code>http://localhost:5003</code>.</li>
+<li><strong>Keep the terminal open.</strong> Press <code>Ctrl+C</code> to stop both servers when done.</li>
+</ol>
+</section>
+<section id="windows-1" class="level3">
+<h3 class="anchored" data-anchor-id="windows-1">Windows</h3>
+<ol type="1">
+<li>Download <code>glm-ocr-mlx-windows.zip</code> from the <code>meeting_05/</code> folder and unzip it.</li>
+<li><strong>Double-click <code>launch.bat</code></strong> to start the application.</li>
+<li>On <strong>first run</strong>, the script automatically:
+<ul>
+<li>Checks for Python 3.12+ and Git</li>
+<li>Installs <strong>Ollama</strong> if not already present (prompts you to confirm — installs to <code>%LOCALAPPDATA%</code>, no admin required)</li>
+<li>Starts the Ollama service on port 11434</li>
+<li>Pulls the <code>glm-ocr:latest</code> model (first run — this may take several minutes)</li>
+<li>Clones the GLM-OCR SDK from GitHub</li>
+<li>Creates a Python virtual environment and installs dependencies</li>
+<li>Downloads layout detection weights (PP-DocLayoutV3)</li>
+</ul></li>
+<li>The <strong>Flask Web UI</strong> starts on port 5003 and your browser opens automatically to <code>http://localhost:5003</code>.</li>
+<li><strong>Keep the command prompt window open.</strong> Close the window or press <code>Ctrl+C</code> to stop.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>After the first run, subsequent launches are much faster because the virtual environment, Ollama model, and weights are already in place.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="project-structure" class="level2">
+<h2 class="anchored" data-anchor-id="project-structure">Project Structure</h2>
+<p>After unzipping, the project folder looks like this:</p>
+<pre><code>glm-ocr-mlx-windows/
+├── launch.command         ← macOS launcher (double-click)
+├── launch.bat             ← Windows launcher (double-click)
+├── app.py                 ← Flask web server
+├── config/
+│   ├── glm_config_mac.yaml      ← macOS settings (MLX, port 8080)
+│   └── glm_config_windows.yaml  ← Windows settings (Ollama, port 11434)
+├── requirements.txt       ← Python dependencies
+├── templates/
+│   └── index.html         ← web UI
+├── static/
+│   ├── css/style.css
+│   └── js/main.js
+├── utils/
+│   ├── download_weights.py
+│   ├── logger.py
+│   └── deep_clean.command ← reset utility (macOS)
+├── weights/               ← layout detection model (auto-downloaded)
+├── output/                ← OCR results (Markdown + JSON + images)
+├── sessions/              ← job state files
+└── glm-ocr/               ← cloned GLM-OCR SDK</code></pre>
+<p>The <code>weights/</code>, <code>output/</code>, <code>sessions/</code>, and <code>glm-ocr/</code> directories are created automatically at runtime. On Windows, the GLM-OCR model weights are managed by Ollama separately (not stored in the <code>weights/</code> folder).</p>
+</section>
+<section id="using-the-web-ui" class="level2">
+<h2 class="anchored" data-anchor-id="using-the-web-ui">Using the Web UI</h2>
+<p>The web interface is identical on both macOS and Windows:</p>
+<ol type="1">
+<li><strong>Upload</strong>: Drag and drop a PDF, PNG, or JPEG onto the upload area — or click to browse. Accepted formats: <code>.pdf</code>, <code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>.</li>
+<li><strong>Processing</strong>: A progress bar shows real-time status. PDFs are split into page images, then each page is OCR’d sequentially.</li>
+<li><strong>Review Results</strong>: A split-panel view shows the original document on the left and the rendered Markdown on the right. Navigate pages with Prev/Next buttons.</li>
+<li><strong>Export</strong>: Click <strong>Export</strong> to download results as <strong>Markdown</strong> (<code>.md</code>) or <strong>JSON</strong> (<code>.json</code>) — either the current page or the full document.</li>
+</ol>
+<p>Additional features:</p>
+<ul>
+<li><strong>Layout Toggle</strong>: Switch between the original image and a layout visualization overlay to see detected regions (tables, formulas, text blocks).</li>
+<li><strong>History</strong>: Click the History button to browse and reload previous scan results. Results persist across app restarts.</li>
+</ul>
+</section>
+<section id="configuration" class="level2">
+<h2 class="anchored" data-anchor-id="configuration">Configuration</h2>
+<p>Settings are stored in the <code>config/</code> directory. The launcher automatically selects the correct config file for your platform:</p>
+<ul>
+<li><strong>macOS</strong>: <code>config/glm_config_mac.yaml</code> — uses MLX server on port 8080</li>
+<li><strong>Windows</strong>: <code>config/glm_config_windows.yaml</code> — uses Ollama on port 11434</li>
+</ul>
+<p>Common settings you might want to adjust:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 25%">
+<col style="width: 32%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Mac Default</th>
+<th>Windows Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pipeline.enable_layout</code></td>
+<td><code>true</code></td>
+<td><code>true</code></td>
+<td>Enable layout detection. Set to <code>false</code> for simple documents.</td>
+</tr>
+<tr class="even">
+<td><code>pipeline.max_workers</code></td>
+<td><code>4</code></td>
+<td><code>32</code></td>
+<td>Parallel workers for region OCR.</td>
+</tr>
+<tr class="odd">
+<td><code>pipeline.ocr_api.api_port</code></td>
+<td><code>8080</code></td>
+<td><code>11434</code></td>
+<td>Inference server port.</td>
+</tr>
+<tr class="even">
+<td><code>pipeline.ocr_api.api_mode</code></td>
+<td><code>openai</code></td>
+<td><code>ollama_generate</code></td>
+<td>API protocol for the inference server.</td>
+</tr>
+<tr class="odd">
+<td><code>pipeline.page_loader.max_tokens</code></td>
+<td><code>4096</code></td>
+<td><code>4096</code></td>
+<td>Maximum tokens per OCR request.</td>
+</tr>
+<tr class="even">
+<td><code>pipeline.layout.threshold</code></td>
+<td><code>0.3</code></td>
+<td><code>0.3</code></td>
+<td>Detection confidence threshold.</td>
+</tr>
+</tbody>
+</table>
+<section id="maas-mode-cloud-api" class="level3">
+<h3 class="anchored" data-anchor-id="maas-mode-cloud-api">MaaS Mode (Cloud API)</h3>
+<p>If you want to use the cloud API instead of local inference (works on any platform, no GPU needed), set <code>pipeline.maas.enabled: true</code> in either config file and provide a Zhipu API key:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pipeline</span><span class="kw">:</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">maas</span><span class="kw">:</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">api_key</span><span class="kw">:</span><span class="at"> your-zhipu-key</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
+<section id="macos-1" class="level3">
+<h3 class="anchored" data-anchor-id="macos-1">macOS</h3>
+<ul>
+<li><strong>“Python 3.12 or higher is required”</strong>: Install the latest Python from <a href="https://www.python.org/downloads/macos/">python.org</a>. The system Python on macOS is too old.</li>
+<li><strong>macOS blocks <code>launch.command</code></strong>: Right-click the file → <strong>Open</strong> → confirm in the dialog. Or go to System Settings → Privacy &amp; Security → Allow.</li>
+<li><strong>MLX Server won’t start (port 8080)</strong>: Another process may be using the port. Run <code>lsof -i :8080</code> to check. Use the deep clean script to kill stale processes.</li>
+<li><strong>First scan is very slow</strong>: Normal — the model weights load into unified memory on the first request. Subsequent scans are much faster.</li>
+<li><strong>Out of memory</strong>: The model needs approximately 8 GB of unified memory. Close other heavy applications. 16 GB Macs should work; 8 GB Macs may struggle.</li>
+</ul>
+</section>
+<section id="windows-2" class="level3">
+<h3 class="anchored" data-anchor-id="windows-2">Windows</h3>
+<ul>
+<li><strong>“Python is not installed”</strong>: Download and install Python 3.12+ from <a href="https://www.python.org/downloads/">python.org</a>. Make sure to check <strong>“Add Python to PATH”</strong> during installation.</li>
+<li><strong>“Git is not installed”</strong>: Install Git from <a href="https://git-scm.com/download/win">git-scm.com</a> or run <code>winget install --id Git.Git</code> in PowerShell.</li>
+<li><strong>Ollama installation fails</strong>: Install Ollama manually from <a href="https://ollama.com/download">ollama.com/download</a>. The launcher installs it to <code>%LOCALAPPDATA%</code> (no admin rights needed).</li>
+<li><strong>Ollama fails to start (port 11434)</strong>: Another process may be using the port. Run <code>netstat -ano | findstr :11434</code> in Command Prompt to check. Kill the conflicting process or restart your computer.</li>
+<li><strong>Model pull fails</strong>: Check your internet connection. You can manually pull the model by running <code>ollama pull glm-ocr:latest</code> in Command Prompt.</li>
+<li><strong>Slow processing on CPU</strong>: If you do not have an NVIDIA GPU, OCR will run on CPU and may be slow. Consider using the MaaS cloud API mode for faster results.</li>
+</ul>
+</section>
+<section id="deep-clean-reset-macos" class="level3">
+<h3 class="anchored" data-anchor-id="deep-clean-reset-macos">Deep Clean / Reset (macOS)</h3>
+<p>If something goes wrong on macOS, use the interactive reset utility:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./utils/deep_clean.command</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This script prompts you to selectively reset components: kill stale server processes, remove the virtual environment, delete the cloned SDK, clear OCR results and job history, or delete the downloaded model weights.</p>
+</section>
+</section>
+</section>
+<section id="ocr-tool-ocr-batch-processor-for-windowslinuxintel-mac" class="level1">
+<h1>OCR Tool: OCR Batch Processor (for Windows/Linux/Intel Mac)</h1>
+<p>If you do not have an Apple Silicon Mac, you can use the <strong>OCR Batch Processor</strong> — a web-based OCR tool that connects to <strong>LM Studio</strong> running locally on your machine. It works on Windows, Linux, and Intel Macs.</p>
+<p>Application: <a href="https://kltng.github.io/ocr_batch_processor/">https://kltng.github.io/ocr_batch_processor/</a></p>
+<p>Repository: <a href="https://github.com/kltng/ocr_batch_processor">https://github.com/kltng/ocr_batch_processor</a></p>
+<section id="what-is-the-ocr-batch-processor" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-ocr-batch-processor">What is the OCR Batch Processor?</h2>
+<p>The OCR Batch Processor is a progressive web application (PWA) that uses Vision Language Models to convert scanned documents and images into structured Markdown and HTML. It supports two providers:</p>
+<ul>
+<li><strong>LM Studio (Local)</strong>: Runs entirely on your computer. No data leaves your machine.</li>
+<li><strong>Google Gemini (Cloud)</strong>: Uses Google’s API for higher accuracy (requires an API key).</li>
+</ul>
+<p>In this guide, we will focus on the <strong>LM Studio</strong> setup.</p>
+</section>
+<section id="what-is-lm-studio" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-lm-studio">What is LM Studio?</h2>
+<p>LM Studio is a desktop application that lets you download and run large language models locally on your computer. It provides an OpenAI-compatible API server, which means other applications (like the OCR Batch Processor) can connect to it and send requests to the model.</p>
+<p>LM Studio: <a href="https://lmstudio.ai">https://lmstudio.ai</a></p>
+</section>
+<section id="step-1-install-lm-studio" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-install-lm-studio">Step 1: Install LM Studio</h2>
+<ol type="1">
+<li>Go to <a href="https://lmstudio.ai">https://lmstudio.ai</a> and download the installer for your operating system (Windows, macOS, or Linux).</li>
+<li>Install and open LM Studio.</li>
+</ol>
+</section>
+<section id="step-2-download-a-vision-model" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-download-a-vision-model">Step 2: Download a Vision Model</h2>
+<p>OCR requires a <strong>vision-capable model</strong> — a model that can understand images, not just text. In LM Studio:</p>
+<ol type="1">
+<li>Click the <strong>Search</strong> icon (magnifying glass) in the left sidebar.</li>
+<li>Search for one of the following vision models:</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Size</th>
+<th>Recommended For</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Gemma-3-Vision</code></td>
+<td>~5 GB</td>
+<td>Good balance of speed and accuracy</td>
+</tr>
+<tr class="even">
+<td><code>Qwen2.5-VL</code></td>
+<td>~5–8 GB</td>
+<td>Strong multilingual OCR (good for CJK text)</td>
+</tr>
+<tr class="odd">
+<td><code>Llava</code></td>
+<td>~5 GB</td>
+<td>General-purpose vision model</td>
+</tr>
+<tr class="even">
+<td><code>BakLLaVA</code></td>
+<td>~5 GB</td>
+<td>Lightweight alternative</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li>Click <strong>Download</strong> on your chosen model.</li>
+<li>Once downloaded, click the model to <strong>load</strong> it. You should see it appear in the top bar of LM Studio.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For East Asian text (Chinese, Japanese, Korean), <strong>Qwen2.5-VL</strong> is recommended because it has strong multilingual capabilities.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vision models are large files (5–8 GB). Make sure you have enough disk space and a stable internet connection. The download may take several minutes.</p>
+</div>
+</div>
+</section>
+<section id="step-3-start-the-lm-studio-local-server" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-start-the-lm-studio-local-server">Step 3: Start the LM Studio Local Server</h2>
+<ol type="1">
+<li>In LM Studio, click the <strong>Developer</strong> tab (the <code>&lt;&gt;</code> icon) in the left sidebar.</li>
+<li>Make sure your vision model is loaded.</li>
+<li>Click <strong>Start Server</strong>. By default, the server runs on port <code>1234</code>.</li>
+<li>You should see a message like “Server started on port 1234”. The server is now ready to accept requests.</li>
+<li><strong>Keep LM Studio running</strong> — the OCR Batch Processor needs to connect to it.</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The LM Studio server must be running the entire time you use the OCR Batch Processor. If you close LM Studio or stop the server, the OCR tool will not be able to process images.</p>
+</div>
+</div>
+</section>
+<section id="step-4-open-the-ocr-batch-processor" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-open-the-ocr-batch-processor">Step 4: Open the OCR Batch Processor</h2>
+<ol type="1">
+<li>Open your browser and go to: <a href="https://kltng.github.io/ocr_batch_processor/">https://kltng.github.io/ocr_batch_processor/</a></li>
+<li>The application loads directly in your browser — no installation needed.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The OCR Batch Processor is a <strong>progressive web app (PWA)</strong>. You can install it to your computer for offline use by clicking the install icon in your browser’s address bar (usually a small download or “+” icon).</p>
+</div>
+</div>
+</section>
+<section id="step-5-configure-the-connection-to-lm-studio" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-configure-the-connection-to-lm-studio">Step 5: Configure the Connection to LM Studio</h2>
+<ol type="1">
+<li>Click the <strong>Settings</strong> (⚙️) icon in the toolbar.</li>
+<li>Select <strong>LM Studio</strong> as the provider.</li>
+<li>Set the <strong>Base URL</strong> to <code>http://localhost:1234</code> (this is the default LM Studio server address).</li>
+<li>The app will automatically detect available models from your LM Studio server. Select the vision model you loaded in Step 2.</li>
+</ol>
+</section>
+<section id="step-6-open-a-folder-and-run-ocr" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-open-a-folder-and-run-ocr">Step 6: Open a Folder and Run OCR</h2>
+<section id="opening-files" class="level3">
+<h3 class="anchored" data-anchor-id="opening-files">Opening Files</h3>
+<ol type="1">
+<li>Click <strong>Open Folder</strong> in the sidebar.</li>
+<li>Select a folder on your computer that contains the images or PDFs you want to OCR.</li>
+<li>The sidebar will list all supported files: <code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>, <code>.webp</code>, <code>.pdf</code>.</li>
+<li>Click a file to preview it.</li>
+</ol>
+</section>
+<section id="running-ocr" class="level3">
+<h3 class="anchored" data-anchor-id="running-ocr">Running OCR</h3>
+<ol type="1">
+<li>Select one or more files in the sidebar. Use <strong>Shift+Click</strong> or <strong>Ctrl/Cmd+Click</strong> to select multiple files.</li>
+<li>Click <strong>Run OCR</strong> in the top toolbar.</li>
+<li>The app processes each file using the vision model running in LM Studio.</li>
+<li>Results are saved automatically as <code>.json</code> sidecar files next to your original images (e.g., <code>image.png</code> → <code>image.json</code>).</li>
+</ol>
+</section>
+<section id="viewing-results" class="level3">
+<h3 class="anchored" data-anchor-id="viewing-results">Viewing Results</h3>
+<p>The viewer shows a <strong>side-by-side</strong> layout:</p>
+<ul>
+<li><strong>Left</strong>: The original image.</li>
+<li><strong>Right</strong>: The OCR output rendered as Markdown/HTML.</li>
+</ul>
+<p>You can toggle between the original image, an annotated image with bounding boxes showing detected regions, and the Markdown/HTML output.</p>
+</section>
+</section>
+<section id="step-7-pdf-tools" class="level2">
+<h2 class="anchored" data-anchor-id="step-7-pdf-tools">Step 7: PDF Tools</h2>
+<p>The OCR Batch Processor includes built-in PDF tools:</p>
+<ul>
+<li><strong>PDF to Images</strong>: Select a PDF file and click “PDF to Images” to convert each page into a JPEG image. This is useful because vision models work on images, not PDFs directly.</li>
+<li><strong>Split Pages</strong>: If you have scanned double-page spreads (e.g., a book scan with two pages side by side), select the images and click “Split Pages”. The app automatically splits each image into left (<code>_L.jpg</code>) and right (<code>_R.jpg</code>) halves.</li>
+</ul>
+</section>
+<section id="step-8-export-results" class="level2">
+<h2 class="anchored" data-anchor-id="step-8-export-results">Step 8: Export Results</h2>
+<ul>
+<li>OCR results are saved as <code>.json</code> sidecar files next to the original images.</li>
+<li>Markdown files are also generated automatically for easy reading.</li>
+<li>You can use these JSON or Markdown files for further processing with chatbots or other tools.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the <strong>“Skip Processed”</strong> option when running batch OCR to avoid re-processing files that already have results. This saves time when you add new files to an existing folder.</p>
+</div>
+</div>
+</section>
+<section id="troubleshooting-1" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting-1">Troubleshooting</h2>
+<ul>
+<li><strong>“Connection refused” or “Failed to fetch”</strong>: Make sure LM Studio is running and the local server is started on port 1234.</li>
+<li><strong>No models appear in settings</strong>: Make sure you have downloaded and loaded a vision model in LM Studio before opening the OCR app.</li>
+<li><strong>OCR output is empty or garbled</strong>: Try a different vision model. Some models handle certain document types better than others.</li>
+<li><strong>Slow processing</strong>: Vision model inference depends on your hardware. On machines without a dedicated GPU, processing may be slow. Consider using the Google Gemini cloud option for faster results.</li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">MDN Web Docs: HTML</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">MDN Web Docs: CSS</a></li>
+<li><a href="https://www.w3schools.com/html/">W3Schools HTML Tutorial</a></li>
+<li><a href="https://www.w3schools.com/css/">W3Schools CSS Tutorial</a></li>
+<li><a href="https://docs.github.com/en/pages">GitHub Pages Documentation</a></li>
+<li><a href="https://quarto.org/docs/websites/">Quarto Websites Documentation</a></li>
+<li><a href="https://gohugo.io/getting-started/quick-start/">Hugo Quick Start</a></li>
+<li><a href="https://jekyllrb.com/docs/">Jekyll Documentation</a></li>
+<li><a href="https://lmstudio.ai">LM Studio</a></li>
+<li><a href="https://kltng.github.io/ocr_batch_processor/">OCR Batch Processor</a></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/kltng\.github\.io\/eastd143b\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
