@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kwok-leong Tang">
+<meta name="dcterms.date" content="2026-03-03">
+
+<title>Meeting 06 – EASTD143B (Spring 2026)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b3b235ae6ba71d6e5c2a90c00144237d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+  // Soft gate: redirect to auth page unless a matching token is present.
+  // NOTE: client-side only (not strong security).
+  (function () {
+    var expected = "__REPLACE_ME__"; // must match EXPECTED_HASH in auth.html
+    try {
+      var token = localStorage.getItem('eastd143b_access');
+      var path = window.location.pathname;
+      var isAuthPage = path.endsWith('/auth.html') || path.endsWith('/auth/') || path.endsWith('/auth');
+      if (!isAuthPage && expected !== "__REPLACE_ME__" && token !== expected) {
+        window.location.replace('auth.html');
+      }
+    } catch (e) {
+      // if storage is blocked, fail closed
+      if (!window.location.pathname.endsWith('/auth.html')) {
+        window.location.replace('auth.html');
+      }
+    }
+  })();
+</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">EASTD143B (Spring 2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus/syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../meetings/index.html"> 
+<span class="menu-text">Meetings</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#todays-schedule" id="toc-todays-schedule" class="nav-link active" data-scroll-target="#todays-schedule">Today’s Schedule</a></li>
+  <li><a href="#github-commit-email-privacy" id="toc-github-commit-email-privacy" class="nav-link" data-scroll-target="#github-commit-email-privacy">GitHub Commit Email Privacy</a>
+  <ul class="collapse">
+  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why This Matters</a></li>
+  <li><a href="#step-1-check-your-current-commit-email" id="toc-step-1-check-your-current-commit-email" class="nav-link" data-scroll-target="#step-1-check-your-current-commit-email">Step 1: Check Your Current Commit Email</a></li>
+  <li><a href="#step-2-enable-email-privacy-on-github" id="toc-step-2-enable-email-privacy-on-github" class="nav-link" data-scroll-target="#step-2-enable-email-privacy-on-github">Step 2: Enable Email Privacy on GitHub</a></li>
+  <li><a href="#step-3-block-pushes-that-expose-your-email" id="toc-step-3-block-pushes-that-expose-your-email" class="nav-link" data-scroll-target="#step-3-block-pushes-that-expose-your-email">Step 3: Block Pushes That Expose Your Email</a></li>
+  <li><a href="#step-4-update-your-local-git-config" id="toc-step-4-update-your-local-git-config" class="nav-link" data-scroll-target="#step-4-update-your-local-git-config">Step 4: Update Your Local Git Config</a></li>
+  <li><a href="#step-5-verify-your-setup" id="toc-step-5-verify-your-setup" class="nav-link" data-scroll-target="#step-5-verify-your-setup">Step 5: Verify Your Setup</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  <li><a href="#ocr-tool-glm-ocr-updated" id="toc-ocr-tool-glm-ocr-updated" class="nav-link" data-scroll-target="#ocr-tool-glm-ocr-updated">OCR Tool: GLM-OCR (Updated)</a>
+  <ul class="collapse">
+  <li><a href="#what-is-glm-ocr" id="toc-what-is-glm-ocr" class="nav-link" data-scroll-target="#what-is-glm-ocr">What is GLM-OCR?</a>
+  <ul class="collapse">
+  <li><a href="#macos-architecture-mlx" id="toc-macos-architecture-mlx" class="nav-link" data-scroll-target="#macos-architecture-mlx">macOS Architecture (MLX)</a></li>
+  <li><a href="#windows-architecture-ollama" id="toc-windows-architecture-ollama" class="nav-link" data-scroll-target="#windows-architecture-ollama">Windows Architecture (Ollama)</a></li>
+  </ul></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a>
+  <ul class="collapse">
+  <li><a href="#macos-apple-silicon" id="toc-macos-apple-silicon" class="nav-link" data-scroll-target="#macos-apple-silicon">macOS (Apple Silicon)</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a></li>
+  </ul></li>
+  <li><a href="#installation-and-launch" id="toc-installation-and-launch" class="nav-link" data-scroll-target="#installation-and-launch">Installation and Launch</a>
+  <ul class="collapse">
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos">macOS</a></li>
+  <li><a href="#windows-1" id="toc-windows-1" class="nav-link" data-scroll-target="#windows-1">Windows</a></li>
+  </ul></li>
+  <li><a href="#project-structure" id="toc-project-structure" class="nav-link" data-scroll-target="#project-structure">Project Structure</a></li>
+  <li><a href="#using-the-web-ui" id="toc-using-the-web-ui" class="nav-link" data-scroll-target="#using-the-web-ui">Using the Web UI</a></li>
+  <li><a href="#configuration" id="toc-configuration" class="nav-link" data-scroll-target="#configuration">Configuration</a>
+  <ul class="collapse">
+  <li><a href="#maas-mode-cloud-api" id="toc-maas-mode-cloud-api" class="nav-link" data-scroll-target="#maas-mode-cloud-api">MaaS Mode (Cloud API)</a></li>
+  </ul></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a>
+  <ul class="collapse">
+  <li><a href="#macos-1" id="toc-macos-1" class="nav-link" data-scroll-target="#macos-1">macOS</a></li>
+  <li><a href="#windows-2" id="toc-windows-2" class="nav-link" data-scroll-target="#windows-2">Windows</a></li>
+  <li><a href="#deep-clean-reset-macos" id="toc-deep-clean-reset-macos" class="nav-link" data-scroll-target="#deep-clean-reset-macos">Deep Clean / Reset (macOS)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ocr-tool-ocr-batch-processor-alternative-for-all-platforms" id="toc-ocr-tool-ocr-batch-processor-alternative-for-all-platforms" class="nav-link" data-scroll-target="#ocr-tool-ocr-batch-processor-alternative-for-all-platforms">OCR Tool: OCR Batch Processor (Alternative for All Platforms)</a>
+  <ul class="collapse">
+  <li><a href="#what-is-the-ocr-batch-processor" id="toc-what-is-the-ocr-batch-processor" class="nav-link" data-scroll-target="#what-is-the-ocr-batch-processor">What is the OCR Batch Processor?</a></li>
+  <li><a href="#quick-start-with-ocr-batch-processor" id="toc-quick-start-with-ocr-batch-processor" class="nav-link" data-scroll-target="#quick-start-with-ocr-batch-processor">Quick Start with OCR Batch Processor</a></li>
+  </ul></li>
+  <li><a href="#review-tools-we-have-used-so-far" id="toc-review-tools-we-have-used-so-far" class="nav-link" data-scroll-target="#review-tools-we-have-used-so-far">Review: Tools We Have Used So Far</a>
+  <ul class="collapse">
+  <li><a href="#antigravity-code-editor" id="toc-antigravity-code-editor" class="nav-link" data-scroll-target="#antigravity-code-editor">Antigravity (Code Editor)</a></li>
+  <li><a href="#git-version-control" id="toc-git-version-control" class="nav-link" data-scroll-target="#git-version-control">Git (Version Control)</a></li>
+  <li><a href="#github-code-hosting-and-collaboration" id="toc-github-code-hosting-and-collaboration" class="nav-link" data-scroll-target="#github-code-hosting-and-collaboration">GitHub (Code Hosting and Collaboration)</a></li>
+  <li><a href="#ollama-local-llm-runner" id="toc-ollama-local-llm-runner" class="nav-link" data-scroll-target="#ollama-local-llm-runner">Ollama (Local LLM Runner)</a></li>
+  <li><a href="#lm-studio-local-llm-application" id="toc-lm-studio-local-llm-application" class="nav-link" data-scroll-target="#lm-studio-local-llm-application">LM Studio (Local LLM Application)</a></li>
+  <li><a href="#openwork-ai-agent-for-desktop" id="toc-openwork-ai-agent-for-desktop" class="nav-link" data-scroll-target="#openwork-ai-agent-for-desktop">Openwork (AI Agent for Desktop)</a></li>
+  <li><a href="#tools-at-a-glance" id="toc-tools-at-a-glance" class="nav-link" data-scroll-target="#tools-at-a-glance">Tools at a Glance</a></li>
+  </ul></li>
+  <li><a href="#two-approaches-to-text-data-scripts-vs.-llm-inference" id="toc-two-approaches-to-text-data-scripts-vs.-llm-inference" class="nav-link" data-scroll-target="#two-approaches-to-text-data-scripts-vs.-llm-inference">Two Approaches to Text Data: Scripts vs.&nbsp;LLM Inference</a>
+  <ul class="collapse">
+  <li><a href="#approach-1-programming-scripts" id="toc-approach-1-programming-scripts" class="nav-link" data-scroll-target="#approach-1-programming-scripts">Approach 1: Programming Scripts</a>
+  <ul class="collapse">
+  <li><a href="#strengths-of-scripts" id="toc-strengths-of-scripts" class="nav-link" data-scroll-target="#strengths-of-scripts">Strengths of Scripts</a></li>
+  <li><a href="#limitations-of-scripts" id="toc-limitations-of-scripts" class="nav-link" data-scroll-target="#limitations-of-scripts">Limitations of Scripts</a></li>
+  </ul></li>
+  <li><a href="#approach-2-llm-inference" id="toc-approach-2-llm-inference" class="nav-link" data-scroll-target="#approach-2-llm-inference">Approach 2: LLM Inference</a>
+  <ul class="collapse">
+  <li><a href="#strengths-of-llm-inference" id="toc-strengths-of-llm-inference" class="nav-link" data-scroll-target="#strengths-of-llm-inference">Strengths of LLM Inference</a></li>
+  <li><a href="#limitations-of-llm-inference" id="toc-limitations-of-llm-inference" class="nav-link" data-scroll-target="#limitations-of-llm-inference">Limitations of LLM Inference</a></li>
+  </ul></li>
+  <li><a href="#when-to-use-which" id="toc-when-to-use-which" class="nav-link" data-scroll-target="#when-to-use-which">When to Use Which?</a></li>
+  <li><a href="#a-concrete-example-ocr-post-processing" id="toc-a-concrete-example-ocr-post-processing" class="nav-link" data-scroll-target="#a-concrete-example-ocr-post-processing">A Concrete Example: OCR Post-Processing</a></li>
+  </ul></li>
+  <li><a href="#how-to-use-lm-studio" id="toc-how-to-use-lm-studio" class="nav-link" data-scroll-target="#how-to-use-lm-studio">How to Use LM Studio</a>
+  <ul class="collapse">
+  <li><a href="#why-run-models-locally" id="toc-why-run-models-locally" class="nav-link" data-scroll-target="#why-run-models-locally">Why Run Models Locally?</a></li>
+  <li><a href="#what-you-need" id="toc-what-you-need" class="nav-link" data-scroll-target="#what-you-need">What You Need</a></li>
+  <li><a href="#step-1-install-lm-studio" id="toc-step-1-install-lm-studio" class="nav-link" data-scroll-target="#step-1-install-lm-studio">Step 1: Install LM Studio</a></li>
+  <li><a href="#step-2-download-a-model" id="toc-step-2-download-a-model" class="nav-link" data-scroll-target="#step-2-download-a-model">Step 2: Download a Model</a></li>
+  <li><a href="#step-3-chat-with-the-model" id="toc-step-3-chat-with-the-model" class="nav-link" data-scroll-target="#step-3-chat-with-the-model">Step 3: Chat with the Model</a></li>
+  <li><a href="#step-4-use-the-local-server-api-mode" id="toc-step-4-use-the-local-server-api-mode" class="nav-link" data-scroll-target="#step-4-use-the-local-server-api-mode">Step 4: Use the Local Server (API Mode)</a></li>
+  <li><a href="#step-5-explore-larger-models" id="toc-step-5-explore-larger-models" class="nav-link" data-scroll-target="#step-5-explore-larger-models">Step 5: Explore Larger Models</a></li>
+  <li><a href="#common-issues-and-troubleshooting" id="toc-common-issues-and-troubleshooting" class="nav-link" data-scroll-target="#common-issues-and-troubleshooting">Common Issues and Troubleshooting</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Meeting 06</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kwok-leong Tang </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 3, 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">March 3, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="todays-schedule" class="level1">
+<h1>Today’s Schedule</h1>
+<ul>
+<li>GitHub commit email privacy: keeping your personal email hidden</li>
+<li>OCR tool: GLM-OCR (updated — macOS and Windows in one package)</li>
+<li>Review: tools we have used so far</li>
+<li>Two approaches to text data: programming scripts vs.&nbsp;LLM inference</li>
+<li>How to use LM Studio</li>
+</ul>
+</section>
+<section id="github-commit-email-privacy" class="level1">
+<h1>GitHub Commit Email Privacy</h1>
+<p>Many of you have been committing to GitHub without realizing that your <strong>personal email address is publicly visible</strong> in your commit history. Every time you make a commit, Git attaches an email address to it — and by default, this is whatever email you configured with <code>git config</code>. Anyone can see this by viewing the commit log of a public repository.</p>
+<p>This section walks you through how to <strong>hide your real email</strong> and use GitHub’s private <code>noreply</code> email address instead.</p>
+<section id="why-this-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h2>
+<p>When you push commits to a <strong>public repository</strong> (like your <code>username.github.io</code> website), anyone can run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and see the email address associated with each commit. If you used your personal email, it is now publicly exposed. This can lead to spam, phishing, or unwanted contact.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your commit email is <strong>permanently baked into the commit history</strong>. Even if you change your email later, old commits will still show the old email. This is why it is important to set this up correctly <strong>before</strong> making more commits.</p>
+</div>
+</div>
+</section>
+<section id="step-1-check-your-current-commit-email" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-check-your-current-commit-email">Step 1: Check Your Current Commit Email</h2>
+<p>First, let’s see what email Git is currently using on your computer. Open your terminal and run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If this shows your personal email (e.g., <code>yourname@gmail.com</code>), you should change it.</p>
+<p>You can also check a specific repository’s commit history:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--format</span><span class="op">=</span><span class="st">'%ae'</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This will list all unique email addresses used in that repository’s commits.</p>
+</section>
+<section id="step-2-enable-email-privacy-on-github" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-enable-email-privacy-on-github">Step 2: Enable Email Privacy on GitHub</h2>
+<p>Go to your GitHub email settings and enable the privacy feature:</p>
+<ol type="1">
+<li>Go to <a href="https://github.com/settings/emails">https://github.com/settings/emails</a></li>
+<li>Scroll down to the <strong>“Keep my email addresses private”</strong> checkbox</li>
+<li><strong>Check</strong> this box</li>
+</ol>
+<p>Once you enable this, GitHub will provide you with a <code>noreply</code> email address in the format:</p>
+<pre><code>ID+USERNAME@users.noreply.github.com</code></pre>
+<p>For example, if your GitHub username is <code>jzhang</code> and your account ID is <code>12345678</code>, your <code>noreply</code> email would be:</p>
+<pre><code>12345678+jzhang@users.noreply.github.com</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your <code>noreply</code> email address is displayed right below the checkbox after you enable it. <strong>Copy this email</strong> — you will need it in the next step.</p>
+</div>
+</div>
+</section>
+<section id="step-3-block-pushes-that-expose-your-email" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-block-pushes-that-expose-your-email">Step 3: Block Pushes That Expose Your Email</h2>
+<p>While you are on the same settings page (<a href="https://github.com/settings/emails">https://github.com/settings/emails</a>), also enable the second privacy option:</p>
+<ol type="1">
+<li>Find the checkbox labeled <strong>“Block command line pushes that expose my email”</strong></li>
+<li><strong>Check</strong> this box</li>
+</ol>
+<p>This acts as a safety net. If you accidentally forget to update your local Git config and try to push a commit that contains your personal email, GitHub will <strong>reject the push</strong> and show an error message. This prevents you from accidentally exposing your email.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you see a push error after enabling this setting, it means your local Git config still has your personal email. Follow Step 4 below to fix it.</p>
+</div>
+</div>
+</section>
+<section id="step-4-update-your-local-git-config" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-update-your-local-git-config">Step 4: Update Your Local Git Config</h2>
+<p>Now you need to tell Git on your computer to use the <code>noreply</code> email for all future commits. Run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"ID+USERNAME@users.noreply.github.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Replace <code>ID+USERNAME@users.noreply.github.com</code> with <strong>your actual <code>noreply</code> email</strong> from Step 2.</p>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"12345678+jzhang@users.noreply.github.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Verify that it was set correctly:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This should now show your <code>noreply</code> email.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>--global</code> flag sets this for <strong>all repositories</strong> on your computer. If you only want to change it for a specific repository, navigate into that repository folder and run the command without <code>--global</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> your-repo-folder</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config user.email <span class="st">"ID+USERNAME@users.noreply.github.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="step-5-verify-your-setup" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-verify-your-setup">Step 5: Verify Your Setup</h2>
+<p>To confirm everything is working, make a test commit and check the email:</p>
+<ol type="1">
+<li>Make a small change to any file in your repository (e.g., add a comment).</li>
+<li>Stage and commit:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Test commit with private email"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>Check the commit log:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">-1</span> <span class="at">--format</span><span class="op">=</span><span class="st">'%ae'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If it shows your <code>noreply</code> email, you are all set.</p>
+<ol start="4" type="1">
+<li>Push to GitHub:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If the push succeeds, your email privacy settings are correctly configured. If it is rejected, double-check that you used the correct <code>noreply</code> email in Step 4.</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>Here is a quick checklist for setting up commit email privacy:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Action</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Check your current commit email</td>
+<td>Terminal: <code>git config --global user.email</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Enable “Keep my email addresses private”</td>
+<td><a href="https://github.com/settings/emails">GitHub Email Settings</a></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Enable “Block command line pushes that expose my email”</td>
+<td><a href="https://github.com/settings/emails">GitHub Email Settings</a></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Set <code>noreply</code> email in Git config</td>
+<td>Terminal: <code>git config --global user.email "..."</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Verify with a test commit</td>
+<td>Terminal: <code>git log -1 --format='%ae'</code></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For more details, see the official GitHub documentation: <a href="https://docs.github.com/en/account-and-profile/how-tos/email-preferences/setting-your-commit-email-address">Setting your commit email address</a>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="ocr-tool-glm-ocr-updated" class="level1">
+<h1>OCR Tool: GLM-OCR (Updated)</h1>
+<p>In Meeting 05, we introduced OCR tools for extracting text from scanned documents and images. This week, we provide an <strong>updated version</strong> of the <strong>GLM-OCR</strong> tool. The key change: <strong>macOS and Windows versions are now combined into a single zip file</strong>.</p>
+<p>Download <code>glm-ocr-mlx-main.zip</code> from the <code>meeting_06/software/</code> folder.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This replaces the separate macOS and Windows downloads from Meeting 05. If you already have the old version installed, please download the new unified version.</p>
+</div>
+</div>
+<section id="what-is-glm-ocr" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-glm-ocr">What is GLM-OCR?</h2>
+<p>GLM-OCR is a local OCR tool that uses the GLM-OCR model (a 0.9B parameter vision-language model) to convert scanned documents and images into structured Markdown with tables, formulas, and layout-aware text — all running locally on your machine.</p>
+<ul>
+<li><strong>macOS (Apple Silicon)</strong>: Uses the MLX framework for fast local inference on the Metal GPU.</li>
+<li><strong>Windows</strong>: Uses <strong>Ollama</strong> for local inference.</li>
+</ul>
+<p>Both platforms share the same web interface and the same GLM-OCR model. The only difference is the inference backend. The launcher script automatically detects your operating system and uses the correct backend.</p>
+<section id="macos-architecture-mlx" class="level3">
+<h3 class="anchored" data-anchor-id="macos-architecture-mlx">macOS Architecture (MLX)</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A["Browser\n(localhost:5003)"] --&gt; B["Flask App\n(app.py)"]
+    B --&gt; C["GLM-OCR SDK"]
+    C --&gt; D["MLX Server\n(:8080)"]
+    D --&gt; E["Metal GPU"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="windows-architecture-ollama" class="level3">
+<h3 class="anchored" data-anchor-id="windows-architecture-ollama">Windows Architecture (Ollama)</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A["Browser\n(localhost:5003)"] --&gt; B["Flask App\n(app.py)"]
+    B --&gt; C["GLM-OCR SDK"]
+    C --&gt; D["Ollama\n(:11434)"]
+    D --&gt; E["CPU / NVIDIA GPU"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<section id="macos-apple-silicon" class="level3">
+<h3 class="anchored" data-anchor-id="macos-apple-silicon">macOS (Apple Silicon)</h3>
+<ul>
+<li><strong>Apple Silicon Mac</strong> (M1, M2, M3, or M4)</li>
+<li><strong>Python 3.12 or higher</strong>: Download from <a href="https://www.python.org/downloads/macos/">python.org</a> if not installed.</li>
+<li><strong>Git</strong>: Install via Xcode Command Line Tools (<code>xcode-select --install</code>) or Homebrew (<code>brew install git</code>).</li>
+<li><strong>Disk space</strong>: ~20 GB for model weights (downloaded automatically on first launch).</li>
+<li><strong>Memory</strong>: 16 GB unified memory minimum; 32 GB+ recommended for multi-page PDFs.</li>
+</ul>
+</section>
+<section id="windows" class="level3">
+<h3 class="anchored" data-anchor-id="windows">Windows</h3>
+<ul>
+<li><strong>Python 3.12 or higher</strong>: Download from <a href="https://www.python.org/downloads/">python.org</a>. During installation, make sure to check <strong>“Add Python to PATH”</strong>.</li>
+<li><strong>Git</strong>: Download from <a href="https://git-scm.com/download/win">git-scm.com</a> or install via <code>winget install --id Git.Git</code>.</li>
+<li><strong>Ollama</strong>: The launcher will offer to install it automatically if not found. Or install manually from <a href="https://ollama.com/download">ollama.com</a>.</li>
+<li><strong>Disk space</strong>: ~5 GB for the Ollama model + layout detection weights.</li>
+<li><strong>GPU (optional)</strong>: An NVIDIA GPU with CUDA support speeds up inference significantly. Ollama also works on CPU, but will be slower.</li>
+</ul>
+</section>
+</section>
+<section id="installation-and-launch" class="level2">
+<h2 class="anchored" data-anchor-id="installation-and-launch">Installation and Launch</h2>
+<section id="macos" class="level3">
+<h3 class="anchored" data-anchor-id="macos">macOS</h3>
+<ol type="1">
+<li>Download <code>glm-ocr-mlx-main.zip</code> from the <code>meeting_06/software/</code> folder and unzip it.</li>
+<li><strong>Double-click <code>launch.command</code></strong> in Finder to start the application.
+<ul>
+<li>If macOS blocks it: right-click the file → <strong>Open</strong> → confirm in the dialog.</li>
+</ul></li>
+<li>On <strong>first run</strong>, the script automatically:
+<ul>
+<li>Clones the GLM-OCR SDK from GitHub</li>
+<li>Creates a Python virtual environment and installs dependencies</li>
+<li>Downloads model weights from Hugging Face (~20 GB)</li>
+</ul></li>
+<li>The <strong>MLX Server</strong> starts on port 8080 (loads the model into unified memory — the first load takes about 30–60 seconds).</li>
+<li>The <strong>Flask Web UI</strong> starts on port 5003 and your browser opens automatically to <code>http://localhost:5003</code>.</li>
+<li><strong>Keep the terminal open.</strong> Press <code>Ctrl+C</code> to stop both servers when done.</li>
+</ol>
+</section>
+<section id="windows-1" class="level3">
+<h3 class="anchored" data-anchor-id="windows-1">Windows</h3>
+<ol type="1">
+<li>Download <code>glm-ocr-mlx-main.zip</code> from the <code>meeting_06/software/</code> folder and unzip it.</li>
+<li><strong>Double-click <code>launch.bat</code></strong> to start the application.</li>
+<li>On <strong>first run</strong>, the script automatically:
+<ul>
+<li>Checks for Python 3.12+ and Git</li>
+<li>Installs <strong>Ollama</strong> if not already present (prompts you to confirm — installs to <code>%LOCALAPPDATA%</code>, no admin required)</li>
+<li>Starts the Ollama service on port 11434</li>
+<li>Pulls the <code>glm-ocr:latest</code> model (first run — this may take several minutes)</li>
+<li>Clones the GLM-OCR SDK from GitHub</li>
+<li>Creates a Python virtual environment and installs dependencies</li>
+<li>Downloads layout detection weights (PP-DocLayoutV3)</li>
+</ul></li>
+<li>The <strong>Flask Web UI</strong> starts on port 5003 and your browser opens automatically to <code>http://localhost:5003</code>.</li>
+<li><strong>Keep the command prompt window open.</strong> Close the window or press <code>Ctrl+C</code> to stop.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>After the first run, subsequent launches are much faster because the virtual environment, Ollama model, and weights are already in place.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="project-structure" class="level2">
+<h2 class="anchored" data-anchor-id="project-structure">Project Structure</h2>
+<p>After unzipping, the project folder looks like this:</p>
+<pre><code>glm-ocr-mlx-main/
+├── launch.command         ← macOS launcher (double-click)
+├── launch.bat             ← Windows launcher (double-click)
+├── app.py                 ← Flask web server
+├── config/
+│   ├── glm_config_mac.yaml      ← macOS settings (MLX, port 8080)
+│   └── glm_config_windows.yaml  ← Windows settings (Ollama, port 11434)
+├── requirements.txt       ← Python dependencies
+├── templates/
+│   └── index.html         ← web UI
+├── static/
+│   ├── css/style.css
+│   └── js/main.js
+├── utils/
+│   ├── download_weights.py
+│   ├── logger.py
+│   └── deep_clean.command ← reset utility (macOS)
+├── weights/               ← layout detection model (auto-downloaded)
+├── output/                ← OCR results (Markdown + JSON + images)
+├── sessions/              ← job state files
+└── glm-ocr/               ← cloned GLM-OCR SDK</code></pre>
+<p>The <code>weights/</code>, <code>output/</code>, <code>sessions/</code>, and <code>glm-ocr/</code> directories are created automatically at runtime. On Windows, the GLM-OCR model weights are managed by Ollama separately (not stored in the <code>weights/</code> folder).</p>
+</section>
+<section id="using-the-web-ui" class="level2">
+<h2 class="anchored" data-anchor-id="using-the-web-ui">Using the Web UI</h2>
+<p>The web interface is identical on both macOS and Windows:</p>
+<ol type="1">
+<li><strong>Upload</strong>: Drag and drop a PDF, PNG, or JPEG onto the upload area — or click to browse. Accepted formats: <code>.pdf</code>, <code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>.</li>
+<li><strong>Processing</strong>: A progress bar shows real-time status. PDFs are split into page images, then each page is OCR’d sequentially.</li>
+<li><strong>Review Results</strong>: A split-panel view shows the original document on the left and the rendered Markdown on the right. Navigate pages with Prev/Next buttons.</li>
+<li><strong>Export</strong>: Click <strong>Export</strong> to download results as <strong>Markdown</strong> (<code>.md</code>) or <strong>JSON</strong> (<code>.json</code>) — either the current page or the full document.</li>
+</ol>
+<p>Additional features:</p>
+<ul>
+<li><strong>Layout Toggle</strong>: Switch between the original image and a layout visualization overlay to see detected regions (tables, formulas, text blocks).</li>
+<li><strong>History</strong>: Click the History button to browse and reload previous scan results. Results persist across app restarts.</li>
+</ul>
+</section>
+<section id="configuration" class="level2">
+<h2 class="anchored" data-anchor-id="configuration">Configuration</h2>
+<p>Settings are stored in the <code>config/</code> directory. The launcher automatically selects the correct config file for your platform:</p>
+<ul>
+<li><strong>macOS</strong>: <code>config/glm_config_mac.yaml</code> — uses MLX server on port 8080</li>
+<li><strong>Windows</strong>: <code>config/glm_config_windows.yaml</code> — uses Ollama on port 11434</li>
+</ul>
+<p>Common settings you might want to adjust:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 25%">
+<col style="width: 32%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Mac Default</th>
+<th>Windows Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pipeline.enable_layout</code></td>
+<td><code>true</code></td>
+<td><code>true</code></td>
+<td>Enable layout detection. Set to <code>false</code> for simple documents.</td>
+</tr>
+<tr class="even">
+<td><code>pipeline.max_workers</code></td>
+<td><code>4</code></td>
+<td><code>32</code></td>
+<td>Parallel workers for region OCR.</td>
+</tr>
+<tr class="odd">
+<td><code>pipeline.ocr_api.api_port</code></td>
+<td><code>8080</code></td>
+<td><code>11434</code></td>
+<td>Inference server port.</td>
+</tr>
+<tr class="even">
+<td><code>pipeline.ocr_api.api_mode</code></td>
+<td><code>openai</code></td>
+<td><code>ollama_generate</code></td>
+<td>API protocol for the inference server.</td>
+</tr>
+<tr class="odd">
+<td><code>pipeline.page_loader.max_tokens</code></td>
+<td><code>4096</code></td>
+<td><code>4096</code></td>
+<td>Maximum tokens per OCR request.</td>
+</tr>
+<tr class="even">
+<td><code>pipeline.layout.threshold</code></td>
+<td><code>0.3</code></td>
+<td><code>0.3</code></td>
+<td>Detection confidence threshold.</td>
+</tr>
+</tbody>
+</table>
+<section id="maas-mode-cloud-api" class="level3">
+<h3 class="anchored" data-anchor-id="maas-mode-cloud-api">MaaS Mode (Cloud API)</h3>
+<p>If you want to use the cloud API instead of local inference (works on any platform, no GPU needed), set <code>pipeline.maas.enabled: true</code> in either config file and provide a Zhipu API key:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pipeline</span><span class="kw">:</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">maas</span><span class="kw">:</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">api_key</span><span class="kw">:</span><span class="at"> your-zhipu-key</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
+<section id="macos-1" class="level3">
+<h3 class="anchored" data-anchor-id="macos-1">macOS</h3>
+<ul>
+<li><strong>“Python 3.12 or higher is required”</strong>: Install the latest Python from <a href="https://www.python.org/downloads/macos/">python.org</a>. The system Python on macOS is too old.</li>
+<li><strong>macOS blocks <code>launch.command</code></strong>: Right-click the file → <strong>Open</strong> → confirm in the dialog. Or go to System Settings → Privacy &amp; Security → Allow.</li>
+<li><strong>MLX Server won’t start (port 8080)</strong>: Another process may be using the port. Run <code>lsof -i :8080</code> to check. Use the deep clean script to kill stale processes.</li>
+<li><strong>First scan is very slow</strong>: Normal — the model weights load into unified memory on the first request. Subsequent scans are much faster.</li>
+<li><strong>Out of memory</strong>: The model needs approximately 8 GB of unified memory. Close other heavy applications. 16 GB Macs should work; 8 GB Macs may struggle.</li>
+</ul>
+</section>
+<section id="windows-2" class="level3">
+<h3 class="anchored" data-anchor-id="windows-2">Windows</h3>
+<ul>
+<li><strong>“Python is not installed”</strong>: Download and install Python 3.12+ from <a href="https://www.python.org/downloads/">python.org</a>. Make sure to check <strong>“Add Python to PATH”</strong> during installation.</li>
+<li><strong>“Git is not installed”</strong>: Install Git from <a href="https://git-scm.com/download/win">git-scm.com</a> or run <code>winget install --id Git.Git</code> in PowerShell.</li>
+<li><strong>Ollama installation fails</strong>: Install Ollama manually from <a href="https://ollama.com/download">ollama.com/download</a>. The launcher installs it to <code>%LOCALAPPDATA%</code> (no admin rights needed).</li>
+<li><strong>Ollama fails to start (port 11434)</strong>: Another process may be using the port. Run <code>netstat -ano | findstr :11434</code> in Command Prompt to check. Kill the conflicting process or restart your computer.</li>
+<li><strong>Model pull fails</strong>: Check your internet connection. You can manually pull the model by running <code>ollama pull glm-ocr:latest</code> in Command Prompt.</li>
+<li><strong>Slow processing on CPU</strong>: If you do not have an NVIDIA GPU, OCR will run on CPU and may be slow. Consider using the MaaS cloud API mode for faster results.</li>
+</ul>
+</section>
+<section id="deep-clean-reset-macos" class="level3">
+<h3 class="anchored" data-anchor-id="deep-clean-reset-macos">Deep Clean / Reset (macOS)</h3>
+<p>If something goes wrong on macOS, use the interactive reset utility:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./utils/deep_clean.command</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This script prompts you to selectively reset components: kill stale server processes, remove the virtual environment, delete the cloned SDK, clear OCR results and job history, or delete the downloaded model weights.</p>
+</section>
+</section>
+</section>
+<section id="ocr-tool-ocr-batch-processor-alternative-for-all-platforms" class="level1">
+<h1>OCR Tool: OCR Batch Processor (Alternative for All Platforms)</h1>
+<p>If GLM-OCR does not work on your machine (for example, if you have an Intel Mac), you can use the <strong>OCR Batch Processor</strong> — a web-based OCR tool that connects to <strong>LM Studio</strong> running locally on your machine.</p>
+<p>Application: <a href="https://kltng.github.io/ocr_batch_processor/">https://kltng.github.io/ocr_batch_processor/</a></p>
+<p>Repository: <a href="https://github.com/kltng/ocr_batch_processor">https://github.com/kltng/ocr_batch_processor</a></p>
+<section id="what-is-the-ocr-batch-processor" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-ocr-batch-processor">What is the OCR Batch Processor?</h2>
+<p>The OCR Batch Processor is a progressive web application (PWA) that uses Vision Language Models to convert scanned documents and images into structured Markdown and HTML. It supports two providers:</p>
+<ul>
+<li><strong>LM Studio (Local)</strong>: Runs entirely on your computer. No data leaves your machine.</li>
+<li><strong>Google Gemini (Cloud)</strong>: Uses Google’s API for higher accuracy (requires an API key).</li>
+</ul>
+<p>For the LM Studio setup, refer to the <strong>How to Use LM Studio</strong> section below.</p>
+</section>
+<section id="quick-start-with-ocr-batch-processor" class="level2">
+<h2 class="anchored" data-anchor-id="quick-start-with-ocr-batch-processor">Quick Start with OCR Batch Processor</h2>
+<ol type="1">
+<li>Make sure LM Studio is running with a <strong>vision model</strong> loaded and the <strong>local server</strong> started (see the “How to Use LM Studio” section).</li>
+<li>Open <a href="https://kltng.github.io/ocr_batch_processor/">https://kltng.github.io/ocr_batch_processor/</a> in your browser.</li>
+<li>Click <strong>Settings</strong> (⚙️) → select <strong>LM Studio</strong> as the provider → set Base URL to <code>http://localhost:1234</code>.</li>
+<li>Click <strong>Open Folder</strong> → select a folder with your scanned images or PDFs.</li>
+<li>Select files and click <strong>Run OCR</strong>.</li>
+</ol>
+<p>For detailed step-by-step instructions, refer to <a href="../meeting_05/meeting_05.html">Meeting 05</a>.</p>
+</section>
+</section>
+<section id="review-tools-we-have-used-so-far" class="level1">
+<h1>Review: Tools We Have Used So Far</h1>
+<p>Before introducing new concepts, let’s take stock of all the tools we have set up and used in this course. As humanities students, you may not have encountered any of these before the semester began. Here is a summary of each tool, what it does, and why we use it.</p>
+<section id="antigravity-code-editor" class="level2">
+<h2 class="anchored" data-anchor-id="antigravity-code-editor">Antigravity (Code Editor)</h2>
+<p><a href="https://developers.google.com/antigravity">Antigravity</a> is an <strong>AI-powered code editor</strong> developed by Google. It is built on top of Visual Studio Code (VS Code), so the interface will look familiar if you have used VS Code before. What makes Antigravity different from a regular code editor is its <strong>agent-first</strong> approach: it has built-in AI assistants that can help you write code, generate files, debug errors, and even plan out multi-step tasks.</p>
+<p>In this course, we use Antigravity as our primary editor for writing HTML, CSS, Python scripts, and Quarto documents. Its AI chat panel (accessible via <code>Ctrl+Shift+I</code> / <code>Cmd+Shift+I</code>) lets you describe what you want in plain English, and the AI generates code for you. This is especially useful for humanities students who are learning to code — you can focus on <em>what</em> you want to accomplish rather than memorizing syntax.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Based on</td>
+<td>Visual Studio Code (VS Code)</td>
+</tr>
+<tr class="even">
+<td>AI capabilities</td>
+<td>Built-in Gemini models, code generation, debugging, planning</td>
+</tr>
+<tr class="odd">
+<td>We use it for</td>
+<td>Writing HTML/CSS, Python scripts, Quarto documents, Git operations</td>
+</tr>
+<tr class="even">
+<td>First introduced</td>
+<td>Meeting 05 (Building a personal website)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="git-version-control" class="level2">
+<h2 class="anchored" data-anchor-id="git-version-control">Git (Version Control)</h2>
+<p><a href="https://git-scm.com/">Git</a> is a <strong>version control system</strong>. It tracks changes to your files over time, so you can go back to previous versions, see what changed, and collaborate with others without overwriting each other’s work. Think of it as an “undo history” for your entire project — but much more powerful.</p>
+<p>Every time you make a meaningful change, you create a <strong>commit</strong> (a snapshot of your files at that point in time). You can view the full history of commits, compare different versions, and even work on separate “branches” of your project simultaneously.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What it is</td>
+<td>A distributed version control system</td>
+</tr>
+<tr class="even">
+<td>Key commands</td>
+<td><code>git add</code>, <code>git commit</code>, <code>git push</code>, <code>git pull</code>, <code>git log</code></td>
+</tr>
+<tr class="odd">
+<td>We use it for</td>
+<td>Tracking changes to our code and documents, pushing to GitHub</td>
+</tr>
+<tr class="even">
+<td>First introduced</td>
+<td>Meeting 03</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="github-code-hosting-and-collaboration" class="level2">
+<h2 class="anchored" data-anchor-id="github-code-hosting-and-collaboration">GitHub (Code Hosting and Collaboration)</h2>
+<p><a href="https://github.com">GitHub</a> is a <strong>cloud platform</strong> that hosts Git repositories. While Git runs locally on your computer, GitHub stores your repositories online so you can access them from anywhere, share them with others, and take advantage of additional features like GitHub Pages (free website hosting) and GitHub Actions (automated workflows).</p>
+<p>In this course, GitHub is where you host your personal website (<code>username.github.io</code>) and submit your assignments.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What it is</td>
+<td>A cloud platform for hosting Git repositories</td>
+</tr>
+<tr class="even">
+<td>Key features we use</td>
+<td>GitHub Pages (website hosting), GitHub Actions (automated deployment), GitHub CLI (<code>gh</code>)</td>
+</tr>
+<tr class="odd">
+<td>We use it for</td>
+<td>Hosting personal websites, submitting assignments, collaboration</td>
+</tr>
+<tr class="even">
+<td>First introduced</td>
+<td>Meeting 03</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ollama-local-llm-runner" class="level2">
+<h2 class="anchored" data-anchor-id="ollama-local-llm-runner">Ollama (Local LLM Runner)</h2>
+<p><a href="https://ollama.com/">Ollama</a> is a <strong>command-line tool</strong> that lets you download and run large language models (LLMs) locally on your computer. It is lightweight and designed to be simple — you can download a model and start chatting with it in just a few commands.</p>
+<p>In this course, we used Ollama primarily on <strong>Windows</strong> as the inference backend for the GLM-OCR tool. When the OCR tool needs to interpret an image of text, it sends the image to a model running through Ollama.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What it is</td>
+<td>A command-line tool for running LLMs locally</td>
+</tr>
+<tr class="even">
+<td>Interface</td>
+<td>Terminal / command line</td>
+</tr>
+<tr class="odd">
+<td>We use it for</td>
+<td>Running the GLM-OCR model on Windows for OCR tasks</td>
+</tr>
+<tr class="even">
+<td>First introduced</td>
+<td>Meeting 05 (OCR tool for Windows)</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ollama is great for quick command-line usage, but it does not have a graphical interface. If you prefer a visual application, LM Studio (introduced below) is a better choice.</p>
+</div>
+</div>
+</section>
+<section id="lm-studio-local-llm-application" class="level2">
+<h2 class="anchored" data-anchor-id="lm-studio-local-llm-application">LM Studio (Local LLM Application)</h2>
+<p><a href="https://lmstudio.ai/">LM Studio</a> is a <strong>free desktop application</strong> for running LLMs locally on your computer. Unlike Ollama, LM Studio provides a full graphical interface — a chat window, a model discovery page, and a local API server. It supports thousands of models from Hugging Face, and you can switch between models with a few clicks.</p>
+<p>In this course, we use LM Studio as the backend for the OCR Batch Processor (for students without Apple Silicon Macs) and as a general-purpose tool for experimenting with LLMs privately and offline.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What it is</td>
+<td>A desktop application for running LLMs locally</td>
+</tr>
+<tr class="even">
+<td>Interface</td>
+<td>Graphical (chat window, model browser, API server)</td>
+</tr>
+<tr class="odd">
+<td>We use it for</td>
+<td>OCR Batch Processor backend, experimenting with local LLMs</td>
+</tr>
+<tr class="even">
+<td>First introduced</td>
+<td>Meeting 05, with detailed setup instructions in Meeting 06</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="openwork-ai-agent-for-desktop" class="level2">
+<h2 class="anchored" data-anchor-id="openwork-ai-agent-for-desktop">Openwork (AI Agent for Desktop)</h2>
+<p><a href="https://github.com/different-ai/openwork">Openwork</a> is an <strong>open-source AI agent</strong> that runs locally on your computer. It can read files, create documents, automate repetitive tasks, and connect to services like Google Drive and Notion. Think of it as a personal assistant that lives on your desktop and can interact with your files and workflows.</p>
+<p>In this course, we explore Openwork as an example of the <strong>agentic approach</strong> — the idea that AI can do more than just answer questions in a chat window. An agent can take actions, use tools, and complete multi-step tasks on your behalf.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What it is</td>
+<td>An open-source desktop AI agent</td>
+</tr>
+<tr class="even">
+<td>Interface</td>
+<td>Desktop application</td>
+</tr>
+<tr class="odd">
+<td>We use it for</td>
+<td>Automating file tasks, exploring the agentic workflow concept</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tools-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="tools-at-a-glance">Tools at a Glance</h2>
+<p>Here is a quick comparison of all the tools:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Category</th>
+<th>Interface</th>
+<th>Local or Cloud</th>
+<th>Primary Use in This Course</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Antigravity</td>
+<td>Code editor</td>
+<td>GUI (desktop app)</td>
+<td>Local</td>
+<td>Writing code and documents with AI assistance</td>
+</tr>
+<tr class="even">
+<td>Git</td>
+<td>Version control</td>
+<td>Terminal</td>
+<td>Local</td>
+<td>Tracking changes to files</td>
+</tr>
+<tr class="odd">
+<td>GitHub</td>
+<td>Code hosting</td>
+<td>Web + CLI</td>
+<td>Cloud</td>
+<td>Hosting websites, submitting assignments</td>
+</tr>
+<tr class="even">
+<td>Ollama</td>
+<td>LLM runner</td>
+<td>Terminal</td>
+<td>Local</td>
+<td>Running models for OCR (Windows)</td>
+</tr>
+<tr class="odd">
+<td>LM Studio</td>
+<td>LLM runner</td>
+<td>GUI (desktop app)</td>
+<td>Local</td>
+<td>Running models for OCR and experimentation</td>
+</tr>
+<tr class="even">
+<td>Openwork</td>
+<td>AI agent</td>
+<td>GUI (desktop app)</td>
+<td>Local</td>
+<td>Automating desktop tasks</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notice that most of our tools run <strong>locally</strong> on your own computer. This is intentional — running tools locally means your data stays private, you do not need an internet connection (after initial setup), and you are not dependent on a company’s servers or subscription plans.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="two-approaches-to-text-data-scripts-vs.-llm-inference" class="level1">
+<h1>Two Approaches to Text Data: Scripts vs.&nbsp;LLM Inference</h1>
+<p>As humanities researchers, you will often work with <strong>text data</strong> — historical documents, literary texts, archival materials, transcriptions, and more. There are two fundamentally different approaches to processing and analyzing this data with a computer. Understanding the difference is essential for choosing the right tool for your research.</p>
+<section id="approach-1-programming-scripts" class="level2">
+<h2 class="anchored" data-anchor-id="approach-1-programming-scripts">Approach 1: Programming Scripts</h2>
+<p>The traditional approach is to write a <strong>programming script</strong> (usually in Python) that processes text according to explicit rules you define. The script follows your instructions exactly, step by step.</p>
+<p>For example, suppose you have a collection of 500 historical documents and you want to count how many times the word “emperor” (皇帝) appears in each one. A Python script might look like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>folder <span class="op">=</span> <span class="st">"documents/"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> filename <span class="kw">in</span> os.listdir(folder):</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(os.path.join(folder, filename), <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        text <span class="op">=</span> f.read()</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> text.count(<span class="st">"皇帝"</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>filename<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>count<span class="sc">}</span><span class="ss"> occurrences"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This script does exactly one thing: it opens each file, counts the exact string “皇帝”, and prints the result. It is <strong>fast</strong>, <strong>reproducible</strong> (running it again gives the same result), and <strong>transparent</strong> (you can read the code and know exactly what it does).</p>
+<section id="strengths-of-scripts" class="level3">
+<h3 class="anchored" data-anchor-id="strengths-of-scripts">Strengths of Scripts</h3>
+<ul>
+<li><strong>Precision</strong>: The script does exactly what you tell it to. No guessing, no variation.</li>
+<li><strong>Reproducibility</strong>: Running the same script on the same data always produces the same output.</li>
+<li><strong>Speed</strong>: Processing thousands of files takes seconds.</li>
+<li><strong>Scalability</strong>: Once written, a script can handle 10 files or 10 million files.</li>
+</ul>
+</section>
+<section id="limitations-of-scripts" class="level3">
+<h3 class="anchored" data-anchor-id="limitations-of-scripts">Limitations of Scripts</h3>
+<ul>
+<li><strong>Rigid</strong>: The script only does what you explicitly program. It cannot handle ambiguity or context.</li>
+<li><strong>Requires programming knowledge</strong>: You need to know how to write and debug code.</li>
+<li><strong>Cannot understand meaning</strong>: A script counting “皇帝” will miss “天子” (Son of Heaven) or “上” (a euphemism for the emperor) — it has no understanding of semantics.</li>
+</ul>
+</section>
+</section>
+<section id="approach-2-llm-inference" class="level2">
+<h2 class="anchored" data-anchor-id="approach-2-llm-inference">Approach 2: LLM Inference</h2>
+<p>The newer approach is to use a <strong>large language model</strong> (LLM) to process your text. Instead of writing explicit rules, you give the model a <strong>prompt</strong> — a natural-language instruction — and the model uses its training to generate a response.</p>
+<p>For the same task (finding references to the emperor), you might send each document to an LLM with a prompt like:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Read the following historical Chinese text and identify all references to</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>the emperor, including indirect references, titles, and euphemisms.</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>List each reference with its context.</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Document text here</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The model can understand that “皇帝”, “天子”, “上”, “聖上”, “陛下”, and even contextual references like “龍顏” all refer to the emperor. It can handle ambiguity and context in ways that a simple script cannot.</p>
+<section id="strengths-of-llm-inference" class="level3">
+<h3 class="anchored" data-anchor-id="strengths-of-llm-inference">Strengths of LLM Inference</h3>
+<ul>
+<li><strong>Understanding context and meaning</strong>: LLMs can interpret ambiguous language, recognize synonyms, and understand context.</li>
+<li><strong>Flexibility</strong>: You can change what the model does simply by changing the prompt — no code rewriting needed.</li>
+<li><strong>Low barrier to entry</strong>: You describe the task in natural language. No programming required for basic use.</li>
+<li><strong>Multilingual</strong>: Most modern LLMs handle Chinese, Japanese, Korean, and English well.</li>
+</ul>
+</section>
+<section id="limitations-of-llm-inference" class="level3">
+<h3 class="anchored" data-anchor-id="limitations-of-llm-inference">Limitations of LLM Inference</h3>
+<ul>
+<li><strong>Non-deterministic</strong>: Running the same prompt twice may produce slightly different results (due to the probabilistic nature of LLMs, as we discussed in Meeting 02).</li>
+<li><strong>Slower</strong>: Processing each document takes seconds to minutes, compared to milliseconds for a script.</li>
+<li><strong>Cost</strong>: Cloud-based LLMs charge per token. Processing large corpora can be expensive. Local models are free but slower.</li>
+<li><strong>Hallucination risk</strong>: The model might “find” references that do not actually exist in the text.</li>
+<li><strong>Hard to verify at scale</strong>: When processing hundreds of documents, it is difficult to check every result.</li>
+</ul>
+</section>
+</section>
+<section id="when-to-use-which" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-which">When to Use Which?</h2>
+<p>Neither approach is universally better. The right choice depends on your task:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Recommended Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exact string matching (e.g., counting a specific word)</td>
+<td>Script</td>
+</tr>
+<tr class="even">
+<td>Pattern-based extraction (e.g., dates, names with known formats)</td>
+<td>Script</td>
+</tr>
+<tr class="odd">
+<td>Understanding meaning and context</td>
+<td>LLM inference</td>
+</tr>
+<tr class="even">
+<td>Classifying or categorizing text by topic</td>
+<td>LLM inference</td>
+</tr>
+<tr class="odd">
+<td>Processing very large datasets (10,000+ files) quickly</td>
+<td>Script</td>
+</tr>
+<tr class="even">
+<td>Tasks requiring nuanced judgment (e.g., sentiment, tone)</td>
+<td>LLM inference</td>
+</tr>
+<tr class="odd">
+<td>Tasks where reproducibility is critical</td>
+<td>Script</td>
+</tr>
+<tr class="even">
+<td>Exploratory analysis (you are not sure what to look for yet)</td>
+<td>LLM inference</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In practice, the most effective workflows <strong>combine both approaches</strong>. For example, you might use a script to clean and organize your data, then use an LLM to classify or annotate it, and finally use another script to aggregate and analyze the results. This is the hybrid approach we will practice in this course.</p>
+</div>
+</div>
+</section>
+<section id="a-concrete-example-ocr-post-processing" class="level2">
+<h2 class="anchored" data-anchor-id="a-concrete-example-ocr-post-processing">A Concrete Example: OCR Post-Processing</h2>
+<p>In Meeting 05, we used OCR to extract text from scanned historical documents. The raw OCR output often contains errors — misrecognized characters, missing punctuation, and garbled text. How should we clean it up?</p>
+<p><strong>Script approach</strong>: Write rules to fix common OCR errors (e.g., replace “己” with “已” when it appears before certain characters). This is fast and consistent, but you need to know all the error patterns in advance.</p>
+<p><strong>LLM approach</strong>: Send the raw OCR text to an LLM with a prompt like “This is OCR output from a Qing dynasty document. Please correct any obvious OCR errors while preserving the original text as much as possible.” The model can use its knowledge of classical Chinese to fix errors you might not have anticipated.</p>
+<p><strong>Hybrid approach</strong>: First use a script to fix the most common and obvious errors (fast, cheap), then send the partially cleaned text to an LLM for final corrections (accurate, but slower and more expensive). This gives you the best of both worlds.</p>
+</section>
+</section>
+<section id="how-to-use-lm-studio" class="level1">
+<h1>How to Use LM Studio</h1>
+<p>LM Studio is a desktop application that lets you run large language models (LLMs) <strong>locally and privately</strong> on your own computer. No data leaves your machine, and you do not need an internet connection after downloading a model. This section covers how to set up LM Studio and use it for the tasks in this course.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A separate step-by-step installation guide is available: <a href="instruction_lmstudio_qwen3.5.html">instruction_lmstudio_qwen3.5</a>. This section provides an overview and covers usage beyond installation.</p>
+</div>
+</div>
+<section id="why-run-models-locally" class="level2">
+<h2 class="anchored" data-anchor-id="why-run-models-locally">Why Run Models Locally?</h2>
+<p>As humanities researchers working with potentially sensitive or unpublished materials, running models locally has several advantages:</p>
+<ul>
+<li><strong>Privacy</strong>: Your data never leaves your computer. No text is sent to OpenAI, Google, or any other company.</li>
+<li><strong>No cost per query</strong>: Once a model is downloaded, you can use it as much as you want for free.</li>
+<li><strong>No internet required</strong>: After the initial download, everything runs offline.</li>
+<li><strong>No censorship or filtering</strong>: Local models do not have the same content restrictions as commercial APIs. This is especially useful for historical texts that may contain content flagged by commercial services.</li>
+</ul>
+</section>
+<section id="what-you-need" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-need">What You Need</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Requirement</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Computer</td>
+<td>Mac with Apple Silicon (M1/M2/M3/M4), Windows PC, or Linux</td>
+</tr>
+<tr class="even">
+<td>RAM</td>
+<td>At least 8 GB (16 GB recommended for larger models)</td>
+</tr>
+<tr class="odd">
+<td>Disk space</td>
+<td>1–10 GB per model, depending on model size</td>
+</tr>
+<tr class="even">
+<td>LM Studio</td>
+<td>Download from <a href="https://lmstudio.ai">https://lmstudio.ai</a></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Intel Mac users</strong>: LM Studio does <strong>not</strong> support Intel-based Macs. If your Mac has an Intel processor (check via Apple menu &gt; About This Mac), you will not be able to use LM Studio. Please use cloud-based alternatives like the <a href="https://huit.harvard.edu/ai-sandbox">Harvard AI Sandbox</a> instead.</p>
+</div>
+</div>
+</section>
+<section id="step-1-install-lm-studio" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-install-lm-studio">Step 1: Install LM Studio</h2>
+<ol type="1">
+<li>Go to <a href="https://lmstudio.ai">https://lmstudio.ai</a> and download the installer for your operating system.</li>
+<li>Install and open LM Studio. (See the <a href="instruction_lmstudio_qwen3.5.html">detailed installation guide</a> for platform-specific instructions.)</li>
+</ol>
+</section>
+<section id="step-2-download-a-model" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-download-a-model">Step 2: Download a Model</h2>
+<p>When you first open LM Studio, you will see the <strong>Discover</strong> page (click the magnifying glass icon in the left sidebar). This is where you search for and download models.</p>
+<p>For this course, we recommend starting with <strong>Qwen3.5-0.8B</strong>, a small but capable model:</p>
+<ol type="1">
+<li>In the search bar, type <code>Qwen3.5-0.8B</code>.</li>
+<li>Select a quantized version — <strong>Q4_K_M</strong> is recommended for most computers (good balance of quality and file size).</li>
+<li>Click <strong>Download</strong>. The model is under 1 GB and should download quickly.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>What is quantization?</strong> Models come in different precisions. Full precision (F16) is the highest quality but uses the most RAM. Quantized versions (Q4, Q8, etc.) compress the model to use less memory, with only a small loss in quality. For a 0.8B parameter model, the difference is barely noticeable.</p>
+</div>
+</div>
+</section>
+<section id="step-3-chat-with-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-chat-with-the-model">Step 3: Chat with the Model</h2>
+<p>Once downloaded, you can start chatting:</p>
+<ol type="1">
+<li>Click the <strong>Chat</strong> tab in the left sidebar (the speech bubble icon).</li>
+<li>At the top of the chat window, select the model you just downloaded from the dropdown.</li>
+<li>Type a message and press Enter.</li>
+</ol>
+<p>Try these prompts to test the model:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Hello! Can you introduce yourself?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="an">Please translate the following classical Chinese text into English:</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>子曰：學而時習之，不亦說乎？</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>What are the main differences between Tang dynasty poetry and Song dynasty poetry?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Qwen3.5-0.8B model is intentionally small. It may make mistakes or give shorter answers than commercial models like ChatGPT or Claude. This is expected — we are using it to learn how local models work, not to replace cloud services.</p>
+</div>
+</div>
+</section>
+<section id="step-4-use-the-local-server-api-mode" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-use-the-local-server-api-mode">Step 4: Use the Local Server (API Mode)</h2>
+<p>LM Studio can also run as a <strong>local API server</strong>, which allows other applications (like the OCR Batch Processor) to connect to it and send requests. This is how we used LM Studio in Meeting 05 for OCR.</p>
+<ol type="1">
+<li>Click the <strong>Developer</strong> tab (the <code>&lt;&gt;</code> icon) in the left sidebar.</li>
+<li>Make sure a model is loaded (selected at the top).</li>
+<li>Click <strong>Start Server</strong>. The server will start on <code>http://localhost:1234</code> by default.</li>
+<li>The server is now running and other applications can connect to it.</li>
+</ol>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    App["Your Application\n(e.g., OCR Batch Processor)"] --&gt;|HTTP Request| Server["LM Studio Server\n(localhost:1234)"]
+    Server --&gt;|Process with Model| Model["Loaded LLM"]
+    Model --&gt;|Response| Server
+    Server --&gt;|HTTP Response| App
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The LM Studio server must be <strong>running the entire time</strong> your application needs it. If you close LM Studio or stop the server, the connected application will lose its connection and stop working.</p>
+</div>
+</div>
+</section>
+<section id="step-5-explore-larger-models" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-explore-larger-models">Step 5: Explore Larger Models</h2>
+<p>Once you are comfortable with the 0.8B model, you can try larger models for better quality. Here are some recommendations for humanities work:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 17%">
+<col style="width: 32%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Size</th>
+<th>RAM Needed</th>
+<th>Good For</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Qwen3.5-0.8B</td>
+<td>~0.5 GB</td>
+<td>2–4 GB</td>
+<td>Learning, basic tasks, quick experiments</td>
+</tr>
+<tr class="even">
+<td>Qwen3.5-3B</td>
+<td>~2 GB</td>
+<td>4–6 GB</td>
+<td>Better quality, still fast</td>
+</tr>
+<tr class="odd">
+<td>Qwen3.5-7B</td>
+<td>~4 GB</td>
+<td>8–10 GB</td>
+<td>Good quality for most tasks</td>
+</tr>
+<tr class="even">
+<td>Gemma 3-4B</td>
+<td>~2.5 GB</td>
+<td>4–6 GB</td>
+<td>Multilingual, good with CJK text</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The rule of thumb: you need about <strong>1.5× the model file size</strong> in free RAM to run a model comfortably. If a model is 4 GB, you should have at least 6 GB of free RAM available.</p>
+</div>
+</div>
+</section>
+<section id="common-issues-and-troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="common-issues-and-troubleshooting">Common Issues and Troubleshooting</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Problem</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Model loads slowly</td>
+<td>Close other applications to free up RAM</td>
+</tr>
+<tr class="even">
+<td>Responses are very slow</td>
+<td>Try a smaller model or a more compressed quantization (e.g., Q4 instead of Q8)</td>
+</tr>
+<tr class="odd">
+<td>“Out of memory” error</td>
+<td>The model is too large for your computer. Download a smaller version</td>
+</tr>
+<tr class="even">
+<td>No models appear in search</td>
+<td>Check your internet connection. LM Studio needs internet to browse and download models</td>
+</tr>
+<tr class="odd">
+<td>Server won’t start</td>
+<td>Another application may be using port 1234. Close it or change the port in LM Studio settings</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you run into issues, bring your laptop to office hours and we can troubleshoot together.</p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/kltng\.github\.io\/eastd143b\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
