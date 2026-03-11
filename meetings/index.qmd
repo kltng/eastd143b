@@ -11,3 +11,4 @@ title: "Meetings"
 - [Meeting 04](../meeting_04/meeting_04.qmd)
 - [Meeting 05](../meeting_05/meeting_05.qmd)
 - [Meeting 06](../meeting_06/meeting_06.qmd)
+- [Meeting 07](../meeting_07/meeting_07.qmd)
