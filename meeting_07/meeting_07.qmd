@@ -1,0 +1,869 @@
+---
+title: "Meeting 07"
+format:
+    html:
+        toc: true
+        toc-depth: 3
+        code-fold: true
+        link-external-newwindow: true
+        code-overflow: wrap
+        code-copy: true
+# pdf output disabled
+
+date: "2026-03-11"
+date-modified: "2026-03-11"
+author: "Kwok-leong Tang"
+---
+
+**Software**: Download [`glm-ocr-mlx.zip`](https://github.com/kltng/eastd143b/meeting_07/software/glm-ocr-mlx.zip)
+
+# Today's Schedule
+
+- First progress report
+- What is an API?
+- Hands-on: calling an API with curl
+- Batch translation with Python
+- Further exploration: Harvard LibraryCloud API
+
+# First Progress Report
+
+
+
+# What is an API?
+
+You have already been using APIs in this course — you just did not know it. In Meeting 06, when the OCR Batch Processor connected to LM Studio's local server to process images, it was making **API calls** behind the scenes. Today, we are going to understand what that actually means and learn how to make those calls ourselves.
+
+## The Library Reference Desk Analogy
+
+Imagine you are at the **Widener Library reference desk**. You want to find information about a rare Qing dynasty document, but you cannot walk into the restricted stacks yourself. Instead, you:
+
+1. **Fill out a request slip** with specific fields: the title, the author, the call number, or a description of what you are looking for.
+2. **Hand the slip to the librarian** at the reference desk.
+3. The librarian **goes into the stacks**, finds the material, and brings it back to you.
+4. You receive the **result** — the book, a photocopy, or a note saying the item is unavailable.
+
+An **API** (Application Programming Interface) works exactly the same way:
+
+| Library Reference Desk | API |
+|------------------------|-----|
+| You (the patron) | Your application (curl, Python script, a web app) |
+| The reference desk window | The API **endpoint** (a URL where you send requests) |
+| The request slip (with specific fields) | The API **request** (structured data in a specific format) |
+| The librarian goes into the stacks | The **server** processes your request (e.g., runs the LLM) |
+| The book or answer returned to you | The API **response** (structured data sent back) |
+| You never enter the stacks yourself | You never access the model directly — only through the API |
+
+```{mermaid}
+flowchart LR
+    A["Your Application\n(curl, Python, web app)"] -->|"Request\n(structured data)"| B["API Endpoint\n(URL)"]
+    B -->|"Processes request"| C["Server\n(LM Studio + Model)"]
+    C -->|"Result"| B
+    B -->|"Response\n(structured data)"| A
+```
+
+:::{.callout-note}
+The key idea is **separation**: you do not need to know how the model works internally, what programming language the server is written in, or where the data is stored. You only need to know how to fill out the "request slip" correctly — and the API documentation tells you how.
+:::
+
+## Formal Definition
+
+An **API** is a set of rules and protocols that allows one piece of software to communicate with another. It defines:
+
+- **What requests you can make** (e.g., "generate a text completion", "translate this text")
+- **How to format your request** (what fields to include, what format to use)
+- **What response you will get back** (the structure of the returned data)
+
+APIs are everywhere. When a weather app on your phone shows the forecast, it is calling a weather API. When you log into a website with your Google account, that website is using Google's authentication API. When the OCR Batch Processor sent an image to LM Studio in Meeting 06, it was using LM Studio's API.
+
+# What is REST?
+
+Not all APIs work the same way. **REST** (Representational State Transfer) is the most common style of API on the web today. When people say "API" in a web context, they usually mean a REST API.
+
+A REST API has a few simple characteristics:
+
+1. **It uses standard web addresses (URLs)** to identify resources. For example, LM Studio's chat completion endpoint is:
+   ```
+   http://localhost:1234/v1/chat/completions
+   ```
+
+2. **It uses standard HTTP methods** to specify what you want to do:
+
+   | HTTP Method | What It Does | Library Analogy |
+   |-------------|-------------|-----------------|
+   | `GET` | Retrieve information | "What models do you have available?" |
+   | `POST` | Send data and get a result | "Here is my request slip — please process it" |
+
+   For our purposes, we will primarily use `POST` — we are sending a prompt to the model and getting a response back.
+
+3. **Data is exchanged in JSON format.** JSON (JavaScript Object Notation) is a simple, human-readable way to structure data. Here is a tiny example:
+
+   ```{.json}
+   {
+     "name": "Kwok-leong",
+     "role": "instructor",
+     "course": "EASTD143B"
+   }
+   ```
+
+   JSON uses **key-value pairs** inside curly braces. Keys are always in quotes, and values can be strings, numbers, lists, or nested objects. You will see JSON in every API request and response we make today.
+
+:::{.callout-tip}
+Think of it this way: the reference desk has a **specific window for each service** — one for book lookups, one for interlibrary loans, one for checking your holds. Each window is an **endpoint**. REST just means that all the windows follow the same set of rules for how you fill out and submit your request slips.
+:::
+
+# Hands-on: Calling an API with curl
+
+Now let's make our first API call. We will use **curl**, a command-line tool that comes pre-installed on both macOS and Windows. Think of curl as a way to fill out and submit an API request slip directly from your terminal.
+
+## Step 1: Create a Practice Folder
+
+Open **Antigravity** and open the built-in terminal (`Ctrl+`` ` on Windows, `` Cmd+` `` on macOS).
+
+Create a folder on your Desktop called `api_practice`:
+
+**macOS:**
+
+```{.bash}
+mkdir ~/Desktop/api_practice
+cd ~/Desktop/api_practice
+```
+
+**Windows (PowerShell):**
+
+```{.powershell}
+mkdir $HOME\Desktop\api_practice
+cd $HOME\Desktop\api_practice
+```
+
+**Windows (Command Prompt):**
+
+```{.cmd}
+mkdir %USERPROFILE%\Desktop\api_practice
+cd %USERPROFILE%\Desktop\api_practice
+```
+
+:::{.callout-note}
+The `~` symbol (macOS/Linux), `$HOME` (PowerShell), and `%USERPROFILE%` (Command Prompt) all refer to your home directory (e.g., `/Users/yourname` or `C:\Users\yourname`). They are shortcuts so you do not have to type the full path.
+
+**How do I know which terminal I am using on Windows?** If the prompt starts with `PS C:\`, you are in **PowerShell**. If it starts with `C:\>`, you are in **Command Prompt**. In Antigravity, the default terminal is usually PowerShell, but you can check by looking at the dropdown menu at the top-right corner of the terminal panel.
+:::
+
+## Step 2: Start the LM Studio Server
+
+1. Open **LM Studio**.
+2. Make sure the **Qwen3.5-0.8B** model is loaded (the same model from Meeting 06).
+3. Click the **Developer** tab (the `<>` icon) in the left sidebar.
+4. Click **Start Server**. You should see a message confirming the server is running on `http://localhost:1234`.
+
+```{mermaid}
+flowchart LR
+    A["Terminal\n(curl)"] -->|"HTTP POST"| B["LM Studio Server\n(localhost:1234)"]
+    B -->|"Runs prompt"| C["Qwen3.5-0.8B"]
+    C -->|"Generated text"| B
+    B -->|"JSON response"| A
+```
+
+:::{.callout-important}
+**Keep LM Studio running** for the rest of this exercise. If you close LM Studio or stop the server, your API calls will fail with a "connection refused" error.
+:::
+
+## Step 3: Your First API Call
+
+Now, go back to the terminal in Antigravity. We will use `curl` to send a simple message to the model.
+
+**macOS:**
+
+```{.bash}
+curl http://localhost:1234/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "qwen3.5-0.8b",
+    "messages": [
+      {"role": "user", "content": "Hello! Who are you?"}
+    ]
+  }'
+```
+
+**Windows (PowerShell):**
+
+```{.powershell}
+curl.exe http://localhost:1234/v1/chat/completions `
+  -H "Content-Type: application/json" `
+  -d '{
+    \"model\": \"qwen3.5-0.8b\",
+    \"messages\": [
+      {\"role\": \"user\", \"content\": \"Hello! Who are you?\"}
+    ]
+  }'
+```
+
+**Windows (Command Prompt):**
+
+```{.cmd}
+curl http://localhost:1234/v1/chat/completions -H "Content-Type: application/json" -d "{\"model\": \"qwen3.5-0.8b\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello! Who are you?\"}]}"
+```
+
+:::{.callout-note}
+**Why do the commands look different?** Each terminal environment has its own quoting rules:
+
+- **macOS (bash/zsh)**: Uses `\` for line continuation. Single quotes `'...'` wrap the JSON, so double quotes inside do not need escaping.
+- **Windows PowerShell**: Uses `` ` `` (backtick) for line continuation. Double quotes inside single-quoted strings must be escaped as `\"`. **Important**: you must type `curl.exe` (not just `curl`) in PowerShell, because PowerShell has a built-in `curl` alias that behaves differently from the real curl program.
+- **Windows Command Prompt**: Does not support single quotes for wrapping. The entire JSON must be in double quotes, with every internal `"` escaped as `\"`. The command must also be on a single line (no line continuation).
+
+The API call itself is identical in all three cases — only the terminal syntax differs.
+:::
+
+### Understanding the Command
+
+Let's break down what each part of the curl command does:
+
+| Part | What It Does | Library Analogy |
+|------|-------------|-----------------|
+| `curl` | The tool that sends the request | You, walking up to the desk |
+| `http://localhost:1234/v1/chat/completions` | The API endpoint (URL) | The specific window at the reference desk |
+| `-H "Content-Type: application/json"` | A **header** telling the server what format the data is in | Writing "English" at the top of your request slip so the librarian knows what language to expect |
+| `-d '{...}'` | The **request body** — the actual data you are sending | The filled-out request slip itself |
+| `"model": "qwen3.5-0.8b"` | Which model to use | Specifying which collection to search in |
+| `"messages": [...]` | The conversation (your prompt) | The question you wrote on the slip |
+| `"role": "user"` | Who is speaking (you) | Your name on the slip |
+| `"content": "Hello! Who are you?"` | What you are asking | The actual question |
+
+### Understanding the Response
+
+After running the command, you should see a JSON response that looks something like this:
+
+```{.json}
+{
+  "id": "chatcmpl-abc123",
+  "object": "chat.completion",
+  "created": 1710000000,
+  "model": "qwen3.5-0.8b",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Hello! I am Qwen, a large language model created by Alibaba Cloud..."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 10,
+    "completion_tokens": 25,
+    "total_tokens": 35
+  }
+}
+```
+
+The key fields in the response:
+
+| Field | What It Means |
+|-------|--------------|
+| `"model"` | Which model generated the response |
+| `"choices"` | A list of responses (usually just one) |
+| `"message"` → `"content"` | The model's actual reply — this is the answer to your question |
+| `"finish_reason": "stop"` | The model finished naturally (it was not cut off) |
+| `"usage"` | How many tokens were used (useful for tracking costs with paid APIs) |
+
+:::{.callout-tip}
+**What are tokens?** Tokens are the units that language models use to process text. A token is roughly a word or a part of a word in English, and roughly a single character in Chinese. The `usage` field tells you how many tokens the model consumed — this is important when using paid cloud APIs that charge per token, but free for local models like ours.
+:::
+
+## Step 4: A Humanities Request
+
+Now let's try something more relevant to our work. Send a classical Chinese translation request to the model:
+
+**macOS:**
+
+```{.bash}
+curl http://localhost:1234/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "qwen3.5-0.8b",
+    "messages": [
+      {"role": "user", "content": "Translate the following classical Chinese into English: 子曰：學而時習之，不亦說乎？有朋自遠方來，不亦樂乎？人不知而不慍，不亦君子乎？"}
+    ]
+  }'
+```
+
+**Windows (PowerShell):**
+
+```{.powershell}
+curl.exe http://localhost:1234/v1/chat/completions `
+  -H "Content-Type: application/json" `
+  -d '{
+    \"model\": \"qwen3.5-0.8b\",
+    \"messages\": [
+      {\"role\": \"user\", \"content\": \"Translate the following classical Chinese into English: 子曰：學而時習之，不亦說乎？有朋自遠方來，不亦樂乎？人不知而不慍，不亦君子乎？\"}
+    ]
+  }'
+```
+
+**Windows (Command Prompt):**
+
+```{.cmd}
+curl http://localhost:1234/v1/chat/completions -H "Content-Type: application/json" -d "{\"model\": \"qwen3.5-0.8b\", \"messages\": [{\"role\": \"user\", \"content\": \"Translate the following classical Chinese into English: 子曰：學而時習之，不亦說乎？有朋自遠方來，不亦樂乎？人不知而不慍，不亦君子乎？\"}]}"
+```
+
+Compare the translation you get with what you know about this passage from the *Analects*. The model may not be perfect — remember, Qwen3.5-0.8B is a small model — but notice that you just asked a machine running on your own computer to translate classical Chinese, all through a single terminal command.
+
+:::{.callout-note}
+**Connecting the dots**: This is exactly what the **OCR Batch Processor** was doing behind the scenes when it connected to LM Studio in Meetings 05 and 06. Instead of you typing a curl command, the web application was sending the same kind of HTTP POST request to `localhost:1234` with an image and a prompt. Every application that "talks to" an LLM — whether it is a chatbot, an OCR tool, or a research assistant — is making API calls like the ones you just made.
+:::
+
+## Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| `curl: (7) Failed to connect to localhost port 1234` | LM Studio server is not running. Go to the Developer tab and click **Start Server**. |
+| `curl: (56) Recv failure: Connection reset by peer` | The model may still be loading. Wait a few seconds and try again. |
+| Response is very slow | The model is processing. Small models on older hardware may take 10–30 seconds. Be patient. |
+| `curl` is not recognized (Windows) | Make sure you are using **PowerShell** or a recent version of **Command Prompt** (Windows 10 or later). Both include curl by default. If curl is still not found, download it from [curl.se](https://curl.se/download.html). In PowerShell, always type `curl.exe` instead of `curl`. |
+| JSON parse error | Check your quotes carefully. On Windows, every `"` inside the JSON data must be escaped as `\"`. This is the most common source of errors. |
+| Response shows HTML instead of JSON | You may have a typo in the URL. Make sure it is exactly `http://localhost:1234/v1/chat/completions`. |
+
+# From One Request to Many: Batch Translation with Python
+
+In the previous section, you made API calls one at a time by typing curl commands. This works for a quick test, but imagine you have 10 passages to translate — or 100, or 1,000. You would not want to type a curl command for each one. This is exactly the situation we discussed in Meeting 06 when comparing **scripts vs. LLM inference**: a script can automate repetitive tasks that would be tedious to do by hand.
+
+In this section, we will write a Python script that:
+
+1. Sends 10 passages from the *Lunyu* (論語, *Analects*) to LM Studio's API
+2. Prints each translation to the terminal as it completes
+3. Saves all results to a CSV file
+
+```{mermaid}
+flowchart LR
+    A["Python Script"] -->|"Passage 1"| B["LM Studio API\n(localhost:1234)"]
+    B -->|"Translation 1"| A
+    A -->|"Passage 2"| B
+    B -->|"Translation 2"| A
+    A -->|"..."| B
+    B -->|"..."| A
+    A -->|"Save all"| C["translations.csv"]
+```
+
+## What is `uv run --script`?
+
+You already have **uv** installed from earlier in the course. Normally, to run a Python script that uses external libraries, you would need to create a virtual environment, install the libraries, and then run the script. With `uv run`, you can skip all of that.
+
+`uv` supports a special feature called **inline script metadata**: you declare what libraries your script needs at the top of the Python file itself, and `uv` automatically installs them into a temporary environment and runs the script. No project setup, no `pip install`, no virtual environment commands.
+
+Here is what the metadata looks like at the top of a Python file:
+
+```{.python}
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "requests",
+# ]
+# ///
+```
+
+When you run `uv run script.py`, `uv` reads this block, installs `requests` if needed, and executes the script. Everything is handled for you.
+
+:::{.callout-tip}
+This is one of the reasons we use `uv` in this course: it removes the friction of environment setup so you can focus on writing and running code. For quick scripts and experiments, `uv run --script` is the fastest way to go from idea to working code.
+:::
+
+## Step 1: Write the Script
+
+In your `api_practice` folder, create a new file called `batch_translate.py`. You can create it from Antigravity: right-click in the file explorer panel → **New File** → name it `batch_translate.py`.
+
+Copy the following code into the file:
+
+```{.python}
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "requests",
+# ]
+# ///
+
+import requests
+import csv
+
+# The LM Studio API endpoint (same URL we used with curl)
+API_URL = "http://localhost:1234/v1/chat/completions"
+
+# 10 passages from the Lunyu (Analects of Confucius)
+passages = [
+    ("1.1", "子曰：學而時習之，不亦說乎？有朋自遠方來，不亦樂乎？人不知而不慍，不亦君子乎？"),
+    ("1.2", "有子曰：其為人也孝弟，而好犯上者，鮮矣；不好犯上，而好作亂者，未之有也。君子務本，本立而道生。孝弟也者，其為仁之本與！"),
+    ("1.3", "子曰：巧言令色，鮮矣仁！"),
+    ("2.1", "子曰：為政以德，譬如北辰，居其所而眾星共之。"),
+    ("2.2", "子曰：詩三百，一言以蔽之，曰：思無邪。"),
+    ("2.4", "子曰：吾十有五而志于學，三十而立，四十而不惑，五十而知天命，六十而耳順，七十而從心所欲，不踰矩。"),
+    ("4.1", "子曰：里仁為美。擇不處仁，焉得知？"),
+    ("4.17", "子曰：見賢思齊焉，見不賢而內自省也。"),
+    ("7.22", "子曰：三人行，必有我師焉。擇其善者而從之，其不善者而改之。"),
+    ("15.24", "子貢問曰：有一言而可以終身行之者乎？子曰：其恕乎！己所不欲，勿施於人。"),
+]
+
+def translate(passage):
+    """Send a single passage to the LM Studio API and return the translation."""
+    response = requests.post(
+        API_URL,
+        json={
+            "model": "qwen3.5-0.8b",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": f"Translate the following classical Chinese into English. Provide only the translation, no explanation:\n\n{passage}"
+                }
+            ],
+        },
+    )
+    response.raise_for_status()
+    return response.json()["choices"][0]["message"]["content"]
+
+
+def main():
+    results = []
+
+    print("=" * 60)
+    print("Batch Translation: Lunyu (Analects of Confucius)")
+    print("=" * 60)
+
+    for i, (chapter, original) in enumerate(passages, 1):
+        print(f"\n[{i}/10] Translating {chapter}...")
+        print(f"  Original:    {original}")
+
+        try:
+            translation = translate(original)
+            print(f"  Translation: {translation}")
+            results.append((chapter, original, translation))
+        except requests.ConnectionError:
+            print("  ERROR: Cannot connect to LM Studio. Is the server running?")
+            return
+        except Exception as e:
+            print(f"  ERROR: {e}")
+            results.append((chapter, original, f"ERROR: {e}"))
+
+    # Save to CSV
+    output_file = "translations.csv"
+    with open(output_file, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["chapter", "original", "translation"])
+        writer.writerows(results)
+
+    print("\n" + "=" * 60)
+    print(f"Done! {len(results)} translations saved to {output_file}")
+    print("=" * 60)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+### Understanding the Script
+
+Let's walk through the key parts:
+
+| Part | What It Does |
+|------|-------------|
+| `# /// script` block at the top | Tells `uv` that this script needs the `requests` library |
+| `API_URL` | The same endpoint we used with curl — `localhost:1234/v1/chat/completions` |
+| `passages` list | 10 passages from the *Lunyu*, each as a tuple of `(chapter number, text)` |
+| `translate()` function | Sends one passage to the API and returns the translation (does the same thing as our curl command, but in Python) |
+| `requests.post(...)` | The Python equivalent of `curl -d ...` — sends a POST request with JSON data |
+| `response.json()` | Parses the JSON response (the same structure we saw in the curl output) |
+| The `for` loop in `main()` | Goes through all 10 passages one by one, translating each |
+| `csv.writer(...)` | Saves the results to a CSV file that you can open in Excel or Google Sheets |
+
+:::{.callout-note}
+**Comparing curl and Python**: Notice that the `requests.post()` call in the `translate()` function sends the exact same data as our curl command. The URL is the same, the JSON structure is the same, the response format is the same. Python just makes it easier to do this in a loop and save the results.
+
+```{mermaid}
+flowchart TB
+    subgraph "curl (manual)"
+        A1["Type command"] --> A2["Get one response"] --> A3["Copy/paste result"]
+    end
+    subgraph "Python script (automated)"
+        B1["Run script once"] --> B2["Loop through 10 passages"] --> B3["Save all to CSV"]
+    end
+```
+:::
+
+## Step 2: Run the Script
+
+Make sure **LM Studio is still running** with the server started. Then, in your terminal:
+
+```{.bash}
+uv run batch_translate.py
+```
+
+This command works the same on macOS, Windows PowerShell, and Windows Command Prompt.
+
+The first time you run it, `uv` will install the `requests` library (this takes a few seconds). Then you will see the translations appear one by one in your terminal. Be patient — each translation may take a few seconds depending on your hardware.
+
+:::{.callout-important}
+The script processes passages **one at a time** (sequentially). With the Qwen3.5-0.8B model, each translation takes roughly 5–15 seconds, so the full batch of 10 may take 1–3 minutes. This is normal for local inference.
+:::
+
+After the script finishes, you should see a new file called `translations.csv` in your `api_practice` folder. You can open it in Excel, Google Sheets, or any text editor to review the results.
+
+## Step 3: Refactor — Read Passages from a File
+
+The hardcoded list works, but in real research, you would want to swap in different texts without editing the Python script. Let's refactor the script to read passages from an external file.
+
+### Create the Input File
+
+In your `api_practice` folder, create a new file called `lunyu_passages.txt`. Each line should contain a chapter number and the passage, separated by a tab:
+
+```{.txt}
+1.1	子曰：學而時習之，不亦說乎？有朋自遠方來，不亦樂乎？人不知而不慍，不亦君子乎？
+1.2	有子曰：其為人也孝弟，而好犯上者，鮮矣；不好犯上，而好作亂者，未之有也。君子務本，本立而道生。孝弟也者，其為仁之本與！
+1.3	子曰：巧言令色，鮮矣仁！
+2.1	子曰：為政以德，譬如北辰，居其所而眾星共之。
+2.2	子曰：詩三百，一言以蔽之，曰：思無邪。
+2.4	子曰：吾十有五而志于學，三十而立，四十而不惑，五十而知天命，六十而耳順，七十而從心所欲，不踰矩。
+4.1	子曰：里仁為美。擇不處仁，焉得知？
+4.17	子曰：見賢思齊焉，見不賢而內自省也。
+7.22	子曰：三人行，必有我師焉。擇其善者而從之，其不善者而改之。
+15.24	子貢問曰：有一言而可以終身行之者乎？子曰：其恕乎！己所不欲，勿施於人。
+```
+
+:::{.callout-note}
+The chapter number and passage are separated by a **tab character**, not spaces. In Antigravity, you can type a tab by pressing the `Tab` key. This format is called **TSV** (tab-separated values) — similar to CSV, but using tabs instead of commas. Tabs are convenient here because the Chinese text itself may contain commas.
+:::
+
+### Create the Updated Script
+
+Create a new file called `batch_translate_v2.py`:
+
+```{.python}
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "requests",
+# ]
+# ///
+
+import requests
+import csv
+
+API_URL = "http://localhost:1234/v1/chat/completions"
+
+
+def translate(passage):
+    """Send a single passage to the LM Studio API and return the translation."""
+    response = requests.post(
+        API_URL,
+        json={
+            "model": "qwen3.5-0.8b",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": f"Translate the following classical Chinese into English. Provide only the translation, no explanation:\n\n{passage}"
+                }
+            ],
+        },
+    )
+    response.raise_for_status()
+    return response.json()["choices"][0]["message"]["content"]
+
+
+def load_passages(filepath):
+    """Read passages from a tab-separated text file."""
+    passages = []
+    with open(filepath, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            parts = line.split("\t", 1)
+            if len(parts) == 2:
+                passages.append((parts[0], parts[1]))
+    return passages
+
+
+def main():
+    input_file = "lunyu_passages.txt"
+    output_file = "translations.csv"
+
+    passages = load_passages(input_file)
+    total = len(passages)
+
+    if total == 0:
+        print(f"No passages found in {input_file}.")
+        return
+
+    results = []
+
+    print("=" * 60)
+    print(f"Batch Translation: {total} passages from {input_file}")
+    print("=" * 60)
+
+    for i, (chapter, original) in enumerate(passages, 1):
+        print(f"\n[{i}/{total}] Translating {chapter}...")
+        print(f"  Original:    {original}")
+
+        try:
+            translation = translate(original)
+            print(f"  Translation: {translation}")
+            results.append((chapter, original, translation))
+        except requests.ConnectionError:
+            print("  ERROR: Cannot connect to LM Studio. Is the server running?")
+            return
+        except Exception as e:
+            print(f"  ERROR: {e}")
+            results.append((chapter, original, f"ERROR: {e}"))
+
+    with open(output_file, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["chapter", "original", "translation"])
+        writer.writerows(results)
+
+    print("\n" + "=" * 60)
+    print(f"Done! {len(results)} translations saved to {output_file}")
+    print("=" * 60)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Run it the same way:
+
+```{.bash}
+uv run batch_translate_v2.py
+```
+
+### What Changed?
+
+The only difference is the new `load_passages()` function and removing the hardcoded list:
+
+| Version 1 (hardcoded) | Version 2 (file-based) |
+|------------------------|------------------------|
+| Passages are written directly in the Python code | Passages are read from `lunyu_passages.txt` |
+| To change the texts, you edit the script | To change the texts, you edit the text file |
+| Good for learning and quick experiments | Better for real research workflows |
+
+:::{.callout-tip}
+**Why does this matter for research?** In a real project, you might have hundreds of passages to translate, and they might come from different sources — a database export, an OCR output, or a colleague's spreadsheet. By separating the **data** (the text file) from the **logic** (the Python script), you can reuse the same script with any collection of texts. Just prepare a new `.txt` file in the same tab-separated format, update the `input_file` variable, and run the script again.
+:::
+
+## Summary
+
+Here is what you accomplished in this section:
+
+| What You Did | What You Learned |
+|--------------|-----------------|
+| Wrote `batch_translate.py` with hardcoded passages | How to call a REST API from Python using `requests` |
+| Used `uv run` to execute the script | How `uv` inline script metadata eliminates environment setup |
+| Watched 10 translations print to the terminal | How a loop automates repetitive API calls |
+| Opened `translations.csv` | How to save structured results for later analysis |
+| Refactored to read from `lunyu_passages.txt` | How to separate data from logic for reusable research workflows |
+
+# Further Exploration: From Local APIs to Cloud APIs
+
+So far, every API call you have made has been to **your own computer** — `localhost:1234`. The LM Studio server runs on your machine, processes your request, and sends back a response. But APIs are not limited to local servers. The exact same pattern — send a request to a URL, get back structured data — works with APIs hosted on the internet.
+
+In this section, we will use a **cloud API** provided by Harvard Library to search for books. Then we will combine it with our local LM Studio API to build a real research workflow: **fetch bibliographic data from the cloud, then analyze it with a local LLM**.
+
+## Local API vs. Cloud API
+
+Let's compare the two APIs side by side:
+
+| | LM Studio (Local API) | Harvard LibraryCloud (Cloud API) |
+|---|---|---|
+| **URL** | `http://localhost:1234/v1/chat/completions` | `https://api.lib.harvard.edu/v2/items.json` |
+| **Where it runs** | Your own computer | Harvard's servers |
+| **HTTP method** | `POST` (you send data to be processed) | `GET` (you request data to be retrieved) |
+| **Authentication** | None needed (it is your own machine) | None needed (it is a public API) |
+| **What it does** | Generates text using an LLM | Searches Harvard's library catalog |
+| **Data format** | JSON in, JSON out | Query parameters in, JSON out |
+
+:::{.callout-note}
+Notice the key difference in HTTP methods. With LM Studio, we used **POST** because we were *sending* data (a prompt) to be processed. With LibraryCloud, we use **GET** because we are *requesting* data (search results) from a database. This is the same distinction we covered in the REST section: POST = "here is my request slip, please process it"; GET = "what do you have on this topic?"
+:::
+
+```{mermaid}
+flowchart LR
+    subgraph "Your Computer"
+        A["Python Script"]
+        D["LM Studio\n(localhost:1234)"]
+    end
+    subgraph "Harvard Servers"
+        B["LibraryCloud API"]
+        C["Library Catalog\n(millions of records)"]
+    end
+    A -->|"1. GET: search for books"| B
+    B -->|"Queries"| C
+    C -->|"Results"| B
+    B -->|"2. JSON: bibliographic data"| A
+    A -->|"3. POST: analyze this book"| D
+    D -->|"4. JSON: analysis result"| A
+```
+
+## Try It: Search Harvard's Library with curl
+
+Before writing any Python, let's try calling the Harvard LibraryCloud API with curl — just like we did with LM Studio. This time, we use a simple GET request (no `-d` data needed):
+
+**macOS / Windows (all terminals):**
+
+```{.bash}
+curl "https://api.lib.harvard.edu/v2/items.json?q=digital+humanities&limit=2"
+```
+
+:::{.callout-tip}
+This curl command is much simpler than our LM Studio ones! With a GET request, the search parameters go directly into the URL (after the `?`). There is no need for `-H` headers or `-d` data. The same command works identically on macOS, Windows PowerShell, and Windows Command Prompt.
+
+**Tip**: The raw JSON output can be hard to read. You can pipe it through Python to format it nicely:
+
+```{.bash}
+curl "https://api.lib.harvard.edu/v2/items.json?q=digital+humanities&limit=2" | python -m json.tool
+```
+
+On Windows PowerShell, use `curl.exe` instead of `curl`.
+:::
+
+You should see a JSON response with two bibliographic records. The response includes a `pagination` section and an `items` section. Here is what the key fields look like for a single item:
+
+```{.json}
+{
+  "pagination": {
+    "numFound": 38225,
+    "limit": 2,
+    "start": 0
+  },
+  "items": {
+    "mods": {
+      "titleInfo": {
+        "title": "Bloomsbury handbook to the digital humanities"
+      },
+      "name": {
+        "namePart": "O'Sullivan, James Christopher"
+      },
+      "language": {
+        "languageTerm": [
+          {"#text": "eng"},
+          {"#text": "English"}
+        ]
+      },
+      "abstract": {
+        "#text": "Comprising a selection of scholarly essays..."
+      },
+      "subject": [
+        {"topic": "Digital humanities"},
+        {"topic": "Digital media"}
+      ]
+    }
+  }
+}
+```
+
+### Understanding the URL Parameters
+
+| Parameter | What It Does | Example |
+|-----------|-------------|---------|
+| `q=` | The search query (like typing in a library search box) | `q=digital+humanities` |
+| `limit=` | How many results to return (default is 10, max is 250) | `limit=20` |
+| `start=` | Skip the first N results (for pagination) | `start=20` (get results 21–40) |
+
+Try changing the query to search for something related to your own research:
+
+```{.bash}
+curl "https://api.lib.harvard.edu/v2/items.json?q=Song+dynasty+poetry&limit=2"
+```
+
+:::{.callout-note}
+**Connecting the dots**: Using this API is essentially the same as searching [HOLLIS](https://hollis.harvard.edu) — Harvard's library catalog — but instead of getting a webpage with clickable results, you get raw structured data (JSON) that a program can process automatically. The data is the same; only the interface is different.
+:::
+
+## Challenge: Build a Research Workflow with a Coding Agent
+
+Now that you understand how both APIs work, let's combine them into a real research workflow. Instead of writing this script from scratch, we will use **Antigravity's AI agent** (or any coding agent you prefer) to build it for us.
+
+The goal: search Harvard's library catalog for books about "digital humanities," fetch the first 20 results, and then ask LM Studio to determine whether each book contains East Asian-related content.
+
+```{mermaid}
+flowchart TB
+    A["Step 1: Search LibraryCloud API"] -->|"GET: q=digital+humanities, limit=20"| B["Get 20 book records"]
+    B --> C["Step 2: Extract bibliographic data\n(title, abstract, subjects, language)"]
+    C --> D["Step 3: For each book, send to LM Studio"]
+    D -->|"POST: Does this book contain\nEast Asian content?"| E["LM Studio analyzes"]
+    E --> F["Step 4: Save results to CSV\n(title, has_east_asian_content, reasoning)"]
+```
+
+### The Prompt
+
+Open Antigravity's AI chat panel (`Ctrl+Shift+I` / `Cmd+Shift+I`) and paste the following prompt. The agent will write the script for you:
+
+:::{.callout-important}
+Before running the prompt, make sure:
+
+1. **LM Studio** is running with the Qwen3.5-0.8B model and the server started on `localhost:1234`.
+2. You are in the `api_practice` folder.
+:::
+
+```{.markdown}
+Create a Python script called `library_east_asian_filter.py` that uses `uv run` inline
+script metadata (PEP 723) with `requests` as the only dependency. The script should do
+the following:
+
+1. **Search Harvard LibraryCloud API**: Send a GET request to
+   `https://api.lib.harvard.edu/v2/items.json` with the query parameter
+   `q=digital+humanities` and `limit=20` to fetch 20 book records.
+
+2. **Extract bibliographic data**: From each record in the response, extract the
+   following fields from the MODS metadata:
+   - Title (from `titleInfo.title`)
+   - Author/creator name (from `name.namePart` — may be a string or a list)
+   - Language (from `language.languageTerm` — look for the text value, not the code)
+   - Abstract (from `abstract` — may have `#text` key)
+   - Subjects (from `subject` — collect all `topic` values into a comma-separated string)
+
+   Handle missing fields gracefully — not every record has all fields. Use empty strings
+   for missing data.
+
+3. **Analyze each book with LM Studio**: For each of the 20 books, send a POST request
+   to the LM Studio API at `http://localhost:1234/v1/chat/completions` using the model
+   `qwen3.5-0.8b`. The prompt should include the book's title, author, language,
+   abstract, and subjects, and ask the model:
+
+   "Based on the following bibliographic information, does this book contain any content
+   related to East Asia (China, Japan, Korea, Vietnam, Tibet, Mongolia, or East Asian
+   languages, history, culture, literature, or art)? Answer with YES or NO, followed by
+   a one-sentence explanation."
+
+4. **Print progress**: For each book, print the book number (e.g., [1/20]), the title,
+   and the model's YES/NO answer with its reasoning.
+
+5. **Save results to CSV**: Save all results to `east_asian_filter_results.csv` with
+   columns: title, author, language, subjects, east_asian_content (YES/NO), reasoning.
+
+6. **Print a summary** at the end showing how many books were classified as YES vs NO.
+
+Important notes:
+- The LibraryCloud API returns items in a nested structure. The response JSON has
+  `items.mods` which may be a single object or a list of objects. Handle both cases.
+- Use `uv run` inline script metadata at the top of the file.
+- Add error handling for network failures.
+- Print a clear progress indicator so the user can see the script is working.
+```
+
+### After Running the Prompt
+
+The coding agent will generate the script for you. Review the code it produces — you should be able to recognize the patterns from today's exercises:
+
+- `requests.get(...)` for the LibraryCloud API (like our curl GET command)
+- `requests.post(...)` for the LM Studio API (like our batch translation script)
+- A loop that processes items one by one
+- CSV output for the results
+
+Run the generated script with:
+
+```{.bash}
+uv run library_east_asian_filter.py
+```
+
+:::{.callout-tip}
+**This is what a real research workflow looks like**: you combine multiple APIs — one to fetch data, another to analyze it — and automate the entire process with a script. The same pattern works with any combination of APIs: search a digital archive, download OCR text, classify it with an LLM, and save the results. The building blocks are always the same: HTTP requests, JSON data, and a loop.
+:::
+
+:::{.callout-note}
+**Why use a coding agent for this?** The `library_east_asian_filter.py` script is more complex than what we wrote by hand earlier — it needs to navigate Harvard's nested MODS metadata format, handle missing fields, and coordinate two different APIs. This is a realistic example of where a coding agent shines: you describe *what* you want in plain English, and the agent handles the messy implementation details. But because you now understand how APIs work (from the curl and batch translation exercises), you can **read and verify** the code the agent produces. You are not blindly trusting it — you are an informed reviewer.
+:::
