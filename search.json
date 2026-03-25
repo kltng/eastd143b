@@ -497,81 +497,291 @@
     "text": "Recommended Readings and Online Tutorials\nThe class does not require a textbook. Please watch the Programming Concepts for Python course by the third week meeting. You should be able to access this video course by using your HarvardKey. For documentation and tutorials for specific tools that we use in class, links are in the weekly meeting materials."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities (Coding Approach)",
+    "objectID": "meeting_08/meeting_08.html",
+    "href": "meeting_08/meeting_08.html",
+    "title": "Meeting 08",
     "section": "",
-    "text": "Welcome to the course website for EASTD143B (Spring 2026).\n\nSee the Syllabus\nSee weekly materials under Meetings"
+    "text": "Part 1 — APIs (continued from Meeting 07)\n\nRecap: Local APIs (from Meeting 07)\nFrom local APIs to cloud APIs\nHands-on: Harvard LibraryCloud API\nChallenge: Combining local and cloud APIs\n\nPart 2 — Knowledge Management with Obsidian\n\nInstall Codex Desktop (AI coding agent)\nTry a humanities skill: Harvard Library search (compare with Part 1)\nInstall Obsidian and download the Humanities Vault\nExplore the vault structure\nHands-on: Using Codex Desktop inside the vault"
   },
   {
-    "objectID": "meeting_03/meeting_03.html",
-    "href": "meeting_03/meeting_03.html",
-    "title": "Meeting 03",
+    "objectID": "meeting_08/meeting_08.html#what-is-an-api",
+    "href": "meeting_08/meeting_08.html#what-is-an-api",
+    "title": "Meeting 08",
+    "section": "What is an API?",
+    "text": "What is an API?\nAn API is a set of rules that allows one piece of software to communicate with another. We used the library reference desk analogy:\n\n\n\n\n\n\n\nLibrary Reference Desk\nAPI\n\n\n\n\nYou (the patron)\nYour application (curl, Python script, a web app)\n\n\nThe reference desk window\nThe API endpoint (a URL where you send requests)\n\n\nThe request slip (with specific fields)\nThe API request (structured data in a specific format)\n\n\nThe librarian goes into the stacks\nThe server processes your request (e.g., runs the LLM)\n\n\nThe book or answer returned to you\nThe API response (structured data sent back)\n\n\n\n\n\n\n\n\nflowchart LR\n    A[\"Your Application\\n(curl, Python, web app)\"] --&gt;|\"Request\\n(structured data)\"| B[\"API Endpoint\\n(URL)\"]\n    B --&gt;|\"Processes request\"| C[\"Server\\n(LM Studio + Model)\"]\n    C --&gt;|\"Result\"| B\n    B --&gt;|\"Response\\n(structured data)\"| A"
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#rest-and-json",
+    "href": "meeting_08/meeting_08.html#rest-and-json",
+    "title": "Meeting 08",
+    "section": "REST and JSON",
+    "text": "REST and JSON\nWe learned that most web APIs follow the REST style:\n\nURLs identify resources (e.g., http://localhost:1234/v1/chat/completions)\nHTTP methods specify what you want to do: GET (retrieve) or POST (send data)\nJSON is the data format for both requests and responses"
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#what-we-did-with-curl",
+    "href": "meeting_08/meeting_08.html#what-we-did-with-curl",
+    "title": "Meeting 08",
+    "section": "What We Did with curl",
+    "text": "What We Did with curl\nWe used curl to send API requests directly from the terminal:\nmacOS:\ncurl http://localhost:1234/v1/chat/completions \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"model\": \"qwen3.5-0.8b\",\n    \"messages\": [\n      {\"role\": \"user\", \"content\": \"Translate the following classical Chinese into English: 子曰：學而時習之，不亦說乎？\"}\n    ]\n  }'\nWindows (PowerShell):\ncurl.exe http://localhost:1234/v1/chat/completions `\n  -H \"Content-Type: application/json\" `\n  -d '{\n    \\\"model\\\": \\\"qwen3.5-0.8b\\\",\n    \\\"messages\\\": [\n      {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Translate the following classical Chinese into English: 子曰：學而時習之，不亦說乎？\\\"}\n    ]\n  }'\nThe JSON response contained the model’s reply in choices[0].message.content."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#what-we-did-with-python",
+    "href": "meeting_08/meeting_08.html#what-we-did-with-python",
+    "title": "Meeting 08",
+    "section": "What We Did with Python",
+    "text": "What We Did with Python\nWe wrote a Python script (batch_translate.py) that automated the process — sending 10 passages from the Lunyu to the API in a loop and saving the translations to a CSV file. We used uv run with PEP 723 inline script metadata so that dependencies were handled automatically:\n# /// script\n# requires-python = \"&gt;=3.11\"\n# dependencies = [\n#     \"requests\",\n# ]\n# ///\nWe then refactored the script (batch_translate_v2.py) to read passages from an external text file instead of hardcoding them — separating data from logic for reusable research workflows.\n\n\n\n\n\n\nNote\n\n\n\nKey takeaway from Meeting 07: Every application that “talks to” an LLM — whether it is a chatbot, an OCR tool, or a research assistant — is making API calls. The pattern is always the same: send a structured request to a URL, get back a structured response. Once you understand this pattern, you can combine APIs to build powerful research workflows."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#local-api-vs.-cloud-api",
+    "href": "meeting_08/meeting_08.html#local-api-vs.-cloud-api",
+    "title": "Meeting 08",
+    "section": "Local API vs. Cloud API",
+    "text": "Local API vs. Cloud API\nLet’s compare the two APIs side by side:\n\n\n\n\n\n\n\n\n\nLM Studio (Local API)\nHarvard LibraryCloud (Cloud API)\n\n\n\n\nURL\nhttp://localhost:1234/v1/chat/completions\nhttps://api.lib.harvard.edu/v2/items.json\n\n\nWhere it runs\nYour own computer\nHarvard’s servers\n\n\nHTTP method\nPOST (you send data to be processed)\nGET (you request data to be retrieved)\n\n\nAuthentication\nNone needed (it is your own machine)\nNone needed (it is a public API)\n\n\nWhat it does\nGenerates text using an LLM\nSearches Harvard’s library catalog\n\n\nData format\nJSON in, JSON out\nQuery parameters in, JSON out\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nNotice the key difference in HTTP methods. With LM Studio, we used POST because we were sending data (a prompt) to be processed. With LibraryCloud, we use GET because we are requesting data (search results) from a database. This is the same distinction we covered in the REST section: POST = “here is my request slip, please process it”; GET = “what do you have on this topic?”\n\n\n\n\n\n\n\nflowchart LR\n    subgraph \"Your Computer\"\n        A[\"Python Script\"]\n        D[\"LM Studio\\n(localhost:1234)\"]\n    end\n    subgraph \"Harvard Servers\"\n        B[\"LibraryCloud API\"]\n        C[\"Library Catalog\\n(millions of records)\"]\n    end\n    A --&gt;|\"1. GET: search for books\"| B\n    B --&gt;|\"Queries\"| C\n    C --&gt;|\"Results\"| B\n    B --&gt;|\"2. JSON: bibliographic data\"| A\n    A --&gt;|\"3. POST: analyze this book\"| D\n    D --&gt;|\"4. JSON: analysis result\"| A"
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#try-it-search-harvards-library-with-curl",
+    "href": "meeting_08/meeting_08.html#try-it-search-harvards-library-with-curl",
+    "title": "Meeting 08",
+    "section": "Try It: Search Harvard’s Library with curl",
+    "text": "Try It: Search Harvard’s Library with curl\nBefore writing any Python, let’s try calling the Harvard LibraryCloud API with curl — just like we did with LM Studio. This time, we use a simple GET request (no -d data needed):\nmacOS / Windows (all terminals):\ncurl \"https://api.lib.harvard.edu/v2/items.json?q=digital+humanities&limit=2\"\n\n\n\n\n\n\nTip\n\n\n\nThis curl command is much simpler than our LM Studio ones! With a GET request, the search parameters go directly into the URL (after the ?). There is no need for -H headers or -d data. The same command works identically on macOS, Windows PowerShell, and Windows Command Prompt.\nTip: The raw JSON output can be hard to read. You can pipe it through Python to format it nicely:\ncurl \"https://api.lib.harvard.edu/v2/items.json?q=digital+humanities&limit=2\" | python -m json.tool\nOn Windows PowerShell, use curl.exe instead of curl.\n\n\nYou should see a JSON response with two bibliographic records. The response includes a pagination section and an items section. Here is what the key fields look like for a single item:\n{\n  \"pagination\": {\n    \"numFound\": 38225,\n    \"limit\": 2,\n    \"start\": 0\n  },\n  \"items\": {\n    \"mods\": {\n      \"titleInfo\": {\n        \"title\": \"Bloomsbury handbook to the digital humanities\"\n      },\n      \"name\": {\n        \"namePart\": \"O'Sullivan, James Christopher\"\n      },\n      \"language\": {\n        \"languageTerm\": [\n          {\"#text\": \"eng\"},\n          {\"#text\": \"English\"}\n        ]\n      },\n      \"abstract\": {\n        \"#text\": \"Comprising a selection of scholarly essays...\"\n      },\n      \"subject\": [\n        {\"topic\": \"Digital humanities\"},\n        {\"topic\": \"Digital media\"}\n      ]\n    }\n  }\n}\n\nUnderstanding the URL Parameters\n\n\n\n\n\n\n\n\nParameter\nWhat It Does\nExample\n\n\n\n\nq=\nThe search query (like typing in a library search box)\nq=digital+humanities\n\n\nlimit=\nHow many results to return (default is 10, max is 250)\nlimit=20\n\n\nstart=\nSkip the first N results (for pagination)\nstart=20 (get results 21–40)\n\n\n\nTry changing the query to search for something related to your own research:\ncurl \"https://api.lib.harvard.edu/v2/items.json?q=Song+dynasty+poetry&limit=2\"\n\n\n\n\n\n\nNote\n\n\n\nConnecting the dots: Using this API is essentially the same as searching HOLLIS — Harvard’s library catalog — but instead of getting a webpage with clickable results, you get raw structured data (JSON) that a program can process automatically. The data is the same; only the interface is different."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#challenge-build-a-research-workflow-with-a-coding-agent",
+    "href": "meeting_08/meeting_08.html#challenge-build-a-research-workflow-with-a-coding-agent",
+    "title": "Meeting 08",
+    "section": "Challenge: Build a Research Workflow with a Coding Agent",
+    "text": "Challenge: Build a Research Workflow with a Coding Agent\nNow that you understand how both APIs work, let’s combine them into a real research workflow. Instead of writing this script from scratch, we will use Antigravity’s AI agent (or any coding agent you prefer) to build it for us.\nThe goal: search Harvard’s library catalog for books about “digital humanities,” fetch the first 20 results, and then ask LM Studio to determine whether each book contains East Asian-related content.\n\n\n\n\n\nflowchart TB\n    A[\"Step 1: Search LibraryCloud API\"] --&gt;|\"GET: q=digital+humanities, limit=20\"| B[\"Get 20 book records\"]\n    B --&gt; C[\"Step 2: Extract bibliographic data\\n(title, abstract, subjects, language)\"]\n    C --&gt; D[\"Step 3: For each book, send to LM Studio\"]\n    D --&gt;|\"POST: Does this book contain\\nEast Asian content?\"| E[\"LM Studio analyzes\"]\n    E --&gt; F[\"Step 4: Save results to CSV\\n(title, has_east_asian_content, reasoning)\"]\n\n\n\n\n\n\n\nThe Prompt\nOpen Antigravity’s AI chat panel (Ctrl+Shift+I / Cmd+Shift+I) and paste the following prompt. The agent will write the script for you:\n\n\n\n\n\n\nImportant\n\n\n\nBefore running the prompt, make sure:\n\nLM Studio is running with the Qwen3.5-0.8B model and the server started on localhost:1234.\nYou are in the api_practice folder.\n\n\n\nCreate a Python script called `library_east_asian_filter.py` that uses `uv run` inline\nscript metadata (PEP 723) with `requests` as the only dependency. The script should do\nthe following:\n\n1. **Search Harvard LibraryCloud API**: Send a GET request to\n   `https://api.lib.harvard.edu/v2/items.json` with the query parameter\n   `q=digital+humanities` and `limit=20` to fetch 20 book records.\n\n2. **Extract bibliographic data**: From each record in the response, extract the\n   following fields from the MODS metadata:\n   - Title (from `titleInfo.title`)\n   - Author/creator name (from `name.namePart` — may be a string or a list)\n   - Language (from `language.languageTerm` — look for the text value, not the code)\n   - Abstract (from `abstract` — may have `#text` key)\n   - Subjects (from `subject` — collect all `topic` values into a comma-separated string)\n\n   Handle missing fields gracefully — not every record has all fields. Use empty strings\n   for missing data.\n\n3. **Analyze each book with LM Studio**: For each of the 20 books, send a POST request\n   to the LM Studio API at `http://localhost:1234/v1/chat/completions` using the model\n   `qwen3.5-0.8b`. The prompt should include the book's title, author, language,\n   abstract, and subjects, and ask the model:\n\n   \"Based on the following bibliographic information, does this book contain any content\n   related to East Asia (China, Japan, Korea, Vietnam, Tibet, Mongolia, or East Asian\n   languages, history, culture, literature, or art)? Answer with YES or NO, followed by\n   a one-sentence explanation.\"\n\n4. **Print progress**: For each book, print the book number (e.g., [1/20]), the title,\n   and the model's YES/NO answer with its reasoning.\n\n5. **Save results to CSV**: Save all results to `east_asian_filter_results.csv` with\n   columns: title, author, language, subjects, east_asian_content (YES/NO), reasoning.\n\n6. **Print a summary** at the end showing how many books were classified as YES vs NO.\n\nImportant notes:\n- The LibraryCloud API returns items in a nested structure. The response JSON has\n  `items.mods` which may be a single object or a list of objects. Handle both cases.\n- Use `uv run` inline script metadata at the top of the file.\n- Add error handling for network failures.\n- Print a clear progress indicator so the user can see the script is working.\n\n\nAfter Running the Prompt\nThe coding agent will generate the script for you. Review the code it produces — you should be able to recognize the patterns from today’s exercises:\n\nrequests.get(...) for the LibraryCloud API (like our curl GET command)\nrequests.post(...) for the LM Studio API (like our batch translation script)\nA loop that processes items one by one\nCSV output for the results\n\nRun the generated script with:\nuv run library_east_asian_filter.py\n\n\n\n\n\n\nTip\n\n\n\nThis is what a real research workflow looks like: you combine multiple APIs — one to fetch data, another to analyze it — and automate the entire process with a script. The same pattern works with any combination of APIs: search a digital archive, download OCR text, classify it with an LLM, and save the results. The building blocks are always the same: HTTP requests, JSON data, and a loop.\n\n\n\n\n\n\n\n\nNote\n\n\n\nWhy use a coding agent for this? The library_east_asian_filter.py script is more complex than what we wrote by hand earlier — it needs to navigate Harvard’s nested MODS metadata format, handle missing fields, and coordinate two different APIs. This is a realistic example of where a coding agent shines: you describe what you want in plain English, and the agent handles the messy implementation details. But because you now understand how APIs work (from the curl and batch translation exercises), you can read and verify the code the agent produces. You are not blindly trusting it — you are an informed reviewer."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#download-and-install-codex-desktop",
+    "href": "meeting_08/meeting_08.html#download-and-install-codex-desktop",
+    "title": "Meeting 08",
+    "section": "Download and Install Codex Desktop",
+    "text": "Download and Install Codex Desktop\nCodex Desktop is a standalone application with a graphical interface — no terminal or command-line experience needed.\nmacOS:\n\nGo to https://openai.com/index/introducing-codex/\nClick Download for macOS\nOpen the downloaded .dmg file\nDrag Codex to your Applications folder\nOpen Codex from your Applications folder (or Spotlight: press Cmd+Space and type “Codex”)\n\nWindows:\n\nGo to https://openai.com/index/introducing-codex/\nClick Download for Windows\nRun the installer and follow the prompts\nOpen Codex from the Start menu\n\n\n\n\n\n\n\nNote\n\n\n\nIf macOS shows a security warning (“Codex can’t be opened because it is from an unidentified developer”), go to System Settings → Privacy & Security and click Open Anyway."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#authenticate-with-your-harvard-account",
+    "href": "meeting_08/meeting_08.html#authenticate-with-your-harvard-account",
+    "title": "Meeting 08",
+    "section": "Authenticate with Your Harvard Account",
+    "text": "Authenticate with Your Harvard Account\nWhen you open Codex Desktop for the first time, it will ask you to sign in.\n\nOpen Codex Desktop — you will see a login screen.\nFor username, enter your Harvard email address (e.g., jdoe@college.harvard.edu).\nA browser window will open for authentication. Sign in using your HarvardKey credentials — the same username and password you use for my.harvard, Canvas, and other Harvard services.\nAfter successful authentication, the browser will redirect you back to the Codex Desktop app. You should see the main Codex interface.\n\n\n\n\n\n\n\nImportant\n\n\n\nUse your Harvard email. Do not use a personal Gmail or other email address. The course access is provisioned through Harvard’s institutional account. If you use a different email, you will not be able to connect.\n\n\n\n\n\n\n\n\nNote\n\n\n\nWhat is HarvardKey? HarvardKey is Harvard’s unified authentication system. If you can log into Canvas or my.harvard, you already have a HarvardKey. If you have trouble logging in, visit https://key.harvard.edu for help."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#test-codex-desktop",
+    "href": "meeting_08/meeting_08.html#test-codex-desktop",
+    "title": "Meeting 08",
+    "section": "Test Codex Desktop",
+    "text": "Test Codex Desktop\nOnce logged in, try asking Codex a simple question to make sure everything works:\n\nIn the Codex chat window, type:\n\nWhat is the capital of France?\n\nPress Enter. Codex should respond with an answer.\n\nIf you see an authentication error, close the app, reopen it, and sign in again with your Harvard email.\n\n\n\n\n\n\nTip\n\n\n\nCodex Desktop has three autonomy modes that control how much it can do without asking you first:\n\n\n\n\n\n\n\nMode\nWhat Codex Can Do Without Asking\n\n\n\n\nsuggest (default)\nOnly suggests actions; you approve each one\n\n\nauto-edit\nCan read and edit files, but asks before running commands\n\n\nfull-auto\nCan read, edit, and run commands without asking\n\n\n\nFor learning, start with the default suggest mode. You can change it later as you get more comfortable."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#what-is-a-skill",
+    "href": "meeting_08/meeting_08.html#what-is-a-skill",
+    "title": "Meeting 08",
+    "section": "What is a Skill?",
+    "text": "What is a Skill?\nA skill is a set of instructions and reference material that teaches Codex how to use a specific tool or API. Without a skill, Codex has only its general knowledge — it might guess the wrong URL, use the wrong query format, or miss important details. With a skill, Codex has precise, up-to-date documentation and can work correctly the first time.\nThink of it this way: in Part 1, you had to read the API documentation and write the code yourself. A skill puts that documentation inside Codex, so you can just describe what you want in plain English."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#install-the-harvard-library-skill",
+    "href": "meeting_08/meeting_08.html#install-the-harvard-library-skill",
+    "title": "Meeting 08",
+    "section": "Install the Harvard Library Skill",
+    "text": "Install the Harvard Library Skill\nThe humanities-skills repository on GitHub contains skills for academic research APIs. We will install the harvard-library-catalog skill, which teaches Codex how to search Harvard Library’s 13 million+ bibliographic records.\n\nIn Codex Desktop, open a new conversation\nType the following to install the skill:\n\n/install github:kltng/humanities-skills/harvard-library-catalog\n\n\n\n\n\n\nNote\n\n\n\nWhat just happened? Codex downloaded the skill from GitHub and loaded it into memory. The skill contains:\n\nDocumentation for the Harvard LibraryCloud API (the same API you used with curl in Part 1)\nA Python helper script with built-in rate limiting and pagination\nA reference guide for all searchable fields (title, author, subject, language, date, and more)\n\nCodex now knows things it did not know before — for example, that LibraryCloud requires a User-Agent header, that JSON responses need .json in the URL path, and that field-based search uses query parameters (not Solr syntax)."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#try-it-search-harvard-library-with-a-skill",
+    "href": "meeting_08/meeting_08.html#try-it-search-harvard-library-with-a-skill",
+    "title": "Meeting 08",
+    "section": "Try It: Search Harvard Library with a Skill",
+    "text": "Try It: Search Harvard Library with a Skill\nNow ask Codex to search the library catalog. Type:\nSearch Harvard Library for books about \"digital humanities\" and show me the first 5 results\nwith their titles, authors, and subjects.\nCodex will write and run a Python script that calls the Harvard LibraryCloud API — the same API you used manually in Part 1. But notice the difference: you did not need to know the URL, the query format, or the JSON structure. The skill provided all of that."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#compare-three-ways-to-search-harvard-library",
+    "href": "meeting_08/meeting_08.html#compare-three-ways-to-search-harvard-library",
+    "title": "Meeting 08",
+    "section": "Compare: Three Ways to Search Harvard Library",
+    "text": "Compare: Three Ways to Search Harvard Library\nYou have now searched Harvard’s library catalog in three different ways across this course. Let’s compare them:\n\n\n\n\n\n\n\n\n\n\nAntigravity (Meeting 07)\ncurl / Python (Part 1 Today)\nCodex + Skill (Now)\n\n\n\n\nWhat you typed\nA prompt to the coding agent\ncurl command or Python code\nA plain English request\n\n\nWho wrote the code?\nThe coding agent\nYou (or the agent from a detailed prompt)\nCodex, guided by the skill\n\n\nAPI knowledge needed?\nYou described the API in the prompt\nYou had to know the URL, parameters, and JSON format\nThe skill provides all API knowledge\n\n\nError handling?\nDepended on the agent\nYou wrote it yourself\nBuilt into the skill’s helper script\n\n\nRate limiting?\nProbably missing\nYou had to add it\nAutomatic (1 req/sec, built into the skill)\n\n\nReproducibility\nDepends on the prompt quality\nHigh (code is saved)\nHigh (skill ensures consistent behavior)\n\n\n\n\n\n\n\n\nflowchart TB\n    subgraph \"Meeting 07: Antigravity\"\n        A1[\"You write a detailed prompt\\n(including API URL, format, etc.)\"] --&gt; A2[\"Coding agent generates script\"] --&gt; A3[\"Script may or may not work\\n(depends on prompt quality)\"]\n    end\n    subgraph \"Part 1 Today: curl / Python\"\n        B1[\"You read the API docs\"] --&gt; B2[\"You write curl commands\\nor Python scripts\"] --&gt; B3[\"You handle errors,\\nrate limits, parsing\"]\n    end\n    subgraph \"Now: Codex + Skill\"\n        C1[\"Skill provides API docs\\nto Codex automatically\"] --&gt; C2[\"You describe what you want\\nin plain English\"] --&gt; C3[\"Codex writes correct code\\nusing the skill's knowledge\"]\n    end\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nThe key insight: Skills solve the problem of getting the prompt right. In Meeting 07, when you used Antigravity’s coding agent, you had to write a very detailed prompt that described the API endpoint, the JSON format, and how to handle edge cases. If you forgot something, the code would fail. With a skill, all that API knowledge is pre-loaded — you just describe your research goal, and Codex handles the rest."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#try-it-a-more-complex-query",
+    "href": "meeting_08/meeting_08.html#try-it-a-more-complex-query",
+    "title": "Meeting 08",
+    "section": "Try It: A More Complex Query",
+    "text": "Try It: A More Complex Query\nNow try something that would have been difficult with a simple curl command:\nSearch Harvard Library for Chinese-language books about Song dynasty poetry published\nafter 1990. Show the first 10 results with title, author, date, and subjects.\nThen save the results to a CSV file called song_poetry_books.csv.\nCodex will use field-specific search parameters (languageCode=chi, subject=Song dynasty poetry, dates.start=1990) that the skill taught it — parameters you would have had to look up in the API documentation yourself.\n\n\n\n\n\n\nNote\n\n\n\nConnecting the dots: This is the same workflow we built in Part 1 (search an API → process results → save to CSV), but now Codex does all the work. You are the research director — you decide what to search for — and Codex is the research assistant that handles the implementation. The skill ensures the assistant knows how to use the tools correctly."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#what-other-skills-are-available",
+    "href": "meeting_08/meeting_08.html#what-other-skills-are-available",
+    "title": "Meeting 08",
+    "section": "What Other Skills Are Available?",
+    "text": "What Other Skills Are Available?\nThe humanities-skills repository contains skills for many research APIs:\n\n\n\n\n\n\n\nSkill\nWhat It Searches\n\n\n\n\nharvard-library-catalog\nHarvard Library (13M+ records)\n\n\ncbdb-api\nChina Biographical Database (500K+ historical figures)\n\n\nchgis-tgaz\nChina Historical GIS Temporal Gazetteer (placenames, 222 BCE–1911 CE)\n\n\nwikidata-search\nWikidata (keyword, SPARQL, entity retrieval)\n\n\nloc-catalog\nLibrary of Congress catalog\n\n\nhathitrust-catalog\nHathiTrust Digital Library\n\n\nzotero-local\nYour local Zotero library\n\n\neuropeana-collections\nEuropeana digital collections\n\n\nhistorical-map\nInteractive historical maps\n\n\nhistorical-timeline\nTimeline visualizations\n\n\ncjk-calendar\nChinese/Japanese/Korean calendar conversion\n\n\n\nWe will use several of these skills in later meetings as we build out our research projects."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#download-and-install-obsidian",
+    "href": "meeting_08/meeting_08.html#download-and-install-obsidian",
+    "title": "Meeting 08",
+    "section": "Download and Install Obsidian",
+    "text": "Download and Install Obsidian\n\nGo to https://obsidian.md\nClick Download and choose your operating system (macOS, Windows, or Linux)\nInstall the application:\n\nmacOS: Open the .dmg file and drag Obsidian to your Applications folder\nWindows: Run the installer and follow the prompts\n\nOpen Obsidian after installation\n\n\n\n\n\n\n\nNote\n\n\n\nObsidian is free for personal use. You do not need to create an account or sign in."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#option-a-download-as-zip-recommended-for-beginners",
+    "href": "meeting_08/meeting_08.html#option-a-download-as-zip-recommended-for-beginners",
+    "title": "Meeting 08",
+    "section": "Option A: Download as ZIP (Recommended for Beginners)",
+    "text": "Option A: Download as ZIP (Recommended for Beginners)\n\nGo to https://github.com/kltng/obsidian_humanities\nClick the green Code button\nSelect the codex-edition branch from the branch dropdown (important — do not use the default master branch)\nClick Download ZIP\nExtract the ZIP file to a location you can easily find. Recommended locations:\n\nmacOS: ~/Documents/obsidian_humanities/\nWindows: C:\\Users\\YourName\\Documents\\obsidian_humanities\\"
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#option-b-clone-with-git-if-you-know-git",
+    "href": "meeting_08/meeting_08.html#option-b-clone-with-git-if-you-know-git",
+    "title": "Meeting 08",
+    "section": "Option B: Clone with Git (If You Know Git)",
+    "text": "Option B: Clone with Git (If You Know Git)\n# macOS\ncd ~/Documents\ngit clone -b codex-edition https://github.com/kltng/obsidian_humanities.git\n\n# Windows (PowerShell)\ncd ~\\Documents\ngit clone -b codex-edition https://github.com/kltng/obsidian_humanities.git\n\n\n\n\n\n\nImportant\n\n\n\nMake sure you are on the codex-edition branch. This branch contains the Codex configuration files (AGENTS.md and skill settings). The default master branch does not have these."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#install-the-minimal-theme",
+    "href": "meeting_08/meeting_08.html#install-the-minimal-theme",
+    "title": "Meeting 08",
+    "section": "Install the Minimal Theme",
+    "text": "Install the Minimal Theme\nThe vault is designed to work with the Minimal theme for a clean reading experience:\n\nIn Obsidian, open Settings (click the gear icon in the bottom-left, or press Ctrl/Cmd+,)\nGo to Appearance in the left sidebar\nUnder Themes, click Manage\nSearch for Minimal\nClick Install and use"
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#the-5-layer-curriculum",
+    "href": "meeting_08/meeting_08.html#the-5-layer-curriculum",
+    "title": "Meeting 08",
+    "section": "The 5-Layer Curriculum",
+    "text": "The 5-Layer Curriculum\nThe vault is organized as a progressive curriculum — each layer builds on the previous one:\n\n\n\n\n\n\n\n\nLayer\nFolder\nWhat You Learn\n\n\n\n\nLayer 1\n01-Foundations/\nCreating notes, wikilinks, tags, templates\n\n\nLayer 2\n02-Research-Workflow/\nReading notes, bibliography, Codex as research assistant\n\n\nLayer 3\n03-Structured-Data/\nYAML frontmatter, database views (Bases), geographic data, Codex as vault builder\n\n\nLayer 4\n04-Analysis/\nNetwork visualization (Canvas), pattern discovery, text analysis, Codex as data processor\n\n\nLayer 5\n05-Customization/\nMCP servers, skills, slash commands, connecting to external databases\n\n\n\n\n\n\n\n\nflowchart TB\n    L1[\"Layer 1: Foundations\\n(Notes, Links, Tags)\"] --&gt; L2[\"Layer 2: Research Workflow\\n(Bibliography, Reading Notes)\"]\n    L2 --&gt; L3[\"Layer 3: Structured Data\\n(Frontmatter, Bases, Maps)\"]\n    L3 --&gt; L4[\"Layer 4: Analysis\\n(Canvas, Networks, Text Mining)\"]\n    L4 --&gt; L5[\"Layer 5: Customization\\n(MCP Servers, Skills, Databases)\"]\n    L1 -.-&gt;|\"Codex as Assistant\"| L2\n    L2 -.-&gt;|\"Codex as Builder\"| L3\n    L3 -.-&gt;|\"Codex as Processor\"| L4\n    L4 -.-&gt;|\"Codex as Customizer\"| L5\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nNotice how Codex plays a different role at each layer — from simple research assistant (summarizing sources) to advanced data processor (extracting structured information from texts). You do not need to use Codex at every layer, but it becomes increasingly powerful as your vault grows."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#templates",
+    "href": "meeting_08/meeting_08.html#templates",
+    "title": "Meeting 08",
+    "section": "Templates",
+    "text": "Templates\nThe vault includes 6 templates in the Templates/ folder for creating standardized research entries:\n\n\n\n\n\n\n\n\nTemplate\nPurpose\nKey Fields\n\n\n\n\nPerson.md\nHistorical figures\nname, name_zh, courtesy_name, birth, death, native_place, roles[]\n\n\nText.md\nPrimary sources / monographs\ntitle, title_zh, author, date, genre, language\n\n\nPlace.md\nGeographic locations\nname, name_zh, coordinates[], province, significance\n\n\nEvent.md\nHistorical events\nname, name_zh, date, location, participants[], type\n\n\nBibliography.md\nSecondary sources\ntitle, author, year, publisher, type\n\n\nReading-Note.md\nAnnotated reading notes\nsource, date_read, key_points[], questions[]\n\n\n\nTo use a template: press Ctrl/Cmd+P to open the command palette, type “Templates: Insert template”, and select the template you want."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#your-workspace",
+    "href": "meeting_08/meeting_08.html#your-workspace",
+    "title": "Meeting 08",
+    "section": "Your Workspace",
+    "text": "Your Workspace\nThe My-Research/ folder is your personal workspace. It mirrors the sample project structure with empty folders:\nMy-Research/\n├── People/          ← Your biographical entries\n├── Texts/           ← Your primary sources\n├── Places/          ← Your geographic locations\n├── Events/          ← Your historical events\n├── Bibliography/    ← Your secondary sources\n├── Reading-Notes/   ← Your annotated reading notes\n└── Canvas/          ← Your network diagrams\nAs you progress through the course, you will fill this workspace with entries from your own research project."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#try-it-navigate-the-vault",
+    "href": "meeting_08/meeting_08.html#try-it-navigate-the-vault",
+    "title": "Meeting 08",
+    "section": "Try It: Navigate the Vault",
+    "text": "Try It: Navigate the Vault\n\nIn Obsidian, click on 00-Start-Here/Welcome in the file explorer\nRead the Welcome note — notice the blue wikilinks like [[How-to-Use-This-Vault]]\nClick on one of the wikilinks — this takes you to the linked note\nPress Ctrl/Cmd+G to open the Graph View — you will see all the notes in the vault as connected dots\nClick on any dot to navigate to that note\n\n\n\n\n\n\n\nTip\n\n\n\nWikilinks are the core navigation tool in Obsidian. Instead of organizing notes in a strict folder hierarchy (like Google Drive), you connect notes to each other with [[links]]. Over time, this builds a network of knowledge — the graph view lets you see and explore that network visually."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#open-the-vault-in-codex-desktop",
+    "href": "meeting_08/meeting_08.html#open-the-vault-in-codex-desktop",
+    "title": "Meeting 08",
+    "section": "Open the Vault in Codex Desktop",
+    "text": "Open the Vault in Codex Desktop\n\nOpen Codex Desktop\nClick the folder icon or Open Folder button in the top area of the window\nNavigate to your obsidian_humanities folder:\n\nmacOS: Documents/obsidian_humanities/\nWindows: Documents\\obsidian_humanities\\\n\nSelect the folder and click Open\n\nCodex will detect the vault’s AGENTS.md file and understand that it is working inside an Obsidian humanities vault. This gives it context about the vault’s conventions — YAML frontmatter, wikilinks, templates, and the folder structure.\n\n\n\n\n\n\nNote\n\n\n\nWhat is AGENTS.md? It is a special file in the vault that tells Codex how the vault is organized — what templates are available, how notes should be formatted, and what conventions to follow. You do not need to edit it; it is already set up for you."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#try-it-ask-codex-about-the-vault",
+    "href": "meeting_08/meeting_08.html#try-it-ask-codex-about-the-vault",
+    "title": "Meeting 08",
+    "section": "Try It: Ask Codex About the Vault",
+    "text": "Try It: Ask Codex About the Vault\nIn the Codex chat window, type:\nWhat is the structure of this Obsidian vault? What templates are available?\nPress Enter. Codex will read the vault files and give you a summary. This is the same information you just explored manually in Obsidian, but now you can ask questions about it in natural language."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#try-it-create-your-first-note-with-codex",
+    "href": "meeting_08/meeting_08.html#try-it-create-your-first-note-with-codex",
+    "title": "Meeting 08",
+    "section": "Try It: Create Your First Note with Codex",
+    "text": "Try It: Create Your First Note with Codex\nLet’s use Codex to create a Person entry in your workspace. Type the following into the Codex chat window:\nCreate a new Person note in My-Research/People/ for the Song dynasty poet Su Shi (蘇軾).\nUse the Person template. Fill in: born 1037, died 1101, courtesy name Zizhan (子瞻),\nart name Dongpo Jushi (東坡居士), native place Meishan (眉山), roles: poet, calligrapher,\nstatesman. Add a brief description.\nCodex will show you the file it wants to create. In suggest mode (the default), it will ask for your approval before writing the file. Click Accept or press Enter to confirm.\nThe file will be created at My-Research/People/Su-Shi.md with properly formatted YAML frontmatter and Obsidian Markdown content. Switch to Obsidian — you should see the new note appear in the file explorer.\n\n\n\n\n\n\nNote\n\n\n\nNotice what just happened: you gave Codex a natural-language description, and it created a properly formatted Obsidian note with YAML frontmatter, wikilinks, and the correct template structure. This is the power of combining an AI agent with a structured vault. Codex knows the vault’s conventions (from AGENTS.md) and the template format (from Templates/Person.md), so it produces consistent, well-structured entries."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#available-slash-commands",
+    "href": "meeting_08/meeting_08.html#available-slash-commands",
+    "title": "Meeting 08",
+    "section": "Available Slash Commands",
+    "text": "Available Slash Commands\nCodex supports slash commands that activate specialized skills for working with the vault. Type them directly in the Codex chat window:\n\n\n\n\n\n\n\n\nSlash Command\nWhat It Does\nExample\n\n\n\n\n/obsidian-markdown\nTeaches Codex about Obsidian syntax\n“Create a note with callouts and wikilinks”\n\n\n/obsidian-bases\nCreates database views (.base files)\n“Create a view showing all People born before 1600”\n\n\n/json-canvas\nCreates Canvas relationship diagrams\n“Create a network diagram of Su Shi’s literary circle”\n\n\n/obsidian-cli\nControls Obsidian from the terminal\n“Search the vault for all notes mentioning 東坡”\n\n\n/defuddle\nExtracts clean Markdown from web pages\n“Save this article as a reading note”\n\n\n\nTo use a slash command, type it first, then your request. For example:\n/obsidian-markdown Create a reading note about Chapter 3 of Egan's \"Word, Image, and\nDeed in the Life of Su Shi\" with callouts for key arguments and wikilinks to Su Shi\nand relevant places.\n\n\n\n\n\n\nWarning\n\n\n\nCodex is a tool, not an oracle. Always verify AI-generated historical content against primary sources and scholarly references. Codex can help you organize and process data, but the scholarly judgment is yours. If Codex generates a birth year, a place name, or a biographical detail — check it."
+  },
+  {
+    "objectID": "meeting_08/meeting_08.html#summary",
+    "href": "meeting_08/meeting_08.html#summary",
+    "title": "Meeting 08",
+    "section": "Summary",
+    "text": "Summary\nHere is what you set up in Part 2:\n\n\n\n\n\n\n\nWhat You Installed\nWhat It Does\n\n\n\n\nCodex Desktop\nAI agent that can read and write files in your vault\n\n\nObsidian\nNote-taking app that stores research as linked Markdown files\n\n\nHumanities Vault\nPre-built vault with tutorials, templates, and a sample project\n\n\nMinimal theme\nClean visual theme for the vault\n\n\n\n\n\n\n\n\n\n\nWhat You Explored\nWhat You Learned\n\n\n\n\n5-layer vault structure\nHow the curriculum progresses from basics to advanced\n\n\n6 note templates\nStandardized formats for People, Texts, Places, Events, Bibliography, Reading Notes\n\n\nMy-Research/ workspace\nWhere your own research entries will live\n\n\nWikilinks and graph view\nHow notes connect to each other in a knowledge network\n\n\nCodex Desktop in the vault\nHow to create notes, ask questions, and use slash commands\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nLooking ahead: In the coming meetings, we will work through the vault’s curriculum layers one by one. Layer 1 (Foundations) covers the Obsidian basics you just explored. In Layer 2, we will start building a real research workflow with bibliography management and reading notes. By Layer 3, you will be creating queryable databases of historical figures — and by Layer 4, you will be using Canvas to visualize networks of relationships between them."
+  },
+  {
+    "objectID": "meeting_04/meeting_04.html",
+    "href": "meeting_04/meeting_04.html",
+    "title": "Meeting 04",
     "section": "",
-    "text": "A little bit about version control\nReturn to the terminal\nLet’s try Openwork\nIn-class exercise (Terminal + Codespaces + Pull Request)"
+    "text": "The importance of building “Big Tables”\nI met with some of you about your research projects, and I noticed some confusion about how to start a new research topic. From my perspective, building “big tables” is always the first step.\nThese big tables include:\n\nprimary sources\nrelated scholarship\nother relevant materials\n\n\n\nIntroduction of Today’s Task\nThere are two PDF files in the pdf/ folder. They are extracted pages from Wolfgang Frank’s famous book Introduction of Ming sources (see a newer edition on WorldCat: https://search.worldcat.org/title/779242963). For this class, we are using an edition published in the 1960s.\n\npdf/wf_abbreviations.pdf is the abbreviations list.\npdf/wf_five_pages.pdf contains five pages from the first chapter.\n\nYour tasks:\n\nExtract the abbreviations and their meanings from the list into a table.\nTurn the abbreviations in the content into clickable links.\n\n\n\nGoogle NotebookLM\nLanding page: https://notebooklm.google/\n\n\nOCR tool for Apple\nThe software is called glm-ocr-mlx. It is provided as ocr_software/glm-ocr-mlx-main.zip. Download the file and unzip it, then read the README.md file for instructions on how to use it.\nCurrently, it only works on Apple Silicon computers. If you have a Windows/Linux/Intel Mac, you can use the OCR tool for LM Studio/Ollama, which we will introduce in the next section.\n\n\n\n\n\n\nImportant\n\n\n\nWhy do we need JSON files for OCR output?\n\n\n\n\nOCR tool for LM Studio/Ollama\nRepository: https://github.com/kltng/ocr_batch_processor\nOllama: https://ollama.com/\n\n\nUse Openwork or chatbots to clean the OCR output and turn them into clickable links.\nIf you cannot get OCR output, you can use the JSON files in the ocr_results/ folder. They are the output of glm-ocr-mlx. You can use Openwork or chatbots to clean the OCR output and extract the abbreviations and their meanings into a table."
   },
   {
-    "objectID": "meeting_03/meeting_03.html#what-is-the-terminal",
-    "href": "meeting_03/meeting_03.html#what-is-the-terminal",
-    "title": "Meeting 03",
-    "section": "What is the terminal?",
-    "text": "What is the terminal?\n\n\n\n\n\n\nImportant\n\n\n\nA terminal is a text-based interface for your computer.\n\n\nThink of it as a conversation window. Instead of clicking icons (which is like pointing at things on a menu), you type commands (like speaking to a waiter) to tell the computer exactly what to do."
+    "objectID": "meeting_02/meeting_02.html",
+    "href": "meeting_02/meeting_02.html",
+    "title": "The Landscape of Agentic Approach",
+    "section": "",
+    "text": "Introducing yourself to the class\nEssential concepts of GenAI\nEssential concepts of agentic approach"
   },
   {
-    "objectID": "meeting_03/meeting_03.html#package-managers",
-    "href": "meeting_03/meeting_03.html#package-managers",
-    "title": "Meeting 03",
-    "section": "Package Managers",
-    "text": "Package Managers\nHomebrew and Winget are package managers designed to simplify the installation, update, and management of software on macOS and Windows systems, respectively. They streamline the process of handling software packages, making it more efficient for users to maintain their systems.\n\nHomebrew (macOS)\nHomebrew is a package manager for macOS (and Linux) that allows users to install and manage free and open-source software via the command line. It’s particularly favored by developers for its simplicity and the vast array of packages available.\n\nInstallation on macOS:\n\nOpen Terminal: You can find Terminal in the Utilities folder within your Applications, or by searching for it using Spotlight (press Command + Space and type “Terminal”).\nInstall Xcode Command Line Tools: Before installing Homebrew, ensure that you have the necessary command line tools. Execute the following command:\n\nxcode-select --install\n\nInstall Homebrew: Once you have Xcode Command Line Tools installed, run the following command to install Homebrew:\n\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\nThis script will download and install Homebrew on your system. Follow the on-screen instructions during the installation process.\n\nVerify Installation: After installation, confirm that Homebrew is correctly installed by running:\n\nbrew --version\nThis command should display the version number of Homebrew.\n\n\nBasic Homebrew Commands\n\nInstall a Package: To install a package, use the brew install command followed by the package name.\n\nbrew install &lt;package_name&gt;\n\nUpdate Homebrew: To update Homebrew itself, use the brew update command.\n\nbrew update\n\nList Installed Packages: To list all installed packages, use the brew list command.\n\nbrew list\n\nUninstall a Package: To uninstall a package, use the brew uninstall command followed by the package name.\n\nbrew uninstall &lt;package_name&gt;\n\nUpgrade a Package: To upgrade a package, use the brew upgrade command followed by the package name.\n\nbrew upgrade &lt;package_name&gt; \n\n\n\nWinget (Windows)\nWinget, or the Windows Package Manager, is a command-line tool for Windows 10 and Windows 11 that enables users to discover, install, upgrade, remove, and configure applications. It serves as a convenient method to manage software installations on Windows systems.\n\nInstallation on Windows:\nWinget comes pre-installed on Windows 11 and modern versions of Windows 10 as part of the App Installer. To verify if Winget is installed, open the Command Prompt or PowerShell and type:\nwinget  --version  \nIf Winget is installed, this command will display the version number. If it’s not installed, you can download the App Installer from the Microsoft Store.\n\n\nUsing Winget\n\nOpen PowerShell: Open the Windows PowerShell console by right-clicking on the Start button and selecting “PowerShell”.\nSearch for a Package: To search for a specific application:\n\nwinget search &lt;package_name&gt;\n\nInstall a Package: To install a package, use the winget install command followed by the package name.\n\nwinget install &lt;package_name&gt;\n\nUninstall a Package: To uninstall a package, use the winget uninstall command followed by the package name.\n\nwinget uninstall &lt;package_name&gt;\n\nUpgrade a Package: To upgrade a package, use the winget upgrade command followed by the package name.\n\nwinget upgrade &lt;package_name&gt;"
+    "objectID": "meeting_02/meeting_02.html#lets-begin-with-the-great-material-arts-master",
+    "href": "meeting_02/meeting_02.html#lets-begin-with-the-great-material-arts-master",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Let’s Begin With the Great Material Arts Master",
+    "text": "Let’s Begin With the Great Material Arts Master\n\nTeaching goal: After this session, you will obtain the essential concepts of large language models (LLMs). It is not about the tools, but the mindset."
   },
   {
-    "objectID": "meeting_03/meeting_03.html#shortcut",
-    "href": "meeting_03/meeting_03.html#shortcut",
-    "title": "Meeting 03",
-    "section": "Shortcut",
-    "text": "Shortcut\n\nOpen Antigravity.\nIn the extension settings, search for “Topcoder Fullstack” and install it."
+    "objectID": "meeting_02/meeting_02.html#four-pillars-of-generative-ai-applications",
+    "href": "meeting_02/meeting_02.html#four-pillars-of-generative-ai-applications",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Four Pillars of Generative AI Applications",
+    "text": "Four Pillars of Generative AI Applications\n\n\n\nFour Pillars of Generative AI Applications\n\n\n\nModels: Large language models (LLMs), such as Qwen3-0.6B, Deepseek V3.2 685B, etc.\nPrompts: Prompts are the instructions given to the model to generate the desired output. For example, “Write a poem about the nature” is a prompt.\nContext: Context is the information provided to the model to help it generate the desired output. For example, providing a pdf file of a book and asking the model to summarize the book is a context.\nTools: Tools are the external tools that the model can use to generate the desired output. For example, a calculator, a dictionary, a web search engine, etc."
   },
   {
-    "objectID": "meeting_03/meeting_03.html#what-is-version-control",
-    "href": "meeting_03/meeting_03.html#what-is-version-control",
-    "title": "Meeting 03",
-    "section": "What is Version Control?",
-    "text": "What is Version Control?\n\nVersion control is a system for tracking changes to files over time.\n\nIt lets you save snapshots of your work, revert to earlier versions, and track who made which changes.\n\nThink of it like the track changes feature in Word or Google Docs, but more powerful and for all kinds of files.\n\nWhy it matters: No more files named “Essay_final_v5_FINAL.docx” – version control keeps a history so you always have every version.\n\n\n\n\n\n\nflowchart LR\n    v1[\"File Version 1\"] --&gt; v2[\"File Version 2\"] --&gt; v3[\"File Version 3\"]"
+    "objectID": "meeting_02/meeting_02.html#models",
+    "href": "meeting_02/meeting_02.html#models",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Models",
+    "text": "Models\n\nToken: Hugging Face Tokenizer Playground\nParameters (Deepseek V3.2 685B)  The more the parameters, the more the capabilities?\nTemperature: The higher the temperature, the more random the output.\nKnowledge Cut-off\nThinking/Reasoning\nLength of context window/context length\n\n\nWhat is the nature of LLMs?\n\n\n\n\n\n\nImportant\n\n\n\nEverything is PREDICTION!\n\n\n\n\n\nImage source: Chip Huyen, AI Engineering: Building Applications with Foundation Models, First edition (O’Reilly, 2025). Chapter 1.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nEvery token is generated based on PROBABILITY!\n\n\n\n\n\nImage source: Inferencer, a software\n\n\n\n\n\nGalton box demonstration of the normal distribution (Wikimedia Commons)\n\n\n\n\n\n\n\nNote\n\n\n\nThe normal distribution is a bell-shaped curve that is symmetric around the mean. It is a fundamental concept in statistics and probability theory. Why this distribution is important to our understanding of LLMs?\n\n\n\n\nPrediction\nTry to repeat the following query multiple times with Qwen3-0.6B. What do you observe?\nGive a random number between 1 to 100.\nExplaination\n\n\nKnowledge cut-off\nWhat is your knowledge cut-off date?\nWho is the prime minister of Japan?? \n\n\nHallucination\nHow many \"r\" in strawberry?\nOpenAI’s explanation of hallucination: https://openai.com/index/why-language-models-hallucinate/\n\n\nAutoregressive\nCan you tell me the meaning of this sentence: \"B1 ammeG ehg tsniaga tluser eht erapmoc dna sledom ATOS eht htiw xobdnaS dravraH ni tpmorp emas eht yrt nac uoY\"\nThe next one is revised from a similar prompt from a forthcoming article of Professor Peter Bol:\n請找出下文所提及的歷史人物： \n教宗外南調科詞宏學博中復士進舉後官入補蔭初精益索講熹朱栻張友又既游憲胡辰應汪奇之林從長傳之獻文原中有庭家之本學謙祖州婺居始祖其自也孫之問好丞右尚書恭伯字謙祖呂\n請找出下文所提及的歷史人物： \n呂祖謙字伯恭書尚右丞好問之孫也自其祖始居婺州祖謙學本之家庭有中原文獻之傳長從林之奇汪應辰胡憲游既又友張栻朱熹講索益精初蔭補入官後舉進士復中博學宏詞科調南外宗教\n\n\n\n\n\n\nNote\n\n\n\nIf you are interested in the nature of thinking/reasoning in LLM, please watch Denny Zhou’s talk at Stanford.\n\n\n\n\nBiases\nA victim of a traffic accident were sent to the emergency room. The doctor said, \"O, I cannot do this. He is my son!\"\nWho is the doctor?\nTry this with different models. You will see how a bias has been “corrected” as a new bias."
   },
   {
-    "objectID": "meeting_03/meeting_03.html#what-is-git",
-    "href": "meeting_03/meeting_03.html#what-is-git",
-    "title": "Meeting 03",
-    "section": "What is Git?",
-    "text": "What is Git?\n\nGit is the most widely used version control tool (VCS) in the world.\nIt runs on your computer to track changes in a project (a local repository).\nGit lets you record commits (snapshots of your files) and then sync with a remote server (e.g., GitHub) to share those changes.\nYou can experiment on separate branches without affecting the main project, then merge your work when it’s ready.\n\n\n\n\n\n\nflowchart LR\n    WD[Working Directory] --&gt;|git add| Index[Staging Area] --&gt;|git commit| Repo[Local Repository]\n    Repo --&gt;|git push| Remote[GitHub Repository]\n\n\n\n\n\n\n (Image source: Git)\nIn most of the cases, the “Server Computer” is the code repositories. In our case, it is GitHub.\n\nInstall Git and GitHub\n\nHomebrew\n\nOpen Terminal\nRun the following command to install Homebrew:\n\nbrew install git\n\nTry the following command to check if Git is installed:\n\ngit --version\n\nRun the following command to install GitHub CLI:\n\nbrew install gh\n\nTry the following command to check if GitHub CLI is installed:\n\ngh --version\n\n\nWinget\n\nOpen PowerShell\nRun the following command to install Git:\n\nwinget install --id Git.Git\n\nTry the following command to check if Git is installed:\n\ngit --version\n\nRun the following command to install GitHub CLI:\n\nwinget install --id GitHub.cli\n\nTry the following command to check if GitHub CLI is installed:\n\ngh --version\n\n\n\nHow to Register a GitHub Account?\n\nGo to GitHub.com and click Sign Up.\nChoose a username (this will be your handle on GitHub).\nEnter your email (use your Harvard email or EDU email if you want to use the Education benefits) and create a password.\nVerify your account via the email sent by GitHub. -Choose the free plan (it’s sufficient for almost all academic projects).\nTip: You can skip creating a repository during sign-up – we’ll do that ourselves."
+    "objectID": "meeting_02/meeting_02.html#prompts",
+    "href": "meeting_02/meeting_02.html#prompts",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Prompts",
+    "text": "Prompts\n\nPrompt engineering\n\nPrompt engineering: https://www.promptingguide.ai/\nChain-of-thought: https://arxiv.org/pdf/2201.11903.\n\n\n\nSystem prompt and User prompt\nYou need to use Harvard AI Sandbox to experiment with the following prompt:\n;; 作者: 李继刚\n;; 版本: 0.1\n;; 模型: Claude Sonnet\n;; 用途: 这次正经地深入思考一个概念\n\n;; 设定如下内容为你的 *System Prompt*\n(defun 沉思者 ()\n  \"你是一个思考者, 盯住一个东西, 往深了想\"\n  (写作风格 . (\"Mark Twain\" \"鲁迅\" \"O. Henry\"))\n  (态度 . 批判)\n  (精通 . 深度思考挖掘洞见)\n  (表达 . (口话化 直白语言 反思质问 骂醒对方))\n  (金句 . (一针见血的洞见 振聋发聩的质问)))\n\n(defun 琢磨 (用户输入)\n  \"针对用户输入, 进行深度思考\"\n  (let* ((现状 (细节刻画 (场景描写 (社会现状 用户输入))))\n         (个体 (戳穿伪装 (本质剖析 (隐藏动机 (抛开束缚 通俗理解)))))\n         (群体 (往悲观的方向思考 (社会发展动力 (网络连接视角 钻进去看))))\n         (思考结果 (沉思者 (合并 现状 个体 群体))))\n    (SVG-Card 用户输入 思考结果)))\n\n(defun SVG-Card (用户输入 思考结果)\n  \"输出SVG 卡片\"\n  (setq design-rule \"合理使用负空间，整体排版要有呼吸感\")\n\n  (设置画布 '(宽度 400 高度 600 边距 20))\n  (自动缩放 '(最小字号 12))\n  (SVG设计风格 '(蒙德里安 现代主义))\n\n  (卡片元素\n   ((居中加粗标题 (提炼一行 用户输入))\n    分隔线\n    (舒适字体配色 (自动换行 (分段排版 思考结果))\n                  分隔线\n                  (自动换行 金句)))))\n\n(defun start ()\n  \"启动时运行\"\n  (let ((system-role 沉思者))\n    (print \"请就座, 我们今天聊哪件事?\")))\n\n;; 运行规则\n;; 1. 启动时必须运行 (start) 函数\n;; 2. 之后调用主函数 (琢磨 用户输入)\nThis is one of the many “magical prompts” of Li Jigang. You can find his works from this (Zhihu thread).\n\nEnter the prompt every time you start the chat?\n\n\nSystem prompt: A system prompt is a set of hidden instructions given to a model by its developers. These instructions define the LLM’s personality, rules, goals, and constraints before you, the user, even type your first question.\nUser prompt: The prompts or queries given to a LLM in every interaction (conversation)."
   },
   {
-    "objectID": "meeting_03/meeting_03.html#what-is-quarto",
-    "href": "meeting_03/meeting_03.html#what-is-quarto",
-    "title": "Meeting 03",
-    "section": "What is Quarto?",
-    "text": "What is Quarto?\nQuarto is an open-source scientific and technical publishing system. It:\n\nUses a .qmd (Quarto Markdown) file to combine text, code, and outputs.\nCan render to multiple formats (HTML, PDF, Word, reveal.js slides, etc.).\nSupports Python, R, Julia, and more.\nIdeal for reproducible documents, such as articles, presentations, or data analyses.\n\n\nInstall the Quarto CLI\nUsing the official installer:\n\nDownload Installer: Visit the Quarto Downloads page and download the installer for your OS.\nRun Installer.\nVerify Installation: Open Terminal and run:\n\nquarto --version\n\n\nInstall the Quarto extension for Antigravity\n\nOpen Antigravity.\nClick the “Extensions” button on the left sidebar.\nSearch for “Quarto” and click “Install”.\n\n\n\nStructure of a .qmd File\nA .qmd (Quarto Markdown) file typically has: 1. YAML Header (between — lines):\n---\ntitle: \"Document Title\"\nauthor: \"Your Name\"\nformat: html\n---\n\nBody Content in Markdown:\n\n# Introduction\n\nThis is normal text written in Markdown.\nWhen you run:\nquarto render your_file.qmd\nQuarto processes the .qmd file and produces the output format(s) you specified (e.g., .html, .pdf, etc.)."
+    "objectID": "meeting_02/meeting_02.html#context",
+    "href": "meeting_02/meeting_02.html#context",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Context",
+    "text": "Context\n\nRetrieval-Augmented Generation (RAG)\n\n\n\n\n\nflowchart TB\n    subgraph Direct[\"Direct LLM Query\"]\n        direction LR\n        U1[User Query] --&gt; L1[LLM] --&gt; R1[Response]\n        style L1 fill:#f9f,stroke:#333\n    end\n\n\n\n\n\n\n\n\n\n\n\nflowchart TB\n    subgraph RAG[\"RAG-Enhanced Query\"]\n        direction LR\n        U2[User Query] --&gt; RC[Retrieval Component]\n        RC --&gt; |Search| DB[(Knowledge Base)]\n        DB --&gt; |Relevant Documents| RC\n        RC --&gt; CP[Context Processor]\n        CP --&gt; |Enhanced Prompt| L2[LLM]\n        L2 --&gt; R2[Response]\n        style L2 fill:#f9f,stroke:#333\n        style DB fill:#bef,stroke:#333\n        style RC fill:#fbf,stroke:#333\n        style CP fill:#fbf,stroke:#333\n    end"
   },
   {
-    "objectID": "meeting_03/meeting_03.html#practice-creating-a-quarto-document-and-pushing-to-github",
-    "href": "meeting_03/meeting_03.html#practice-creating-a-quarto-document-and-pushing-to-github",
-    "title": "Meeting 03",
-    "section": "Practice: Creating a Quarto Document and Pushing to GitHub",
-    "text": "Practice: Creating a Quarto Document and Pushing to GitHub\nThis guide will walk you through the process of creating a folder, initializing a Git repository, creating a Quarto (.qmd) file, making initial commits, revising the file, and pushing the changes to a remote repository on GitHub.\nPrerequisites:\n\nGit: Ensure Git is installed on your system. Verify by running git --version in your terminal.\nQuarto: Ensure Quarto is installed. Verify by running quarto --version in your terminal.\nGitHub Account: Ensure you have an account on GitHub.\n\nInstructions:\n\nCreate a Folder:\n\nOpen your terminal or command prompt.\nNavigate to your desired parent directory using the cd command.\nCreate a new folder named my_project:\nmkdir my_project\nNavigate into the newly created folder:\ncd my_project\n\nInitialize a Git Repository:\n\nInitialize an empty Git repository in the current directory:\ngit init\nThis command creates a .git subdirectory, setting up the necessary files and structures for version control.\n\nCreate a Quarto (.qmd) File:\n\nOpen your preferred text editor (e.g., Visual Studio Code).\nCreate a new file named document.qmd with the following content:\n---\ntitle: \"My First Quarto Document\"\nauthor: \"Your Name\"\ndate: \"2025-02-11\"\nformat: html\n---\n\n# Introduction\n\nThis is my first Quarto document.\nSave the file in the my_project directory.\n\nMake the First Commit:\n\nIn the terminal, ensure you’re in the my_project directory.\nStage the new file for commit:\ngit add document.qmd\nCommit the staged file with a descriptive message:\ngit commit -m \"Add initial Quarto document\"\n\nRevise the .qmd File:\n\nOpen document.qmd in your text editor.\nAdd a new section:\n# Conclusion\n\nThis concludes my first Quarto document.\nSave the changes.\n\nMake a Second Commit:\n\nStage the modified file:\ngit add document.qmd\nCommit the changes with an appropriate message:\ngit commit -m \"Add conclusion section to Quarto document\"\n\nPush to a Remote Repository on GitHub:\n\nCreate a Remote Repository:\n\nLog in to your GitHub account.\nClick the “+” icon in the top-right corner and select “New repository”.\nName the repository my_project and choose its visibility (public or private).\nClick “Create repository”.\n\nConnect Local Repository to GitHub:\n\nIn the terminal, add the remote repository:\ngit remote add origin https://github.com/your-username/my_project.git\nReplace your-username with your GitHub username.\n\nPush Local Changes to GitHub:\n\nPush your commits to the remote repository:\ngit push -u origin main\nIf your local branch is named master, replace main with master.\n\n\n\nNotes:\n\nThe git add command stages changes, preparing them for a commit.\nThe git commit command records the staged changes in the repository’s history.\nThe git push command uploads local repository content to a remote repository.\n\nBy following these steps, you’ve successfully created a project, tracked its versions using Git, and published it to GitHub."
+    "objectID": "meeting_02/meeting_02.html#tools",
+    "href": "meeting_02/meeting_02.html#tools",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Tools",
+    "text": "Tools\n\nModel Context Protocol (MCP)\nAgent Skills"
   },
   {
-    "objectID": "meeting_03/meeting_03.html#in-class-exercise-terminal-codespaces-pull-request",
-    "href": "meeting_03/meeting_03.html#in-class-exercise-terminal-codespaces-pull-request",
-    "title": "Meeting 03",
-    "section": "In-class exercise (Terminal + Codespaces + Pull Request)",
-    "text": "In-class exercise (Terminal + Codespaces + Pull Request)\nPlease complete the in-class exercise here:\n\nIn-class Exercise (Meeting 03)"
+    "objectID": "meeting_02/meeting_02.html#what-are-agents",
+    "href": "meeting_02/meeting_02.html#what-are-agents",
+    "title": "The Landscape of Agentic Approach",
+    "section": "What are agents?",
+    "text": "What are agents?\nAgents are software entities that can perform tasks independently, often using LLMs to reason and make decisions. They can interact with external tools and data sources to perform tasks."
   },
   {
-    "objectID": "meeting_03/meeting_03.html#references",
-    "href": "meeting_03/meeting_03.html#references",
-    "title": "Meeting 03",
-    "section": "References",
-    "text": "References\n\nHomebrew for MacOS\nWinget for Windows\nGit Documentation\nGitHub Documentation\nQuarto Documentation\nOpenwork Documentation"
+    "objectID": "meeting_02/meeting_02.html#the-difference-between-agents-and-llms",
+    "href": "meeting_02/meeting_02.html#the-difference-between-agents-and-llms",
+    "title": "The Landscape of Agentic Approach",
+    "section": "The difference between agents and LLMs",
+    "text": "The difference between agents and LLMs\n\nLarge Language Models (LLMs) is a model that can generate text based on a given prompt.\nAgents use LLMs to reason and make decisions. Agents have tools for execution and data sources for context.\nIn a chatbot interface, LLMs usually answer the user’s question one by one.\nAgents can perform tasks independently, such as searching the web, cleaning data, classifying file types, etc. They do not need to wait for the user’s question. They can use multiple given tools (such as web browsers, bash commands, even sensors and cameras) and data sources (such as databases, files, etc.) to complete a task assigned with a one-sentence instruction."
+  },
+  {
+    "objectID": "meeting_02/meeting_02.html#why-agents-are-important",
+    "href": "meeting_02/meeting_02.html#why-agents-are-important",
+    "title": "The Landscape of Agentic Approach",
+    "section": "Why agents are important?",
+    "text": "Why agents are important?\nTo understand the importance of agents, we need to understand the limitations of programming.\n\nClassifying “Apple”\nThe word “Apple” is a fruit. But it can also be a company name, or even a person’s name. How to classify it? Work with your classmates to come up with all the rules to classify “Apple” into the correct category."
   },
   {
     "objectID": "meeting_05/meeting_05.html",
@@ -861,81 +1071,81 @@
     "text": "References\n\nMDN Web Docs: HTML\nMDN Web Docs: CSS\nW3Schools HTML Tutorial\nW3Schools CSS Tutorial\nGitHub Pages Documentation\nQuarto Websites Documentation\nHugo Quick Start\nJekyll Documentation\nLM Studio\nOCR Batch Processor"
   },
   {
-    "objectID": "meeting_02/meeting_02.html",
-    "href": "meeting_02/meeting_02.html",
-    "title": "The Landscape of Agentic Approach",
+    "objectID": "meeting_03/meeting_03.html",
+    "href": "meeting_03/meeting_03.html",
+    "title": "Meeting 03",
     "section": "",
-    "text": "Introducing yourself to the class\nEssential concepts of GenAI\nEssential concepts of agentic approach"
+    "text": "A little bit about version control\nReturn to the terminal\nLet’s try Openwork\nIn-class exercise (Terminal + Codespaces + Pull Request)"
   },
   {
-    "objectID": "meeting_02/meeting_02.html#lets-begin-with-the-great-material-arts-master",
-    "href": "meeting_02/meeting_02.html#lets-begin-with-the-great-material-arts-master",
-    "title": "The Landscape of Agentic Approach",
-    "section": "Let’s Begin With the Great Material Arts Master",
-    "text": "Let’s Begin With the Great Material Arts Master\n\nTeaching goal: After this session, you will obtain the essential concepts of large language models (LLMs). It is not about the tools, but the mindset."
+    "objectID": "meeting_03/meeting_03.html#what-is-the-terminal",
+    "href": "meeting_03/meeting_03.html#what-is-the-terminal",
+    "title": "Meeting 03",
+    "section": "What is the terminal?",
+    "text": "What is the terminal?\n\n\n\n\n\n\nImportant\n\n\n\nA terminal is a text-based interface for your computer.\n\n\nThink of it as a conversation window. Instead of clicking icons (which is like pointing at things on a menu), you type commands (like speaking to a waiter) to tell the computer exactly what to do."
   },
   {
-    "objectID": "meeting_02/meeting_02.html#four-pillars-of-generative-ai-applications",
-    "href": "meeting_02/meeting_02.html#four-pillars-of-generative-ai-applications",
-    "title": "The Landscape of Agentic Approach",
-    "section": "Four Pillars of Generative AI Applications",
-    "text": "Four Pillars of Generative AI Applications\n\n\n\nFour Pillars of Generative AI Applications\n\n\n\nModels: Large language models (LLMs), such as Qwen3-0.6B, Deepseek V3.2 685B, etc.\nPrompts: Prompts are the instructions given to the model to generate the desired output. For example, “Write a poem about the nature” is a prompt.\nContext: Context is the information provided to the model to help it generate the desired output. For example, providing a pdf file of a book and asking the model to summarize the book is a context.\nTools: Tools are the external tools that the model can use to generate the desired output. For example, a calculator, a dictionary, a web search engine, etc."
+    "objectID": "meeting_03/meeting_03.html#package-managers",
+    "href": "meeting_03/meeting_03.html#package-managers",
+    "title": "Meeting 03",
+    "section": "Package Managers",
+    "text": "Package Managers\nHomebrew and Winget are package managers designed to simplify the installation, update, and management of software on macOS and Windows systems, respectively. They streamline the process of handling software packages, making it more efficient for users to maintain their systems.\n\nHomebrew (macOS)\nHomebrew is a package manager for macOS (and Linux) that allows users to install and manage free and open-source software via the command line. It’s particularly favored by developers for its simplicity and the vast array of packages available.\n\nInstallation on macOS:\n\nOpen Terminal: You can find Terminal in the Utilities folder within your Applications, or by searching for it using Spotlight (press Command + Space and type “Terminal”).\nInstall Xcode Command Line Tools: Before installing Homebrew, ensure that you have the necessary command line tools. Execute the following command:\n\nxcode-select --install\n\nInstall Homebrew: Once you have Xcode Command Line Tools installed, run the following command to install Homebrew:\n\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\nThis script will download and install Homebrew on your system. Follow the on-screen instructions during the installation process.\n\nVerify Installation: After installation, confirm that Homebrew is correctly installed by running:\n\nbrew --version\nThis command should display the version number of Homebrew.\n\n\nBasic Homebrew Commands\n\nInstall a Package: To install a package, use the brew install command followed by the package name.\n\nbrew install &lt;package_name&gt;\n\nUpdate Homebrew: To update Homebrew itself, use the brew update command.\n\nbrew update\n\nList Installed Packages: To list all installed packages, use the brew list command.\n\nbrew list\n\nUninstall a Package: To uninstall a package, use the brew uninstall command followed by the package name.\n\nbrew uninstall &lt;package_name&gt;\n\nUpgrade a Package: To upgrade a package, use the brew upgrade command followed by the package name.\n\nbrew upgrade &lt;package_name&gt; \n\n\n\nWinget (Windows)\nWinget, or the Windows Package Manager, is a command-line tool for Windows 10 and Windows 11 that enables users to discover, install, upgrade, remove, and configure applications. It serves as a convenient method to manage software installations on Windows systems.\n\nInstallation on Windows:\nWinget comes pre-installed on Windows 11 and modern versions of Windows 10 as part of the App Installer. To verify if Winget is installed, open the Command Prompt or PowerShell and type:\nwinget  --version  \nIf Winget is installed, this command will display the version number. If it’s not installed, you can download the App Installer from the Microsoft Store.\n\n\nUsing Winget\n\nOpen PowerShell: Open the Windows PowerShell console by right-clicking on the Start button and selecting “PowerShell”.\nSearch for a Package: To search for a specific application:\n\nwinget search &lt;package_name&gt;\n\nInstall a Package: To install a package, use the winget install command followed by the package name.\n\nwinget install &lt;package_name&gt;\n\nUninstall a Package: To uninstall a package, use the winget uninstall command followed by the package name.\n\nwinget uninstall &lt;package_name&gt;\n\nUpgrade a Package: To upgrade a package, use the winget upgrade command followed by the package name.\n\nwinget upgrade &lt;package_name&gt;"
   },
   {
-    "objectID": "meeting_02/meeting_02.html#models",
-    "href": "meeting_02/meeting_02.html#models",
-    "title": "The Landscape of Agentic Approach",
-    "section": "Models",
-    "text": "Models\n\nToken: Hugging Face Tokenizer Playground\nParameters (Deepseek V3.2 685B)  The more the parameters, the more the capabilities?\nTemperature: The higher the temperature, the more random the output.\nKnowledge Cut-off\nThinking/Reasoning\nLength of context window/context length\n\n\nWhat is the nature of LLMs?\n\n\n\n\n\n\nImportant\n\n\n\nEverything is PREDICTION!\n\n\n\n\n\nImage source: Chip Huyen, AI Engineering: Building Applications with Foundation Models, First edition (O’Reilly, 2025). Chapter 1.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nEvery token is generated based on PROBABILITY!\n\n\n\n\n\nImage source: Inferencer, a software\n\n\n\n\n\nGalton box demonstration of the normal distribution (Wikimedia Commons)\n\n\n\n\n\n\n\nNote\n\n\n\nThe normal distribution is a bell-shaped curve that is symmetric around the mean. It is a fundamental concept in statistics and probability theory. Why this distribution is important to our understanding of LLMs?\n\n\n\n\nPrediction\nTry to repeat the following query multiple times with Qwen3-0.6B. What do you observe?\nGive a random number between 1 to 100.\nExplaination\n\n\nKnowledge cut-off\nWhat is your knowledge cut-off date?\nWho is the prime minister of Japan?? \n\n\nHallucination\nHow many \"r\" in strawberry?\nOpenAI’s explanation of hallucination: https://openai.com/index/why-language-models-hallucinate/\n\n\nAutoregressive\nCan you tell me the meaning of this sentence: \"B1 ammeG ehg tsniaga tluser eht erapmoc dna sledom ATOS eht htiw xobdnaS dravraH ni tpmorp emas eht yrt nac uoY\"\nThe next one is revised from a similar prompt from a forthcoming article of Professor Peter Bol:\n請找出下文所提及的歷史人物： \n教宗外南調科詞宏學博中復士進舉後官入補蔭初精益索講熹朱栻張友又既游憲胡辰應汪奇之林從長傳之獻文原中有庭家之本學謙祖州婺居始祖其自也孫之問好丞右尚書恭伯字謙祖呂\n請找出下文所提及的歷史人物： \n呂祖謙字伯恭書尚右丞好問之孫也自其祖始居婺州祖謙學本之家庭有中原文獻之傳長從林之奇汪應辰胡憲游既又友張栻朱熹講索益精初蔭補入官後舉進士復中博學宏詞科調南外宗教\n\n\n\n\n\n\nNote\n\n\n\nIf you are interested in the nature of thinking/reasoning in LLM, please watch Denny Zhou’s talk at Stanford.\n\n\n\n\nBiases\nA victim of a traffic accident were sent to the emergency room. The doctor said, \"O, I cannot do this. He is my son!\"\nWho is the doctor?\nTry this with different models. You will see how a bias has been “corrected” as a new bias."
+    "objectID": "meeting_03/meeting_03.html#shortcut",
+    "href": "meeting_03/meeting_03.html#shortcut",
+    "title": "Meeting 03",
+    "section": "Shortcut",
+    "text": "Shortcut\n\nOpen Antigravity.\nIn the extension settings, search for “Topcoder Fullstack” and install it."
   },
   {
-    "objectID": "meeting_02/meeting_02.html#prompts",
-    "href": "meeting_02/meeting_02.html#prompts",
-    "title": "The Landscape of Agentic Approach",
-    "section": "Prompts",
-    "text": "Prompts\n\nPrompt engineering\n\nPrompt engineering: https://www.promptingguide.ai/\nChain-of-thought: https://arxiv.org/pdf/2201.11903.\n\n\n\nSystem prompt and User prompt\nYou need to use Harvard AI Sandbox to experiment with the following prompt:\n;; 作者: 李继刚\n;; 版本: 0.1\n;; 模型: Claude Sonnet\n;; 用途: 这次正经地深入思考一个概念\n\n;; 设定如下内容为你的 *System Prompt*\n(defun 沉思者 ()\n  \"你是一个思考者, 盯住一个东西, 往深了想\"\n  (写作风格 . (\"Mark Twain\" \"鲁迅\" \"O. Henry\"))\n  (态度 . 批判)\n  (精通 . 深度思考挖掘洞见)\n  (表达 . (口话化 直白语言 反思质问 骂醒对方))\n  (金句 . (一针见血的洞见 振聋发聩的质问)))\n\n(defun 琢磨 (用户输入)\n  \"针对用户输入, 进行深度思考\"\n  (let* ((现状 (细节刻画 (场景描写 (社会现状 用户输入))))\n         (个体 (戳穿伪装 (本质剖析 (隐藏动机 (抛开束缚 通俗理解)))))\n         (群体 (往悲观的方向思考 (社会发展动力 (网络连接视角 钻进去看))))\n         (思考结果 (沉思者 (合并 现状 个体 群体))))\n    (SVG-Card 用户输入 思考结果)))\n\n(defun SVG-Card (用户输入 思考结果)\n  \"输出SVG 卡片\"\n  (setq design-rule \"合理使用负空间，整体排版要有呼吸感\")\n\n  (设置画布 '(宽度 400 高度 600 边距 20))\n  (自动缩放 '(最小字号 12))\n  (SVG设计风格 '(蒙德里安 现代主义))\n\n  (卡片元素\n   ((居中加粗标题 (提炼一行 用户输入))\n    分隔线\n    (舒适字体配色 (自动换行 (分段排版 思考结果))\n                  分隔线\n                  (自动换行 金句)))))\n\n(defun start ()\n  \"启动时运行\"\n  (let ((system-role 沉思者))\n    (print \"请就座, 我们今天聊哪件事?\")))\n\n;; 运行规则\n;; 1. 启动时必须运行 (start) 函数\n;; 2. 之后调用主函数 (琢磨 用户输入)\nThis is one of the many “magical prompts” of Li Jigang. You can find his works from this (Zhihu thread).\n\nEnter the prompt every time you start the chat?\n\n\nSystem prompt: A system prompt is a set of hidden instructions given to a model by its developers. These instructions define the LLM’s personality, rules, goals, and constraints before you, the user, even type your first question.\nUser prompt: The prompts or queries given to a LLM in every interaction (conversation)."
+    "objectID": "meeting_03/meeting_03.html#what-is-version-control",
+    "href": "meeting_03/meeting_03.html#what-is-version-control",
+    "title": "Meeting 03",
+    "section": "What is Version Control?",
+    "text": "What is Version Control?\n\nVersion control is a system for tracking changes to files over time.\n\nIt lets you save snapshots of your work, revert to earlier versions, and track who made which changes.\n\nThink of it like the track changes feature in Word or Google Docs, but more powerful and for all kinds of files.\n\nWhy it matters: No more files named “Essay_final_v5_FINAL.docx” – version control keeps a history so you always have every version.\n\n\n\n\n\n\nflowchart LR\n    v1[\"File Version 1\"] --&gt; v2[\"File Version 2\"] --&gt; v3[\"File Version 3\"]"
   },
   {
-    "objectID": "meeting_02/meeting_02.html#context",
-    "href": "meeting_02/meeting_02.html#context",
-    "title": "The Landscape of Agentic Approach",
-    "section": "Context",
-    "text": "Context\n\nRetrieval-Augmented Generation (RAG)\n\n\n\n\n\nflowchart TB\n    subgraph Direct[\"Direct LLM Query\"]\n        direction LR\n        U1[User Query] --&gt; L1[LLM] --&gt; R1[Response]\n        style L1 fill:#f9f,stroke:#333\n    end\n\n\n\n\n\n\n\n\n\n\n\nflowchart TB\n    subgraph RAG[\"RAG-Enhanced Query\"]\n        direction LR\n        U2[User Query] --&gt; RC[Retrieval Component]\n        RC --&gt; |Search| DB[(Knowledge Base)]\n        DB --&gt; |Relevant Documents| RC\n        RC --&gt; CP[Context Processor]\n        CP --&gt; |Enhanced Prompt| L2[LLM]\n        L2 --&gt; R2[Response]\n        style L2 fill:#f9f,stroke:#333\n        style DB fill:#bef,stroke:#333\n        style RC fill:#fbf,stroke:#333\n        style CP fill:#fbf,stroke:#333\n    end"
+    "objectID": "meeting_03/meeting_03.html#what-is-git",
+    "href": "meeting_03/meeting_03.html#what-is-git",
+    "title": "Meeting 03",
+    "section": "What is Git?",
+    "text": "What is Git?\n\nGit is the most widely used version control tool (VCS) in the world.\nIt runs on your computer to track changes in a project (a local repository).\nGit lets you record commits (snapshots of your files) and then sync with a remote server (e.g., GitHub) to share those changes.\nYou can experiment on separate branches without affecting the main project, then merge your work when it’s ready.\n\n\n\n\n\n\nflowchart LR\n    WD[Working Directory] --&gt;|git add| Index[Staging Area] --&gt;|git commit| Repo[Local Repository]\n    Repo --&gt;|git push| Remote[GitHub Repository]\n\n\n\n\n\n\n (Image source: Git)\nIn most of the cases, the “Server Computer” is the code repositories. In our case, it is GitHub.\n\nInstall Git and GitHub\n\nHomebrew\n\nOpen Terminal\nRun the following command to install Homebrew:\n\nbrew install git\n\nTry the following command to check if Git is installed:\n\ngit --version\n\nRun the following command to install GitHub CLI:\n\nbrew install gh\n\nTry the following command to check if GitHub CLI is installed:\n\ngh --version\n\n\nWinget\n\nOpen PowerShell\nRun the following command to install Git:\n\nwinget install --id Git.Git\n\nTry the following command to check if Git is installed:\n\ngit --version\n\nRun the following command to install GitHub CLI:\n\nwinget install --id GitHub.cli\n\nTry the following command to check if GitHub CLI is installed:\n\ngh --version\n\n\n\nHow to Register a GitHub Account?\n\nGo to GitHub.com and click Sign Up.\nChoose a username (this will be your handle on GitHub).\nEnter your email (use your Harvard email or EDU email if you want to use the Education benefits) and create a password.\nVerify your account via the email sent by GitHub. -Choose the free plan (it’s sufficient for almost all academic projects).\nTip: You can skip creating a repository during sign-up – we’ll do that ourselves."
   },
   {
-    "objectID": "meeting_02/meeting_02.html#tools",
-    "href": "meeting_02/meeting_02.html#tools",
-    "title": "The Landscape of Agentic Approach",
-    "section": "Tools",
-    "text": "Tools\n\nModel Context Protocol (MCP)\nAgent Skills"
+    "objectID": "meeting_03/meeting_03.html#what-is-quarto",
+    "href": "meeting_03/meeting_03.html#what-is-quarto",
+    "title": "Meeting 03",
+    "section": "What is Quarto?",
+    "text": "What is Quarto?\nQuarto is an open-source scientific and technical publishing system. It:\n\nUses a .qmd (Quarto Markdown) file to combine text, code, and outputs.\nCan render to multiple formats (HTML, PDF, Word, reveal.js slides, etc.).\nSupports Python, R, Julia, and more.\nIdeal for reproducible documents, such as articles, presentations, or data analyses.\n\n\nInstall the Quarto CLI\nUsing the official installer:\n\nDownload Installer: Visit the Quarto Downloads page and download the installer for your OS.\nRun Installer.\nVerify Installation: Open Terminal and run:\n\nquarto --version\n\n\nInstall the Quarto extension for Antigravity\n\nOpen Antigravity.\nClick the “Extensions” button on the left sidebar.\nSearch for “Quarto” and click “Install”.\n\n\n\nStructure of a .qmd File\nA .qmd (Quarto Markdown) file typically has: 1. YAML Header (between — lines):\n---\ntitle: \"Document Title\"\nauthor: \"Your Name\"\nformat: html\n---\n\nBody Content in Markdown:\n\n# Introduction\n\nThis is normal text written in Markdown.\nWhen you run:\nquarto render your_file.qmd\nQuarto processes the .qmd file and produces the output format(s) you specified (e.g., .html, .pdf, etc.)."
   },
   {
-    "objectID": "meeting_02/meeting_02.html#what-are-agents",
-    "href": "meeting_02/meeting_02.html#what-are-agents",
-    "title": "The Landscape of Agentic Approach",
-    "section": "What are agents?",
-    "text": "What are agents?\nAgents are software entities that can perform tasks independently, often using LLMs to reason and make decisions. They can interact with external tools and data sources to perform tasks."
+    "objectID": "meeting_03/meeting_03.html#practice-creating-a-quarto-document-and-pushing-to-github",
+    "href": "meeting_03/meeting_03.html#practice-creating-a-quarto-document-and-pushing-to-github",
+    "title": "Meeting 03",
+    "section": "Practice: Creating a Quarto Document and Pushing to GitHub",
+    "text": "Practice: Creating a Quarto Document and Pushing to GitHub\nThis guide will walk you through the process of creating a folder, initializing a Git repository, creating a Quarto (.qmd) file, making initial commits, revising the file, and pushing the changes to a remote repository on GitHub.\nPrerequisites:\n\nGit: Ensure Git is installed on your system. Verify by running git --version in your terminal.\nQuarto: Ensure Quarto is installed. Verify by running quarto --version in your terminal.\nGitHub Account: Ensure you have an account on GitHub.\n\nInstructions:\n\nCreate a Folder:\n\nOpen your terminal or command prompt.\nNavigate to your desired parent directory using the cd command.\nCreate a new folder named my_project:\nmkdir my_project\nNavigate into the newly created folder:\ncd my_project\n\nInitialize a Git Repository:\n\nInitialize an empty Git repository in the current directory:\ngit init\nThis command creates a .git subdirectory, setting up the necessary files and structures for version control.\n\nCreate a Quarto (.qmd) File:\n\nOpen your preferred text editor (e.g., Visual Studio Code).\nCreate a new file named document.qmd with the following content:\n---\ntitle: \"My First Quarto Document\"\nauthor: \"Your Name\"\ndate: \"2025-02-11\"\nformat: html\n---\n\n# Introduction\n\nThis is my first Quarto document.\nSave the file in the my_project directory.\n\nMake the First Commit:\n\nIn the terminal, ensure you’re in the my_project directory.\nStage the new file for commit:\ngit add document.qmd\nCommit the staged file with a descriptive message:\ngit commit -m \"Add initial Quarto document\"\n\nRevise the .qmd File:\n\nOpen document.qmd in your text editor.\nAdd a new section:\n# Conclusion\n\nThis concludes my first Quarto document.\nSave the changes.\n\nMake a Second Commit:\n\nStage the modified file:\ngit add document.qmd\nCommit the changes with an appropriate message:\ngit commit -m \"Add conclusion section to Quarto document\"\n\nPush to a Remote Repository on GitHub:\n\nCreate a Remote Repository:\n\nLog in to your GitHub account.\nClick the “+” icon in the top-right corner and select “New repository”.\nName the repository my_project and choose its visibility (public or private).\nClick “Create repository”.\n\nConnect Local Repository to GitHub:\n\nIn the terminal, add the remote repository:\ngit remote add origin https://github.com/your-username/my_project.git\nReplace your-username with your GitHub username.\n\nPush Local Changes to GitHub:\n\nPush your commits to the remote repository:\ngit push -u origin main\nIf your local branch is named master, replace main with master.\n\n\n\nNotes:\n\nThe git add command stages changes, preparing them for a commit.\nThe git commit command records the staged changes in the repository’s history.\nThe git push command uploads local repository content to a remote repository.\n\nBy following these steps, you’ve successfully created a project, tracked its versions using Git, and published it to GitHub."
   },
   {
-    "objectID": "meeting_02/meeting_02.html#the-difference-between-agents-and-llms",
-    "href": "meeting_02/meeting_02.html#the-difference-between-agents-and-llms",
-    "title": "The Landscape of Agentic Approach",
-    "section": "The difference between agents and LLMs",
-    "text": "The difference between agents and LLMs\n\nLarge Language Models (LLMs) is a model that can generate text based on a given prompt.\nAgents use LLMs to reason and make decisions. Agents have tools for execution and data sources for context.\nIn a chatbot interface, LLMs usually answer the user’s question one by one.\nAgents can perform tasks independently, such as searching the web, cleaning data, classifying file types, etc. They do not need to wait for the user’s question. They can use multiple given tools (such as web browsers, bash commands, even sensors and cameras) and data sources (such as databases, files, etc.) to complete a task assigned with a one-sentence instruction."
+    "objectID": "meeting_03/meeting_03.html#in-class-exercise-terminal-codespaces-pull-request",
+    "href": "meeting_03/meeting_03.html#in-class-exercise-terminal-codespaces-pull-request",
+    "title": "Meeting 03",
+    "section": "In-class exercise (Terminal + Codespaces + Pull Request)",
+    "text": "In-class exercise (Terminal + Codespaces + Pull Request)\nPlease complete the in-class exercise here:\n\nIn-class Exercise (Meeting 03)"
   },
   {
-    "objectID": "meeting_02/meeting_02.html#why-agents-are-important",
-    "href": "meeting_02/meeting_02.html#why-agents-are-important",
-    "title": "The Landscape of Agentic Approach",
-    "section": "Why agents are important?",
-    "text": "Why agents are important?\nTo understand the importance of agents, we need to understand the limitations of programming.\n\nClassifying “Apple”\nThe word “Apple” is a fruit. But it can also be a company name, or even a person’s name. How to classify it? Work with your classmates to come up with all the rules to classify “Apple” into the correct category."
+    "objectID": "meeting_03/meeting_03.html#references",
+    "href": "meeting_03/meeting_03.html#references",
+    "title": "Meeting 03",
+    "section": "References",
+    "text": "References\n\nHomebrew for MacOS\nWinget for Windows\nGit Documentation\nGitHub Documentation\nQuarto Documentation\nOpenwork Documentation"
   },
   {
-    "objectID": "meeting_04/meeting_04.html",
-    "href": "meeting_04/meeting_04.html",
-    "title": "Meeting 04",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "EASTD143B Digital Tools and Methods in East Asian Humanities (Coding Approach)",
     "section": "",
-    "text": "The importance of building “Big Tables”\nI met with some of you about your research projects, and I noticed some confusion about how to start a new research topic. From my perspective, building “big tables” is always the first step.\nThese big tables include:\n\nprimary sources\nrelated scholarship\nother relevant materials\n\n\n\nIntroduction of Today’s Task\nThere are two PDF files in the pdf/ folder. They are extracted pages from Wolfgang Frank’s famous book Introduction of Ming sources (see a newer edition on WorldCat: https://search.worldcat.org/title/779242963). For this class, we are using an edition published in the 1960s.\n\npdf/wf_abbreviations.pdf is the abbreviations list.\npdf/wf_five_pages.pdf contains five pages from the first chapter.\n\nYour tasks:\n\nExtract the abbreviations and their meanings from the list into a table.\nTurn the abbreviations in the content into clickable links.\n\n\n\nGoogle NotebookLM\nLanding page: https://notebooklm.google/\n\n\nOCR tool for Apple\nThe software is called glm-ocr-mlx. It is provided as ocr_software/glm-ocr-mlx-main.zip. Download the file and unzip it, then read the README.md file for instructions on how to use it.\nCurrently, it only works on Apple Silicon computers. If you have a Windows/Linux/Intel Mac, you can use the OCR tool for LM Studio/Ollama, which we will introduce in the next section.\n\n\n\n\n\n\nImportant\n\n\n\nWhy do we need JSON files for OCR output?\n\n\n\n\nOCR tool for LM Studio/Ollama\nRepository: https://github.com/kltng/ocr_batch_processor\nOllama: https://ollama.com/\n\n\nUse Openwork or chatbots to clean the OCR output and turn them into clickable links.\nIf you cannot get OCR output, you can use the JSON files in the ocr_results/ folder. They are the output of glm-ocr-mlx. You can use Openwork or chatbots to clean the OCR output and extract the abbreviations and their meanings into a table."
+    "text": "Welcome to the course website for EASTD143B (Spring 2026).\n\nSee the Syllabus\nSee weekly materials under Meetings"
   },
   {
     "objectID": "syllabus/syllabus.html",
@@ -1264,13 +1474,13 @@
     "href": "meetings/index.html",
     "title": "Meetings",
     "section": "",
-    "text": "Meeting 01\nMeeting 02\nMeeting 03\nIn-class Exercise (Meeting 03)\nMeeting 04\nMeeting 05\nMeeting 06\nMeeting 07"
+    "text": "Meeting 01\nMeeting 02\nMeeting 03\nIn-class Exercise (Meeting 03)\nMeeting 04\nMeeting 05\nMeeting 06\nMeeting 07\nMeeting 08"
   },
   {
     "objectID": "meetings/index.html#spring-2026",
     "href": "meetings/index.html#spring-2026",
     "title": "Meetings",
     "section": "",
-    "text": "Meeting 01\nMeeting 02\nMeeting 03\nIn-class Exercise (Meeting 03)\nMeeting 04\nMeeting 05\nMeeting 06\nMeeting 07"
+    "text": "Meeting 01\nMeeting 02\nMeeting 03\nIn-class Exercise (Meeting 03)\nMeeting 04\nMeeting 05\nMeeting 06\nMeeting 07\nMeeting 08"
   }
 ]
