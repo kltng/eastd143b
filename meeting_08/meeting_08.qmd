@@ -1,0 +1,800 @@
+---
+title: "Meeting 08"
+format:
+    html:
+        toc: true
+        toc-depth: 3
+        code-fold: true
+        link-external-newwindow: true
+        code-overflow: wrap
+        code-copy: true
+# pdf output disabled
+
+date: "2026-03-25"
+date-modified: "2026-03-25"
+author: "Kwok-leong Tang"
+---
+
+# Today's Schedule
+
+**Part 1 — APIs (continued from Meeting 07)**
+
+- Recap: Local APIs (from Meeting 07)
+- From local APIs to cloud APIs
+- Hands-on: Harvard LibraryCloud API
+- Challenge: Combining local and cloud APIs
+
+**Part 2 — Knowledge Management with Obsidian**
+
+- Install Codex Desktop (AI coding agent)
+- Try a humanities skill: Harvard Library search (compare with Part 1)
+- Install Obsidian and download the Humanities Vault
+- Explore the vault structure
+- Hands-on: Using Codex Desktop inside the vault
+
+# Recap: Local APIs (Meeting 07)
+
+In Meeting 07, we learned how to communicate with a language model running on our own computer through its **API** (Application Programming Interface). Here is a quick summary of the key concepts before we move on.
+
+## What is an API?
+
+An API is a set of rules that allows one piece of software to communicate with another. We used the **library reference desk analogy**:
+
+| Library Reference Desk | API |
+|------------------------|-----|
+| You (the patron) | Your application (curl, Python script, a web app) |
+| The reference desk window | The API **endpoint** (a URL where you send requests) |
+| The request slip (with specific fields) | The API **request** (structured data in a specific format) |
+| The librarian goes into the stacks | The **server** processes your request (e.g., runs the LLM) |
+| The book or answer returned to you | The API **response** (structured data sent back) |
+
+```{mermaid}
+flowchart LR
+    A["Your Application\n(curl, Python, web app)"] -->|"Request\n(structured data)"| B["API Endpoint\n(URL)"]
+    B -->|"Processes request"| C["Server\n(LM Studio + Model)"]
+    C -->|"Result"| B
+    B -->|"Response\n(structured data)"| A
+```
+
+## REST and JSON
+
+We learned that most web APIs follow the **REST** style:
+
+- **URLs** identify resources (e.g., `http://localhost:1234/v1/chat/completions`)
+- **HTTP methods** specify what you want to do: `GET` (retrieve) or `POST` (send data)
+- **JSON** is the data format for both requests and responses
+
+## What We Did with curl
+
+We used `curl` to send API requests directly from the terminal:
+
+**macOS:**
+
+```{.bash}
+curl http://localhost:1234/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "qwen3.5-0.8b",
+    "messages": [
+      {"role": "user", "content": "Translate the following classical Chinese into English: 子曰：學而時習之，不亦說乎？"}
+    ]
+  }'
+```
+
+**Windows (PowerShell):**
+
+```{.powershell}
+curl.exe http://localhost:1234/v1/chat/completions `
+  -H "Content-Type: application/json" `
+  -d '{
+    \"model\": \"qwen3.5-0.8b\",
+    \"messages\": [
+      {\"role\": \"user\", \"content\": \"Translate the following classical Chinese into English: 子曰：學而時習之，不亦說乎？\"}
+    ]
+  }'
+```
+
+The JSON response contained the model's reply in `choices[0].message.content`.
+
+## What We Did with Python
+
+We wrote a Python script (`batch_translate.py`) that automated the process — sending 10 passages from the *Lunyu* to the API in a loop and saving the translations to a CSV file. We used `uv run` with **PEP 723 inline script metadata** so that dependencies were handled automatically:
+
+```{.python}
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "requests",
+# ]
+# ///
+```
+
+We then **refactored** the script (`batch_translate_v2.py`) to read passages from an external text file instead of hardcoding them — separating **data** from **logic** for reusable research workflows.
+
+:::{.callout-note}
+**Key takeaway from Meeting 07**: Every application that "talks to" an LLM — whether it is a chatbot, an OCR tool, or a research assistant — is making API calls. The pattern is always the same: send a structured request to a URL, get back a structured response. Once you understand this pattern, you can combine APIs to build powerful research workflows.
+:::
+
+# Further Exploration: From Local APIs to Cloud APIs
+
+So far, every API call you have made has been to **your own computer** — `localhost:1234`. The LM Studio server runs on your machine, processes your request, and sends back a response. But APIs are not limited to local servers. The exact same pattern — send a request to a URL, get back structured data — works with APIs hosted on the internet.
+
+In this section, we will use a **cloud API** provided by Harvard Library to search for books. Then we will combine it with our local LM Studio API to build a real research workflow: **fetch bibliographic data from the cloud, then analyze it with a local LLM**.
+
+## Local API vs. Cloud API
+
+Let's compare the two APIs side by side:
+
+| | LM Studio (Local API) | Harvard LibraryCloud (Cloud API) |
+|---|---|---|
+| **URL** | `http://localhost:1234/v1/chat/completions` | `https://api.lib.harvard.edu/v2/items.json` |
+| **Where it runs** | Your own computer | Harvard's servers |
+| **HTTP method** | `POST` (you send data to be processed) | `GET` (you request data to be retrieved) |
+| **Authentication** | None needed (it is your own machine) | None needed (it is a public API) |
+| **What it does** | Generates text using an LLM | Searches Harvard's library catalog |
+| **Data format** | JSON in, JSON out | Query parameters in, JSON out |
+
+:::{.callout-note}
+Notice the key difference in HTTP methods. With LM Studio, we used **POST** because we were *sending* data (a prompt) to be processed. With LibraryCloud, we use **GET** because we are *requesting* data (search results) from a database. This is the same distinction we covered in the REST section: POST = "here is my request slip, please process it"; GET = "what do you have on this topic?"
+:::
+
+```{mermaid}
+flowchart LR
+    subgraph "Your Computer"
+        A["Python Script"]
+        D["LM Studio\n(localhost:1234)"]
+    end
+    subgraph "Harvard Servers"
+        B["LibraryCloud API"]
+        C["Library Catalog\n(millions of records)"]
+    end
+    A -->|"1. GET: search for books"| B
+    B -->|"Queries"| C
+    C -->|"Results"| B
+    B -->|"2. JSON: bibliographic data"| A
+    A -->|"3. POST: analyze this book"| D
+    D -->|"4. JSON: analysis result"| A
+```
+
+## Try It: Search Harvard's Library with curl
+
+Before writing any Python, let's try calling the Harvard LibraryCloud API with curl — just like we did with LM Studio. This time, we use a simple GET request (no `-d` data needed):
+
+**macOS / Windows (all terminals):**
+
+```{.bash}
+curl "https://api.lib.harvard.edu/v2/items.json?q=digital+humanities&limit=2"
+```
+
+:::{.callout-tip}
+This curl command is much simpler than our LM Studio ones! With a GET request, the search parameters go directly into the URL (after the `?`). There is no need for `-H` headers or `-d` data. The same command works identically on macOS, Windows PowerShell, and Windows Command Prompt.
+
+**Tip**: The raw JSON output can be hard to read. You can pipe it through Python to format it nicely:
+
+```{.bash}
+curl "https://api.lib.harvard.edu/v2/items.json?q=digital+humanities&limit=2" | python -m json.tool
+```
+
+On Windows PowerShell, use `curl.exe` instead of `curl`.
+:::
+
+You should see a JSON response with two bibliographic records. The response includes a `pagination` section and an `items` section. Here is what the key fields look like for a single item:
+
+```{.json}
+{
+  "pagination": {
+    "numFound": 38225,
+    "limit": 2,
+    "start": 0
+  },
+  "items": {
+    "mods": {
+      "titleInfo": {
+        "title": "Bloomsbury handbook to the digital humanities"
+      },
+      "name": {
+        "namePart": "O'Sullivan, James Christopher"
+      },
+      "language": {
+        "languageTerm": [
+          {"#text": "eng"},
+          {"#text": "English"}
+        ]
+      },
+      "abstract": {
+        "#text": "Comprising a selection of scholarly essays..."
+      },
+      "subject": [
+        {"topic": "Digital humanities"},
+        {"topic": "Digital media"}
+      ]
+    }
+  }
+}
+```
+
+### Understanding the URL Parameters
+
+| Parameter | What It Does | Example |
+|-----------|-------------|---------|
+| `q=` | The search query (like typing in a library search box) | `q=digital+humanities` |
+| `limit=` | How many results to return (default is 10, max is 250) | `limit=20` |
+| `start=` | Skip the first N results (for pagination) | `start=20` (get results 21–40) |
+
+Try changing the query to search for something related to your own research:
+
+```{.bash}
+curl "https://api.lib.harvard.edu/v2/items.json?q=Song+dynasty+poetry&limit=2"
+```
+
+:::{.callout-note}
+**Connecting the dots**: Using this API is essentially the same as searching [HOLLIS](https://hollis.harvard.edu) — Harvard's library catalog — but instead of getting a webpage with clickable results, you get raw structured data (JSON) that a program can process automatically. The data is the same; only the interface is different.
+:::
+
+## Challenge: Build a Research Workflow with a Coding Agent
+
+Now that you understand how both APIs work, let's combine them into a real research workflow. Instead of writing this script from scratch, we will use **Antigravity's AI agent** (or any coding agent you prefer) to build it for us.
+
+The goal: search Harvard's library catalog for books about "digital humanities," fetch the first 20 results, and then ask LM Studio to determine whether each book contains East Asian-related content.
+
+```{mermaid}
+flowchart TB
+    A["Step 1: Search LibraryCloud API"] -->|"GET: q=digital+humanities, limit=20"| B["Get 20 book records"]
+    B --> C["Step 2: Extract bibliographic data\n(title, abstract, subjects, language)"]
+    C --> D["Step 3: For each book, send to LM Studio"]
+    D -->|"POST: Does this book contain\nEast Asian content?"| E["LM Studio analyzes"]
+    E --> F["Step 4: Save results to CSV\n(title, has_east_asian_content, reasoning)"]
+```
+
+### The Prompt
+
+Open Antigravity's AI chat panel (`Ctrl+Shift+I` / `Cmd+Shift+I`) and paste the following prompt. The agent will write the script for you:
+
+:::{.callout-important}
+Before running the prompt, make sure:
+
+1. **LM Studio** is running with the Qwen3.5-0.8B model and the server started on `localhost:1234`.
+2. You are in the `api_practice` folder.
+:::
+
+```{.markdown}
+Create a Python script called `library_east_asian_filter.py` that uses `uv run` inline
+script metadata (PEP 723) with `requests` as the only dependency. The script should do
+the following:
+
+1. **Search Harvard LibraryCloud API**: Send a GET request to
+   `https://api.lib.harvard.edu/v2/items.json` with the query parameter
+   `q=digital+humanities` and `limit=20` to fetch 20 book records.
+
+2. **Extract bibliographic data**: From each record in the response, extract the
+   following fields from the MODS metadata:
+   - Title (from `titleInfo.title`)
+   - Author/creator name (from `name.namePart` — may be a string or a list)
+   - Language (from `language.languageTerm` — look for the text value, not the code)
+   - Abstract (from `abstract` — may have `#text` key)
+   - Subjects (from `subject` — collect all `topic` values into a comma-separated string)
+
+   Handle missing fields gracefully — not every record has all fields. Use empty strings
+   for missing data.
+
+3. **Analyze each book with LM Studio**: For each of the 20 books, send a POST request
+   to the LM Studio API at `http://localhost:1234/v1/chat/completions` using the model
+   `qwen3.5-0.8b`. The prompt should include the book's title, author, language,
+   abstract, and subjects, and ask the model:
+
+   "Based on the following bibliographic information, does this book contain any content
+   related to East Asia (China, Japan, Korea, Vietnam, Tibet, Mongolia, or East Asian
+   languages, history, culture, literature, or art)? Answer with YES or NO, followed by
+   a one-sentence explanation."
+
+4. **Print progress**: For each book, print the book number (e.g., [1/20]), the title,
+   and the model's YES/NO answer with its reasoning.
+
+5. **Save results to CSV**: Save all results to `east_asian_filter_results.csv` with
+   columns: title, author, language, subjects, east_asian_content (YES/NO), reasoning.
+
+6. **Print a summary** at the end showing how many books were classified as YES vs NO.
+
+Important notes:
+- The LibraryCloud API returns items in a nested structure. The response JSON has
+  `items.mods` which may be a single object or a list of objects. Handle both cases.
+- Use `uv run` inline script metadata at the top of the file.
+- Add error handling for network failures.
+- Print a clear progress indicator so the user can see the script is working.
+```
+
+### After Running the Prompt
+
+The coding agent will generate the script for you. Review the code it produces — you should be able to recognize the patterns from today's exercises:
+
+- `requests.get(...)` for the LibraryCloud API (like our curl GET command)
+- `requests.post(...)` for the LM Studio API (like our batch translation script)
+- A loop that processes items one by one
+- CSV output for the results
+
+Run the generated script with:
+
+```{.bash}
+uv run library_east_asian_filter.py
+```
+
+:::{.callout-tip}
+**This is what a real research workflow looks like**: you combine multiple APIs — one to fetch data, another to analyze it — and automate the entire process with a script. The same pattern works with any combination of APIs: search a digital archive, download OCR text, classify it with an LLM, and save the results. The building blocks are always the same: HTTP requests, JSON data, and a loop.
+:::
+
+:::{.callout-note}
+**Why use a coding agent for this?** The `library_east_asian_filter.py` script is more complex than what we wrote by hand earlier — it needs to navigate Harvard's nested MODS metadata format, handle missing fields, and coordinate two different APIs. This is a realistic example of where a coding agent shines: you describe *what* you want in plain English, and the agent handles the messy implementation details. But because you now understand how APIs work (from the curl and batch translation exercises), you can **read and verify** the code the agent produces. You are not blindly trusting it — you are an informed reviewer.
+:::
+
+---
+
+# Part 2: Knowledge Management with Obsidian and Codex
+
+In the first half of this course, we learned how to run LLMs locally, process documents with OCR, and call APIs. All of that work produced **data** — translations, OCR outputs, bibliographic records. But data on its own is not research. Research requires **organizing**, **connecting**, and **analyzing** that data over weeks and months.
+
+In this second half of the course, we will learn to use two new tools:
+
+1. **Codex** — an AI coding agent from OpenAI that runs on your computer and can read, write, and modify files directly
+2. **Obsidian** — a note-taking application that stores your notes as plain Markdown files on your computer, with powerful features for linking, tagging, and querying your research data
+
+Together, these tools let you build a **personal research database**: interconnected notes about people, places, texts, and events that you can search, query, and visualize — with an AI assistant that can help you create and process entries.
+
+```{mermaid}
+flowchart LR
+    subgraph "What We Have Already Learned"
+        A["LM Studio\n(Local LLM)"]
+        B["OCR\n(Document Processing)"]
+        C["APIs\n(Data Retrieval)"]
+    end
+    subgraph "What We Learn Now"
+        D["Obsidian\n(Knowledge Management)"]
+        E["Codex\n(AI Agent)"]
+    end
+    A -->|"translations, analysis"| D
+    B -->|"digitized texts"| D
+    C -->|"bibliographic data"| D
+    E -->|"reads & writes notes"| D
+```
+
+# Step 1: Install Codex Desktop
+
+**Codex** is an AI coding agent from OpenAI. Unlike ChatGPT (which runs in a browser and cannot access your files), Codex runs **on your computer** and can directly read and edit files. This makes it ideal for working with an Obsidian vault — it can create notes, fill in templates, extract data from texts, and build database views, all by following your instructions.
+
+:::{.callout-note}
+**Why Codex and not ChatGPT?** ChatGPT runs in the cloud and cannot access files on your computer. Codex runs locally and can read, create, and modify files directly. When we ask it to "create 5 Person entries from this data," it actually creates those files in your Obsidian vault — no copy-pasting needed.
+:::
+
+## Download and Install Codex Desktop
+
+Codex Desktop is a standalone application with a graphical interface — no terminal or command-line experience needed.
+
+**macOS:**
+
+1. Go to [https://openai.com/index/introducing-codex/](https://openai.com/index/introducing-codex/)
+2. Click **Download for macOS**
+3. Open the downloaded `.dmg` file
+4. Drag **Codex** to your **Applications** folder
+5. Open Codex from your Applications folder (or Spotlight: press `Cmd+Space` and type "Codex")
+
+**Windows:**
+
+1. Go to [https://openai.com/index/introducing-codex/](https://openai.com/index/introducing-codex/)
+2. Click **Download for Windows**
+3. Run the installer and follow the prompts
+4. Open Codex from the Start menu
+
+:::{.callout-note}
+If macOS shows a security warning ("Codex can't be opened because it is from an unidentified developer"), go to **System Settings → Privacy & Security** and click **Open Anyway**.
+:::
+
+## Authenticate with Your Harvard Account
+
+When you open Codex Desktop for the first time, it will ask you to sign in.
+
+1. **Open Codex Desktop** — you will see a login screen.
+
+2. For **username**, enter your **Harvard email address** (e.g., `jdoe@college.harvard.edu`).
+
+3. A browser window will open for authentication. Sign in using your **HarvardKey** credentials — the same username and password you use for my.harvard, Canvas, and other Harvard services.
+
+4. After successful authentication, the browser will redirect you back to the Codex Desktop app. You should see the main Codex interface.
+
+:::{.callout-important}
+**Use your Harvard email.** Do not use a personal Gmail or other email address. The course access is provisioned through Harvard's institutional account. If you use a different email, you will not be able to connect.
+:::
+
+:::{.callout-note}
+**What is HarvardKey?** HarvardKey is Harvard's unified authentication system. If you can log into Canvas or my.harvard, you already have a HarvardKey. If you have trouble logging in, visit [https://key.harvard.edu](https://key.harvard.edu) for help.
+:::
+
+## Test Codex Desktop
+
+Once logged in, try asking Codex a simple question to make sure everything works:
+
+1. In the Codex chat window, type:
+
+```
+What is the capital of France?
+```
+
+2. Press **Enter**. Codex should respond with an answer.
+
+If you see an authentication error, close the app, reopen it, and sign in again with your Harvard email.
+
+:::{.callout-tip}
+Codex Desktop has three **autonomy modes** that control how much it can do without asking you first:
+
+| Mode | What Codex Can Do Without Asking |
+|------|------|
+| **suggest** (default) | Only suggests actions; you approve each one |
+| **auto-edit** | Can read and edit files, but asks before running commands |
+| **full-auto** | Can read, edit, and run commands without asking |
+
+For learning, start with the default **suggest** mode. You can change it later as you get more comfortable.
+:::
+
+# Step 2: Try a Humanities Skill — Harvard Library Search
+
+Before we move on to Obsidian, let's see what Codex can do with a **skill**. In Part 1 of today's meeting, you searched Harvard's library catalog by writing curl commands and Python scripts. Now let's do the same thing using a skill — and compare the two approaches.
+
+## What is a Skill?
+
+A **skill** is a set of instructions and reference material that teaches Codex how to use a specific tool or API. Without a skill, Codex has only its general knowledge — it might guess the wrong URL, use the wrong query format, or miss important details. With a skill, Codex has **precise, up-to-date documentation** and can work correctly the first time.
+
+Think of it this way: in Part 1, *you* had to read the API documentation and write the code yourself. A skill puts that documentation *inside Codex*, so you can just describe what you want in plain English.
+
+## Install the Harvard Library Skill
+
+The `humanities-skills` repository on GitHub contains skills for academic research APIs. We will install the **`harvard-library-catalog`** skill, which teaches Codex how to search Harvard Library's 13 million+ bibliographic records.
+
+1. In Codex Desktop, open a new conversation
+2. Type the following to install the skill:
+
+```
+/install github:kltng/humanities-skills/harvard-library-catalog
+```
+
+:::{.callout-note}
+**What just happened?** Codex downloaded the skill from GitHub and loaded it into memory. The skill contains:
+
+- Documentation for the Harvard LibraryCloud API (the same API you used with curl in Part 1)
+- A Python helper script with built-in rate limiting and pagination
+- A reference guide for all searchable fields (title, author, subject, language, date, and more)
+
+Codex now knows things it did not know before — for example, that LibraryCloud requires a `User-Agent` header, that JSON responses need `.json` in the URL path, and that field-based search uses query parameters (not Solr syntax).
+:::
+
+## Try It: Search Harvard Library with a Skill
+
+Now ask Codex to search the library catalog. Type:
+
+```
+Search Harvard Library for books about "digital humanities" and show me the first 5 results
+with their titles, authors, and subjects.
+```
+
+Codex will write and run a Python script that calls the Harvard LibraryCloud API — the same API you used manually in Part 1. But notice the difference: **you did not need to know the URL, the query format, or the JSON structure.** The skill provided all of that.
+
+## Compare: Three Ways to Search Harvard Library
+
+You have now searched Harvard's library catalog in three different ways across this course. Let's compare them:
+
+| | **Antigravity (Meeting 07)** | **curl / Python (Part 1 Today)** | **Codex + Skill (Now)** |
+|---|---|---|---|
+| **What you typed** | A prompt to the coding agent | curl command or Python code | A plain English request |
+| **Who wrote the code?** | The coding agent | You (or the agent from a detailed prompt) | Codex, guided by the skill |
+| **API knowledge needed?** | You described the API in the prompt | You had to know the URL, parameters, and JSON format | The skill provides all API knowledge |
+| **Error handling?** | Depended on the agent | You wrote it yourself | Built into the skill's helper script |
+| **Rate limiting?** | Probably missing | You had to add it | Automatic (1 req/sec, built into the skill) |
+| **Reproducibility** | Depends on the prompt quality | High (code is saved) | High (skill ensures consistent behavior) |
+
+```{mermaid}
+flowchart TB
+    subgraph "Meeting 07: Antigravity"
+        A1["You write a detailed prompt\n(including API URL, format, etc.)"] --> A2["Coding agent generates script"] --> A3["Script may or may not work\n(depends on prompt quality)"]
+    end
+    subgraph "Part 1 Today: curl / Python"
+        B1["You read the API docs"] --> B2["You write curl commands\nor Python scripts"] --> B3["You handle errors,\nrate limits, parsing"]
+    end
+    subgraph "Now: Codex + Skill"
+        C1["Skill provides API docs\nto Codex automatically"] --> C2["You describe what you want\nin plain English"] --> C3["Codex writes correct code\nusing the skill's knowledge"]
+    end
+```
+
+:::{.callout-tip}
+**The key insight**: Skills solve the problem of **getting the prompt right**. In Meeting 07, when you used Antigravity's coding agent, you had to write a very detailed prompt that described the API endpoint, the JSON format, and how to handle edge cases. If you forgot something, the code would fail. With a skill, all that API knowledge is pre-loaded — you just describe your research goal, and Codex handles the rest.
+:::
+
+## Try It: A More Complex Query
+
+Now try something that would have been difficult with a simple curl command:
+
+```
+Search Harvard Library for Chinese-language books about Song dynasty poetry published
+after 1990. Show the first 10 results with title, author, date, and subjects.
+Then save the results to a CSV file called song_poetry_books.csv.
+```
+
+Codex will use field-specific search parameters (`languageCode=chi`, `subject=Song dynasty poetry`, `dates.start=1990`) that the skill taught it — parameters you would have had to look up in the API documentation yourself.
+
+:::{.callout-note}
+**Connecting the dots**: This is the same workflow we built in Part 1 (search an API → process results → save to CSV), but now Codex does all the work. You are the **research director** — you decide *what* to search for — and Codex is the **research assistant** that handles the implementation. The skill ensures the assistant knows how to use the tools correctly.
+:::
+
+## What Other Skills Are Available?
+
+The `humanities-skills` repository contains skills for many research APIs:
+
+| Skill | What It Searches |
+|-------|-----------------|
+| `harvard-library-catalog` | Harvard Library (13M+ records) |
+| `cbdb-api` | China Biographical Database (500K+ historical figures) |
+| `chgis-tgaz` | China Historical GIS Temporal Gazetteer (placenames, 222 BCE–1911 CE) |
+| `wikidata-search` | Wikidata (keyword, SPARQL, entity retrieval) |
+| `loc-catalog` | Library of Congress catalog |
+| `hathitrust-catalog` | HathiTrust Digital Library |
+| `zotero-local` | Your local Zotero library |
+| `europeana-collections` | Europeana digital collections |
+| `historical-map` | Interactive historical maps |
+| `historical-timeline` | Timeline visualizations |
+| `cjk-calendar` | Chinese/Japanese/Korean calendar conversion |
+
+We will use several of these skills in later meetings as we build out our research projects.
+
+# Step 3: Install Obsidian
+
+:::{.callout-note}
+**Stepping back from APIs**: We will return to APIs and skills throughout the rest of the course. For now, let's set up the second tool — Obsidian — which will be where we *organize* the data we retrieve from these APIs.
+:::
+
+**Obsidian** is a free note-taking application. Unlike Google Docs or Notion, Obsidian stores all your notes as **plain Markdown files** on your own computer — no cloud required. This means your notes are always yours, always accessible, and always readable by other tools (including Codex).
+
+## Download and Install Obsidian
+
+1. Go to [https://obsidian.md](https://obsidian.md)
+2. Click **Download** and choose your operating system (macOS, Windows, or Linux)
+3. Install the application:
+   - **macOS**: Open the `.dmg` file and drag Obsidian to your Applications folder
+   - **Windows**: Run the installer and follow the prompts
+
+4. Open Obsidian after installation
+
+:::{.callout-note}
+Obsidian is free for personal use. You do not need to create an account or sign in.
+:::
+
+# Step 4: Download the Humanities Vault
+
+We have prepared an **Obsidian Humanities Vault** — a pre-built vault with tutorials, templates, and a sample project designed specifically for humanities research. You will download it from GitHub.
+
+## Option A: Download as ZIP (Recommended for Beginners)
+
+1. Go to [https://github.com/kltng/obsidian_humanities](https://github.com/kltng/obsidian_humanities)
+2. Click the green **Code** button
+3. Select the **`codex-edition`** branch from the branch dropdown (important — do not use the default `master` branch)
+4. Click **Download ZIP**
+5. Extract the ZIP file to a location you can easily find. Recommended locations:
+   - **macOS**: `~/Documents/obsidian_humanities/`
+   - **Windows**: `C:\Users\YourName\Documents\obsidian_humanities\`
+
+## Option B: Clone with Git (If You Know Git)
+
+```{.bash}
+# macOS
+cd ~/Documents
+git clone -b codex-edition https://github.com/kltng/obsidian_humanities.git
+
+# Windows (PowerShell)
+cd ~\Documents
+git clone -b codex-edition https://github.com/kltng/obsidian_humanities.git
+```
+
+:::{.callout-important}
+Make sure you are on the **`codex-edition`** branch. This branch contains the Codex configuration files (`AGENTS.md` and skill settings). The default `master` branch does not have these.
+:::
+
+# Step 5: Open the Vault in Obsidian
+
+1. Open **Obsidian**
+2. On the startup screen, click **Open folder as vault**
+3. Navigate to the `obsidian_humanities` folder you just downloaded/extracted
+4. Select the folder and click **Open**
+
+You should now see the vault in Obsidian's file explorer on the left side:
+
+```
+obsidian_humanities/
+├── 00-Start-Here/          ← Start here
+├── 01-Foundations/
+├── 02-Research-Workflow/
+├── 03-Structured-Data/
+├── 04-Analysis/
+├── 05-Customization/
+├── Templates/
+└── My-Research/            ← Your workspace
+```
+
+:::{.callout-tip}
+If Obsidian asks about "Safe Mode" or "Trust this vault," click **Trust** or **Enable plugins**. The vault uses only Obsidian's built-in (core) plugins — no third-party community plugins.
+:::
+
+## Install the Minimal Theme
+
+The vault is designed to work with the **Minimal** theme for a clean reading experience:
+
+1. In Obsidian, open **Settings** (click the gear icon in the bottom-left, or press `Ctrl/Cmd+,`)
+2. Go to **Appearance** in the left sidebar
+3. Under **Themes**, click **Manage**
+4. Search for **Minimal**
+5. Click **Install and use**
+
+# Step 6: Explore the Vault Structure
+
+Before diving into the tutorials, take a few minutes to explore what is inside the vault.
+
+## The 5-Layer Curriculum
+
+The vault is organized as a **progressive curriculum** — each layer builds on the previous one:
+
+| Layer | Folder | What You Learn |
+|-------|--------|---------------|
+| **Layer 1** | `01-Foundations/` | Creating notes, wikilinks, tags, templates |
+| **Layer 2** | `02-Research-Workflow/` | Reading notes, bibliography, Codex as research assistant |
+| **Layer 3** | `03-Structured-Data/` | YAML frontmatter, database views (Bases), geographic data, Codex as vault builder |
+| **Layer 4** | `04-Analysis/` | Network visualization (Canvas), pattern discovery, text analysis, Codex as data processor |
+| **Layer 5** | `05-Customization/` | MCP servers, skills, slash commands, connecting to external databases |
+
+```{mermaid}
+flowchart TB
+    L1["Layer 1: Foundations\n(Notes, Links, Tags)"] --> L2["Layer 2: Research Workflow\n(Bibliography, Reading Notes)"]
+    L2 --> L3["Layer 3: Structured Data\n(Frontmatter, Bases, Maps)"]
+    L3 --> L4["Layer 4: Analysis\n(Canvas, Networks, Text Mining)"]
+    L4 --> L5["Layer 5: Customization\n(MCP Servers, Skills, Databases)"]
+    L1 -.->|"Codex as Assistant"| L2
+    L2 -.->|"Codex as Builder"| L3
+    L3 -.->|"Codex as Processor"| L4
+    L4 -.->|"Codex as Customizer"| L5
+```
+
+:::{.callout-note}
+Notice how **Codex** plays a different role at each layer — from simple research assistant (summarizing sources) to advanced data processor (extracting structured information from texts). You do not need to use Codex at every layer, but it becomes increasingly powerful as your vault grows.
+:::
+
+## Templates
+
+The vault includes **6 templates** in the `Templates/` folder for creating standardized research entries:
+
+| Template | Purpose | Key Fields |
+|----------|---------|-----------|
+| **Person.md** | Historical figures | `name`, `name_zh`, `courtesy_name`, `birth`, `death`, `native_place`, `roles[]` |
+| **Text.md** | Primary sources / monographs | `title`, `title_zh`, `author`, `date`, `genre`, `language` |
+| **Place.md** | Geographic locations | `name`, `name_zh`, `coordinates[]`, `province`, `significance` |
+| **Event.md** | Historical events | `name`, `name_zh`, `date`, `location`, `participants[]`, `type` |
+| **Bibliography.md** | Secondary sources | `title`, `author`, `year`, `publisher`, `type` |
+| **Reading-Note.md** | Annotated reading notes | `source`, `date_read`, `key_points[]`, `questions[]` |
+
+To use a template: press `Ctrl/Cmd+P` to open the command palette, type "Templates: Insert template", and select the template you want.
+
+## Your Workspace
+
+The `My-Research/` folder is **your personal workspace**. It mirrors the sample project structure with empty folders:
+
+```
+My-Research/
+├── People/          ← Your biographical entries
+├── Texts/           ← Your primary sources
+├── Places/          ← Your geographic locations
+├── Events/          ← Your historical events
+├── Bibliography/    ← Your secondary sources
+├── Reading-Notes/   ← Your annotated reading notes
+└── Canvas/          ← Your network diagrams
+```
+
+As you progress through the course, you will fill this workspace with entries from your own research project.
+
+## Try It: Navigate the Vault
+
+1. In Obsidian, click on **`00-Start-Here/Welcome`** in the file explorer
+2. Read the Welcome note — notice the blue **wikilinks** like `[[How-to-Use-This-Vault]]`
+3. Click on one of the wikilinks — this takes you to the linked note
+4. Press `Ctrl/Cmd+G` to open the **Graph View** — you will see all the notes in the vault as connected dots
+5. Click on any dot to navigate to that note
+
+:::{.callout-tip}
+**Wikilinks** are the core navigation tool in Obsidian. Instead of organizing notes in a strict folder hierarchy (like Google Drive), you connect notes to each other with `[[links]]`. Over time, this builds a **network of knowledge** — the graph view lets you see and explore that network visually.
+:::
+
+# Step 7: Using Codex Desktop Inside the Vault
+
+Now let's connect the two tools. We need to tell Codex Desktop which folder to work with — your Obsidian vault.
+
+## Open the Vault in Codex Desktop
+
+1. Open **Codex Desktop**
+2. Click the **folder icon** or **Open Folder** button in the top area of the window
+3. Navigate to your `obsidian_humanities` folder:
+   - **macOS**: `Documents/obsidian_humanities/`
+   - **Windows**: `Documents\obsidian_humanities\`
+4. Select the folder and click **Open**
+
+Codex will detect the vault's `AGENTS.md` file and understand that it is working inside an Obsidian humanities vault. This gives it context about the vault's conventions — YAML frontmatter, wikilinks, templates, and the folder structure.
+
+:::{.callout-note}
+**What is `AGENTS.md`?** It is a special file in the vault that tells Codex how the vault is organized — what templates are available, how notes should be formatted, and what conventions to follow. You do not need to edit it; it is already set up for you.
+:::
+
+## Try It: Ask Codex About the Vault
+
+In the Codex chat window, type:
+
+```
+What is the structure of this Obsidian vault? What templates are available?
+```
+
+Press **Enter**. Codex will read the vault files and give you a summary. This is the same information you just explored manually in Obsidian, but now you can ask questions about it in natural language.
+
+## Try It: Create Your First Note with Codex
+
+Let's use Codex to create a Person entry in your workspace. Type the following into the Codex chat window:
+
+```
+Create a new Person note in My-Research/People/ for the Song dynasty poet Su Shi (蘇軾).
+Use the Person template. Fill in: born 1037, died 1101, courtesy name Zizhan (子瞻),
+art name Dongpo Jushi (東坡居士), native place Meishan (眉山), roles: poet, calligrapher,
+statesman. Add a brief description.
+```
+
+Codex will show you the file it wants to create. In **suggest** mode (the default), it will ask for your approval before writing the file. Click **Accept** or press **Enter** to confirm.
+
+The file will be created at `My-Research/People/Su-Shi.md` with properly formatted YAML frontmatter and Obsidian Markdown content. Switch to Obsidian — you should see the new note appear in the file explorer.
+
+:::{.callout-note}
+Notice what just happened: you gave Codex a natural-language description, and it created a properly formatted Obsidian note with YAML frontmatter, wikilinks, and the correct template structure. This is the power of combining an AI agent with a structured vault. Codex knows the vault's conventions (from `AGENTS.md`) and the template format (from `Templates/Person.md`), so it produces consistent, well-structured entries.
+:::
+
+## Available Slash Commands
+
+Codex supports **slash commands** that activate specialized skills for working with the vault. Type them directly in the Codex chat window:
+
+| Slash Command | What It Does | Example |
+|---------------|-------------|---------|
+| `/obsidian-markdown` | Teaches Codex about Obsidian syntax | "Create a note with callouts and wikilinks" |
+| `/obsidian-bases` | Creates database views (`.base` files) | "Create a view showing all People born before 1600" |
+| `/json-canvas` | Creates Canvas relationship diagrams | "Create a network diagram of Su Shi's literary circle" |
+| `/obsidian-cli` | Controls Obsidian from the terminal | "Search the vault for all notes mentioning 東坡" |
+| `/defuddle` | Extracts clean Markdown from web pages | "Save this article as a reading note" |
+
+To use a slash command, type it first, then your request. For example:
+
+```
+/obsidian-markdown Create a reading note about Chapter 3 of Egan's "Word, Image, and
+Deed in the Life of Su Shi" with callouts for key arguments and wikilinks to Su Shi
+and relevant places.
+```
+
+:::{.callout-warning}
+**Codex is a tool, not an oracle.** Always verify AI-generated historical content against primary sources and scholarly references. Codex can help you organize and process data, but the scholarly judgment is yours. If Codex generates a birth year, a place name, or a biographical detail — check it.
+:::
+
+## Summary
+
+Here is what you set up in Part 2:
+
+| What You Installed | What It Does |
+|-------------------|-------------|
+| **Codex Desktop** | AI agent that can read and write files in your vault |
+| **Obsidian** | Note-taking app that stores research as linked Markdown files |
+| **Humanities Vault** | Pre-built vault with tutorials, templates, and a sample project |
+| **Minimal theme** | Clean visual theme for the vault |
+
+| What You Explored | What You Learned |
+|-------------------|-----------------|
+| 5-layer vault structure | How the curriculum progresses from basics to advanced |
+| 6 note templates | Standardized formats for People, Texts, Places, Events, Bibliography, Reading Notes |
+| `My-Research/` workspace | Where your own research entries will live |
+| Wikilinks and graph view | How notes connect to each other in a knowledge network |
+| Codex Desktop in the vault | How to create notes, ask questions, and use slash commands |
+
+:::{.callout-tip}
+**Looking ahead**: In the coming meetings, we will work through the vault's curriculum layers one by one. Layer 1 (Foundations) covers the Obsidian basics you just explored. In Layer 2, we will start building a real research workflow with bibliography management and reading notes. By Layer 3, you will be creating queryable databases of historical figures — and by Layer 4, you will be using Canvas to visualize networks of relationships between them.
+:::
