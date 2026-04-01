@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kwok-leong Tang">
+<meta name="dcterms.date" content="2026-04-01">
+
+<title>Meeting 09 – EASTD143B (Spring 2026)</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4d3f3448f837ff03356db176d8adb603.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+  // Soft gate: redirect to auth page unless a matching token is present.
+  // NOTE: client-side only (not strong security).
+  (function () {
+    var expected = "__REPLACE_ME__"; // must match EXPECTED_HASH in auth.html
+    try {
+      var token = localStorage.getItem('eastd143b_access');
+      var path = window.location.pathname;
+      var isAuthPage = path.endsWith('/auth.html') || path.endsWith('/auth/') || path.endsWith('/auth');
+      if (!isAuthPage && expected !== "__REPLACE_ME__" && token !== expected) {
+        window.location.replace('auth.html');
+      }
+    } catch (e) {
+      // if storage is blocked, fail closed
+      if (!window.location.pathname.endsWith('/auth.html')) {
+        window.location.replace('auth.html');
+      }
+    }
+  })();
+</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">EASTD143B (Spring 2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus/syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../meetings/index.html"> 
+<span class="menu-text">Meetings</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#todays-schedule" id="toc-todays-schedule" class="nav-link active" data-scroll-target="#todays-schedule">Today’s Schedule</a></li>
+  <li><a href="#part-1-ai-coding-agents-master-one-master-them-all" id="toc-part-1-ai-coding-agents-master-one-master-them-all" class="nav-link" data-scroll-target="#part-1-ai-coding-agents-master-one-master-them-all">Part 1: AI Coding Agents — Master One, Master Them All</a>
+  <ul class="collapse">
+  <li><a href="#what-they-all-share" id="toc-what-they-all-share" class="nav-link" data-scroll-target="#what-they-all-share">What They All Share</a></li>
+  <li><a href="#key-differences" id="toc-key-differences" class="nav-link" data-scroll-target="#key-differences">Key Differences</a>
+  <ul class="collapse">
+  <li><a href="#model-flexibility" id="toc-model-flexibility" class="nav-link" data-scroll-target="#model-flexibility">1. Model Flexibility</a></li>
+  <li><a href="#open-source" id="toc-open-source" class="nav-link" data-scroll-target="#open-source">2. Open Source</a></li>
+  <li><a href="#instruction-files" id="toc-instruction-files" class="nav-link" data-scroll-target="#instruction-files">3. Instruction Files</a></li>
+  <li><a href="#where-things-live-project-files-and-global-config" id="toc-where-things-live-project-files-and-global-config" class="nav-link" data-scroll-target="#where-things-live-project-files-and-global-config">4. Where Things Live: Project Files and Global Config</a></li>
+  </ul></li>
+  <li><a href="#and-there-are-many-more" id="toc-and-there-are-many-more" class="nav-link" data-scroll-target="#and-there-are-many-more">And There Are Many More</a></li>
+  <li><a href="#adding-custom-models-the-real-superpower" id="toc-adding-custom-models-the-real-superpower" class="nav-link" data-scroll-target="#adding-custom-models-the-real-superpower">Adding Custom Models: The Real Superpower</a></li>
+  <li><a href="#our-api-endpoints" id="toc-our-api-endpoints" class="nav-link" data-scroll-target="#our-api-endpoints">Our API Endpoints</a>
+  <ul class="collapse">
+  <li><a href="#class-api-proxy-openai-models" id="toc-class-api-proxy-openai-models" class="nav-link" data-scroll-target="#class-api-proxy-openai-models">1. Class API Proxy (OpenAI Models)</a></li>
+  <li><a href="#z.ai-coding-plan-glm-models" id="toc-z.ai-coding-plan-glm-models" class="nav-link" data-scroll-target="#z.ai-coding-plan-glm-models">2. Z.ai Coding Plan (GLM Models)</a></li>
+  </ul></li>
+  <li><a href="#what-is-an-api-key-and-how-to-store-it" id="toc-what-is-an-api-key-and-how-to-store-it" class="nav-link" data-scroll-target="#what-is-an-api-key-and-how-to-store-it">What Is an API Key? (And How to Store It)</a></li>
+  <li><a href="#let-codex-configure-itself" id="toc-let-codex-configure-itself" class="nav-link" data-scroll-target="#let-codex-configure-itself">Let Codex Configure Itself</a>
+  <ul class="collapse">
+  <li><a href="#step-1-ask-codex-to-add-the-class-api-provider" id="toc-step-1-ask-codex-to-add-the-class-api-provider" class="nav-link" data-scroll-target="#step-1-ask-codex-to-add-the-class-api-provider">Step 1: Ask Codex to Add the Class API Provider</a></li>
+  <li><a href="#step-2-add-the-z.ai-provider" id="toc-step-2-add-the-z.ai-provider" class="nav-link" data-scroll-target="#step-2-add-the-z.ai-provider">Step 2: Add the Z.ai Provider</a></li>
+  <li><a href="#step-3-restart-and-verify" id="toc-step-3-restart-and-verify" class="nav-link" data-scroll-target="#step-3-restart-and-verify">Step 3: Restart and Verify</a></li>
+  </ul></li>
+  <li><a href="#hands-on-understanding-the-config-what-codex-just-wrote" id="toc-hands-on-understanding-the-config-what-codex-just-wrote" class="nav-link" data-scroll-target="#hands-on-understanding-the-config-what-codex-just-wrote">Hands-On: Understanding the Config (What Codex Just Wrote)</a>
+  <ul class="collapse">
+  <li><a href="#explore-the-interface" id="toc-explore-the-interface" class="nav-link" data-scroll-target="#explore-the-interface">Explore the Interface</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#part-2-skills-why-they-matter" id="toc-part-2-skills-why-they-matter" class="nav-link" data-scroll-target="#part-2-skills-why-they-matter">Part 2: Skills — Why They Matter</a>
+  <ul class="collapse">
+  <li><a href="#what-are-skills" id="toc-what-are-skills" class="nav-link" data-scroll-target="#what-are-skills">What Are Skills?</a></li>
+  <li><a href="#the-task" id="toc-the-task" class="nav-link" data-scroll-target="#the-task">The Task</a></li>
+  <li><a href="#stage-1-without-skills" id="toc-stage-1-without-skills" class="nav-link" data-scroll-target="#stage-1-without-skills">Stage 1: Without Skills</a>
+  <ul class="collapse">
+  <li><a href="#what-the-agent-does-step-by-step" id="toc-what-the-agent-does-step-by-step" class="nav-link" data-scroll-target="#what-the-agent-does-step-by-step">What the Agent Does (Step by Step)</a></li>
+  </ul></li>
+  <li><a href="#stage-2-install-skills-then-try-again" id="toc-stage-2-install-skills-then-try-again" class="nav-link" data-scroll-target="#stage-2-install-skills-then-try-again">Stage 2: Install Skills, Then Try Again</a>
+  <ul class="collapse">
+  <li><a href="#installing-the-skill" id="toc-installing-the-skill" class="nav-link" data-scroll-target="#installing-the-skill">Installing the Skill</a></li>
+  <li><a href="#what-the-skill-teaches-the-agent" id="toc-what-the-skill-teaches-the-agent" class="nav-link" data-scroll-target="#what-the-skill-teaches-the-agent">What the Skill Teaches the Agent</a></li>
+  <li><a href="#repeat-the-same-prompt" id="toc-repeat-the-same-prompt" class="nav-link" data-scroll-target="#repeat-the-same-prompt">Repeat the Same Prompt</a></li>
+  <li><a href="#what-the-agent-does-now-step-by-step" id="toc-what-the-agent-does-now-step-by-step" class="nav-link" data-scroll-target="#what-the-agent-does-now-step-by-step">What the Agent Does Now (Step by Step)</a></li>
+  </ul></li>
+  <li><a href="#side-by-side-comparison" id="toc-side-by-side-comparison" class="nav-link" data-scroll-target="#side-by-side-comparison">Side-by-Side Comparison</a></li>
+  <li><a href="#why-this-matters-for-research" id="toc-why-this-matters-for-research" class="nav-link" data-scroll-target="#why-this-matters-for-research">Why This Matters for Research</a></li>
+  <li><a href="#what-else-is-in-humanities-skills" id="toc-what-else-is-in-humanities-skills" class="nav-link" data-scroll-target="#what-else-is-in-humanities-skills">What Else Is in humanities-skills?</a></li>
+  </ul></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways">Takeaways</a></li>
+  <li><a href="#in-class-practice-try-everything-in-opencode" id="toc-in-class-practice-try-everything-in-opencode" class="nav-link" data-scroll-target="#in-class-practice-try-everything-in-opencode">In-Class Practice: Try Everything in Opencode</a>
+  <ul class="collapse">
+  <li><a href="#install-opencode" id="toc-install-opencode" class="nav-link" data-scroll-target="#install-opencode">Install Opencode</a></li>
+  <li><a href="#configure-opencode-with-the-same-providers" id="toc-configure-opencode-with-the-same-providers" class="nav-link" data-scroll-target="#configure-opencode-with-the-same-providers">Configure Opencode with the Same Providers</a></li>
+  <li><a href="#codex-vs-opencode-feature-equivalents" id="toc-codex-vs-opencode-feature-equivalents" class="nav-link" data-scroll-target="#codex-vs-opencode-feature-equivalents">Codex vs Opencode: Feature Equivalents</a></li>
+  </ul></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Meeting 09</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kwok-leong Tang </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 1, 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">April 1, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="todays-schedule" class="level1">
+<h1>Today’s Schedule</h1>
+<p><strong>Part 1 — AI Coding Agents: Master One, Master Them All</strong></p>
+<ul>
+<li>The three major AI coding agents: Claude Code, Codex CLI, and Opencode</li>
+<li>What they share: terminal-based, agentic, tool-using, MCP-compatible</li>
+<li>Key differences: open source, model flexibility, instruction files</li>
+<li>Hands-on: Add a custom model provider to Codex (and Opencode)</li>
+</ul>
+<p><strong>Part 2 — Skills: Why They Matter</strong></p>
+<ul>
+<li>What are skills in AI coding tools?</li>
+<li>Live demo: Ask an agent to query CBDB <strong>without</strong> skills — watch it struggle</li>
+<li>Live demo: Install humanities-skills and repeat the same prompt — watch it succeed</li>
+<li>Why the difference matters for your research</li>
+</ul>
+</section>
+<section id="part-1-ai-coding-agents-master-one-master-them-all" class="level1">
+<h1>Part 1: AI Coding Agents — Master One, Master Them All</h1>
+<p>In the past few weeks, we have been using different AI tools — LM Studio for running local models, <code>curl</code> and Python for calling APIs. Now we step into a new category of tool: <strong>AI coding agents</strong>.</p>
+<p>An AI coding agent is a program that runs in your terminal, reads and writes files, executes commands, and iterates on code — all guided by a large language model. There are three major ones:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th><a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a></th>
+<th><a href="https://github.com/openai/codex">Codex CLI</a></th>
+<th><a href="https://opencode.ai">Opencode</a></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Made by</strong></td>
+<td>Anthropic</td>
+<td>OpenAI</td>
+<td>Anomaly (open-source community)</td>
+</tr>
+<tr class="even">
+<td><strong>Open source</strong></td>
+<td>No (proprietary)</td>
+<td>Yes (Apache 2.0)</td>
+<td>Yes (MIT)</td>
+</tr>
+<tr class="odd">
+<td><strong>Written in</strong></td>
+<td>Not disclosed</td>
+<td>Rust</td>
+<td>TypeScript</td>
+</tr>
+<tr class="even">
+<td><strong>Models</strong></td>
+<td>Claude only</td>
+<td>OpenAI by default, supports others</td>
+<td>Any provider (Claude, OpenAI, Google, local, etc.)</td>
+</tr>
+<tr class="odd">
+<td><strong>Interface</strong></td>
+<td>Terminal</td>
+<td>Terminal</td>
+<td>Terminal, Desktop app, Web app</td>
+</tr>
+<tr class="even">
+<td><strong>Instruction file</strong></td>
+<td><code>CLAUDE.md</code></td>
+<td><code>AGENTS.md</code></td>
+<td><code>AGENTS.md</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Config file</strong></td>
+<td><code>settings.json</code></td>
+<td><code>config.toml</code></td>
+<td><code>opencode.jsonc</code></td>
+</tr>
+<tr class="even">
+<td><strong>MCP support</strong></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td><strong>Skills / plugins</strong></td>
+<td>Yes (rich skill system)</td>
+<td>No formal system</td>
+<td>Yes (skills + TUI plugins)</td>
+</tr>
+</tbody>
+</table>
+<section id="what-they-all-share" class="level2">
+<h2 class="anchored" data-anchor-id="what-they-all-share">What They All Share</h2>
+<p>Despite different names and companies, these tools are <strong>remarkably similar</strong> in how they work. Once you learn the pattern, you can switch between them easily.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A["1. You type a prompt"] --&gt; B["2. Agent reads codebase"]
+    B --&gt; C["3. Agent calls an LLM"]
+    C --&gt; D["4. LLM picks tools"]
+    D --&gt; E["5. Agent executes tools"]
+    E --&gt;|"iterate"| C
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><a href="https://excalidraw.com/#json=j0AAiObDuvergc3PmoKf0,FA0j-38LlzSouAfpbaXLGg">View interactive diagram on Excalidraw</a></p>
+<p><strong>Shared concepts across all three:</strong></p>
+<ol type="1">
+<li><strong>Terminal-based</strong>: You interact through a text interface in your terminal, not a web browser</li>
+<li><strong>Agentic</strong>: The AI does not just answer questions — it takes actions (reads files, writes code, runs commands)</li>
+<li><strong>Tool-using</strong>: The AI has access to tools like file search, grep, bash, and git</li>
+<li><strong>Instruction files</strong>: Each tool reads a Markdown file (<code>CLAUDE.md</code> or <code>AGENTS.md</code>) for project-specific guidance — this is how you teach the AI about your project</li>
+<li><strong>MCP (Model Context Protocol)</strong>: All three support MCP, a standard for connecting AI tools to external services (databases, APIs, browsers, etc.)</li>
+<li><strong>Permission-based</strong>: The AI asks for your approval before taking potentially risky actions (editing files, running commands)</li>
+</ol>
+</section>
+<section id="key-differences" class="level2">
+<h2 class="anchored" data-anchor-id="key-differences">Key Differences</h2>
+<section id="model-flexibility" class="level3">
+<h3 class="anchored" data-anchor-id="model-flexibility">1. Model Flexibility</h3>
+<p>This is the most important difference for us:</p>
+<ul>
+<li><strong>Claude Code</strong> only works with Anthropic’s Claude models — you need an Anthropic API key or Claude subscription</li>
+<li><strong>Codex CLI</strong> defaults to OpenAI models but can connect to other providers with <code>--provider</code></li>
+<li><strong>Opencode</strong> is fully <strong>provider-agnostic</strong> — it supports 75+ providers out of the box, including Claude, GPT, Gemini, open-source models, and local models via Ollama</li>
+</ul>
+</section>
+<section id="open-source" class="level3">
+<h3 class="anchored" data-anchor-id="open-source">2. Open Source</h3>
+<ul>
+<li><strong>Opencode</strong> and <strong>Codex CLI</strong> are open source — you can read the code, understand how they work, and contribute</li>
+<li><strong>Claude Code</strong> is proprietary — you use it as-is</li>
+</ul>
+</section>
+<section id="instruction-files" class="level3">
+<h3 class="anchored" data-anchor-id="instruction-files">3. Instruction Files</h3>
+<p>All three use a Markdown file in your project root to provide context to the AI:</p>
+<ul>
+<li><strong>Claude Code</strong> reads <code>CLAUDE.md</code></li>
+<li><strong>Codex CLI</strong> and <strong>Opencode</strong> read <code>AGENTS.md</code></li>
+</ul>
+<p>The content is the same idea: project conventions, coding standards, architecture notes, and workflow instructions. If you write a good <code>AGENTS.md</code>, both Codex and Opencode will benefit from it.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Why does this matter?</strong> Because the skills you learn with one tool transfer directly to another. The instruction file format, the way you write prompts, the way you think about giving context to an AI — all of this is portable. You are not learning “how to use Codex.” You are learning <strong>how to work with AI coding agents</strong>.</p>
+</div>
+</div>
+</section>
+<section id="where-things-live-project-files-and-global-config" class="level3">
+<h3 class="anchored" data-anchor-id="where-things-live-project-files-and-global-config">4. Where Things Live: Project Files and Global Config</h3>
+<p>Each AI coding agent stores its files in two places: a <strong>global config</strong> in your home directory (settings that apply to everything) and <strong>project-level files</strong> inside your project (instructions specific to that project). Here is the layout for all three:</p>
+<section id="global-configuration-your-home-directory" class="level4">
+<h4 class="anchored" data-anchor-id="global-configuration-your-home-directory">Global Configuration (Your Home Directory)</h4>
+<p>These files live in your home folder and apply to every project you open.</p>
+<pre><code>~/ (your home directory)
+├── .codex/
+│   ├── config.toml          # Codex settings (providers, models, approval mode)
+│   ├── AGENTS.md             # Personal instructions for all projects
+│   └── instructions.md       # Additional global instructions
+│
+├── .claude/
+│   ├── settings.json         # Claude Code settings (providers, permissions)
+│   ├── CLAUDE.md             # Personal instructions for all projects
+│   └── skills/               # Global skills (apply to all projects)
+│       └── my-skill.md
+│
+└── .config/opencode/
+    └── opencode.json         # Opencode global settings</code></pre>
+</section>
+<section id="project-level-files-inside-your-project" class="level4">
+<h4 class="anchored" data-anchor-id="project-level-files-inside-your-project">Project-Level Files (Inside Your Project)</h4>
+<p>These files live in your project folder and are specific to that project. They are typically committed to git so everyone on the team benefits.</p>
+<pre><code>my-project/
+├── AGENTS.md                 # Project instructions (Codex + Opencode read this)
+├── CLAUDE.md                 # Project instructions (Claude Code reads this)
+│
+├── .codex/                   # Codex project overrides (rarely needed)
+│   └── AGENTS.md             # Subfolder-specific instructions
+│
+├── .claude/
+│   ├── settings.json         # Project-specific Claude Code settings
+│   └── skills/               # Project-specific skills
+│       └── humanities-video/
+│           └── SKILL.md
+│
+├── .opencode/
+│   ├── opencode.json         # Project-specific Opencode settings
+│   └── skills/               # Project-specific skills
+│       └── humanities-video/
+│           └── SKILL.md
+│
+└── src/                      # Your actual code
+    └── ...</code></pre>
+</section>
+<section id="how-settings-merge" class="level4">
+<h4 class="anchored" data-anchor-id="how-settings-merge">How Settings Merge</h4>
+<p>When you launch an AI coding agent, it loads settings in layers — project-level settings override global ones:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A["Global config\n(~/.codex/config.toml)"] --&gt; C["Merged settings"]
+    B["Project config\n(./AGENTS.md)"] --&gt; C
+    C --&gt; D["AI agent starts\nwith combined context"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This is why you can set your API keys and providers <strong>globally</strong> (so they work everywhere) and your project instructions <strong>locally</strong> (so they are specific to each project).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What to put where</th>
+<th>Global config</th>
+<th>Project files</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>API keys and providers</td>
+<td>✅ Set once, works everywhere</td>
+<td>❌ Don’t put keys in project files</td>
+</tr>
+<tr class="even">
+<td>Model preferences</td>
+<td>✅ Your default model</td>
+<td>✅ Override for specific projects</td>
+</tr>
+<tr class="odd">
+<td>Coding standards</td>
+<td>❌ Too generic</td>
+<td>✅ Project-specific conventions</td>
+</tr>
+<tr class="even">
+<td>Skills and workflows</td>
+<td>✅ Personal skills</td>
+<td>✅ Project-specific skills</td>
+</tr>
+<tr class="odd">
+<td><code>AGENTS.md</code> / <code>CLAUDE.md</code></td>
+<td>✅ Personal preferences</td>
+<td>✅ Shared team instructions</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Rule of thumb</strong>: If it is about <em>you</em> (your API keys, your preferred model, your personal style), put it in the global config. If it is about <em>the project</em> (coding conventions, citation format, file structure), put it in the project folder.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="and-there-are-many-more" class="level2">
+<h2 class="anchored" data-anchor-id="and-there-are-many-more">And There Are Many More</h2>
+<p>The three tools above are the most widely used, but the ecosystem is growing fast. Here are other notable AI coding agents with terminal interfaces:</p>
+<ul>
+<li><a href="https://github.com/google-gemini/gemini-cli"><strong>Gemini CLI</strong></a> — Google’s open-source CLI agent, powered by Gemini models. Free tier with 1,000 requests/day using a personal Google account. (Apache 2.0)</li>
+<li><a href="https://github.com/charmbracelet/crush"><strong>Crush</strong></a> — By Charmbracelet, the team behind popular terminal tools. A glamorous TUI-based coding agent with LSP integration and MCP support. Works with any provider. (Open source)</li>
+<li><a href="https://github.com/QwenLM/qwen-code"><strong>Qwen Code</strong></a> — By Alibaba’s Qwen team, optimized for Qwen3-Coder but model-agnostic. Forked from Gemini CLI’s architecture. (Apache 2.0)</li>
+<li><a href="https://aider.chat"><strong>Aider</strong></a> — One of the earliest AI pair programming tools. Works with 100+ LLMs, auto-commits with git, supports voice input. 39K+ stars. (Apache 2.0)</li>
+<li><a href="https://github.com/block/goose"><strong>Goose</strong></a> — By Block (formerly Square), now part of the Linux Foundation. Supports 25+ providers, MCP integration, and extensible tooling. (Apache 2.0)</li>
+<li><a href="https://ampcode.com"><strong>Amp</strong></a> — By Sourcegraph (formerly Cody). Enterprise-focused with multi-model support and code graph context. CLI and VS Code extension. (Proprietary)</li>
+<li><a href="https://cline.bot"><strong>Cline</strong></a> — Started as a VS Code extension, now also a standalone CLI (Cline CLI 2.0). Supports Plan/Act modes and MCP. (Open source)</li>
+</ul>
+<p>All of these follow the same fundamental pattern: read the codebase, call an LLM, use tools, iterate. The skills you learn today apply to all of them.</p>
+</section>
+<section id="adding-custom-models-the-real-superpower" class="level2">
+<h2 class="anchored" data-anchor-id="adding-custom-models-the-real-superpower">Adding Custom Models: The Real Superpower</h2>
+<p>All three tools can connect to <strong>any OpenAI-compatible API endpoint</strong> — not just their default provider. This means you can use models from Z.ai, OpenAI, Google, or any other service. Since you already have Codex installed, we will demonstrate with Codex first, then you will do the same in Opencode.</p>
+</section>
+<section id="our-api-endpoints" class="level2">
+<h2 class="anchored" data-anchor-id="our-api-endpoints">Our API Endpoints</h2>
+<p>For this class, we will connect to two different API providers. This demonstrates a key advantage of open tools — you are not locked into one company.</p>
+<section id="class-api-proxy-openai-models" class="level3">
+<h3 class="anchored" data-anchor-id="class-api-proxy-openai-models">1. Class API Proxy (OpenAI Models)</h3>
+<p>An API proxy that gives you access to OpenAI models:</p>
+<ul>
+<li><strong>Endpoint</strong>: <code>https://litellm.016801.xyz/v1</code></li>
+<li>Your instructor will provide the API key.</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>gpt-5.4-mini</code></td>
+<td>Fast, cost-effective model for everyday coding tasks</td>
+</tr>
+<tr class="even">
+<td><code>gpt-5.4-nano</code></td>
+<td>Smallest and fastest, great for simple tasks</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="z.ai-coding-plan-glm-models" class="level3">
+<h3 class="anchored" data-anchor-id="z.ai-coding-plan-glm-models">2. Z.ai Coding Plan (GLM Models)</h3>
+<p><a href="https://z.ai">Z.ai</a> is the international platform of Zhipu AI, a leading Chinese AI company. They offer a <strong>GLM Coding Plan</strong> — a subscription specifically designed for AI coding tools. The API is OpenAI-compatible, so it works with Codex, Opencode, and other agents.</p>
+<ul>
+<li><strong>Endpoint</strong>: <code>https://api.z.ai/api/coding/paas/v4</code></li>
+<li>You will use your own Z.ai Coding Plan API key (see setup below).</li>
+<li><strong>Documentation</strong>: <a href="https://docs.z.ai/devpack/quick-start">Z.ai Coding Plan Quick Start</a></li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>glm-5.1</code></td>
+<td>Z.ai’s flagship model, strong at reasoning and code generation</td>
+</tr>
+<tr class="even">
+<td><code>glm-4.7</code></td>
+<td>Reliable, cost-effective workhorse</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Start with <code>gpt-5.4-mini</code> for most tasks. Try <code>glm-5.1</code> to compare how a Chinese AI model handles the same coding tasks.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="what-is-an-api-key-and-how-to-store-it" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-an-api-key-and-how-to-store-it">What Is an API Key? (And How to Store It)</h2>
+<p>When a program needs to prove its identity to an API — like logging in — it uses an <strong>API key</strong>: a long string of characters that acts as a password. You do not type this key every time. Instead, you store it in an <strong>environment variable</strong> — a named value that lives in your terminal session and can be read by any program you run.</p>
+<p>Think of it like this:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Analogy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>API key</strong></td>
+<td>Your library card number</td>
+</tr>
+<tr class="even">
+<td><strong>Environment variable</strong></td>
+<td>A sticky note on your desk with the card number written on it</td>
+</tr>
+<tr class="odd">
+<td><strong>The program</strong> (Codex, Opencode)</td>
+<td>The librarian who reads the sticky note when you walk in</td>
+</tr>
+</tbody>
+</table>
+<p>We need to set <strong>two</strong> environment variables — one for each API provider.</p>
+<p><strong>macOS / Linux:</strong></p>
+<p>Open your terminal and type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CLASS_API_KEY</span><span class="op">=</span><span class="st">"your-class-key-here"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ZAI_API_KEY</span><span class="op">=</span><span class="st">"your-zai-key-here"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>export</code> tells the terminal: “remember this name-value pair and make it available to any program I run.” Replace the values with the actual keys.</p>
+<ul>
+<li><strong>Class API key</strong>: Your instructor will give you this key in class.</li>
+<li><strong>Z.ai API key</strong>: Go to <a href="https://z.ai/manage-apikey/apikey-list">z.ai/manage-apikey/apikey-list</a>, sign in, and generate a key. You need an active <a href="https://z.ai/subscribe">GLM Coding Plan subscription</a>.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>This only lasts for your current terminal session.</strong> If you close the terminal and open a new one, the variable is gone. To make it permanent, add the <code>export</code> lines to your shell configuration file:</p>
+<ul>
+<li><strong>macOS (zsh)</strong>: <code>~/.zshrc</code></li>
+<li><strong>Linux (bash)</strong>: <code>~/.bashrc</code></li>
+</ul>
+<p>You can do this with a text editor, or run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export CLASS_API_KEY="your-class-key-here"'</span> <span class="op">&gt;&gt;</span> ~/.zshrc</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export ZAI_API_KEY="your-zai-key-here"'</span> <span class="op">&gt;&gt;</span> ~/.zshrc</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Linux</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export CLASS_API_KEY="your-class-key-here"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'export ZAI_API_KEY="your-zai-key-here"'</span> <span class="op">&gt;&gt;</span> ~/.bashrc</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>&gt;&gt;</code> appends the line to the end of the file. The <code>source</code> command reloads the file so the variable takes effect immediately.</p>
+</div>
+</div>
+<p><strong>Windows (PowerShell):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">CLASS_API_KEY</span> <span class="op">=</span> <span class="st">"your-class-key-here"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">ZAI_API_KEY</span> <span class="op">=</span> <span class="st">"your-zai-key-here"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To make it permanent on Windows, use the System Environment Variables settings (search “environment variables” in the Start menu).</p>
+<p><strong>Verify it worked:</strong></p>
+<p>You can check that the variables are set by running:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS / Linux</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$CLASS_API_KEY</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$ZAI_API_KEY</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows (PowerShell)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$env</span>:CLASS_API_KEY</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$env</span>:ZAI_API_KEY</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should see your API keys printed back. If you see nothing, the variable was not set — try the <code>export</code> command again.</p>
+</section>
+<section id="let-codex-configure-itself" class="level2">
+<h2 class="anchored" data-anchor-id="let-codex-configure-itself">Let Codex Configure Itself</h2>
+<p>Here is the best part about AI coding agents: <strong>you can ask them to configure themselves</strong>. Instead of manually editing config files, let’s ask Codex to do it.</p>
+<section id="step-1-ask-codex-to-add-the-class-api-provider" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-ask-codex-to-add-the-class-api-provider">Step 1: Ask Codex to Add the Class API Provider</h3>
+<p>Launch Codex (it will use your existing OpenAI setup), and give it this prompt:</p>
+<pre><code>Edit my ~/.codex/config.toml to add a custom model provider called "class-api"
+with these settings:
+- name: "Class API"
+- base_url: https://litellm.016801.xyz/v1
+- env_key: CLASS_API_KEY
+
+Also add these models as available options (just as comments so I remember):
+- gpt-5.4-mini
+- gpt-5.4-nano
+
+Set the default model to gpt-5.4-mini and the model_provider to class-api.</code></pre>
+<p>Codex will read your current <code>config.toml</code>, understand its structure, and add the new provider block. Watch how it:</p>
+<ol type="1">
+<li><strong>Reads</strong> the existing file to understand what is already there</li>
+<li><strong>Plans</strong> the edit (you can see what it wants to change)</li>
+<li><strong>Asks for permission</strong> before writing (in Suggest mode)</li>
+<li><strong>Writes</strong> the updated config</li>
+</ol>
+<p>This is the agentic pattern in action — and you are using it to teach the agent about itself.</p>
+</section>
+<section id="step-2-add-the-z.ai-provider" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-add-the-z.ai-provider">Step 2: Add the Z.ai Provider</h3>
+<p>Now ask Codex to add a second provider for Z.ai:</p>
+<pre><code>Add another model provider to my ~/.codex/config.toml called "z-ai"
+with these settings:
+- name: "Z.ai GLM Coding"
+- base_url: https://api.z.ai/api/coding/paas/v4
+- env_key: ZAI_API_KEY
+
+Available models (add as comments):
+- glm-5.1
+- glm-4.7
+
+Don't change the default model_provider — keep it as class-api.</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>This is a key insight</strong>: AI coding agents can modify their own configuration. You do not need to memorize config file formats. Just describe what you want in plain English and let the agent figure out the syntax.</p>
+</div>
+</div>
+</section>
+<section id="step-3-restart-and-verify" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-restart-and-verify">Step 3: Restart and Verify</h3>
+<p>After Codex updates the config, restart it so it picks up the changes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exit Codex (Ctrl+C or type /exit)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Relaunch it</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">codex</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Codex should now be using <code>gpt-5.4-mini</code> through the class API. Try a prompt to verify:</p>
+<pre><code>What model are you using? List the files in this directory.</code></pre>
+<p>You can switch between providers and models on the fly with the <code>-m</code> and <code>-c</code> flags:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">codex</span> <span class="at">-m</span> gpt-5.4-nano                        <span class="co"># Use the nano model (same provider)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">codex</span> <span class="at">-c</span> model_provider=z-ai <span class="at">-m</span> glm-5.1      <span class="co"># Switch to Z.ai with GLM-5.1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="hands-on-understanding-the-config-what-codex-just-wrote" class="level2">
+<h2 class="anchored" data-anchor-id="hands-on-understanding-the-config-what-codex-just-wrote">Hands-On: Understanding the Config (What Codex Just Wrote)</h2>
+<p>Let’s look at what Codex added to your <code>~/.codex/config.toml</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">model</span> <span class="op">=</span> <span class="st">"gpt-5.4-mini"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">model_provider</span> <span class="op">=</span> <span class="st">"class-api"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">[model_providers.class-api]</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"Class API"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="dt">base_url</span> <span class="op">=</span> <span class="st">"https://litellm.016801.xyz/v1"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="dt">env_key</span> <span class="op">=</span> <span class="st">"CLASS_API_KEY"</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Available models: gpt-5.4-mini, gpt-5.4-nano</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">[model_providers.z-ai]</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"Z.ai GLM Coding"</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="dt">base_url</span> <span class="op">=</span> <span class="st">"https://api.z.ai/api/coding/paas/v4"</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="dt">env_key</span> <span class="op">=</span> <span class="st">"ZAI_API_KEY"</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Available models: glm-5.1, glm-4.7</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>model</code></td>
+<td>The default model to use</td>
+</tr>
+<tr class="even">
+<td><code>model_provider</code></td>
+<td>Which provider block to use for API calls</td>
+</tr>
+<tr class="odd">
+<td><code>name</code></td>
+<td>A friendly display name for the provider</td>
+</tr>
+<tr class="even">
+<td><code>base_url</code></td>
+<td>The API endpoint URL</td>
+</tr>
+<tr class="odd">
+<td><code>env_key</code></td>
+<td>Name of the environment variable holding your API key</td>
+</tr>
+</tbody>
+</table>
+<p>Notice how both providers follow the exact same pattern — only the <code>base_url</code> and <code>env_key</code> differ. This is because both APIs are <strong>OpenAI-compatible</strong>: they speak the same “language,” just at different addresses.</p>
+<section id="explore-the-interface" class="level3">
+<h3 class="anchored" data-anchor-id="explore-the-interface">Explore the Interface</h3>
+<p>Codex has three <strong>approval modes</strong> — you can change them with the <code>/mode</code> command or flags:</p>
+<ul>
+<li><strong>Suggest</strong> (default) — asks before any file writes or shell commands</li>
+<li><strong>Auto Edit</strong> — auto-applies file edits, asks before shell commands</li>
+<li><strong>Full Auto</strong> — does everything autonomously (with sandboxing)</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Start with <strong>Suggest</strong> mode so you can see exactly what the AI wants to do before it does it. This is the best way to learn how an AI coding agent thinks.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="part-2-skills-why-they-matter" class="level1">
+<h1>Part 2: Skills — Why They Matter</h1>
+<section id="what-are-skills" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-skills">What Are Skills?</h2>
+<p>In AI coding tools, <strong>skills</strong> are reusable instruction sets that teach the AI <em>how</em> to approach specific types of tasks. Think of them as specialized training manuals that the AI reads before doing work.</p>
+<p>Without skills, an AI coding assistant is like a very capable but generic intern — they can do many things, but they do not know your specific workflows, standards, or domain conventions. Skills bridge that gap.</p>
+<p>Instead of explaining this in the abstract, let’s <strong>see it in action</strong> with a real humanities research task.</p>
+</section>
+<section id="the-task" class="level2">
+<h2 class="anchored" data-anchor-id="the-task">The Task</h2>
+<p>We are going to give an AI coding agent the same prompt <strong>twice</strong>:</p>
+<blockquote class="blockquote">
+<p><em>“Check out all the people with the name Wang Chen from CBDB.”</em></p>
+</blockquote>
+<p><a href="https://cbdb.fas.harvard.edu/">CBDB</a> (China Biographical Database) is a relational database of ~500,000 historical Chinese figures, maintained by Harvard’s Fairbank Center. It has a public API — but your AI agent does not know that unless you teach it.</p>
+<p>We will run the prompt first <strong>without</strong> any skills, then <strong>with</strong> the <code>cbdb-api</code> skill installed from the <a href="https://github.com/kltng/humanities-skills">humanities-skills</a> repository. By comparing the two runs step by step, we can see exactly why skills matter.</p>
+</section>
+<section id="stage-1-without-skills" class="level2">
+<h2 class="anchored" data-anchor-id="stage-1-without-skills">Stage 1: Without Skills</h2>
+<p>Launch Claude Code in an empty directory and give it the prompt:</p>
+<pre><code>Check out all the people with the name Wang Chen from CBDB.
+Show me every step you take.</code></pre>
+<section id="what-the-agent-does-step-by-step" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-agent-does-step-by-step">What the Agent Does (Step by Step)</h3>
+<p>Here is what typically happens when the agent has <strong>no prior knowledge</strong> of CBDB:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A["1. Receives prompt"] --&gt; B["2. 'What is CBDB?'\nSearches the web"]
+    B --&gt; C["3. Finds cbdb.fas.harvard.edu\nReads the website"]
+    C --&gt; D["4. Looks for an API\nMay or may not find the docs"]
+    D --&gt; E["5. Guesses at the API endpoint\nTries different URLs"]
+    E --&gt; F["6. Gets an error or HTML page\nTries to parse it anyway"]
+    F --&gt; G["7. Eventually finds the right URL\n...after several failed attempts"]
+    G --&gt; H["8. Gets back deeply nested JSON\nStruggles with the structure"]
+    H --&gt; I["9. Presents partial or messy results"]
+
+    style E fill:#fee,stroke:#c33
+    style F fill:#fee,stroke:#c33
+    style H fill:#fee,stroke:#c33
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>Typical problems you will observe:</strong></p>
+<ol type="1">
+<li><p><strong>Discovery takes multiple rounds.</strong> The agent does not know the API exists, so it web-searches, reads documentation pages, and guesses at endpoints. This can take 5–10 tool calls before it even makes its first successful API request.</p></li>
+<li><p><strong>URL encoding mistakes.</strong> The agent may URL-encode Chinese characters into percent-encoded hex (<code>%E7%8E%8B%E8%87%A3</code>) when the CBDB API actually needs UTF-8 characters passed directly. This causes failed queries or empty results.</p></li>
+<li><p><strong>Wrong endpoints.</strong> The agent might try the website URL, the old API path, or a non-existent REST route. Each failed attempt costs a round trip.</p></li>
+<li><p><strong>JSON navigation is blind.</strong> The CBDB API returns deeply nested JSON: <code>response → Package → PersonAuthority → PersonInfo → Person</code> Without knowing this structure, the agent has to explore it layer by layer, printing keys, guessing at paths, and often getting lost.</p></li>
+<li><p><strong>Incomplete data extraction.</strong> Even when the agent reaches the biographical data, it might only pull out names and dates — missing official postings, kinship relations, examination records, and social associations because it does not know those fields exist.</p></li>
+<li><p><strong>No rate limiting.</strong> The agent might fire off multiple rapid requests, risking a block from the server.</p></li>
+</ol>
+<p><strong>The result:</strong> After many iterations, the agent produces something — but it took a lot of wasted effort, and the output is likely incomplete or poorly structured. The agent spent most of its time <em>figuring out how to use the tool</em> rather than <em>answering your question</em>.</p>
+</section>
+</section>
+<section id="stage-2-install-skills-then-try-again" class="level2">
+<h2 class="anchored" data-anchor-id="stage-2-install-skills-then-try-again">Stage 2: Install Skills, Then Try Again</h2>
+<p>Now let’s give the agent the knowledge it needs. We will install the <code>cbdb-api</code> skill from the <a href="https://github.com/kltng/humanities-skills">humanities-skills</a> repository.</p>
+<section id="installing-the-skill" class="level3">
+<h3 class="anchored" data-anchor-id="installing-the-skill">Installing the Skill</h3>
+<p>In Codex, just ask the agent to do it:</p>
+<pre><code>Install the cbdb-api skill from https://github.com/kltng/humanities-skills
+into this project's AGENTS.md. Clone the repo, read the skill files under
+cbdb-api/, and add the instructions and API reference to AGENTS.md so you
+can use them.</code></pre>
+<p>Codex will clone the repository, read the skill files, and copy the relevant instructions into your project’s <code>AGENTS.md</code> — where it can read them on every future session.</p>
+<p>The skill contains:</p>
+<ul>
+<li><code>SKILL.md</code> — instructions for how to query the CBDB API</li>
+<li><code>references/api_reference.md</code> — the full API specification</li>
+<li><code>scripts/cbdb_api.py</code> — a ready-to-use Python client</li>
+</ul>
+</section>
+<section id="what-the-skill-teaches-the-agent" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-skill-teaches-the-agent">What the Skill Teaches the Agent</h3>
+<p>Here is what the <code>cbdb-api</code> skill provides (simplified):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="an">name:</span><span class="co"> cbdb-api</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> Query the China Biographical Database API for historical Chinese figures</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## API Endpoint</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>https://cbdb.fas.harvard.edu/cbdbapi/person.php</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Query Parameters</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`name`</span> — person's name (Chinese characters or Pinyin)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`id`</span> — CBDB person ID (most precise)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`o=json`</span> — request JSON output</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Critical: Encoding</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>Pass Chinese characters as UTF-8 directly. Do NOT URL-encode into hex.</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Response Structure</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>response<span class="co">[</span><span class="ot">"Package"</span><span class="co">]["PersonAuthority"][</span><span class="ot">"PersonInfo"</span><span class="co">]["Person"]</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Available Fields</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>BasicInfo — name, dates, dynasty, gender</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AltNameInfo — courtesy names, pen names</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AddrInfo — addresses and locations</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>PostingInfo — official positions held</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>KinshipInfo — family relations</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>SocialAssocInfo — social network connections</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>EntryInfo — examination records</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python Client</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>Use <span class="in">`scripts/cbdb_api.py`</span> for programmatic access with built-in</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>rate limiting and retry logic.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="repeat-the-same-prompt" class="level3">
+<h3 class="anchored" data-anchor-id="repeat-the-same-prompt">Repeat the Same Prompt</h3>
+<p>Now give the agent the exact same prompt:</p>
+<pre><code>Check out all the people with the name Wang Chen from CBDB.
+Show me every step you take.</code></pre>
+</section>
+<section id="what-the-agent-does-now-step-by-step" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-agent-does-now-step-by-step">What the Agent Does Now (Step by Step)</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A["1. Receives prompt"] --&gt; B["2. Recognizes 'CBDB'\nActivates cbdb-api skill"]
+    B --&gt; C["3. Runs the Python client:\napi.query_by_name('王臣')"]
+    C --&gt; D["4. Gets structured JSON\nNavigates directly to Person data"]
+    D --&gt; E["5. Extracts all fields:\nnames, dates, postings,\nkinship, associations"]
+    E --&gt; F["6. Presents complete,\nwell-organized results"]
+
+    style B fill:#efe,stroke:#3a3
+    style C fill:#efe,stroke:#3a3
+    style D fill:#efe,stroke:#3a3
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>What changes:</strong></p>
+<ol type="1">
+<li><p><strong>Instant recognition.</strong> The agent sees “CBDB” in the prompt and immediately activates the <code>cbdb-api</code> skill. No web searching, no guessing.</p></li>
+<li><p><strong>Correct API call on the first try.</strong> The agent knows the exact endpoint, the right parameters, and the correct encoding. It uses the provided Python client script with built-in rate limiting.</p></li>
+<li><p><strong>Navigates the JSON instantly.</strong> The skill tells the agent the exact path through the nested response structure. No trial and error.</p></li>
+<li><p><strong>Extracts all available data.</strong> The agent knows about every field — basic info, alternative names, addresses, official postings, kinship, social associations, examination records — and presents them all in a structured format.</p></li>
+<li><p><strong>Handles multiple results gracefully.</strong> “Wang Chen” matches several historical figures. The agent lists all of them with their distinguishing information (dynasty, dates, official positions).</p></li>
+<li><p><strong>Respects rate limits.</strong> The Python client has built-in delays between requests, so the server is not overwhelmed.</p></li>
+</ol>
+</section>
+</section>
+<section id="side-by-side-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="side-by-side-comparison">Side-by-Side Comparison</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Without Skills</th>
+<th>With <code>cbdb-api</code> Skill</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Tool calls to first result</strong></td>
+<td>8–15 (searching, guessing, retrying)</td>
+<td>2–3 (activate skill, run query)</td>
+</tr>
+<tr class="even">
+<td><strong>Time to answer</strong></td>
+<td>Several minutes of iteration</td>
+<td>Seconds</td>
+</tr>
+<tr class="odd">
+<td><strong>API encoding</strong></td>
+<td>Often wrong (percent-encoded hex)</td>
+<td>Correct (UTF-8 directly)</td>
+</tr>
+<tr class="even">
+<td><strong>JSON navigation</strong></td>
+<td>Trial and error, layer by layer</td>
+<td>Direct path, no guessing</td>
+</tr>
+<tr class="odd">
+<td><strong>Data completeness</strong></td>
+<td>Partial (names, maybe dates)</td>
+<td>Full (postings, kinship, exams, etc.)</td>
+</tr>
+<tr class="even">
+<td><strong>Error handling</strong></td>
+<td>Crashes or retries blindly</td>
+<td>Retries with backoff, graceful fallback</td>
+</tr>
+<tr class="odd">
+<td><strong>Rate limiting</strong></td>
+<td>None (risk of being blocked)</td>
+<td>Built in (1 second between calls)</td>
+</tr>
+<tr class="even">
+<td><strong>Reproducibility</strong></td>
+<td>Different every time</td>
+<td>Consistent, reliable</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The key insight</strong>: The agent is the <em>same model</em> in both runs. The difference is not intelligence — it is <strong>knowledge</strong>. Skills give the agent the domain-specific knowledge it needs to do the job well on the first try.</p>
+</div>
+</div>
+</section>
+<section id="why-this-matters-for-research" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters-for-research">Why This Matters for Research</h2>
+<p>This is not just about convenience. For real research workflows, the difference between Stage 1 and Stage 2 is the difference between:</p>
+<ul>
+<li><strong>A tool you fight with</strong> vs.&nbsp;<strong>a tool that works for you</strong></li>
+<li><strong>Unreliable, one-off results</strong> vs.&nbsp;<strong>reproducible, consistent queries</strong></li>
+<li><strong>Spending your time debugging API calls</strong> vs.&nbsp;<strong>spending your time analyzing historical data</strong></li>
+</ul>
+<p>And once the skill is installed, it works for every subsequent query — not just this one. Ask about Su Shi (蘇軾), Wang Anshi (王安石), or any of the 500,000+ figures in CBDB, and the agent will use the same reliable process every time.</p>
+</section>
+<section id="what-else-is-in-humanities-skills" class="level2">
+<h2 class="anchored" data-anchor-id="what-else-is-in-humanities-skills">What Else Is in humanities-skills?</h2>
+<p>The <code>cbdb-api</code> skill is just one of 18+ skills in the <a href="https://github.com/kltng/humanities-skills">humanities-skills</a> repository:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Skills</th>
+<th>What They Do</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Biographical databases</strong></td>
+<td><code>cbdb-api</code>, <code>cbdb-local</code>, <code>jbdb-api</code></td>
+<td>Query CBDB (API or local SQLite) and Japan Biographical DB</td>
+</tr>
+<tr class="even">
+<td><strong>Historical geography</strong></td>
+<td><code>chgis-tgaz</code>, <code>tgaz-sqlite</code>, <code>historical-map</code></td>
+<td>Look up historical placenames, generate interactive maps</td>
+</tr>
+<tr class="odd">
+<td><strong>Calendar &amp; chronology</strong></td>
+<td><code>cjk-calendar</code>, <code>historical-timeline</code></td>
+<td>Convert between lunisolar and Gregorian dates, create timelines</td>
+</tr>
+<tr class="even">
+<td><strong>Library catalogs</strong></td>
+<td><code>harvard-library-catalog</code>, <code>hathitrust-catalog</code>, <code>loc-catalog</code>, etc.</td>
+<td>Search Harvard, HathiTrust, Library of Congress, and more</td>
+</tr>
+<tr class="odd">
+<td><strong>Scholarly resources</strong></td>
+<td><code>arxiv-search</code>, <code>europeana-collections</code>, <code>wikidata-search</code>, <code>zotero-local</code></td>
+<td>Search academic databases and manage citations</td>
+</tr>
+</tbody>
+</table>
+<p>You can install any of these the same way — just ask Codex:</p>
+<pre><code>Install the chgis-tgaz skill from https://github.com/kltng/humanities-skills
+into this project's AGENTS.md.</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Try combining skills.</strong> After finding a person in CBDB, use <code>chgis-tgaz</code> to look up their addresses on a historical map, or <code>cjk-calendar</code> to convert their birth and death dates to the Chinese lunisolar calendar. Skills compose — the more you install, the more capable your agent becomes for humanities research.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="takeaways" class="level1">
+<h1>Takeaways</h1>
+<ol type="1">
+<li><strong>AI coding agents</strong> (Codex, Opencode, Claude Code) all work the same way — learn the pattern once, use any tool</li>
+<li><strong>Any agent can use any model</strong> — by configuring custom providers, you are not locked into one company’s models or pricing</li>
+<li><strong>Skills turn a generic AI into a domain expert</strong> — the same model performs dramatically better when given the right knowledge</li>
+<li><strong>Install once, use forever</strong> — skills persist across sessions, giving you a growing toolkit for your research</li>
+<li>The real power is in the <strong>feedback loop</strong>: install skills, evaluate the output, contribute improvements back — the entire community benefits</li>
+</ol>
+</section>
+<section id="in-class-practice-try-everything-in-opencode" class="level1">
+<h1>In-Class Practice: Try Everything in Opencode</h1>
+<p>Everything we did in Codex today can be done in <strong>Opencode</strong> — an open-source, provider-agnostic alternative. Use this section to practice and verify that you understand the concepts, not just the tool.</p>
+<section id="install-opencode" class="level2">
+<h2 class="anchored" data-anchor-id="install-opencode">Install Opencode</h2>
+<p><strong>macOS (Homebrew — recommended):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install anomalyco/tap/opencode</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Any platform (npm):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i <span class="at">-g</span> opencode-ai@latest</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Any platform (curl):</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://opencode.ai/install <span class="kw">|</span> <span class="fu">bash</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="configure-opencode-with-the-same-providers" class="level2">
+<h2 class="anchored" data-anchor-id="configure-opencode-with-the-same-providers">Configure Opencode with the Same Providers</h2>
+<p>In your project directory, create a file called <code>opencode.json</code>:</p>
+<pre class="jsonc"><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "class-api": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Class API",
+      "options": {
+        "baseURL": "https://litellm.016801.xyz/v1",
+        "apiKey": "{env:CLASS_API_KEY}"
+      },
+      "models": {
+        "gpt-5.4-mini": {
+          "name": "GPT-5.4 Mini",
+          "limit": { "context": 128000, "output": 16384 }
+        },
+        "gpt-5.4-nano": {
+          "name": "GPT-5.4 Nano",
+          "limit": { "context": 128000, "output": 16384 }
+        }
+      }
+    },
+    "z-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Z.ai GLM Coding",
+      "options": {
+        "baseURL": "https://api.z.ai/api/coding/paas/v4",
+        "apiKey": "{env:ZAI_API_KEY}"
+      },
+      "models": {
+        "glm-5.1": {
+          "name": "GLM-5.1",
+          "limit": { "context": 128000, "output": 16384 }
+        },
+        "glm-4.7": {
+          "name": "GLM-4.7",
+          "limit": { "context": 200000, "output": 65536 }
+        }
+      }
+    }
+  },
+  "model": "class-api/gpt-5.4-mini"
+}</code></pre>
+<p>Z.ai also has an <a href="https://docs.z.ai/devpack/tool/opencode">official OpenCode setup guide</a>.</p>
+</section>
+<section id="codex-vs-opencode-feature-equivalents" class="level2">
+<h2 class="anchored" data-anchor-id="codex-vs-opencode-feature-equivalents">Codex vs Opencode: Feature Equivalents</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What you did in Codex</th>
+<th>How to do it in Opencode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Launch: <code>codex</code></td>
+<td>Launch: <code>opencode</code></td>
+</tr>
+<tr class="even">
+<td>Config: <code>~/.codex/config.toml</code> (TOML, global)</td>
+<td>Config: <code>opencode.json</code> (JSON, per project)</td>
+</tr>
+<tr class="odd">
+<td>Switch model: <code>codex -m glm-5.1</code></td>
+<td>Switch model: <code>/models</code> command in TUI</td>
+</tr>
+<tr class="even">
+<td>Switch provider: <code>-c model_provider=z-ai</code></td>
+<td>Change <code>"model"</code> in <code>opencode.json</code> to <code>"z-ai/glm-5.1"</code></td>
+</tr>
+<tr class="odd">
+<td>Instruction file: <code>AGENTS.md</code></td>
+<td>Instruction file: <code>AGENTS.md</code> (same file!)</td>
+</tr>
+<tr class="even">
+<td>Approval modes: Suggest / Auto Edit / Full Auto</td>
+<td>Permission-based approval</td>
+</tr>
+<tr class="odd">
+<td>Commands: type <code>/</code></td>
+<td>Commands: type <code>/</code></td>
+</tr>
+<tr class="even">
+<td>Initialize project: create <code>AGENTS.md</code> manually</td>
+<td>Initialize project: <code>/init</code> generates <code>AGENTS.md</code></td>
+</tr>
+<tr class="odd">
+<td>N/A</td>
+<td>Switch agents: <strong>Tab</strong> key (build / plan)</td>
+</tr>
+<tr class="even">
+<td>N/A</td>
+<td>Skills: <code>.opencode/skills/SKILL.md</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="resources" class="level1">
+<h1>Resources</h1>
+<ul>
+<li><a href="assets/images.zip">Practice images (images.zip)</a></li>
+<li><a href="https://ocr.z.ai/">Z.ai OCR Tool</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/kltng\.github\.io\/eastd143b\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
