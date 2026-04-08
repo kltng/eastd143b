@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kwok-leong Tang">
+<meta name="dcterms.date" content="2026-04-08">
+
+<title>Meeting 10 – EASTD143B (Spring 2026)</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4d3f3448f837ff03356db176d8adb603.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+  // Soft gate: redirect to auth page unless a matching token is present.
+  // NOTE: client-side only (not strong security).
+  (function () {
+    var expected = "__REPLACE_ME__"; // must match EXPECTED_HASH in auth.html
+    try {
+      var token = localStorage.getItem('eastd143b_access');
+      var path = window.location.pathname;
+      var isAuthPage = path.endsWith('/auth.html') || path.endsWith('/auth/') || path.endsWith('/auth');
+      if (!isAuthPage && expected !== "__REPLACE_ME__" && token !== expected) {
+        window.location.replace('auth.html');
+      }
+    } catch (e) {
+      // if storage is blocked, fail closed
+      if (!window.location.pathname.endsWith('/auth.html')) {
+        window.location.replace('auth.html');
+      }
+    }
+  })();
+</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">EASTD143B (Spring 2026)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus/syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../meetings/index.html"> 
+<span class="menu-text">Meetings</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#todays-schedule" id="toc-todays-schedule" class="nav-link active" data-scroll-target="#todays-schedule">Today’s Schedule</a></li>
+  <li><a href="#part-1-the-llm-wiki" id="toc-part-1-the-llm-wiki" class="nav-link" data-scroll-target="#part-1-the-llm-wiki">Part 1: The LLM Wiki</a>
+  <ul class="collapse">
+  <li><a href="#the-problem-knowledge-doesnt-stick" id="toc-the-problem-knowledge-doesnt-stick" class="nav-link" data-scroll-target="#the-problem-knowledge-doesnt-stick">The Problem: Knowledge Doesn’t Stick</a></li>
+  <li><a href="#the-pattern-compilation-over-retrieval" id="toc-the-pattern-compilation-over-retrieval" class="nav-link" data-scroll-target="#the-pattern-compilation-over-retrieval">The Pattern: Compilation Over Retrieval</a></li>
+  <li><a href="#three-layer-architecture" id="toc-three-layer-architecture" class="nav-link" data-scroll-target="#three-layer-architecture">Three-Layer Architecture</a>
+  <ul class="collapse">
+  <li><a href="#layer-1-raw-sources-immutable" id="toc-layer-1-raw-sources-immutable" class="nav-link" data-scroll-target="#layer-1-raw-sources-immutable">Layer 1: Raw Sources (Immutable)</a></li>
+  <li><a href="#layer-2-the-wiki-llm-maintained" id="toc-layer-2-the-wiki-llm-maintained" class="nav-link" data-scroll-target="#layer-2-the-wiki-llm-maintained">Layer 2: The Wiki (LLM-Maintained)</a></li>
+  <li><a href="#layer-3-the-schema-your-instructions" id="toc-layer-3-the-schema-your-instructions" class="nav-link" data-scroll-target="#layer-3-the-schema-your-instructions">Layer 3: The Schema (Your Instructions)</a></li>
+  </ul></li>
+  <li><a href="#three-operations" id="toc-three-operations" class="nav-link" data-scroll-target="#three-operations">Three Operations</a>
+  <ul class="collapse">
+  <li><a href="#ingest" id="toc-ingest" class="nav-link" data-scroll-target="#ingest">1. Ingest</a></li>
+  <li><a href="#query" id="toc-query" class="nav-link" data-scroll-target="#query">2. Query</a></li>
+  <li><a href="#lint" id="toc-lint" class="nav-link" data-scroll-target="#lint">3. Lint</a></li>
+  </ul></li>
+  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why This Matters</a></li>
+  <li><a href="#historical-roots-the-memex" id="toc-historical-roots-the-memex" class="nav-link" data-scroll-target="#historical-roots-the-memex">Historical Roots: The Memex</a></li>
+  <li><a href="#critical-concerns" id="toc-critical-concerns" class="nav-link" data-scroll-target="#critical-concerns">Critical Concerns</a></li>
+  </ul></li>
+  <li><a href="#exercise-build-an-ai-learning-collection-with-codex-desktop" id="toc-exercise-build-an-ai-learning-collection-with-codex-desktop" class="nav-link" data-scroll-target="#exercise-build-an-ai-learning-collection-with-codex-desktop">Exercise: Build an AI Learning Collection with Codex Desktop</a>
+  <ul class="collapse">
+  <li><a href="#step-1-create-the-project-directory" id="toc-step-1-create-the-project-directory" class="nav-link" data-scroll-target="#step-1-create-the-project-directory">Step 1: Create the Project Directory</a></li>
+  <li><a href="#step-2-copy-karpathys-gist" id="toc-step-2-copy-karpathys-gist" class="nav-link" data-scroll-target="#step-2-copy-karpathys-gist">Step 2: Copy Karpathy’s Gist</a></li>
+  <li><a href="#step-3-launch-codex-desktop-and-paste-the-gist" id="toc-step-3-launch-codex-desktop-and-paste-the-gist" class="nav-link" data-scroll-target="#step-3-launch-codex-desktop-and-paste-the-gist">Step 3: Launch Codex Desktop and Paste the Gist</a></li>
+  <li><a href="#step-4-open-the-vault-in-obsidian" id="toc-step-4-open-the-vault-in-obsidian" class="nav-link" data-scroll-target="#step-4-open-the-vault-in-obsidian">Step 4: Open the Vault in Obsidian</a></li>
+  <li><a href="#step-5-review-what-codex-desktop-created" id="toc-step-5-review-what-codex-desktop-created" class="nav-link" data-scroll-target="#step-5-review-what-codex-desktop-created">Step 5: Review What Codex Desktop Created</a></li>
+  <li><a href="#step-6-ingest-your-first-source" id="toc-step-6-ingest-your-first-source" class="nav-link" data-scroll-target="#step-6-ingest-your-first-source">Step 6: Ingest Your First Source</a>
+  <ul class="collapse">
+  <li><a href="#what-to-observe" id="toc-what-to-observe" class="nav-link" data-scroll-target="#what-to-observe">What to Observe</a></li>
+  </ul></li>
+  <li><a href="#step-7-ingest-a-second-source" id="toc-step-7-ingest-a-second-source" class="nav-link" data-scroll-target="#step-7-ingest-a-second-source">Step 7: Ingest a Second Source</a></li>
+  <li><a href="#step-8-query-and-lint" id="toc-step-8-query-and-lint" class="nav-link" data-scroll-target="#step-8-query-and-lint">Step 8: Query and Lint</a></li>
+  <li><a href="#step-9-add-your-own-material" id="toc-step-9-add-your-own-material" class="nav-link" data-scroll-target="#step-9-add-your-own-material">Step 9: Add Your Own Material</a></li>
+  </ul></li>
+  <li><a href="#part-2-you-already-built-this" id="toc-part-2-you-already-built-this" class="nav-link" data-scroll-target="#part-2-you-already-built-this">Part 2: You Already Built This</a>
+  <ul class="collapse">
+  <li><a href="#side-by-side-karpathys-pattern-vs.-our-vault" id="toc-side-by-side-karpathys-pattern-vs.-our-vault" class="nav-link" data-scroll-target="#side-by-side-karpathys-pattern-vs.-our-vault">Side-by-Side: Karpathy’s Pattern vs.&nbsp;Our Vault</a></li>
+  <li><a href="#what-our-vault-adds-beyond-karpathy" id="toc-what-our-vault-adds-beyond-karpathy" class="nav-link" data-scroll-target="#what-our-vault-adds-beyond-karpathy">What Our Vault Adds Beyond Karpathy</a>
+  <ul class="collapse">
+  <li><a href="#domain-specific-templates" id="toc-domain-specific-templates" class="nav-link" data-scroll-target="#domain-specific-templates">1. Domain-Specific Templates</a></li>
+  <li><a href="#humanities-skills" id="toc-humanities-skills" class="nav-link" data-scroll-target="#humanities-skills">2. Humanities Skills</a></li>
+  <li><a href="#the-five-layer-curriculum" id="toc-the-five-layer-curriculum" class="nav-link" data-scroll-target="#the-five-layer-curriculum">3. The Five-Layer Curriculum</a></li>
+  </ul></li>
+  <li><a href="#hands-on-ingest-a-source-into-your-wiki" id="toc-hands-on-ingest-a-source-into-your-wiki" class="nav-link" data-scroll-target="#hands-on-ingest-a-source-into-your-wiki">Hands-On: Ingest a Source into Your Wiki</a>
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#the-source" id="toc-the-source" class="nav-link" data-scroll-target="#the-source">The Source</a></li>
+  <li><a href="#the-prompt" id="toc-the-prompt" class="nav-link" data-scroll-target="#the-prompt">The Prompt</a></li>
+  <li><a href="#what-to-watch-for" id="toc-what-to-watch-for" class="nav-link" data-scroll-target="#what-to-watch-for">What to Watch For</a></li>
+  </ul></li>
+  <li><a href="#the-feedback-loop" id="toc-the-feedback-loop" class="nav-link" data-scroll-target="#the-feedback-loop">The Feedback Loop</a></li>
+  </ul></li>
+  <li><a href="#assignment-3-build-your-research-wiki" id="toc-assignment-3-build-your-research-wiki" class="nav-link" data-scroll-target="#assignment-3-build-your-research-wiki">Assignment 3: Build Your Research Wiki</a>
+  <ul class="collapse">
+  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements</a>
+  <ul class="collapse">
+  <li><a href="#structure-4-points" id="toc-structure-4-points" class="nav-link" data-scroll-target="#structure-4-points">Structure (4 points)</a></li>
+  <li><a href="#content-4-points" id="toc-content-4-points" class="nav-link" data-scroll-target="#content-4-points">Content (4 points)</a></li>
+  <li><a href="#process-2-points" id="toc-process-2-points" class="nav-link" data-scroll-target="#process-2-points">Process (2 points)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways">Takeaways</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Meeting 10</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kwok-leong Tang </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 8, 2026</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">April 8, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="todays-schedule" class="level1">
+<h1>Today’s Schedule</h1>
+<p><strong>Part 1 — The LLM Wiki: A New Pattern for Knowledge Management</strong></p>
+<ul>
+<li>Andrej Karpathy’s LLM Wiki pattern (April 4, 2026)</li>
+<li>The core idea: compilation over retrieval</li>
+<li>Three-layer architecture: Raw Sources, Wiki, Schema</li>
+<li>Three operations: Ingest, Query, Lint</li>
+<li>Why this matters for humanities research</li>
+</ul>
+<p><strong>Part 2 — You Already Built This</strong></p>
+<ul>
+<li>Mapping the LLM Wiki pattern to the Obsidian Humanities Vault</li>
+<li>Hands-on: Ingest a source into your vault using an AI coding agent</li>
+<li>From raw material to structured, cross-referenced knowledge</li>
+<li>Assignment 3: Build your research wiki</li>
+</ul>
+</section>
+<section id="part-1-the-llm-wiki" class="level1">
+<h1>Part 1: The LLM Wiki</h1>
+<p>On April 4, 2026 — four days ago — Andrej Karpathy published a short document called <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"><strong>“LLM Wiki”</strong></a>. Within 48 hours, it had 5,000+ stars and 1,500+ forks on GitHub. It struck a nerve because it names a pattern that many people had been circling around but nobody had articulated clearly.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Who is Andrej Karpathy?</strong> A founding member of OpenAI and former head of AI at Tesla. He coined the term “vibe coding” in early 2025 — the idea of describing what you want and letting an AI generate code. More recently, he declared vibe coding obsolete, replaced by what he calls “agentic engineering”: orchestrating AI agents rather than writing code directly. The LLM Wiki is his latest contribution — applying agentic engineering to <strong>knowledge management</strong> rather than software development.</p>
+</div>
+</div>
+<section id="the-problem-knowledge-doesnt-stick" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-knowledge-doesnt-stick">The Problem: Knowledge Doesn’t Stick</h2>
+<p>Think about how you have been using AI tools this semester:</p>
+<ol type="1">
+<li>You ask a question in a chatbot</li>
+<li>You get a good answer</li>
+<li>You close the tab</li>
+<li>Next week, you ask a similar question — from scratch</li>
+</ol>
+<p>Every conversation starts at zero. The AI has no memory of what you discussed before. The insights, the connections, the corrections — all gone. You are doing the same work over and over.</p>
+<p>This is also the problem with traditional <strong>RAG</strong> (Retrieval-Augmented Generation), which we discussed in <a href="../meeting_01/meeting_01.html">Meeting 01</a>. RAG re-derives answers from raw documents every time:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A["Question"] --&gt; B["Search raw documents"]
+    B --&gt; C["Retrieve relevant chunks"]
+    C --&gt; D["Generate answer from scratch"]
+    D --&gt; E["Answer disappears&lt;br&gt;after the session"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Karpathy’s insight is simple: <strong>what if the AI built something permanent instead?</strong></p>
+</section>
+<section id="the-pattern-compilation-over-retrieval" class="level2">
+<h2 class="anchored" data-anchor-id="the-pattern-compilation-over-retrieval">The Pattern: Compilation Over Retrieval</h2>
+<p>Instead of searching raw documents every time, have the AI <strong>read sources once</strong> and <strong>write the knowledge into a wiki</strong> — a persistent collection of interconnected markdown pages. Each new source gets integrated into existing pages, cross-references get updated, and the wiki grows over time.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A["New source arrives"] --&gt; B["AI reads the source"]
+    B --&gt; C["AI updates wiki pages:&lt;br&gt;• creates new entries&lt;br&gt;• updates existing ones&lt;br&gt;• adds cross-references&lt;br&gt;• flags contradictions"]
+    C --&gt; D["Wiki is now&lt;br&gt;more complete"]
+    D --&gt;|"next source"| A
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The key phrase: <strong>“The wiki is a persistent, compounding artifact.”</strong> It gets better with every source you add.</p>
+</section>
+<section id="three-layer-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="three-layer-architecture">Three-Layer Architecture</h2>
+<p>The LLM Wiki has three layers:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    subgraph raw ["Raw Sources (immutable)"]
+        r1["Articles"]
+        r2["Papers"]
+        r3["Images, PDFs, data"]
+    end
+
+    subgraph wiki ["The Wiki (LLM-maintained)"]
+        w1["Markdown pages"]
+        w2["index.md"]
+        w3["log.md"]
+    end
+
+    subgraph schema ["The Schema (your instructions)"]
+        s1["CLAUDE.md"]
+        s2["or AGENTS.md"]
+        s3["Conventions &amp; rules"]
+    end
+
+    raw --&gt; wiki
+    schema --&gt; wiki
+
+    style raw fill:#f5f5f5,stroke:#999
+    style wiki fill:#e8f4e8,stroke:#4a4
+    style schema fill:#e8e8f4,stroke:#44a
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="layer-1-raw-sources-immutable" class="level3">
+<h3 class="anchored" data-anchor-id="layer-1-raw-sources-immutable">Layer 1: Raw Sources (Immutable)</h3>
+<p>Your curated collection of original materials. These are <strong>read-only</strong> — the AI never modifies them. They are the ground truth.</p>
+<ul>
+<li>Articles, papers, book chapters</li>
+<li>Primary sources (historical texts, documents)</li>
+<li>Images, PDFs, datasets</li>
+<li>OCR output from digitized materials</li>
+</ul>
+</section>
+<section id="layer-2-the-wiki-llm-maintained" class="level3">
+<h3 class="anchored" data-anchor-id="layer-2-the-wiki-llm-maintained">Layer 2: The Wiki (LLM-Maintained)</h3>
+<p>A directory of markdown files that the AI <strong>owns entirely</strong>. The AI creates pages, updates them, adds cross-references, and maintains an index. You read the wiki; the AI writes it.</p>
+<p>Key files:</p>
+<ul>
+<li><strong><code>index.md</code></strong> — a catalog of all wiki pages, organized by category, with links and one-line summaries</li>
+<li><strong><code>log.md</code></strong> — an append-only chronological record of every action the AI takes (what was added, what was updated, what was flagged)</li>
+</ul>
+</section>
+<section id="layer-3-the-schema-your-instructions" class="level3">
+<h3 class="anchored" data-anchor-id="layer-3-the-schema-your-instructions">Layer 3: The Schema (Your Instructions)</h3>
+<p>A configuration document — <code>CLAUDE.md</code> or <code>AGENTS.md</code> — that defines:</p>
+<ul>
+<li>How pages should be structured (templates, required fields)</li>
+<li>Naming conventions for files</li>
+<li>How to handle contradictions or uncertain information</li>
+<li>What categories of pages exist</li>
+<li>Citation format and cross-reference style</li>
+</ul>
+<p>This is where <strong>you</strong> control the wiki. The schema is your set of rules; the AI follows them.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The schema is the most important layer.</strong> It is the difference between a useful, well-organized wiki and a chaotic dump of AI-generated text. Writing a good schema is writing good instructions — the same skill you practiced with <code>AGENTS.md</code> and <code>CLAUDE.md</code> files in <a href="../meeting_09/meeting_09.html">Meeting 09</a>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="three-operations" class="level2">
+<h2 class="anchored" data-anchor-id="three-operations">Three Operations</h2>
+<p>Everything the AI does to the wiki falls into three operations:</p>
+<section id="ingest" class="level3">
+<h3 class="anchored" data-anchor-id="ingest">1. Ingest</h3>
+<p>Process a new source and integrate it into the wiki.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A["New source&lt;br&gt;(article, paper, primary text)"] --&gt; B["AI reads the source"]
+    B --&gt; C["AI writes summary page&lt;br&gt;in the wiki"]
+    C --&gt; D["AI updates index.md"]
+    D --&gt; E["AI updates related pages&lt;br&gt;(cross-references, new connections)"]
+    E --&gt; F["AI appends to log.md&lt;br&gt;(what changed and why)"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The AI might touch 10-15 files in a single ingest operation — creating a new source page, updating person entries, adding location cross-references, and noting connections to other sources. This is the bookkeeping that humans consistently abandon.</p>
+</section>
+<section id="query" class="level3">
+<h3 class="anchored" data-anchor-id="query">2. Query</h3>
+<p>Ask a question and get an answer synthesized from the wiki.</p>
+<p>The AI searches the index, reads relevant pages, and produces an answer with citations back to specific wiki pages (which themselves cite raw sources). If the query reveals something interesting, the AI files the result as a new page — so the wiki learns from your questions.</p>
+</section>
+<section id="lint" class="level3">
+<h3 class="anchored" data-anchor-id="lint">3. Lint</h3>
+<p>Periodic health checks on the wiki itself.</p>
+<ul>
+<li>Find contradictions between pages</li>
+<li>Identify stale claims that need updating</li>
+<li>Detect orphan pages (not linked from anywhere)</li>
+<li>Flag missing cross-references</li>
+<li>Check for gaps in coverage</li>
+</ul>
+<p>Linting is what keeps a wiki healthy over time. Without it, wikis rot. With an AI doing it, wikis self-heal.</p>
+</section>
+</section>
+<section id="why-this-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h2>
+<p>Karpathy puts it simply:</p>
+<blockquote class="blockquote">
+<p>“The tedious part of maintaining a knowledge base is not the reading or the thinking — it’s the bookkeeping. LLMs don’t get bored, don’t forget to update a cross-reference.”</p>
+</blockquote>
+<p>This inverts the traditional problem. Humans are good at:</p>
+<ul>
+<li><strong>Curating sources</strong> — deciding what is worth reading</li>
+<li><strong>Asking questions</strong> — directing the analysis</li>
+<li><strong>Evaluating results</strong> — judging whether the AI got it right</li>
+<li><strong>Injecting creative direction</strong> — seeing connections the AI cannot</li>
+</ul>
+<p>Humans are bad at:</p>
+<ul>
+<li><strong>Bookkeeping</strong> — updating cross-references, maintaining indexes, filing things consistently</li>
+<li><strong>Touching 15 files at once</strong> — updating every page that references a person when you learn their courtesy name</li>
+</ul>
+<p>The LLM Wiki lets each party do what they are best at.</p>
+</section>
+<section id="historical-roots-the-memex" class="level2">
+<h2 class="anchored" data-anchor-id="historical-roots-the-memex">Historical Roots: The Memex</h2>
+<p>This idea is not new. In 1945, Vannevar Bush published an essay called <a href="https://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/">“As We May Think”</a> in <em>The Atlantic</em>, describing a hypothetical device called the <strong>Memex</strong>:</p>
+<blockquote class="blockquote">
+<p>“A memex is a device in which an individual stores all his books, records, and communications, and which is mechanized so that it may be consulted with exceeding speed and flexibility.”</p>
+</blockquote>
+<p>Bush envisioned a personal knowledge store with associative trails linking documents together — essentially a personal wiki, 80 years before the technology existed. His challenge was <strong>maintenance</strong>: who keeps the trails updated? Who adds the cross-references?</p>
+<p>Karpathy’s answer: the LLM does.</p>
+</section>
+<section id="critical-concerns" class="level2">
+<h2 class="anchored" data-anchor-id="critical-concerns">Critical Concerns</h2>
+<p>The LLM Wiki pattern is powerful, but it has real limitations that researchers must understand:</p>
+<p><strong>1. The Generation Effect</strong></p>
+<p>When you write your own notes, you learn. When an AI writes notes for you, you might not. The cognitive scientist Sönke Ahrens (author of <em>How to Take Smart Notes</em>) argues that the act of reformulating ideas in your own words is where understanding happens. If the AI does all the writing, you risk becoming a reader of your own research rather than a thinker.</p>
+<p><strong>2. Error Accumulation</strong></p>
+<p>LLM summaries can be confidently wrong. If a hallucinated fact enters the wiki, it can propagate to other pages through cross-references. Raw sources must always remain as ground truth.</p>
+<p><strong>3. Authority Creep</strong></p>
+<p>Wiki pages start to feel authoritative simply because they are well-organized. But they are interpretations, not facts. Researchers must maintain the habit of going back to primary sources.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The safeguard</strong>: Always keep your raw sources immutable and accessible. The wiki is a navigation layer — a map, not the territory. When something matters, read the original.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="exercise-build-an-ai-learning-collection-with-codex-desktop" class="level1">
+<h1>Exercise: Build an AI Learning Collection with Codex Desktop</h1>
+<p>Now that you understand the LLM Wiki pattern, let’s build one from scratch. Instead of writing all the schema yourself, you will use <strong>Karpathy’s original gist as your starting prompt</strong> — paste it directly into Codex Desktop and let the agent set up the wiki for you through conversation.</p>
+<p>The topic: <strong>your personal AI learning collection</strong> — articles, videos, tutorials, and concepts you have encountered this semester (and beyond) about AI, LLMs, and coding agents.</p>
+<section id="step-1-create-the-project-directory" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-create-the-project-directory">Step 1: Create the Project Directory</h2>
+<p>Open your terminal and create a new directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/ai-learning-wiki</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-2-copy-karpathys-gist" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-copy-karpathys-gist">Step 2: Copy Karpathy’s Gist</h2>
+<p>Open the gist in your browser:</p>
+<blockquote class="blockquote">
+<p><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f</a></p>
+</blockquote>
+<p>Read through it. This is the blueprint you will hand to Codex Desktop.</p>
+</section>
+<section id="step-3-launch-codex-desktop-and-paste-the-gist" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-launch-codex-desktop-and-paste-the-gist">Step 3: Launch Codex Desktop and Paste the Gist</h2>
+<ol type="1">
+<li>Open <strong>Codex Desktop</strong></li>
+<li>Click <strong>“Open folder”</strong> and select the <code>~/ai-learning-wiki</code> directory you just created</li>
+<li>Codex Desktop is now working inside that folder — any files it creates will appear there</li>
+</ol>
+<p>Now paste the <strong>entire content</strong> of Karpathy’s gist into the chat, followed by this instruction:</p>
+<pre><code>[paste the full gist content here]
+
+---
+
+Using the LLM Wiki pattern described above, set up a wiki in this directory
+for my personal AI learning collection. The topic is everything I am learning
+about AI, large language models, coding agents, and related tools.
+
+Please:
+1. Create the directory structure (raw/, wiki/)
+2. Write an AGENTS.md schema tailored to an AI learning collection
+   - Page types should include: Concept, Tool, Paper, Tutorial, Person, and Vocabulary
+   - Include templates for each page type with relevant frontmatter fields
+3. Create wiki/index.md and wiki/log.md
+4. Set up subdirectories for each page type
+5. Explain what you created and how I should use it</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Let Codex Desktop do the work.</strong> You are not writing the schema yourself — you are giving the agent the pattern (Karpathy’s gist) and a topic (AI learning), and letting it generate the schema, templates, and structure. This is the pattern in action: you curate and direct, the AI does the bookkeeping.</p>
+</div>
+</div>
+</section>
+<section id="step-4-open-the-vault-in-obsidian" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-open-the-vault-in-obsidian">Step 4: Open the Vault in Obsidian</h2>
+<p>While Codex Desktop is working, open the <code>~/ai-learning-wiki</code> folder as a vault in <strong>Obsidian</strong>:</p>
+<ol type="1">
+<li>Open Obsidian</li>
+<li>Click <strong>“Open folder as vault”</strong></li>
+<li>Select the <code>~/ai-learning-wiki</code> directory</li>
+</ol>
+<p>Now you can watch in real time as Codex Desktop creates and updates files — they will appear in Obsidian’s file explorer as they are written. Wikilinks between pages will become clickable, and you can use Obsidian’s graph view to visualize the connections.</p>
+</section>
+<section id="step-5-review-what-codex-desktop-created" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-review-what-codex-desktop-created">Step 5: Review What Codex Desktop Created</h2>
+<p>After Codex Desktop finishes, check the vault in Obsidian. You should see something like:</p>
+<pre><code>AGENTS.md
+raw/
+wiki/
+  index.md
+  log.md
+  concepts/
+  tools/
+  papers/
+  tutorials/
+  people/
+  vocabulary/</code></pre>
+<p>Open <code>AGENTS.md</code> and read through it. This is the schema that Codex Desktop wrote for you based on Karpathy’s pattern. Ask yourself:</p>
+<ul>
+<li>Do the page types make sense for an AI learning collection?</li>
+<li>Are the templates detailed enough?</li>
+<li>Is anything missing?</li>
+</ul>
+<p>If you want changes, just tell Codex Desktop:</p>
+<pre><code>Add a "Source" field to the Concept template that links back to where I first
+learned about the concept. Also add a "Difficulty" field (beginner, intermediate,
+advanced) to the Tutorial template.</code></pre>
+<p>The agent will update <code>AGENTS.md</code> for you.</p>
+</section>
+<section id="step-6-ingest-your-first-source" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-ingest-your-first-source">Step 6: Ingest Your First Source</h2>
+<p>Create a raw source file. You can ask Codex Desktop to create it for you, or create it yourself in a text editor. For example, create <code>raw/karpathy-llm-wiki-2026-04-04.md</code> with the following content:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Andrej Karpathy — LLM Wiki (April 4, 2026)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Source: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Karpathy published a gist describing a pattern for building knowledge bases</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>with LLMs. The core idea: instead of using RAG (retrieval-augmented generation)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>to re-derive answers from raw documents every time, have the LLM "compile"</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>knowledge into a persistent wiki.</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>Three-layer architecture:</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Raw Sources (immutable) — the original documents</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Wiki (LLM-maintained) — structured markdown pages with cross-references</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Schema (your instructions) — CLAUDE.md or AGENTS.md defining rules</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>Three operations:</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ingest: process a new source, create/update wiki pages</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Query: ask a question, get an answer synthesized from the wiki</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lint: health checks — find contradictions, orphan pages, stale entries</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>Key quote: "The tedious part of maintaining a knowledge base is not the reading</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>or the thinking — it's the bookkeeping."</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>Related concepts: RAG, knowledge graphs, Zettelkasten, Vannevar Bush's Memex</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now tell Codex Desktop to ingest it:</p>
+<pre><code>I have a new source in raw/karpathy-llm-wiki-2026-04-04.md. Please ingest it
+into the wiki.</code></pre>
+<section id="what-to-observe" class="level3">
+<h3 class="anchored" data-anchor-id="what-to-observe">What to Observe</h3>
+<p>Watch how Codex Desktop:</p>
+<ol type="1">
+<li><strong>Reads the raw source</strong> and identifies concepts, people, and tools</li>
+<li><strong>Creates multiple wiki pages</strong> — you might see pages for:
+<ul>
+<li><code>wiki/concepts/llm-wiki.md</code></li>
+<li><code>wiki/concepts/rag.md</code></li>
+<li><code>wiki/concepts/zettelkasten.md</code></li>
+<li><code>wiki/people/andrej-karpathy.md</code></li>
+<li><code>wiki/vocabulary/ingest.md</code>, <code>wiki/vocabulary/lint.md</code></li>
+</ul></li>
+<li><strong>Cross-links everything</strong> — the LLM Wiki concept page links to RAG, to Karpathy, to the Memex</li>
+<li><strong>Updates index.md and log.md</strong></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>One source, many outputs.</strong> A single article summary might create 5–10 wiki pages. This is the bookkeeping that humans never maintain by hand — and exactly what makes the pattern powerful.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="step-7-ingest-a-second-source" class="level2">
+<h2 class="anchored" data-anchor-id="step-7-ingest-a-second-source">Step 7: Ingest a Second Source</h2>
+<p>Add something else you have learned this semester. For example, create <code>raw/vibe-coding-2025.md</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Vibe Coding</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Term coined by Andrej Karpathy in February 2025. The idea: instead of writing</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>code line by line, you describe what you want in natural language and let an AI</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>generate the code. You "vibe" with the AI — accepting suggestions, nudging</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>direction, but not writing syntax yourself.</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Karpathy later declared vibe coding obsolete, replaced by "agentic engineering"</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>— orchestrating AI agents that can read files, run tests, and make multi-step</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>changes autonomously.</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>Tools associated with vibe coding: GitHub Copilot, Cursor, Replit Agent.</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>Tools associated with agentic engineering: Codex, Claude Code, Devin.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ingest it:</p>
+<pre><code>I have a new source in raw/vibe-coding-2025.md. Please ingest it.</code></pre>
+<p>This time, observe how Codex Desktop <strong>updates existing pages</strong> (Andrej Karpathy’s page now has two sources) and <strong>creates new ones</strong> (vibe coding, agentic engineering, tool pages for various AI coding agents).</p>
+</section>
+<section id="step-8-query-and-lint" class="level2">
+<h2 class="anchored" data-anchor-id="step-8-query-and-lint">Step 8: Query and Lint</h2>
+<p>Try asking questions about your collection:</p>
+<pre><code>What is the relationship between vibe coding and the LLM Wiki pattern?</code></pre>
+<pre><code>What concepts have I learned that relate to how LLMs interact with external data?</code></pre>
+<p>Then run a health check:</p>
+<pre><code>Please lint the wiki. Check for missing fields, orphan pages, and gaps.</code></pre>
+</section>
+<section id="step-9-add-your-own-material" class="level2">
+<h2 class="anchored" data-anchor-id="step-9-add-your-own-material">Step 9: Add Your Own Material</h2>
+<p>Now add <strong>at least one source from your own experience this semester</strong>. This could be:</p>
+<ul>
+<li>Notes from a previous meeting in this course</li>
+<li>An article or video about AI that you found interesting</li>
+<li>A tool you tried and want to remember how to use</li>
+<li>A concept that confused you and that you eventually understood</li>
+</ul>
+<p>Ingest it and watch the wiki grow.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>You now have a working LLM Wiki.</strong> You gave Codex Desktop a pattern (Karpathy’s gist) and a topic (AI learning), and it built a structured, cross-referenced knowledge base. Every new source you add makes the wiki more complete. This is the same pattern we will apply to humanities research in Part 2.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="part-2-you-already-built-this" class="level1">
+<h1>Part 2: You Already Built This</h1>
+<p>Here is the punchline: <strong>the Obsidian Humanities Vault you set up in <a href="../meeting_08/meeting_08.html">Meeting 08</a> is an LLM Wiki.</strong></p>
+<p>You may not have realized it at the time, but when we built that vault — with its templates, its AGENTS.md file, its layered structure — we were implementing exactly this pattern. Let’s map it.</p>
+<section id="side-by-side-karpathys-pattern-vs.-our-vault" class="level2">
+<h2 class="anchored" data-anchor-id="side-by-side-karpathys-pattern-vs.-our-vault">Side-by-Side: Karpathy’s Pattern vs.&nbsp;Our Vault</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Karpathy’s LLM Wiki</th>
+<th>Obsidian Humanities Vault</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Raw Sources</strong> (immutable)</td>
+<td>Your primary sources, PDFs, OCR output in <code>raw/</code></td>
+</tr>
+<tr class="even">
+<td><strong>The Wiki</strong> (LLM-maintained markdown)</td>
+<td>Structured notes: <code>Person/</code>, <code>Text/</code>, <code>Place/</code>, <code>Event/</code></td>
+</tr>
+<tr class="odd">
+<td><strong>The Schema</strong> (CLAUDE.md / AGENTS.md)</td>
+<td><code>AGENTS.md</code> + kepano/obsidian-skills</td>
+</tr>
+<tr class="even">
+<td><strong>index.md</strong> (catalog of all pages)</td>
+<td>Obsidian <strong>Bases</strong> database views</td>
+</tr>
+<tr class="odd">
+<td><strong>log.md</strong> (chronological record)</td>
+<td>Git history (every commit is a log entry)</td>
+</tr>
+<tr class="even">
+<td><strong>Ingest</strong> (process new source)</td>
+<td>OCR a document → agent creates structured notes</td>
+</tr>
+<tr class="odd">
+<td><strong>Query</strong> (ask questions)</td>
+<td>Agent + humanities skills (CBDB, Harvard Library, etc.)</td>
+</tr>
+<tr class="even">
+<td><strong>Lint</strong> (health checks)</td>
+<td>Agent checks for broken links, missing fields, orphan notes</td>
+</tr>
+<tr class="odd">
+<td><strong>Wikilinks</strong> (<code>[[page]]</code>)</td>
+<td>Obsidian wikilinks (<code>[[Wang Anshi]]</code>, <code>[[Kaifeng]]</code>)</td>
+</tr>
+<tr class="even">
+<td><strong>Frontmatter metadata</strong></td>
+<td>YAML frontmatter in every template</td>
+</tr>
+</tbody>
+</table>
+<p>The architecture is the same. The difference is that we designed ours specifically for <strong>humanities research</strong> — with domain-specific templates (Person, Text, Place, Event), humanities-focused skills (CBDB, CHGIS, Harvard Library), and bilingual support (Chinese + English).</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    subgraph karpathy["Karpathy's LLM Wiki (abstract)"]
+        k1["Raw Sources"] --&gt; k2["Wiki&lt;br&gt;(markdown pages)"]
+        k3["Schema&lt;br&gt;(CLAUDE.md)"] --&gt; k2
+    end
+
+    subgraph vault["Obsidian Humanities Vault (concrete)"]
+        v1["Primary sources&lt;br&gt;PDFs, OCR output"] --&gt; v2["Structured notes&lt;br&gt;Person/ Text/ Place/ Event/"]
+        v3["AGENTS.md&lt;br&gt;+ obsidian-skills&lt;br&gt;+ humanities-skills"] --&gt; v2
+    end
+
+    karpathy -.-&gt;|"same pattern,&lt;br&gt;humanities instantiation"| vault
+
+    style karpathy fill:#f5f5f5,stroke:#999
+    style vault fill:#e8f4e8,stroke:#4a4
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="what-our-vault-adds-beyond-karpathy" class="level2">
+<h2 class="anchored" data-anchor-id="what-our-vault-adds-beyond-karpathy">What Our Vault Adds Beyond Karpathy</h2>
+<p>Our vault is not just a generic wiki — it has features specifically designed for humanities research:</p>
+<section id="domain-specific-templates" class="level3">
+<h3 class="anchored" data-anchor-id="domain-specific-templates">1. Domain-Specific Templates</h3>
+<p>Karpathy says the schema should define page structure. Our vault goes further — it provides <strong>six templates</strong> optimized for the kinds of entities humanities scholars work with:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Template</th>
+<th>Purpose</th>
+<th>Key Fields</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Person.md</code></td>
+<td>Historical figures</td>
+<td>Dynasty, dates, courtesy name, official posts</td>
+</tr>
+<tr class="even">
+<td><code>Text.md</code></td>
+<td>Primary sources and monographs</td>
+<td>Author, date, genre, language</td>
+</tr>
+<tr class="odd">
+<td><code>Place.md</code></td>
+<td>Geographic locations</td>
+<td>Coordinates, historical names, administrative level</td>
+</tr>
+<tr class="even">
+<td><code>Event.md</code></td>
+<td>Historical events</td>
+<td>Date range, participants, locations</td>
+</tr>
+<tr class="odd">
+<td><code>Bibliography.md</code></td>
+<td>Secondary sources</td>
+<td>Citation, DOI, related topics</td>
+</tr>
+<tr class="even">
+<td><code>Reading-Note.md</code></td>
+<td>Annotated notes</td>
+<td>Source link, key arguments, your own thoughts</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="humanities-skills" class="level3">
+<h3 class="anchored" data-anchor-id="humanities-skills">2. Humanities Skills</h3>
+<p>Karpathy’s pattern relies on the AI knowing how to access external data. Our vault comes pre-configured with <strong>18+ humanities skills</strong> that teach the AI to query:</p>
+<ul>
+<li><strong>CBDB</strong> — 500,000+ Chinese historical figures</li>
+<li><strong>CHGIS/TGAZ</strong> — historical placenames and coordinates</li>
+<li><strong>Harvard Library</strong> — 13M+ bibliographic records</li>
+<li><strong>HathiTrust</strong> — full-text search across digitized books</li>
+<li><strong>Wikidata</strong> — structured data about anything</li>
+<li><strong>CJK Calendar</strong> — lunisolar date conversion</li>
+</ul>
+<p>When you ingest a source that mentions a person, the AI can immediately look them up in CBDB, find their official postings, locate their hometown in CHGIS, and cross-reference with Harvard Library holdings — all automatically.</p>
+</section>
+<section id="the-five-layer-curriculum" class="level3">
+<h3 class="anchored" data-anchor-id="the-five-layer-curriculum">3. The Five-Layer Curriculum</h3>
+<p>Our vault has a progressive learning structure that maps to increasingly sophisticated wiki operations:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>What You Learn</th>
+<th>Wiki Operation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Foundations</td>
+<td>Creating notes, linking, tagging</td>
+<td>Basic ingest</td>
+</tr>
+<tr class="even">
+<td>2. Research Workflow</td>
+<td>Bibliography, reading notes</td>
+<td>Structured ingest</td>
+</tr>
+<tr class="odd">
+<td>3. Structured Data</td>
+<td>YAML frontmatter, Bases, maps</td>
+<td>Query + index</td>
+</tr>
+<tr class="even">
+<td>4. Analysis</td>
+<td>Canvas networks, text analysis</td>
+<td>Advanced query</td>
+</tr>
+<tr class="odd">
+<td>5. Customization</td>
+<td>MCP servers, skills, slash commands</td>
+<td>Lint + automation</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="hands-on-ingest-a-source-into-your-wiki" class="level2">
+<h2 class="anchored" data-anchor-id="hands-on-ingest-a-source-into-your-wiki">Hands-On: Ingest a Source into Your Wiki</h2>
+<p>Let’s do a real ingest operation. We will take a primary source, process it with an AI coding agent, and watch the wiki grow.</p>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<ol type="1">
+<li>Open your Obsidian Humanities Vault</li>
+<li>Launch your preferred AI coding agent (Codex Desktop, Claude Code, or Opencode) in the vault directory</li>
+<li>Make sure the agent can see the <code>AGENTS.md</code> file</li>
+</ol>
+</section>
+<section id="the-source" class="level3">
+<h3 class="anchored" data-anchor-id="the-source">The Source</h3>
+<p>We will use a passage from the <em>Song shi</em> (宋史, History of the Song Dynasty) about Wang Anshi (王安石), the famous reformer:</p>
+<blockquote class="blockquote">
+<p>王安石字介甫，撫州臨川人。父益，都官員外郎。安石少好讀書，一過目終身不忘。其屬文動筆如飛，初若不經意，既成，見者皆服其精妙。</p>
+</blockquote>
+<p>Create a file called <code>raw/song-shi-wang-anshi.md</code> with this passage (or use any primary source from your own research).</p>
+</section>
+<section id="the-prompt" class="level3">
+<h3 class="anchored" data-anchor-id="the-prompt">The Prompt</h3>
+<p>Give your AI coding agent this prompt:</p>
+<pre><code>I have a new source in raw/song-shi-wang-anshi.md. Please ingest it into the vault:
+
+1. Read the source text
+2. Create or update a Person entry for Wang Anshi (王安石) using the Person template
+3. Create or update a Place entry for Linchuan (臨川) using the Place template
+4. Create or update a Text entry for Song shi (宋史) using the Text template
+5. Make sure all entries are cross-linked with wikilinks
+6. Update any relevant Bases views
+7. Tell me what you created and what connections you found</code></pre>
+</section>
+<section id="what-to-watch-for" class="level3">
+<h3 class="anchored" data-anchor-id="what-to-watch-for">What to Watch For</h3>
+<p>Observe how the agent:</p>
+<ol type="1">
+<li><strong>Reads the raw source</strong> — extracts names, places, relationships</li>
+<li><strong>Follows templates</strong> — fills in YAML frontmatter fields correctly</li>
+<li><strong>Creates wikilinks</strong> — <code>[[Wang Anshi]]</code> in the Text entry, <code>[[Linchuan]]</code> in the Person entry</li>
+<li><strong>Uses skills</strong> — may query CBDB for additional information about Wang Anshi, or CHGIS for Linchuan’s coordinates</li>
+<li><strong>Touches multiple files</strong> — a single source triggers updates across several wiki pages</li>
+</ol>
+<p>This is the ingest operation in action. One source, multiple structured outputs, all cross-referenced.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Try it with your own research material.</strong> After the demonstration, ingest a source from your final project topic. The more relevant the source, the more useful the wiki becomes.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="the-feedback-loop" class="level2">
+<h2 class="anchored" data-anchor-id="the-feedback-loop">The Feedback Loop</h2>
+<p>The power of this pattern comes from repetition. Each source you ingest makes the wiki more complete. Each query you ask reveals gaps. Each lint operation catches inconsistencies. Over time, the wiki becomes a comprehensive, well-organized knowledge base for your research topic.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A["Add a source&lt;br&gt;(Ingest)"] --&gt; B["Wiki grows"]
+    B --&gt; C["Ask a question&lt;br&gt;(Query)"]
+    C --&gt; D["Discover a gap"]
+    D --&gt; E["Find new source&lt;br&gt;to fill the gap"]
+    E --&gt; A
+    B --&gt; F["Run health check&lt;br&gt;(Lint)"]
+    F --&gt; G["Fix contradictions&lt;br&gt;and broken links"]
+    G --&gt; B
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This is how research works — not as a linear process, but as a cycle of reading, organizing, questioning, and refining. The LLM Wiki pattern automates the organizing so you can focus on the reading, questioning, and thinking.</p>
+<hr>
+</section>
+</section>
+<section id="assignment-3-build-your-research-wiki" class="level1">
+<h1>Assignment 3: Build Your Research Wiki</h1>
+<p><strong>Due: April 22, 2026 (Meeting 12)</strong></p>
+<p>Using the LLM Wiki pattern and your Obsidian Humanities Vault, build a research wiki for your final project topic.</p>
+<section id="requirements" class="level2">
+<h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
+<section id="structure-4-points" class="level3">
+<h3 class="anchored" data-anchor-id="structure-4-points">Structure (4 points)</h3>
+<ul>
+<li>A <code>raw/</code> directory with at least <strong>5 primary or secondary sources</strong> (articles, book chapters, primary texts, OCR output — whatever is relevant to your topic)</li>
+<li>An <code>AGENTS.md</code> or <code>CLAUDE.md</code> file with a <strong>schema</strong> that defines your wiki’s structure, conventions, and page types</li>
+<li>An <code>index.md</code> or Bases view that catalogs all wiki pages</li>
+</ul>
+</section>
+<section id="content-4-points" class="level3">
+<h3 class="anchored" data-anchor-id="content-4-points">Content (4 points)</h3>
+<ul>
+<li>At least <strong>10 wiki pages</strong> created through ingest operations (Person, Text, Place, Event, or other types relevant to your research)</li>
+<li>Pages must include <strong>YAML frontmatter</strong> with relevant metadata</li>
+<li>Pages must be <strong>cross-linked</strong> with wikilinks — no orphan pages</li>
+<li>At least <strong>2 pages</strong> should demonstrate the agent using a <strong>humanities skill</strong> (CBDB, Harvard Library, CHGIS, etc.) to enrich the entry</li>
+</ul>
+</section>
+<section id="process-2-points" class="level3">
+<h3 class="anchored" data-anchor-id="process-2-points">Process (2 points)</h3>
+<ul>
+<li>A <code>log.md</code> or git history showing the sequence of ingest operations</li>
+<li>A brief reflection (1 paragraph): What did the AI do well? What did you have to correct? Did you learn anything from the process?</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Start with your final project.</strong> This assignment is designed to directly support your final project. The wiki you build here should become the knowledge base that powers your final presentation and submission. Choose sources that matter to your research.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Any AI coding agent is acceptable.</strong> You may use Codex Desktop, Claude Code, Opencode, or any other agent. The pattern works the same way regardless of the tool.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="takeaways" class="level1">
+<h1>Takeaways</h1>
+<ol type="1">
+<li><strong>The LLM Wiki</strong> is a pattern for building knowledge bases where AI maintains the structure and you curate the content — compilation over retrieval</li>
+<li><strong>Three layers</strong>: raw sources (immutable), wiki (AI-maintained), schema (your rules)</li>
+<li><strong>Three operations</strong>: ingest (add sources), query (ask questions), lint (health checks)</li>
+<li><strong>You already have this</strong> — the Obsidian Humanities Vault from <a href="../meeting_08/meeting_08.html">Meeting 08</a> implements this pattern with domain-specific templates and humanities skills</li>
+<li><strong>The tedious part is the bookkeeping</strong> — and that is exactly what AI agents are good at</li>
+<li><strong>The critical part is your judgment</strong> — curating sources, asking questions, evaluating results, and going back to primary sources when it matters</li>
+</ol>
+</section>
+<section id="resources" class="level1">
+<h1>Resources</h1>
+<ul>
+<li><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Andrej Karpathy’s LLM Wiki (original gist)</a></li>
+<li><a href="https://gist.github.com/kltng/67143ae32f6a28798f010bdbac127224">The LLM Wiki Movement (analysis report)</a></li>
+<li><a href="https://obsidian.md/">Obsidian</a></li>
+<li><a href="https://github.com/kepano/obsidian-skills">kepano/obsidian-skills</a></li>
+<li><a href="https://github.com/kltng/humanities-skills">kltng/humanities-skills</a></li>
+<li><a href="https://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/">Vannevar Bush, “As We May Think” (1945)</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/kltng\.github\.io\/eastd143b\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
