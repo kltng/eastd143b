@@ -1,0 +1,652 @@
+---
+title: "Meeting 10"
+format:
+    html:
+        toc: true
+        toc-depth: 3
+        code-fold: true
+        link-external-newwindow: true
+        code-overflow: wrap
+        code-copy: true
+
+date: "2026-04-08"
+date-modified: "2026-04-08"
+author: "Kwok-leong Tang"
+---
+
+# Today's Schedule
+
+**Part 1 — The LLM Wiki: A New Pattern for Knowledge Management**
+
+- Andrej Karpathy's LLM Wiki pattern (April 4, 2026)
+- The core idea: compilation over retrieval
+- Three-layer architecture: Raw Sources, Wiki, Schema
+- Three operations: Ingest, Query, Lint
+- Why this matters for humanities research
+
+**Part 2 — You Already Built This**
+
+- Mapping the LLM Wiki pattern to the Obsidian Humanities Vault
+- Hands-on: Ingest a source into your vault using an AI coding agent
+- From raw material to structured, cross-referenced knowledge
+- Assignment 3: Build your research wiki
+
+# Part 1: The LLM Wiki
+
+On April 4, 2026 — four days ago — Andrej Karpathy published a short document called [**"LLM Wiki"**](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). Within 48 hours, it had 5,000+ stars and 1,500+ forks on GitHub. It struck a nerve because it names a pattern that many people had been circling around but nobody had articulated clearly.
+
+:::{.callout-note}
+**Who is Andrej Karpathy?** A founding member of OpenAI and former head of AI at Tesla. He coined the term "vibe coding" in early 2025 — the idea of describing what you want and letting an AI generate code. More recently, he declared vibe coding obsolete, replaced by what he calls "agentic engineering": orchestrating AI agents rather than writing code directly. The LLM Wiki is his latest contribution — applying agentic engineering to **knowledge management** rather than software development.
+:::
+
+## The Problem: Knowledge Doesn't Stick
+
+Think about how you have been using AI tools this semester:
+
+1. You ask a question in a chatbot
+2. You get a good answer
+3. You close the tab
+4. Next week, you ask a similar question — from scratch
+
+Every conversation starts at zero. The AI has no memory of what you discussed before. The insights, the connections, the corrections — all gone. You are doing the same work over and over.
+
+This is also the problem with traditional **RAG** (Retrieval-Augmented Generation), which we discussed in [Meeting 01](../meeting_01/meeting_01.qmd). RAG re-derives answers from raw documents every time:
+
+```{mermaid}
+flowchart LR
+    A["Question"] --> B["Search raw documents"]
+    B --> C["Retrieve relevant chunks"]
+    C --> D["Generate answer from scratch"]
+    D --> E["Answer disappears<br>after the session"]
+```
+
+Karpathy's insight is simple: **what if the AI built something permanent instead?**
+
+## The Pattern: Compilation Over Retrieval
+
+Instead of searching raw documents every time, have the AI **read sources once** and **write the knowledge into a wiki** — a persistent collection of interconnected markdown pages. Each new source gets integrated into existing pages, cross-references get updated, and the wiki grows over time.
+
+```{mermaid}
+flowchart LR
+    A["New source arrives"] --> B["AI reads the source"]
+    B --> C["AI updates wiki pages:<br>• creates new entries<br>• updates existing ones<br>• adds cross-references<br>• flags contradictions"]
+    C --> D["Wiki is now<br>more complete"]
+    D -->|"next source"| A
+```
+
+The key phrase: **"The wiki is a persistent, compounding artifact."** It gets better with every source you add.
+
+## Three-Layer Architecture
+
+The LLM Wiki has three layers:
+
+```{mermaid}
+flowchart LR
+    subgraph raw ["Raw Sources (immutable)"]
+        r1["Articles"]
+        r2["Papers"]
+        r3["Images, PDFs, data"]
+    end
+
+    subgraph wiki ["The Wiki (LLM-maintained)"]
+        w1["Markdown pages"]
+        w2["index.md"]
+        w3["log.md"]
+    end
+
+    subgraph schema ["The Schema (your instructions)"]
+        s1["CLAUDE.md"]
+        s2["or AGENTS.md"]
+        s3["Conventions & rules"]
+    end
+
+    raw --> wiki
+    schema --> wiki
+
+    style raw fill:#f5f5f5,stroke:#999
+    style wiki fill:#e8f4e8,stroke:#4a4
+    style schema fill:#e8e8f4,stroke:#44a
+```
+
+### Layer 1: Raw Sources (Immutable)
+
+Your curated collection of original materials. These are **read-only** — the AI never modifies them. They are the ground truth.
+
+- Articles, papers, book chapters
+- Primary sources (historical texts, documents)
+- Images, PDFs, datasets
+- OCR output from digitized materials
+
+### Layer 2: The Wiki (LLM-Maintained)
+
+A directory of markdown files that the AI **owns entirely**. The AI creates pages, updates them, adds cross-references, and maintains an index. You read the wiki; the AI writes it.
+
+Key files:
+
+- **`index.md`** — a catalog of all wiki pages, organized by category, with links and one-line summaries
+- **`log.md`** — an append-only chronological record of every action the AI takes (what was added, what was updated, what was flagged)
+
+### Layer 3: The Schema (Your Instructions)
+
+A configuration document — `CLAUDE.md` or `AGENTS.md` — that defines:
+
+- How pages should be structured (templates, required fields)
+- Naming conventions for files
+- How to handle contradictions or uncertain information
+- What categories of pages exist
+- Citation format and cross-reference style
+
+This is where **you** control the wiki. The schema is your set of rules; the AI follows them.
+
+:::{.callout-important}
+**The schema is the most important layer.** It is the difference between a useful, well-organized wiki and a chaotic dump of AI-generated text. Writing a good schema is writing good instructions — the same skill you practiced with `AGENTS.md` and `CLAUDE.md` files in [Meeting 09](../meeting_09/meeting_09.qmd).
+:::
+
+## Three Operations
+
+Everything the AI does to the wiki falls into three operations:
+
+### 1. Ingest
+
+Process a new source and integrate it into the wiki.
+
+```{mermaid}
+flowchart TD
+    A["New source<br>(article, paper, primary text)"] --> B["AI reads the source"]
+    B --> C["AI writes summary page<br>in the wiki"]
+    C --> D["AI updates index.md"]
+    D --> E["AI updates related pages<br>(cross-references, new connections)"]
+    E --> F["AI appends to log.md<br>(what changed and why)"]
+```
+
+The AI might touch 10-15 files in a single ingest operation — creating a new source page, updating person entries, adding location cross-references, and noting connections to other sources. This is the bookkeeping that humans consistently abandon.
+
+### 2. Query
+
+Ask a question and get an answer synthesized from the wiki.
+
+The AI searches the index, reads relevant pages, and produces an answer with citations back to specific wiki pages (which themselves cite raw sources). If the query reveals something interesting, the AI files the result as a new page — so the wiki learns from your questions.
+
+### 3. Lint
+
+Periodic health checks on the wiki itself.
+
+- Find contradictions between pages
+- Identify stale claims that need updating
+- Detect orphan pages (not linked from anywhere)
+- Flag missing cross-references
+- Check for gaps in coverage
+
+Linting is what keeps a wiki healthy over time. Without it, wikis rot. With an AI doing it, wikis self-heal.
+
+## Why This Matters
+
+Karpathy puts it simply:
+
+> "The tedious part of maintaining a knowledge base is not the reading or the thinking — it's the bookkeeping. LLMs don't get bored, don't forget to update a cross-reference."
+
+This inverts the traditional problem. Humans are good at:
+
+- **Curating sources** — deciding what is worth reading
+- **Asking questions** — directing the analysis
+- **Evaluating results** — judging whether the AI got it right
+- **Injecting creative direction** — seeing connections the AI cannot
+
+Humans are bad at:
+
+- **Bookkeeping** — updating cross-references, maintaining indexes, filing things consistently
+- **Touching 15 files at once** — updating every page that references a person when you learn their courtesy name
+
+The LLM Wiki lets each party do what they are best at.
+
+## Historical Roots: The Memex
+
+This idea is not new. In 1945, Vannevar Bush published an essay called ["As We May Think"](https://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/) in *The Atlantic*, describing a hypothetical device called the **Memex**:
+
+> "A memex is a device in which an individual stores all his books, records, and communications, and which is mechanized so that it may be consulted with exceeding speed and flexibility."
+
+Bush envisioned a personal knowledge store with associative trails linking documents together — essentially a personal wiki, 80 years before the technology existed. His challenge was **maintenance**: who keeps the trails updated? Who adds the cross-references?
+
+Karpathy's answer: the LLM does.
+
+## Critical Concerns
+
+The LLM Wiki pattern is powerful, but it has real limitations that researchers must understand:
+
+**1. The Generation Effect**
+
+When you write your own notes, you learn. When an AI writes notes for you, you might not. The cognitive scientist Sönke Ahrens (author of *How to Take Smart Notes*) argues that the act of reformulating ideas in your own words is where understanding happens. If the AI does all the writing, you risk becoming a reader of your own research rather than a thinker.
+
+**2. Error Accumulation**
+
+LLM summaries can be confidently wrong. If a hallucinated fact enters the wiki, it can propagate to other pages through cross-references. Raw sources must always remain as ground truth.
+
+**3. Authority Creep**
+
+Wiki pages start to feel authoritative simply because they are well-organized. But they are interpretations, not facts. Researchers must maintain the habit of going back to primary sources.
+
+:::{.callout-tip}
+**The safeguard**: Always keep your raw sources immutable and accessible. The wiki is a navigation layer — a map, not the territory. When something matters, read the original.
+:::
+
+---
+
+# Exercise: Build an AI Learning Collection with Codex Desktop
+
+Now that you understand the LLM Wiki pattern, let's build one from scratch. Instead of writing all the schema yourself, you will use **Karpathy's original gist as your starting prompt** — paste it directly into Codex Desktop and let the agent set up the wiki for you through conversation.
+
+The topic: **your personal AI learning collection** — articles, videos, tutorials, and concepts you have encountered this semester (and beyond) about AI, LLMs, and coding agents.
+
+## Step 1: Create the Project Directory
+
+Open your terminal and create a new directory:
+
+```bash
+mkdir ~/ai-learning-wiki
+```
+
+## Step 2: Copy Karpathy's Gist
+
+Open the gist in your browser:
+
+> [https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+
+Read through it. This is the blueprint you will hand to Codex Desktop.
+
+## Step 3: Launch Codex Desktop and Paste the Gist
+
+1. Open **Codex Desktop**
+2. Click **"Open folder"** and select the `~/ai-learning-wiki` directory you just created
+3. Codex Desktop is now working inside that folder — any files it creates will appear there
+
+Now paste the **entire content** of Karpathy's gist into the chat, followed by this instruction:
+
+```
+[paste the full gist content here]
+
+---
+
+Using the LLM Wiki pattern described above, set up a wiki in this directory
+for my personal AI learning collection. The topic is everything I am learning
+about AI, large language models, coding agents, and related tools.
+
+Please:
+1. Create the directory structure (raw/, wiki/)
+2. Write an AGENTS.md schema tailored to an AI learning collection
+   - Page types should include: Concept, Tool, Paper, Tutorial, Person, and Vocabulary
+   - Include templates for each page type with relevant frontmatter fields
+3. Create wiki/index.md and wiki/log.md
+4. Set up subdirectories for each page type
+5. Explain what you created and how I should use it
+```
+
+:::{.callout-tip}
+**Let Codex Desktop do the work.** You are not writing the schema yourself — you are giving the agent the pattern (Karpathy's gist) and a topic (AI learning), and letting it generate the schema, templates, and structure. This is the pattern in action: you curate and direct, the AI does the bookkeeping.
+:::
+
+## Step 4: Open the Vault in Obsidian
+
+While Codex Desktop is working, open the `~/ai-learning-wiki` folder as a vault in **Obsidian**:
+
+1. Open Obsidian
+2. Click **"Open folder as vault"**
+3. Select the `~/ai-learning-wiki` directory
+
+Now you can watch in real time as Codex Desktop creates and updates files — they will appear in Obsidian's file explorer as they are written. Wikilinks between pages will become clickable, and you can use Obsidian's graph view to visualize the connections.
+
+## Step 5: Review What Codex Desktop Created
+
+After Codex Desktop finishes, check the vault in Obsidian. You should see something like:
+
+```
+AGENTS.md
+raw/
+wiki/
+  index.md
+  log.md
+  concepts/
+  tools/
+  papers/
+  tutorials/
+  people/
+  vocabulary/
+```
+
+Open `AGENTS.md` and read through it. This is the schema that Codex Desktop wrote for you based on Karpathy's pattern. Ask yourself:
+
+- Do the page types make sense for an AI learning collection?
+- Are the templates detailed enough?
+- Is anything missing?
+
+If you want changes, just tell Codex Desktop:
+
+```
+Add a "Source" field to the Concept template that links back to where I first
+learned about the concept. Also add a "Difficulty" field (beginner, intermediate,
+advanced) to the Tutorial template.
+```
+
+The agent will update `AGENTS.md` for you.
+
+## Step 6: Ingest Your First Source
+
+Create a raw source file. You can ask Codex Desktop to create it for you, or create it yourself in a text editor. For example, create `raw/karpathy-llm-wiki-2026-04-04.md` with the following content:
+
+```markdown
+# Andrej Karpathy — LLM Wiki (April 4, 2026)
+
+Source: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
+
+Karpathy published a gist describing a pattern for building knowledge bases
+with LLMs. The core idea: instead of using RAG (retrieval-augmented generation)
+to re-derive answers from raw documents every time, have the LLM "compile"
+knowledge into a persistent wiki.
+
+Three-layer architecture:
+- Raw Sources (immutable) — the original documents
+- The Wiki (LLM-maintained) — structured markdown pages with cross-references
+- The Schema (your instructions) — CLAUDE.md or AGENTS.md defining rules
+
+Three operations:
+- Ingest: process a new source, create/update wiki pages
+- Query: ask a question, get an answer synthesized from the wiki
+- Lint: health checks — find contradictions, orphan pages, stale entries
+
+Key quote: "The tedious part of maintaining a knowledge base is not the reading
+or the thinking — it's the bookkeeping."
+
+Related concepts: RAG, knowledge graphs, Zettelkasten, Vannevar Bush's Memex
+```
+
+Now tell Codex Desktop to ingest it:
+
+```
+I have a new source in raw/karpathy-llm-wiki-2026-04-04.md. Please ingest it
+into the wiki.
+```
+
+### What to Observe
+
+Watch how Codex Desktop:
+
+1. **Reads the raw source** and identifies concepts, people, and tools
+2. **Creates multiple wiki pages** — you might see pages for:
+   - `wiki/concepts/llm-wiki.md`
+   - `wiki/concepts/rag.md`
+   - `wiki/concepts/zettelkasten.md`
+   - `wiki/people/andrej-karpathy.md`
+   - `wiki/vocabulary/ingest.md`, `wiki/vocabulary/lint.md`
+3. **Cross-links everything** — the LLM Wiki concept page links to RAG, to Karpathy, to the Memex
+4. **Updates index.md and log.md**
+
+:::{.callout-note}
+**One source, many outputs.** A single article summary might create 5–10 wiki pages. This is the bookkeeping that humans never maintain by hand — and exactly what makes the pattern powerful.
+:::
+
+## Step 7: Ingest a Second Source
+
+Add something else you have learned this semester. For example, create `raw/vibe-coding-2025.md`:
+
+```markdown
+# Vibe Coding
+
+Term coined by Andrej Karpathy in February 2025. The idea: instead of writing
+code line by line, you describe what you want in natural language and let an AI
+generate the code. You "vibe" with the AI — accepting suggestions, nudging
+direction, but not writing syntax yourself.
+
+Karpathy later declared vibe coding obsolete, replaced by "agentic engineering"
+— orchestrating AI agents that can read files, run tests, and make multi-step
+changes autonomously.
+
+Tools associated with vibe coding: GitHub Copilot, Cursor, Replit Agent.
+Tools associated with agentic engineering: Codex, Claude Code, Devin.
+```
+
+Ingest it:
+
+```
+I have a new source in raw/vibe-coding-2025.md. Please ingest it.
+```
+
+This time, observe how Codex Desktop **updates existing pages** (Andrej Karpathy's page now has two sources) and **creates new ones** (vibe coding, agentic engineering, tool pages for various AI coding agents).
+
+## Step 8: Query and Lint
+
+Try asking questions about your collection:
+
+```
+What is the relationship between vibe coding and the LLM Wiki pattern?
+```
+
+```
+What concepts have I learned that relate to how LLMs interact with external data?
+```
+
+Then run a health check:
+
+```
+Please lint the wiki. Check for missing fields, orphan pages, and gaps.
+```
+
+## Step 9: Add Your Own Material
+
+Now add **at least one source from your own experience this semester**. This could be:
+
+- Notes from a previous meeting in this course
+- An article or video about AI that you found interesting
+- A tool you tried and want to remember how to use
+- A concept that confused you and that you eventually understood
+
+Ingest it and watch the wiki grow.
+
+:::{.callout-important}
+**You now have a working LLM Wiki.** You gave Codex Desktop a pattern (Karpathy's gist) and a topic (AI learning), and it built a structured, cross-referenced knowledge base. Every new source you add makes the wiki more complete. This is the same pattern we will apply to humanities research in Part 2.
+:::
+
+---
+
+# Part 2: You Already Built This
+
+Here is the punchline: **the Obsidian Humanities Vault you set up in [Meeting 08](../meeting_08/meeting_08.qmd) is an LLM Wiki.**
+
+You may not have realized it at the time, but when we built that vault — with its templates, its AGENTS.md file, its layered structure — we were implementing exactly this pattern. Let's map it.
+
+## Side-by-Side: Karpathy's Pattern vs. Our Vault
+
+| Karpathy's LLM Wiki | Obsidian Humanities Vault |
+|---|---|
+| **Raw Sources** (immutable) | Your primary sources, PDFs, OCR output in `raw/` |
+| **The Wiki** (LLM-maintained markdown) | Structured notes: `Person/`, `Text/`, `Place/`, `Event/` |
+| **The Schema** (CLAUDE.md / AGENTS.md) | `AGENTS.md` + kepano/obsidian-skills |
+| **index.md** (catalog of all pages) | Obsidian **Bases** database views |
+| **log.md** (chronological record) | Git history (every commit is a log entry) |
+| **Ingest** (process new source) | OCR a document → agent creates structured notes |
+| **Query** (ask questions) | Agent + humanities skills (CBDB, Harvard Library, etc.) |
+| **Lint** (health checks) | Agent checks for broken links, missing fields, orphan notes |
+| **Wikilinks** (`[[page]]`) | Obsidian wikilinks (`[[Wang Anshi]]`, `[[Kaifeng]]`) |
+| **Frontmatter metadata** | YAML frontmatter in every template |
+
+The architecture is the same. The difference is that we designed ours specifically for **humanities research** — with domain-specific templates (Person, Text, Place, Event), humanities-focused skills (CBDB, CHGIS, Harvard Library), and bilingual support (Chinese + English).
+
+```{mermaid}
+flowchart TB
+    subgraph karpathy["Karpathy's LLM Wiki (abstract)"]
+        k1["Raw Sources"] --> k2["Wiki<br>(markdown pages)"]
+        k3["Schema<br>(CLAUDE.md)"] --> k2
+    end
+
+    subgraph vault["Obsidian Humanities Vault (concrete)"]
+        v1["Primary sources<br>PDFs, OCR output"] --> v2["Structured notes<br>Person/ Text/ Place/ Event/"]
+        v3["AGENTS.md<br>+ obsidian-skills<br>+ humanities-skills"] --> v2
+    end
+
+    karpathy -.->|"same pattern,<br>humanities instantiation"| vault
+
+    style karpathy fill:#f5f5f5,stroke:#999
+    style vault fill:#e8f4e8,stroke:#4a4
+```
+
+## What Our Vault Adds Beyond Karpathy
+
+Our vault is not just a generic wiki — it has features specifically designed for humanities research:
+
+### 1. Domain-Specific Templates
+
+Karpathy says the schema should define page structure. Our vault goes further — it provides **six templates** optimized for the kinds of entities humanities scholars work with:
+
+| Template | Purpose | Key Fields |
+|---|---|---|
+| `Person.md` | Historical figures | Dynasty, dates, courtesy name, official posts |
+| `Text.md` | Primary sources and monographs | Author, date, genre, language |
+| `Place.md` | Geographic locations | Coordinates, historical names, administrative level |
+| `Event.md` | Historical events | Date range, participants, locations |
+| `Bibliography.md` | Secondary sources | Citation, DOI, related topics |
+| `Reading-Note.md` | Annotated notes | Source link, key arguments, your own thoughts |
+
+### 2. Humanities Skills
+
+Karpathy's pattern relies on the AI knowing how to access external data. Our vault comes pre-configured with **18+ humanities skills** that teach the AI to query:
+
+- **CBDB** — 500,000+ Chinese historical figures
+- **CHGIS/TGAZ** — historical placenames and coordinates
+- **Harvard Library** — 13M+ bibliographic records
+- **HathiTrust** — full-text search across digitized books
+- **Wikidata** — structured data about anything
+- **CJK Calendar** — lunisolar date conversion
+
+When you ingest a source that mentions a person, the AI can immediately look them up in CBDB, find their official postings, locate their hometown in CHGIS, and cross-reference with Harvard Library holdings — all automatically.
+
+### 3. The Five-Layer Curriculum
+
+Our vault has a progressive learning structure that maps to increasingly sophisticated wiki operations:
+
+| Layer | What You Learn | Wiki Operation |
+|---|---|---|
+| 1. Foundations | Creating notes, linking, tagging | Basic ingest |
+| 2. Research Workflow | Bibliography, reading notes | Structured ingest |
+| 3. Structured Data | YAML frontmatter, Bases, maps | Query + index |
+| 4. Analysis | Canvas networks, text analysis | Advanced query |
+| 5. Customization | MCP servers, skills, slash commands | Lint + automation |
+
+## Hands-On: Ingest a Source into Your Wiki
+
+Let's do a real ingest operation. We will take a primary source, process it with an AI coding agent, and watch the wiki grow.
+
+### Setup
+
+1. Open your Obsidian Humanities Vault
+2. Launch your preferred AI coding agent (Codex Desktop, Claude Code, or Opencode) in the vault directory
+3. Make sure the agent can see the `AGENTS.md` file
+
+### The Source
+
+We will use a passage from the *Song shi* (宋史, History of the Song Dynasty) about Wang Anshi (王安石), the famous reformer:
+
+> 王安石字介甫，撫州臨川人。父益，都官員外郎。安石少好讀書，一過目終身不忘。其屬文動筆如飛，初若不經意，既成，見者皆服其精妙。
+
+Create a file called `raw/song-shi-wang-anshi.md` with this passage (or use any primary source from your own research).
+
+### The Prompt
+
+Give your AI coding agent this prompt:
+
+```
+I have a new source in raw/song-shi-wang-anshi.md. Please ingest it into the vault:
+
+1. Read the source text
+2. Create or update a Person entry for Wang Anshi (王安石) using the Person template
+3. Create or update a Place entry for Linchuan (臨川) using the Place template
+4. Create or update a Text entry for Song shi (宋史) using the Text template
+5. Make sure all entries are cross-linked with wikilinks
+6. Update any relevant Bases views
+7. Tell me what you created and what connections you found
+```
+
+### What to Watch For
+
+Observe how the agent:
+
+1. **Reads the raw source** — extracts names, places, relationships
+2. **Follows templates** — fills in YAML frontmatter fields correctly
+3. **Creates wikilinks** — `[[Wang Anshi]]` in the Text entry, `[[Linchuan]]` in the Person entry
+4. **Uses skills** — may query CBDB for additional information about Wang Anshi, or CHGIS for Linchuan's coordinates
+5. **Touches multiple files** — a single source triggers updates across several wiki pages
+
+This is the ingest operation in action. One source, multiple structured outputs, all cross-referenced.
+
+:::{.callout-important}
+**Try it with your own research material.** After the demonstration, ingest a source from your final project topic. The more relevant the source, the more useful the wiki becomes.
+:::
+
+## The Feedback Loop
+
+The power of this pattern comes from repetition. Each source you ingest makes the wiki more complete. Each query you ask reveals gaps. Each lint operation catches inconsistencies. Over time, the wiki becomes a comprehensive, well-organized knowledge base for your research topic.
+
+```{mermaid}
+flowchart TD
+    A["Add a source<br>(Ingest)"] --> B["Wiki grows"]
+    B --> C["Ask a question<br>(Query)"]
+    C --> D["Discover a gap"]
+    D --> E["Find new source<br>to fill the gap"]
+    E --> A
+    B --> F["Run health check<br>(Lint)"]
+    F --> G["Fix contradictions<br>and broken links"]
+    G --> B
+```
+
+This is how research works — not as a linear process, but as a cycle of reading, organizing, questioning, and refining. The LLM Wiki pattern automates the organizing so you can focus on the reading, questioning, and thinking.
+
+---
+
+# Assignment 3: Build Your Research Wiki
+
+**Due: April 22, 2026 (Meeting 12)**
+
+Using the LLM Wiki pattern and your Obsidian Humanities Vault, build a research wiki for your final project topic.
+
+## Requirements
+
+### Structure (4 points)
+
+- A `raw/` directory with at least **5 primary or secondary sources** (articles, book chapters, primary texts, OCR output — whatever is relevant to your topic)
+- An `AGENTS.md` or `CLAUDE.md` file with a **schema** that defines your wiki's structure, conventions, and page types
+- An `index.md` or Bases view that catalogs all wiki pages
+
+### Content (4 points)
+
+- At least **10 wiki pages** created through ingest operations (Person, Text, Place, Event, or other types relevant to your research)
+- Pages must include **YAML frontmatter** with relevant metadata
+- Pages must be **cross-linked** with wikilinks — no orphan pages
+- At least **2 pages** should demonstrate the agent using a **humanities skill** (CBDB, Harvard Library, CHGIS, etc.) to enrich the entry
+
+### Process (2 points)
+
+- A `log.md` or git history showing the sequence of ingest operations
+- A brief reflection (1 paragraph): What did the AI do well? What did you have to correct? Did you learn anything from the process?
+
+:::{.callout-tip}
+**Start with your final project.** This assignment is designed to directly support your final project. The wiki you build here should become the knowledge base that powers your final presentation and submission. Choose sources that matter to your research.
+:::
+
+:::{.callout-note}
+**Any AI coding agent is acceptable.** You may use Codex Desktop, Claude Code, Opencode, or any other agent. The pattern works the same way regardless of the tool.
+:::
+
+# Takeaways
+
+1. **The LLM Wiki** is a pattern for building knowledge bases where AI maintains the structure and you curate the content — compilation over retrieval
+2. **Three layers**: raw sources (immutable), wiki (AI-maintained), schema (your rules)
+3. **Three operations**: ingest (add sources), query (ask questions), lint (health checks)
+4. **You already have this** — the Obsidian Humanities Vault from [Meeting 08](../meeting_08/meeting_08.qmd) implements this pattern with domain-specific templates and humanities skills
+5. **The tedious part is the bookkeeping** — and that is exactly what AI agents are good at
+6. **The critical part is your judgment** — curating sources, asking questions, evaluating results, and going back to primary sources when it matters
+
+# Resources
+
+- [Andrej Karpathy's LLM Wiki (original gist)](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- [The LLM Wiki Movement (analysis report)](https://gist.github.com/kltng/67143ae32f6a28798f010bdbac127224)
+- [Obsidian](https://obsidian.md/)
+- [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills)
+- [kltng/humanities-skills](https://github.com/kltng/humanities-skills)
+- [Vannevar Bush, "As We May Think" (1945)](https://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/)

@@ -1,0 +1,308 @@
+---
+title: "Meeting 11"
+format:
+    html:
+        toc: true
+        toc-depth: 3
+        code-fold: true
+        link-external-newwindow: true
+        code-overflow: wrap
+        code-copy: true
+
+date: "2026-04-15"
+date-modified: "2026-04-15"
+author: "Kwok-leong Tang"
+---
+
+# Today's Schedule
+
+**Part 1 — Sharing Your LLM-Wikis**
+
+- Each student presents their LLM-wiki (Assignment 3 progress)
+- What worked, what didn't, what surprised you
+- Common problems and solutions
+- Discussion: what makes a good schema?
+
+**Part 2 — Model and App Independence: Why It Matters**
+
+- Why the LLM-wiki pattern frees you from vendor lock-in
+- Your knowledge lives in markdown, not in any app
+- Hands-on: Set up Opencode with the Z.ai Coding Plan
+- Run the same wiki tasks with a different agent and a different model
+
+---
+
+# Part 1: Sharing Your LLM-Wikis
+
+Last week you began building research wikis using the LLM Wiki pattern. Today we start by hearing from everyone: what did you build, and what went wrong?
+
+## Presentation Format
+
+Each student will share their screen and walk through their wiki for **5 minutes**:
+
+1. **Show your vault structure** — how did you organize `raw/`, your wiki pages, and your schema?
+2. **Pick one ingest** — show us a source you ingested and the wiki pages it produced. Were the cross-references correct? Did the agent follow your templates?
+3. **Name one problem** — what was the hardest part? A bad template? A hallucinated fact? A broken wikilink? An agent that ignored your `AGENTS.md`?
+
+## Discussion Points
+
+As you listen to each other's presentations, think about:
+
+- **Schema design**: Did students who wrote more detailed `AGENTS.md` / `CLAUDE.md` files get better results?
+- **Template adherence**: When did the agent follow the template faithfully, and when did it improvise? Was the improvisation good or bad?
+- **Cross-referencing**: Did the agent create wikilinks to pages that don't exist yet? Is that a bug or a feature?
+- **Source quality**: Did the agent handle Chinese-language sources differently from English ones?
+- **Correction workflow**: When the agent got something wrong, how did you fix it? Did you edit the wiki page manually, or did you prompt the agent to correct itself?
+
+:::{.callout-tip}
+**Forward-linking is a feature, not a bug.** If the agent creates a wikilink like `[[Su Shi]]` before a Su Shi page exists, that is correct behavior — it is marking a gap in the wiki. When you later ingest a source about Su Shi, the link will resolve automatically. This is how wikis grow.
+:::
+
+:::{.callout-note}
+**Assignment 3 is due next week (April 22).** Use today's feedback to improve your wiki before submission.
+:::
+
+---
+
+# Part 2: Model and App Independence
+
+## The Key Insight
+
+Look at what you built last week. Your LLM-wiki is:
+
+- A folder of **markdown files** with YAML frontmatter
+- An **`AGENTS.md`** (or `CLAUDE.md`) file with your schema
+- A `raw/` directory with your sources
+- Wikilinks connecting everything together
+
+None of this is proprietary. There is no database, no special file format, no app-specific encoding. Everything is **plain text**.
+
+This means your wiki is not locked into any specific:
+
+| Layer | You can switch freely |
+|---|---|
+| **AI model** | Claude, GPT, GLM, Gemini, Llama, Qwen — any model can read and write markdown |
+| **AI coding agent** | Claude Code, Codex, Opencode — they all read `AGENTS.md` and write files |
+| **Note-taking app** | Obsidian, VS Code, any text editor — they all open `.md` files |
+| **Operating system** | macOS, Linux, Windows — plain text works everywhere |
+
+This is the real power of the LLM-wiki pattern: **your knowledge is yours**. If Obsidian disappears tomorrow, your wiki still works. If you switch from Claude to GPT, your wiki still works. If you move from Codex to Opencode, your `AGENTS.md` still works.
+
+## Why Markdown?
+
+Markdown is the lingua franca of AI coding agents. Every major agent — Claude Code, Codex, Opencode — reads and writes markdown natively. When you write your schema in `AGENTS.md`, you are writing in the format that every agent already understands.
+
+Compare this to traditional research tools:
+
+| Tool | Format | What happens if the tool disappears? |
+|---|---|---|
+| Evernote | Proprietary database | Export to HTML, lose structure |
+| Notion | Proprietary JSON | Export to markdown, lose databases and views |
+| OneNote | Proprietary format | Limited export options |
+| Google Docs | Cloud-only | Download as .docx, lose comments and suggestions |
+| **Your LLM-wiki** | **Plain markdown + YAML** | **Nothing changes — files are already portable** |
+
+:::{.callout-important}
+**This is not an argument against Obsidian.** Obsidian is excellent precisely *because* it uses plain markdown. Your vault is just a folder of `.md` files. Obsidian adds a beautiful UI on top, but the data is never locked in.
+:::
+
+## Proving It: Same Wiki, Different Agent, Different Model
+
+To demonstrate model and app independence, we will now take your existing wiki — the one you built with Codex or Claude Code — and run the same tasks using **Opencode** with a completely different model (**GLM** from Z.ai).
+
+If the pattern works, the results should be comparable. The agent and the model are different, but the wiki, the schema, and the instructions are the same.
+
+---
+
+## Hands-On: Set Up Opencode with the Z.ai Coding Plan
+
+In Meeting 09, we introduced Opencode and configured it manually with `opencode.json`. Today we will use a simpler method: Z.ai's **built-in authentication** for Opencode.
+
+### Step 1: Install Opencode (if you haven't already)
+
+**macOS (Homebrew — recommended):**
+
+```{.bash}
+brew install anomalyco/tap/opencode
+```
+
+**Any platform (npm):**
+
+```{.bash}
+npm i -g opencode-ai@latest
+```
+
+**Any platform (curl):**
+
+```{.bash}
+curl -fsSL https://opencode.ai/install | bash
+```
+
+:::{.callout-note}
+If you already installed Opencode in Meeting 09, update it to the latest version:
+
+```{.bash}
+brew upgrade opencode    # Homebrew
+npm update -g opencode-ai  # npm
+```
+:::
+
+### Step 2: Log In with Your Z.ai Coding Plan
+
+Z.ai has native integration with Opencode. Instead of manually editing config files, you can authenticate directly:
+
+```{.bash}
+opencode auth login
+```
+
+When prompted, select **Z.AI Coding Plan** as the provider and enter your Z.ai API key.
+
+:::{.callout-tip}
+**Where is my API key?** Go to [z.ai/manage-apikey/apikey-list](https://z.ai/manage-apikey/apikey-list), sign in with your Z.ai account, and copy your key. You need an active [GLM Coding Plan subscription](https://z.ai/subscribe) — your instructor has already set this up for the class.
+:::
+
+:::{.callout-note}
+**What is the Z.ai Coding Plan?** It is a subscription from [Z.ai](https://z.ai) (the international platform of Zhipu AI) designed specifically for AI coding tools. It gives you access to GLM models through an OpenAI-compatible API, so it works with Opencode, Codex, and other agents. See the [official documentation](https://docs.z.ai/scenario-example/develop-tools/opencode) for details.
+:::
+
+### Step 3: Select a Model
+
+After logging in, launch Opencode in your vault directory:
+
+```{.bash}
+cd ~/your-humanities-vault
+opencode
+```
+
+Use the `/models` command inside the Opencode TUI to select a model. The recommended model is:
+
+| Model | Description |
+|---|---|
+| `glm-4.7` | Default model for the Z.ai Coding Plan. Reliable and cost-effective. |
+
+:::{.callout-note}
+The Z.ai Coding Plan default model has been upgraded to **GLM-4.7**. This is the model you should use for today's exercises.
+:::
+
+### Step 4: Verify It Works
+
+In the Opencode TUI, type a simple prompt to verify the connection:
+
+```
+What files are in this directory? List them.
+```
+
+If Opencode responds with a file listing that includes your `AGENTS.md`, templates, and wiki pages — you are connected and ready.
+
+### Alternative: Manual Configuration (from Meeting 09)
+
+If `opencode auth login` does not work, you can configure Opencode manually by creating an `opencode.json` in your project directory. This is the same method we used in Meeting 09:
+
+```{.jsonc}
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "z-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Z.ai GLM Coding",
+      "options": {
+        "baseURL": "https://api.z.ai/api/coding/paas/v4",
+        "apiKey": "{env:ZAI_API_KEY}"
+      },
+      "models": {
+        "glm-4.7": {
+          "name": "GLM-4.7",
+          "limit": { "context": 200000, "output": 65536 }
+        }
+      }
+    }
+  },
+  "model": "z-ai/glm-4.7"
+}
+```
+
+Then set the environment variable:
+
+```{.bash}
+export ZAI_API_KEY="your-zai-key-here"
+```
+
+See [Meeting 09](../meeting_09/meeting_09.html) for the full manual configuration walkthrough.
+
+---
+
+## Exercise: Ingest a Source with Opencode + GLM
+
+Now that Opencode is connected to Z.ai, let's prove that your wiki is truly model-independent. You will run the **same ingest operation** you did in Meeting 10 — but with a different agent (Opencode) and a different model (GLM-4.7).
+
+### Step 1: Open Your Vault in Opencode
+
+```{.bash}
+cd ~/your-humanities-vault
+opencode
+```
+
+Make sure Opencode detects your `AGENTS.md` file. You can verify by asking:
+
+```
+What does my AGENTS.md say about how to create Person entries?
+```
+
+The agent should summarize your schema rules — proving it read the same instructions that Codex or Claude Code used.
+
+### Step 2: Ingest a New Source
+
+Choose a source you have **not yet ingested** — either from your `raw/` directory or a new one. Give Opencode the same kind of prompt you used before:
+
+```
+I have a new source in raw/my-new-source.md. Please ingest it into the vault:
+
+1. Read the source text
+2. Create or update wiki entries using the appropriate templates
+3. Add cross-references with wikilinks
+4. Tell me what you created and what connections you found
+```
+
+### Step 3: Compare the Results
+
+After Opencode finishes, open the wiki pages it created in Obsidian and evaluate:
+
+| Question | What to look for |
+|---|---|
+| Did the agent follow your templates? | Check YAML frontmatter fields against your schema |
+| Are wikilinks correct? | Click them in Obsidian — do they resolve? |
+| Is the content accurate? | Compare against the raw source — any hallucinations? |
+| How does it compare to Codex/Claude Code? | Is the output better, worse, or just different? |
+
+:::{.callout-tip}
+**Different models have different strengths.** GLM models may handle Chinese-language sources differently from Claude or GPT. Try ingesting a Chinese primary source and compare the quality across models — this is valuable data for your research workflow.
+:::
+
+## What You Just Proved
+
+By running the same wiki operation with a different agent and model, you demonstrated that:
+
+1. **Your wiki is not locked into any tool.** The same `AGENTS.md`, the same templates, the same folder structure — it all works across agents.
+2. **Your schema is the real product.** The schema you wrote is more valuable than the tool you used to run it. A good schema produces good results regardless of the model.
+3. **You can switch freely.** If one model handles Chinese text better, use that for Chinese sources. If another is better at structured data, use that for bibliography entries. Mix and match.
+
+This is the practical meaning of **model independence**: your research infrastructure is not a bet on any one company.
+
+---
+
+# Takeaways
+
+1. **Share early, share often** — seeing how others structured their wikis reveals patterns and pitfalls you would not discover alone
+2. **The LLM-wiki is model-independent** — your knowledge lives in markdown, not in any model's memory or any app's database
+3. **The LLM-wiki is app-independent** — Codex, Opencode, Claude Code all read `AGENTS.md` and write the same markdown files
+4. **Your schema is the most portable artifact** — a well-written `AGENTS.md` works with any agent and any model
+5. **Different models, different strengths** — use model independence to your advantage by matching models to tasks
+
+# Resources
+
+- [Z.ai Coding Plan for Opencode (official guide)](https://docs.z.ai/scenario-example/develop-tools/opencode)
+- [Z.ai Coding Plan Quick Start](https://docs.z.ai/devpack/quick-start)
+- [Z.ai API Key Management](https://z.ai/manage-apikey/apikey-list)
+- [Opencode Documentation](https://opencode.ai)
+- [Meeting 09: AI Coding Agents and Custom Providers](../meeting_09/meeting_09.html)
+- [Meeting 10: The LLM Wiki Pattern](../meeting_10/meeting_10.html)

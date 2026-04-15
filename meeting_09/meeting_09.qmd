@@ -1,0 +1,746 @@
+---
+title: "Meeting 09"
+format:
+    html:
+        toc: true
+        toc-depth: 3
+        code-fold: true
+        link-external-newwindow: true
+        code-overflow: wrap
+        code-copy: true
+
+date: "2026-04-01"
+date-modified: "2026-04-01"
+author: "Kwok-leong Tang"
+---
+
+# Today's Schedule
+
+**Part 1 — AI Coding Agents: Master One, Master Them All**
+
+- The three major AI coding agents: Claude Code, Codex CLI, and Opencode
+- What they share: terminal-based, agentic, tool-using, MCP-compatible
+- Key differences: open source, model flexibility, instruction files
+- Hands-on: Add a custom model provider to Codex (and Opencode)
+
+**Part 2 — Skills: Why They Matter**
+
+- What are skills in AI coding tools?
+- Live demo: Ask an agent to query CBDB **without** skills — watch it struggle
+- Live demo: Install humanities-skills and repeat the same prompt — watch it succeed
+- Why the difference matters for your research
+
+# Part 1: AI Coding Agents — Master One, Master Them All
+
+In the past few weeks, we have been using different AI tools — LM Studio for running local models, `curl` and Python for calling APIs. Now we step into a new category of tool: **AI coding agents**.
+
+An AI coding agent is a program that runs in your terminal, reads and writes files, executes commands, and iterates on code — all guided by a large language model. There are three major ones:
+
+| | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | [Codex CLI](https://github.com/openai/codex) | [Opencode](https://opencode.ai) |
+|---|---|---|---|
+| **Made by** | Anthropic | OpenAI | Anomaly (open-source community) |
+| **Open source** | No (proprietary) | Yes (Apache 2.0) | Yes (MIT) |
+| **Written in** | Not disclosed | Rust | TypeScript |
+| **Models** | Claude only | OpenAI by default, supports others | Any provider (Claude, OpenAI, Google, local, etc.) |
+| **Interface** | Terminal | Terminal | Terminal, Desktop app, Web app |
+| **Instruction file** | `CLAUDE.md` | `AGENTS.md` | `AGENTS.md` |
+| **Config file** | `settings.json` | `config.toml` | `opencode.jsonc` |
+| **MCP support** | Yes | Yes | Yes |
+| **Skills / plugins** | Yes (rich skill system) | No formal system | Yes (skills + TUI plugins) |
+
+## What They All Share
+
+Despite different names and companies, these tools are **remarkably similar** in how they work. Once you learn the pattern, you can switch between them easily.
+
+```{mermaid}
+flowchart TD
+    A["1. You type a prompt"] --> B["2. Agent reads codebase"]
+    B --> C["3. Agent calls an LLM"]
+    C --> D["4. LLM picks tools"]
+    D --> E["5. Agent executes tools"]
+    E -->|"iterate"| C
+```
+
+[View interactive diagram on Excalidraw](https://excalidraw.com/#json=j0AAiObDuvergc3PmoKf0,FA0j-38LlzSouAfpbaXLGg)
+
+**Shared concepts across all three:**
+
+1. **Terminal-based**: You interact through a text interface in your terminal, not a web browser
+2. **Agentic**: The AI does not just answer questions — it takes actions (reads files, writes code, runs commands)
+3. **Tool-using**: The AI has access to tools like file search, grep, bash, and git
+4. **Instruction files**: Each tool reads a Markdown file (`CLAUDE.md` or `AGENTS.md`) for project-specific guidance — this is how you teach the AI about your project
+5. **MCP (Model Context Protocol)**: All three support MCP, a standard for connecting AI tools to external services (databases, APIs, browsers, etc.)
+6. **Permission-based**: The AI asks for your approval before taking potentially risky actions (editing files, running commands)
+
+## Key Differences
+
+### 1. Model Flexibility
+
+This is the most important difference for us:
+
+- **Claude Code** only works with Anthropic's Claude models — you need an Anthropic API key or Claude subscription
+- **Codex CLI** defaults to OpenAI models but can connect to other providers with `--provider`
+- **Opencode** is fully **provider-agnostic** — it supports 75+ providers out of the box, including Claude, GPT, Gemini, open-source models, and local models via Ollama
+
+### 2. Open Source
+
+- **Opencode** and **Codex CLI** are open source — you can read the code, understand how they work, and contribute
+- **Claude Code** is proprietary — you use it as-is
+
+### 3. Instruction Files
+
+All three use a Markdown file in your project root to provide context to the AI:
+
+- **Claude Code** reads `CLAUDE.md`
+- **Codex CLI** and **Opencode** read `AGENTS.md`
+
+The content is the same idea: project conventions, coding standards, architecture notes, and workflow instructions. If you write a good `AGENTS.md`, both Codex and Opencode will benefit from it.
+
+:::{.callout-note}
+**Why does this matter?** Because the skills you learn with one tool transfer directly to another. The instruction file format, the way you write prompts, the way you think about giving context to an AI — all of this is portable. You are not learning "how to use Codex." You are learning **how to work with AI coding agents**.
+:::
+
+### 4. Where Things Live: Project Files and Global Config
+
+Each AI coding agent stores its files in two places: a **global config** in your home directory (settings that apply to everything) and **project-level files** inside your project (instructions specific to that project). Here is the layout for all three:
+
+#### Global Configuration (Your Home Directory)
+
+These files live in your home folder and apply to every project you open.
+
+```
+~/ (your home directory)
+├── .codex/
+│   ├── config.toml          # Codex settings (providers, models, approval mode)
+│   ├── AGENTS.md             # Personal instructions for all projects
+│   └── instructions.md       # Additional global instructions
+│
+├── .claude/
+│   ├── settings.json         # Claude Code settings (providers, permissions)
+│   ├── CLAUDE.md             # Personal instructions for all projects
+│   └── skills/               # Global skills (apply to all projects)
+│       └── my-skill.md
+│
+└── .config/opencode/
+    └── opencode.json         # Opencode global settings
+```
+
+#### Project-Level Files (Inside Your Project)
+
+These files live in your project folder and are specific to that project. They are typically committed to git so everyone on the team benefits.
+
+```
+my-project/
+├── AGENTS.md                 # Project instructions (Codex + Opencode read this)
+├── CLAUDE.md                 # Project instructions (Claude Code reads this)
+│
+├── .codex/                   # Codex project overrides (rarely needed)
+│   └── AGENTS.md             # Subfolder-specific instructions
+│
+├── .claude/
+│   ├── settings.json         # Project-specific Claude Code settings
+│   └── skills/               # Project-specific skills
+│       └── humanities-video/
+│           └── SKILL.md
+│
+├── .opencode/
+│   ├── opencode.json         # Project-specific Opencode settings
+│   └── skills/               # Project-specific skills
+│       └── humanities-video/
+│           └── SKILL.md
+│
+└── src/                      # Your actual code
+    └── ...
+```
+
+#### How Settings Merge
+
+When you launch an AI coding agent, it loads settings in layers — project-level settings override global ones:
+
+```{mermaid}
+flowchart LR
+    A["Global config\n(~/.codex/config.toml)"] --> C["Merged settings"]
+    B["Project config\n(./AGENTS.md)"] --> C
+    C --> D["AI agent starts\nwith combined context"]
+```
+
+This is why you can set your API keys and providers **globally** (so they work everywhere) and your project instructions **locally** (so they are specific to each project).
+
+| What to put where | Global config | Project files |
+|---|---|---|
+| API keys and providers | ✅ Set once, works everywhere | ❌ Don't put keys in project files |
+| Model preferences | ✅ Your default model | ✅ Override for specific projects |
+| Coding standards | ❌ Too generic | ✅ Project-specific conventions |
+| Skills and workflows | ✅ Personal skills | ✅ Project-specific skills |
+| `AGENTS.md` / `CLAUDE.md` | ✅ Personal preferences | ✅ Shared team instructions |
+
+:::{.callout-tip}
+**Rule of thumb**: If it is about *you* (your API keys, your preferred model, your personal style), put it in the global config. If it is about *the project* (coding conventions, citation format, file structure), put it in the project folder.
+:::
+
+## And There Are Many More
+
+The three tools above are the most widely used, but the ecosystem is growing fast. Here are other notable AI coding agents with terminal interfaces:
+
+- [**Gemini CLI**](https://github.com/google-gemini/gemini-cli) — Google's open-source CLI agent, powered by Gemini models. Free tier with 1,000 requests/day using a personal Google account. (Apache 2.0)
+- [**Crush**](https://github.com/charmbracelet/crush) — By Charmbracelet, the team behind popular terminal tools. A glamorous TUI-based coding agent with LSP integration and MCP support. Works with any provider. (Open source)
+- [**Qwen Code**](https://github.com/QwenLM/qwen-code) — By Alibaba's Qwen team, optimized for Qwen3-Coder but model-agnostic. Forked from Gemini CLI's architecture. (Apache 2.0)
+- [**Aider**](https://aider.chat) — One of the earliest AI pair programming tools. Works with 100+ LLMs, auto-commits with git, supports voice input. 39K+ stars. (Apache 2.0)
+- [**Goose**](https://github.com/block/goose) — By Block (formerly Square), now part of the Linux Foundation. Supports 25+ providers, MCP integration, and extensible tooling. (Apache 2.0)
+- [**Amp**](https://ampcode.com) — By Sourcegraph (formerly Cody). Enterprise-focused with multi-model support and code graph context. CLI and VS Code extension. (Proprietary)
+- [**Cline**](https://cline.bot) — Started as a VS Code extension, now also a standalone CLI (Cline CLI 2.0). Supports Plan/Act modes and MCP. (Open source)
+
+All of these follow the same fundamental pattern: read the codebase, call an LLM, use tools, iterate. The skills you learn today apply to all of them.
+
+## Adding Custom Models: The Real Superpower
+
+All three tools can connect to **any OpenAI-compatible API endpoint** — not just their default provider. This means you can use models from Z.ai, OpenAI, Google, or any other service. Since you already have Codex installed, we will demonstrate with Codex first, then you will do the same in Opencode.
+
+## Our API Endpoints
+
+For this class, we will connect to two different API providers. This demonstrates a key advantage of open tools — you are not locked into one company.
+
+### 1. Class API Proxy (OpenAI Models)
+
+An API proxy that gives you access to OpenAI models:
+
+- **Endpoint**: `https://litellm.016801.xyz/v1`
+- Your instructor will provide the API key.
+
+| Model | Description |
+|---|---|
+| `gpt-5.4-mini` | Fast, cost-effective model for everyday coding tasks |
+| `gpt-5.4-nano` | Smallest and fastest, great for simple tasks |
+
+### 2. Z.ai Coding Plan (GLM Models)
+
+[Z.ai](https://z.ai) is the international platform of Zhipu AI, a leading Chinese AI company. They offer a **GLM Coding Plan** — a subscription specifically designed for AI coding tools. The API is OpenAI-compatible, so it works with Codex, Opencode, and other agents.
+
+- **Endpoint**: `https://api.z.ai/api/coding/paas/v4`
+- You will use your own Z.ai Coding Plan API key (see setup below).
+- **Documentation**: [Z.ai Coding Plan Quick Start](https://docs.z.ai/devpack/quick-start)
+
+| Model | Description |
+|---|---|
+| `glm-5.1` | Z.ai's flagship model, strong at reasoning and code generation |
+| `glm-4.7` | Reliable, cost-effective workhorse |
+
+:::{.callout-tip}
+Start with `gpt-5.4-mini` for most tasks. Try `glm-5.1` to compare how a Chinese AI model handles the same coding tasks.
+:::
+
+## What Is an API Key? (And How to Store It)
+
+When a program needs to prove its identity to an API — like logging in — it uses an **API key**: a long string of characters that acts as a password. You do not type this key every time. Instead, you store it in an **environment variable** — a named value that lives in your terminal session and can be read by any program you run.
+
+Think of it like this:
+
+| Concept | Analogy |
+|---|---|
+| **API key** | Your library card number |
+| **Environment variable** | A sticky note on your desk with the card number written on it |
+| **The program** (Codex, Opencode) | The librarian who reads the sticky note when you walk in |
+
+We need to set **two** environment variables — one for each API provider.
+
+**macOS / Linux:**
+
+Open your terminal and type:
+
+```{.bash}
+export CLASS_API_KEY="your-class-key-here"
+export ZAI_API_KEY="your-zai-key-here"
+```
+
+`export` tells the terminal: "remember this name-value pair and make it available to any program I run." Replace the values with the actual keys.
+
+- **Class API key**: Your instructor will give you this key in class.
+- **Z.ai API key**: Go to [z.ai/manage-apikey/apikey-list](https://z.ai/manage-apikey/apikey-list), sign in, and generate a key. You need an active [GLM Coding Plan subscription](https://z.ai/subscribe).
+
+:::{.callout-warning}
+**This only lasts for your current terminal session.** If you close the terminal and open a new one, the variable is gone. To make it permanent, add the `export` lines to your shell configuration file:
+
+- **macOS (zsh)**: `~/.zshrc`
+- **Linux (bash)**: `~/.bashrc`
+
+You can do this with a text editor, or run:
+
+```{.bash}
+# macOS
+echo 'export CLASS_API_KEY="your-class-key-here"' >> ~/.zshrc
+echo 'export ZAI_API_KEY="your-zai-key-here"' >> ~/.zshrc
+source ~/.zshrc
+
+# Linux
+echo 'export CLASS_API_KEY="your-class-key-here"' >> ~/.bashrc
+echo 'export ZAI_API_KEY="your-zai-key-here"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+The `>>` appends the line to the end of the file. The `source` command reloads the file so the variable takes effect immediately.
+:::
+
+**Windows (PowerShell):**
+
+```{.powershell}
+$env:CLASS_API_KEY = "your-class-key-here"
+$env:ZAI_API_KEY = "your-zai-key-here"
+```
+
+To make it permanent on Windows, use the System Environment Variables settings (search "environment variables" in the Start menu).
+
+**Verify it worked:**
+
+You can check that the variables are set by running:
+
+```{.bash}
+# macOS / Linux
+echo $CLASS_API_KEY
+echo $ZAI_API_KEY
+
+# Windows (PowerShell)
+echo $env:CLASS_API_KEY
+echo $env:ZAI_API_KEY
+```
+
+You should see your API keys printed back. If you see nothing, the variable was not set — try the `export` command again.
+
+## Let Codex Configure Itself
+
+Here is the best part about AI coding agents: **you can ask them to configure themselves**. Instead of manually editing config files, let's ask Codex to do it.
+
+### Step 1: Ask Codex to Add the Class API Provider
+
+Launch Codex (it will use your existing OpenAI setup), and give it this prompt:
+
+```
+Edit my ~/.codex/config.toml to add a custom model provider called "class-api"
+with these settings:
+- name: "Class API"
+- base_url: https://litellm.016801.xyz/v1
+- env_key: CLASS_API_KEY
+
+Also add these models as available options (just as comments so I remember):
+- gpt-5.4-mini
+- gpt-5.4-nano
+
+Set the default model to gpt-5.4-mini and the model_provider to class-api.
+```
+
+Codex will read your current `config.toml`, understand its structure, and add the new provider block. Watch how it:
+
+1. **Reads** the existing file to understand what is already there
+2. **Plans** the edit (you can see what it wants to change)
+3. **Asks for permission** before writing (in Suggest mode)
+4. **Writes** the updated config
+
+This is the agentic pattern in action — and you are using it to teach the agent about itself.
+
+### Step 2: Add the Z.ai Provider
+
+Now ask Codex to add a second provider for Z.ai:
+
+```
+Add another model provider to my ~/.codex/config.toml called "z-ai"
+with these settings:
+- name: "Z.ai GLM Coding"
+- base_url: https://api.z.ai/api/coding/paas/v4
+- env_key: ZAI_API_KEY
+
+Available models (add as comments):
+- glm-5.1
+- glm-4.7
+
+Don't change the default model_provider — keep it as class-api.
+```
+
+:::{.callout-important}
+**This is a key insight**: AI coding agents can modify their own configuration. You do not need to memorize config file formats. Just describe what you want in plain English and let the agent figure out the syntax.
+:::
+
+### Step 3: Restart and Verify
+
+After Codex updates the config, restart it so it picks up the changes:
+
+```{.bash}
+# Exit Codex (Ctrl+C or type /exit)
+# Relaunch it
+codex
+```
+
+Codex should now be using `gpt-5.4-mini` through the class API. Try a prompt to verify:
+
+```
+What model are you using? List the files in this directory.
+```
+
+You can switch between providers and models on the fly with the `-m` and `-c` flags:
+
+```{.bash}
+codex -m gpt-5.4-nano                        # Use the nano model (same provider)
+codex -c model_provider=z-ai -m glm-5.1      # Switch to Z.ai with GLM-5.1
+```
+
+## Hands-On: Understanding the Config (What Codex Just Wrote)
+
+Let's look at what Codex added to your `~/.codex/config.toml`:
+
+```{.toml}
+model = "gpt-5.4-mini"
+model_provider = "class-api"
+
+[model_providers.class-api]
+name = "Class API"
+base_url = "https://litellm.016801.xyz/v1"
+env_key = "CLASS_API_KEY"
+# Available models: gpt-5.4-mini, gpt-5.4-nano
+
+[model_providers.z-ai]
+name = "Z.ai GLM Coding"
+base_url = "https://api.z.ai/api/coding/paas/v4"
+env_key = "ZAI_API_KEY"
+# Available models: glm-5.1, glm-4.7
+```
+
+| Field | What it does |
+|---|---|
+| `model` | The default model to use |
+| `model_provider` | Which provider block to use for API calls |
+| `name` | A friendly display name for the provider |
+| `base_url` | The API endpoint URL |
+| `env_key` | Name of the environment variable holding your API key |
+
+Notice how both providers follow the exact same pattern — only the `base_url` and `env_key` differ. This is because both APIs are **OpenAI-compatible**: they speak the same "language," just at different addresses.
+
+### Explore the Interface
+
+Codex has three **approval modes** — you can change them with the `/mode` command or flags:
+
+- **Suggest** (default) — asks before any file writes or shell commands
+- **Auto Edit** — auto-applies file edits, asks before shell commands
+- **Full Auto** — does everything autonomously (with sandboxing)
+
+:::{.callout-tip}
+Start with **Suggest** mode so you can see exactly what the AI wants to do before it does it. This is the best way to learn how an AI coding agent thinks.
+:::
+
+# Part 2: Skills — Why They Matter
+
+## What Are Skills?
+
+In AI coding tools, **skills** are reusable instruction sets that teach the AI *how* to approach specific types of tasks. Think of them as specialized training manuals that the AI reads before doing work.
+
+Without skills, an AI coding assistant is like a very capable but generic intern — they can do many things, but they do not know your specific workflows, standards, or domain conventions. Skills bridge that gap.
+
+Instead of explaining this in the abstract, let's **see it in action** with a real humanities research task.
+
+## The Task
+
+We are going to give an AI coding agent the same prompt **twice**:
+
+> *"Check out all the people with the name Wang Chen from CBDB."*
+
+[CBDB](https://cbdb.fas.harvard.edu/) (China Biographical Database) is a relational database of ~500,000 historical Chinese figures, maintained by Harvard's Fairbank Center. It has a public API — but your AI agent does not know that unless you teach it.
+
+We will run the prompt first **without** any skills, then **with** the `cbdb-api` skill installed from the [humanities-skills](https://github.com/kltng/humanities-skills) repository. By comparing the two runs step by step, we can see exactly why skills matter.
+
+## Stage 1: Without Skills
+
+Launch Claude Code in an empty directory and give it the prompt:
+
+```
+Check out all the people with the name Wang Chen from CBDB.
+Show me every step you take.
+```
+
+### What the Agent Does (Step by Step)
+
+Here is what typically happens when the agent has **no prior knowledge** of CBDB:
+
+```{mermaid}
+flowchart TD
+    A["1. Receives prompt"] --> B["2. 'What is CBDB?'\nSearches the web"]
+    B --> C["3. Finds cbdb.fas.harvard.edu\nReads the website"]
+    C --> D["4. Looks for an API\nMay or may not find the docs"]
+    D --> E["5. Guesses at the API endpoint\nTries different URLs"]
+    E --> F["6. Gets an error or HTML page\nTries to parse it anyway"]
+    F --> G["7. Eventually finds the right URL\n...after several failed attempts"]
+    G --> H["8. Gets back deeply nested JSON\nStruggles with the structure"]
+    H --> I["9. Presents partial or messy results"]
+
+    style E fill:#fee,stroke:#c33
+    style F fill:#fee,stroke:#c33
+    style H fill:#fee,stroke:#c33
+```
+
+**Typical problems you will observe:**
+
+1. **Discovery takes multiple rounds.** The agent does not know the API exists, so it web-searches, reads documentation pages, and guesses at endpoints. This can take 5–10 tool calls before it even makes its first successful API request.
+
+2. **URL encoding mistakes.** The agent may URL-encode Chinese characters into percent-encoded hex (`%E7%8E%8B%E8%87%A3`) when the CBDB API actually needs UTF-8 characters passed directly. This causes failed queries or empty results.
+
+3. **Wrong endpoints.** The agent might try the website URL, the old API path, or a non-existent REST route. Each failed attempt costs a round trip.
+
+4. **JSON navigation is blind.** The CBDB API returns deeply nested JSON:
+    ```
+    response → Package → PersonAuthority → PersonInfo → Person
+    ```
+    Without knowing this structure, the agent has to explore it layer by layer, printing keys, guessing at paths, and often getting lost.
+
+5. **Incomplete data extraction.** Even when the agent reaches the biographical data, it might only pull out names and dates — missing official postings, kinship relations, examination records, and social associations because it does not know those fields exist.
+
+6. **No rate limiting.** The agent might fire off multiple rapid requests, risking a block from the server.
+
+**The result:** After many iterations, the agent produces something — but it took a lot of wasted effort, and the output is likely incomplete or poorly structured. The agent spent most of its time *figuring out how to use the tool* rather than *answering your question*.
+
+## Stage 2: Install Skills, Then Try Again
+
+Now let's give the agent the knowledge it needs. We will install the `cbdb-api` skill from the [humanities-skills](https://github.com/kltng/humanities-skills) repository.
+
+### Installing the Skill
+
+In Codex, just ask the agent to do it:
+
+```
+Install the cbdb-api skill from https://github.com/kltng/humanities-skills
+into this project's AGENTS.md. Clone the repo, read the skill files under
+cbdb-api/, and add the instructions and API reference to AGENTS.md so you
+can use them.
+```
+
+Codex will clone the repository, read the skill files, and copy the relevant instructions into your project's `AGENTS.md` — where it can read them on every future session.
+
+The skill contains:
+
+- `SKILL.md` — instructions for how to query the CBDB API
+- `references/api_reference.md` — the full API specification
+- `scripts/cbdb_api.py` — a ready-to-use Python client
+
+### What the Skill Teaches the Agent
+
+Here is what the `cbdb-api` skill provides (simplified):
+
+```{.markdown}
+---
+name: cbdb-api
+description: Query the China Biographical Database API for historical Chinese figures
+---
+
+## API Endpoint
+https://cbdb.fas.harvard.edu/cbdbapi/person.php
+
+## Query Parameters
+- `name` — person's name (Chinese characters or Pinyin)
+- `id` — CBDB person ID (most precise)
+- `o=json` — request JSON output
+
+## Critical: Encoding
+Pass Chinese characters as UTF-8 directly. Do NOT URL-encode into hex.
+
+## Response Structure
+response["Package"]["PersonAuthority"]["PersonInfo"]["Person"]
+
+## Available Fields
+- BasicInfo — name, dates, dynasty, gender
+- AltNameInfo — courtesy names, pen names
+- AddrInfo — addresses and locations
+- PostingInfo — official positions held
+- KinshipInfo — family relations
+- SocialAssocInfo — social network connections
+- EntryInfo — examination records
+
+## Python Client
+Use `scripts/cbdb_api.py` for programmatic access with built-in
+rate limiting and retry logic.
+```
+
+### Repeat the Same Prompt
+
+Now give the agent the exact same prompt:
+
+```
+Check out all the people with the name Wang Chen from CBDB.
+Show me every step you take.
+```
+
+### What the Agent Does Now (Step by Step)
+
+```{mermaid}
+flowchart TD
+    A["1. Receives prompt"] --> B["2. Recognizes 'CBDB'\nActivates cbdb-api skill"]
+    B --> C["3. Runs the Python client:\napi.query_by_name('王臣')"]
+    C --> D["4. Gets structured JSON\nNavigates directly to Person data"]
+    D --> E["5. Extracts all fields:\nnames, dates, postings,\nkinship, associations"]
+    E --> F["6. Presents complete,\nwell-organized results"]
+
+    style B fill:#efe,stroke:#3a3
+    style C fill:#efe,stroke:#3a3
+    style D fill:#efe,stroke:#3a3
+```
+
+**What changes:**
+
+1. **Instant recognition.** The agent sees "CBDB" in the prompt and immediately activates the `cbdb-api` skill. No web searching, no guessing.
+
+2. **Correct API call on the first try.** The agent knows the exact endpoint, the right parameters, and the correct encoding. It uses the provided Python client script with built-in rate limiting.
+
+3. **Navigates the JSON instantly.** The skill tells the agent the exact path through the nested response structure. No trial and error.
+
+4. **Extracts all available data.** The agent knows about every field — basic info, alternative names, addresses, official postings, kinship, social associations, examination records — and presents them all in a structured format.
+
+5. **Handles multiple results gracefully.** "Wang Chen" matches several historical figures. The agent lists all of them with their distinguishing information (dynasty, dates, official positions).
+
+6. **Respects rate limits.** The Python client has built-in delays between requests, so the server is not overwhelmed.
+
+## Side-by-Side Comparison
+
+| | Without Skills | With `cbdb-api` Skill |
+|---|---|---|
+| **Tool calls to first result** | 8–15 (searching, guessing, retrying) | 2–3 (activate skill, run query) |
+| **Time to answer** | Several minutes of iteration | Seconds |
+| **API encoding** | Often wrong (percent-encoded hex) | Correct (UTF-8 directly) |
+| **JSON navigation** | Trial and error, layer by layer | Direct path, no guessing |
+| **Data completeness** | Partial (names, maybe dates) | Full (postings, kinship, exams, etc.) |
+| **Error handling** | Crashes or retries blindly | Retries with backoff, graceful fallback |
+| **Rate limiting** | None (risk of being blocked) | Built in (1 second between calls) |
+| **Reproducibility** | Different every time | Consistent, reliable |
+
+:::{.callout-important}
+**The key insight**: The agent is the *same model* in both runs. The difference is not intelligence — it is **knowledge**. Skills give the agent the domain-specific knowledge it needs to do the job well on the first try.
+:::
+
+## Why This Matters for Research
+
+This is not just about convenience. For real research workflows, the difference between Stage 1 and Stage 2 is the difference between:
+
+- **A tool you fight with** vs. **a tool that works for you**
+- **Unreliable, one-off results** vs. **reproducible, consistent queries**
+- **Spending your time debugging API calls** vs. **spending your time analyzing historical data**
+
+And once the skill is installed, it works for every subsequent query — not just this one. Ask about Su Shi (蘇軾), Wang Anshi (王安石), or any of the 500,000+ figures in CBDB, and the agent will use the same reliable process every time.
+
+## What Else Is in humanities-skills?
+
+The `cbdb-api` skill is just one of 18+ skills in the [humanities-skills](https://github.com/kltng/humanities-skills) repository:
+
+| Category | Skills | What They Do |
+|---|---|---|
+| **Biographical databases** | `cbdb-api`, `cbdb-local`, `jbdb-api` | Query CBDB (API or local SQLite) and Japan Biographical DB |
+| **Historical geography** | `chgis-tgaz`, `tgaz-sqlite`, `historical-map` | Look up historical placenames, generate interactive maps |
+| **Calendar & chronology** | `cjk-calendar`, `historical-timeline` | Convert between lunisolar and Gregorian dates, create timelines |
+| **Library catalogs** | `harvard-library-catalog`, `hathitrust-catalog`, `loc-catalog`, etc. | Search Harvard, HathiTrust, Library of Congress, and more |
+| **Scholarly resources** | `arxiv-search`, `europeana-collections`, `wikidata-search`, `zotero-local` | Search academic databases and manage citations |
+
+You can install any of these the same way — just ask Codex:
+
+```
+Install the chgis-tgaz skill from https://github.com/kltng/humanities-skills
+into this project's AGENTS.md.
+```
+
+:::{.callout-tip}
+**Try combining skills.** After finding a person in CBDB, use `chgis-tgaz` to look up their addresses on a historical map, or `cjk-calendar` to convert their birth and death dates to the Chinese lunisolar calendar. Skills compose — the more you install, the more capable your agent becomes for humanities research.
+:::
+
+# Takeaways
+
+1. **AI coding agents** (Codex, Opencode, Claude Code) all work the same way — learn the pattern once, use any tool
+2. **Any agent can use any model** — by configuring custom providers, you are not locked into one company's models or pricing
+3. **Skills turn a generic AI into a domain expert** — the same model performs dramatically better when given the right knowledge
+4. **Install once, use forever** — skills persist across sessions, giving you a growing toolkit for your research
+5. The real power is in the **feedback loop**: install skills, evaluate the output, contribute improvements back — the entire community benefits
+
+# In-Class Practice: Try Everything in Opencode
+
+Everything we did in Codex today can be done in **Opencode** — an open-source, provider-agnostic alternative. Use this section to practice and verify that you understand the concepts, not just the tool.
+
+## Install Opencode
+
+**macOS (Homebrew — recommended):**
+
+```{.bash}
+brew install anomalyco/tap/opencode
+```
+
+**Any platform (npm):**
+
+```{.bash}
+npm i -g opencode-ai@latest
+```
+
+**Any platform (curl):**
+
+```{.bash}
+curl -fsSL https://opencode.ai/install | bash
+```
+
+## Configure Opencode with the Same Providers
+
+In your project directory, create a file called `opencode.json`:
+
+```{.jsonc}
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "class-api": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Class API",
+      "options": {
+        "baseURL": "https://litellm.016801.xyz/v1",
+        "apiKey": "{env:CLASS_API_KEY}"
+      },
+      "models": {
+        "gpt-5.4-mini": {
+          "name": "GPT-5.4 Mini",
+          "limit": { "context": 128000, "output": 16384 }
+        },
+        "gpt-5.4-nano": {
+          "name": "GPT-5.4 Nano",
+          "limit": { "context": 128000, "output": 16384 }
+        }
+      }
+    },
+    "z-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Z.ai GLM Coding",
+      "options": {
+        "baseURL": "https://api.z.ai/api/coding/paas/v4",
+        "apiKey": "{env:ZAI_API_KEY}"
+      },
+      "models": {
+        "glm-5.1": {
+          "name": "GLM-5.1",
+          "limit": { "context": 128000, "output": 16384 }
+        },
+        "glm-4.7": {
+          "name": "GLM-4.7",
+          "limit": { "context": 200000, "output": 65536 }
+        }
+      }
+    }
+  },
+  "model": "class-api/gpt-5.4-mini"
+}
+```
+
+Z.ai also has an [official OpenCode setup guide](https://docs.z.ai/devpack/tool/opencode).
+
+## Codex vs Opencode: Feature Equivalents
+
+| What you did in Codex | How to do it in Opencode |
+|---|---|
+| Launch: `codex` | Launch: `opencode` |
+| Config: `~/.codex/config.toml` (TOML, global) | Config: `opencode.json` (JSON, per project) |
+| Switch model: `codex -m glm-5.1` | Switch model: `/models` command in TUI |
+| Switch provider: `-c model_provider=z-ai` | Change `"model"` in `opencode.json` to `"z-ai/glm-5.1"` |
+| Instruction file: `AGENTS.md` | Instruction file: `AGENTS.md` (same file!) |
+| Approval modes: Suggest / Auto Edit / Full Auto | Permission-based approval |
+| Commands: type `/` | Commands: type `/` |
+| Initialize project: create `AGENTS.md` manually | Initialize project: `/init` generates `AGENTS.md` |
+| N/A | Switch agents: **Tab** key (build / plan) |
+| N/A | Skills: `.opencode/skills/SKILL.md` |
+
+# Resources
+
+- [Practice images (images.zip)](assets/images.zip)
+- [Z.ai OCR Tool](https://ocr.z.ai/)
