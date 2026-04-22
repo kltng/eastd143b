@@ -1,0 +1,496 @@
+---
+title: "Meeting 12"
+format:
+    html:
+        toc: true
+        toc-depth: 3
+        code-fold: true
+        link-external-newwindow: true
+        code-overflow: wrap
+        code-copy: true
+
+date: "2026-04-22"
+date-modified: "2026-04-22"
+author: "Kwok-leong Tang"
+---
+
+# Today's Schedule
+
+**Part 1 — Hands-on: Working with an LLM Wiki Someone Else Built**
+
+- Fork `kltng/digital-china-wiki` to your own GitHub account
+- Bring the repo down to your machine and wire it into your tools
+- Use the wiki: query it, extend it, merge it into your own research stack
+
+**Part 2 — Looking Back: A Summary of the Semester So Far**
+
+- A guided tour of what we have built and learned across Meetings 01–11
+- Connecting the dots: how each meeting fits into one larger arc
+- Self-assessment: where you are, what you can do, what to revisit
+
+**Part 3 — Looking Forward**
+
+- Assignment 3 is due today: hand-in and peer review
+- Final project work session — using everything from the semester
+- Preparing for next week's presentations (Meeting 13)
+
+---
+
+# Part 1: Hands-on with `digital-china-wiki`
+
+Before we step back and look at the whole semester, we are going to spend the first part of class **putting the LLM-wiki pattern into practice on a wiki that is not yours**. I have published a working example at [`kltng/digital-china-wiki`](https://github.com/kltng/digital-china-wiki) — a curated knowledge base of **~970 digital resources for Chinese studies**: databases, archives, catalogs, tools, regions, institutions, topics, all cross-linked with wikilinks and tagged with a controlled vocabulary.
+
+This is exactly the kind of artifact your own vault is becoming. Learning to **adopt, clone, and use someone else's wiki** is just as important as learning to build your own — in real research you will constantly be pulling in colleagues' notes, earlier project vaults, or public knowledge bases.
+
+:::{.callout-note}
+**What is in the repo?** Roughly 916 resource pages, 25 topic pages, 14 institution profiles, 5 region pages, a glossary, a master `index.md`, and two governance files — `SCHEMA.md` (the data model) and `TAG_TAXONOMY.md` (the controlled vocabulary). Every page is plain markdown with YAML frontmatter. An AI agent can read, query, and extend it without any special runtime.
+:::
+
+## Practice Task 1 — Fork the repo to your own GitHub
+
+**The concept.** "Forking" is GitHub's name for making **your own copy of someone else's repository on GitHub's servers**. You do this *before* cloning when you eventually want to push changes back — a clone alone lives only on your laptop and cannot be pushed to the original because you do not own it.
+
+```{mermaid}
+flowchart LR
+    A["kltng/digital-china-wiki\n(original)"] -->|Fork on GitHub| B["YOU/digital-china-wiki\n(your copy on GitHub)"]
+    B -->|git clone| C["~/digital-china-wiki\n(your laptop)"]
+    C -->|git push| B
+```
+
+**The steps.**
+
+1. Log in to [github.com](https://github.com) with the account you set up in Meeting 05.
+2. Navigate to <https://github.com/kltng/digital-china-wiki>.
+3. Click the **Fork** button (top-right of the page).
+4. Leave the defaults (owner = your username, name = `digital-china-wiki`) and click **Create fork**.
+5. After a few seconds you will be redirected to `https://github.com/<your-username>/digital-china-wiki` — *your own copy*.
+
+:::{.callout-tip}
+**Think before you click.** If you had instead just run `git clone https://github.com/kltng/digital-china-wiki.git` directly, you would have a local copy, but `git push` would fail because you are not a collaborator on `kltng/digital-china-wiki`. **Fork first, clone second** whenever you plan to modify.
+:::
+
+## Practice Task 2 — Start from a new repo on your machine
+
+You now have a GitHub repo you own. Next, bring it down to your laptop and wire it into the three tools we have been using all semester: your shell, your editor (Obsidian), and your AI coding agent (Codex / Claude Code / Opencode).
+
+### Step 2a — Clone it locally
+
+From a terminal, in a directory where you keep your projects (e.g. `~/Codebase/` or `~/llm-wikis/`):
+
+```bash
+# replace <your-username> with your GitHub handle
+git clone https://github.com/<your-username>/digital-china-wiki.git
+cd digital-china-wiki
+ls
+```
+
+You should see `resources/`, `topics/`, `institutions/`, `regions/`, `glossary/`, `index.md`, `SCHEMA.md`, `TAG_TAXONOMY.md`, and `scripts/`.
+
+### Step 2b — Open it in Obsidian as a vault
+
+1. Open Obsidian → **Open folder as vault** → select the `digital-china-wiki` directory you just cloned.
+2. Trust the vault when prompted.
+3. Open `index.md`. You should see a navigable table of contents with hundreds of working wikilinks.
+4. Hover any `[[resources/...]]` link to preview the target page.
+
+### Step 2c — Open it with an AI coding agent
+
+In the **same** directory, launch whichever agent you prefer:
+
+```bash
+# Codex in CLI. You can also launch Codex Desktop
+cd ~/Codebase/digital-china-wiki
+codex
+
+# Opencode (with GLM via Z.ai)
+opencode
+```
+
+:::{.callout-important}
+**Write `AGENTS.md` / `CLAUDE.md` for the vault.** The repo does not yet ship with an agent instruction file — that is *on purpose*, because writing one is the first thing you should do when you adopt someone else's wiki. Your instruction file tells the agent:
+
+- *Where the schema lives* → point it at `SCHEMA.md`
+- *What the tag rules are* → point it at `TAG_TAXONOMY.md`
+- *Which directories house which page types* → `resources/`, `topics/`, etc.
+- *What to do on ingest, query, and lint* → your conventions
+
+Ask the agent itself: *"Read `SCHEMA.md` and `TAG_TAXONOMY.md`, then draft an `AGENTS.md` that teaches a future agent how to maintain this wiki."* Review the draft, edit, commit.
+:::
+
+## Practice Task 3 — Use the repo
+
+Now the wiki is on your laptop, open in your editor, and readable by your agent. Try the **three LLM-wiki operations** from Meeting 10 on someone else's content.
+
+### Query
+
+Ask the agent, grounded in the wiki:
+
+- *"Which resources in `resources/` cover Republican-era newspapers? Return titles, URLs, and a one-line summary each."*
+- *"Compare the databases tagged `cold_war` — which are statistical, which are full-text, which are from Taiwan?"*
+- *"I need primary sources on Qing maritime history. Walk me through the wiki and tell me the five most relevant entries, with reasoning."*
+
+The agent reads the markdown pages directly — no RAG embedding, no vector DB, no special infrastructure. This is the payoff of the LLM-wiki pattern.
+
+### Ingest
+
+Pick a digital resource you use in your own research that is **not** in the wiki. Drop a URL or a short description into the chat and ask:
+
+> *"Ingest this resource into the wiki following `SCHEMA.md` and `TAG_TAXONOMY.md`. Create the page in `resources/`, update `index.md`, and add any wikilinks to relevant topics or institutions."*
+
+Review the diff. Does the tag set follow the controlled vocabulary? Is the frontmatter complete? Commit and push back to **your fork**:
+
+```bash
+git add .
+git commit -m "Add <resource-name> to resources/"
+git push
+```
+
+### Lint
+
+Ask the agent to run a health check:
+
+> *"Scan the wiki for: (1) broken wikilinks, (2) pages missing required frontmatter fields per `SCHEMA.md`, (3) tags not present in `TAG_TAXONOMY.md`. Report findings — do not auto-fix."*
+
+This is the same lint operation Karpathy describes, applied to a real 970-page wiki. You will see where the bookkeeping has drifted.
+
+### Merge into your own vault (optional, advanced)
+
+If the `digital-china-wiki` content is genuinely useful for your final project, you can pull selected pages into your **Humanities Vault** (Assignment 3). Two clean options:
+
+1. **Git submodule** — keeps `digital-china-wiki` as a nested repo inside your vault; pulls upstream updates cleanly.
+2. **Copy + attribute** — copy the specific pages you need into your `resources/` folder, noting the source in each page's frontmatter.
+
+Either way, your `AGENTS.md` should record what you did so future-you (and the agent) knows where the material came from.
+
+---
+
+# Part 2: Looking Back — Why a Summary Today?
+
+Over the past eleven meetings, we have moved from "what is generative AI?" to building working research pipelines that combine local LLMs, cloud APIs, OCR tools, AI coding agents, and a personal knowledge wiki. That is a lot of ground.
+
+Today, before we close out the project-building phase of the course, we take one class meeting to **look back at the whole semester as a single arc**. The goal is not to re-teach material — it is to make the connections explicit so that, when you sit down with your research after the semester ends, you can see the toolkit as a whole rather than as eleven separate weeks.
+
+:::{.callout-tip}
+**Use this page as a study guide.** Each section below points back to the original meeting, so you can return to the detailed walkthroughs whenever you need a refresher.
+:::
+
+# The Big Picture
+
+If we had to describe this course in one sentence, it would be:
+
+> **You learned to direct AI agents — locally and in the cloud — to build a personal, model-independent research workflow for East Asian humanities.**
+
+The arc of the semester moves through four stages:
+
+```{mermaid}
+flowchart LR
+    A["Stage 1\nFoundations\n(Meetings 01–02)"] --> B["Stage 2\nTools & Plumbing\n(Meetings 04–07)"]
+    B --> C["Stage 3\nAgents & Skills\n(Meetings 08–09)"]
+    C --> D["Stage 4\nThe LLM Wiki\n(Meetings 10–11)"]
+```
+
+| Stage | What You Learned | Why It Matters |
+|---|---|---|
+| **1. Foundations** | What LLMs really are; what an "agent" is | You stopped treating AI as magic and started treating it as a tool with knowable properties |
+| **2. Tools & Plumbing** | OCR, websites, GitHub, LM Studio, APIs, curl, Python | You learned to *connect* tools — the unglamorous skill that makes everything else possible |
+| **3. Agents & Skills** | Codex, Claude Code, Opencode; humanities-skills | You moved from prompting a chatbot to *directing* an agent that uses tools on your behalf |
+| **4. The LLM Wiki** | A persistent, model-independent knowledge base | You built research infrastructure that compounds over time — and that is yours, not any vendor's |
+
+# Meeting-by-Meeting Recap
+
+## Meeting 01 (Jan 28) — Introduction, Logistics, and Software Setup
+
+We opened the course by framing **how this class is different from a CS course**: practical, tooling-focused, "one-man-band," and aimed at humanities researchers rather than software engineers.
+
+**Key concepts introduced:**
+
+- Why GenAI matters for East Asian humanities: it lowers the technical barrier to entry while raising the value of domain expertise
+- The shift since November 2022: we can now communicate with machines in natural language, including Mandarin, Japanese, Korean, and Vietnamese
+- The major AI labs and their offerings: OpenAI/ChatGPT, Anthropic/Claude, Google/Gemini, DeepSeek, plus Harvard AI Sandbox
+
+**What you should remember:** This course is about **integrating AI into your existing humanities workflow** — not about becoming a programmer.
+
+## Meeting 02 (Feb 04) — The Landscape of the Agentic Approach
+
+We dug into what LLMs actually *are* — using the small **Qwen3-0.6B** model so we could see the underlying mechanics without the engineering polish of state-of-the-art systems.
+
+**The Four Pillars of Generative AI Applications:**
+
+| Pillar | Definition |
+|---|---|
+| **Models** | The LLM itself (Qwen, Claude, GPT, GLM, etc.) |
+| **Prompts** | Your instructions to the model |
+| **Context** | The information you provide alongside the prompt |
+| **Tools** | External capabilities the model can call (search, calculator, MCP servers) |
+
+**Hands-on demonstrations of LLM nature:**
+
+- **Prediction**: every output token is sampled from a probability distribution
+- **Knowledge cutoff**: models do not know events after their training date
+- **Hallucination**: confident wrong answers (the famous "How many r's in strawberry?")
+- **Autoregressive behavior**: tested with reversed-text and Chinese passage prompts
+- **Bias**: the doctor / mother riddle showing how models inherit (and "correct") social bias
+
+**Agents vs. LLMs**: agents *use* LLMs to reason, but add tools and data sources so they can take actions independently — not just answer questions one at a time.
+
+**What you should remember:** Everything an LLM does is **prediction over a probability distribution**. That single fact explains both the strengths (fluent text, broad knowledge) and the weaknesses (hallucination, non-determinism) of every system we used this semester.
+
+## Meeting 04 (Feb 18) — OCR Materials
+
+This meeting focused on hands-on OCR work using PDFs (`wf_abbreviations.pdf`, `wf_five_pages.pdf`) and an early build of the GLM-OCR tool. The full GLM-OCR walkthrough was consolidated into Meetings 05 and 06.
+
+## Meeting 05 (Feb 25) — Personal Website & First OCR Tool
+
+This was a **double meeting**: we kicked off Assignment 1 (the personal website) and introduced our first real document-processing tool.
+
+**Personal Website (Assignment 1, 10 points):**
+
+- Static vs. dynamic websites — why GitHub Pages can only host static
+- HTML structure + CSS styling: the two languages every website is ultimately compiled to
+- Frameworks compared: plain HTML/CSS, Quarto, Hugo, Jekyll, Next.js
+- Full walkthrough: GitHub repo → site files → GitHub Actions deploy → live at `username.github.io`
+- Heavy use of **Antigravity AI prompts** to generate HTML/CSS rather than hand-typing it
+
+**OCR Tools:**
+
+- **GLM-OCR** (macOS via MLX, Windows via Ollama) — local vision-language model that converts scanned PDFs to structured Markdown
+- **OCR Batch Processor + LM Studio** — cross-platform alternative for students without Apple Silicon
+
+**What you should remember:** Your personal website lives at a real URL on the public internet, and every push automatically rebuilds it. That is your first taste of *plumbing* — the principle we kept returning to all semester.
+
+## Meeting 06 (Mar 04) — GitHub Privacy, GLM-OCR Update, Scripts vs. LLMs, LM Studio
+
+We circled back to consolidate and add a critical conceptual section.
+
+**GitHub Commit Email Privacy:**
+
+- Your commit email is **publicly visible and permanent** in commit history
+- Three-step fix: enable "Keep my email private" + "Block pushes that expose my email" on GitHub, then `git config --global user.email` to your `noreply` address
+
+**GLM-OCR Updated:** macOS and Windows merged into one zip, with the launcher auto-detecting your platform.
+
+**Two Approaches to Text Data — the conceptual centerpiece of this meeting:**
+
+| Approach | Strengths | Weaknesses | Best For |
+|---|---|---|---|
+| **Programming scripts** | Precise, reproducible, fast, scalable | Rigid, no semantic understanding, requires coding | Exact matching, structured extraction, large-scale processing |
+| **LLM inference** | Understands context, flexible, low barrier, multilingual | Non-deterministic, slow, costly, hallucinates | Interpretation, classification, exploratory analysis |
+
+The most powerful workflows combine both — exactly the **hybrid approach** you have been practicing since.
+
+**LM Studio in depth:** desktop app for downloading and running LLMs locally, including the **API server mode** that exposes models at `http://localhost:1234`.
+
+**Tools-at-a-glance review** of everything set up so far: Antigravity, Git, GitHub, Ollama, LM Studio, Openwork.
+
+**What you should remember:** "Script vs. LLM" is the most important judgment call in modern humanities computing. Both are valid; the skill is choosing.
+
+## Meeting 07 (Mar 11) — APIs: curl, Python, and Batch Translation
+
+We moved from running tools to **wiring tools together**. The vehicle was the API.
+
+**Conceptual core: the Library Reference Desk analogy**
+
+| Library | API |
+|---|---|
+| You at the desk | Your application |
+| The window | The endpoint (URL) |
+| The request slip | The request body (JSON) |
+| The librarian fetching | The server processing |
+| The book returned | The response (JSON) |
+
+**REST + JSON in practice:**
+
+- `GET` retrieves; `POST` sends-to-be-processed
+- Data in and out is JSON
+
+**Hands-on, in three escalating steps:**
+
+1. **`curl`** sending a single chat completion to LM Studio (`localhost:1234`)
+2. **`batch_translate.py`** — a Python script using `uv run` with PEP 723 inline metadata, sending 10 *Lunyu* passages and writing translations to CSV
+3. **`batch_translate_v2.py`** — refactored to read passages from an external `.txt` file, separating **data** from **logic**
+
+**Stretch challenge:** combine the local LM Studio API with the **Harvard LibraryCloud API** (a cloud GET endpoint) to filter library results for East Asian content — built with Antigravity's coding agent rather than by hand.
+
+**What you should remember:** Every "AI app" you have ever used is doing exactly what your `batch_translate.py` script does: HTTP request → JSON response → loop. Once you see this, the magic dissolves.
+
+## Meeting 08 (Mar 25) — Cloud APIs + Codex Desktop + Obsidian
+
+This is the meeting where the course pivoted from **plumbing** to **infrastructure**.
+
+**Part 1 (continued from Meeting 07):**
+
+- Local API (POST to LM Studio) vs. Cloud API (GET to Harvard LibraryCloud) compared side-by-side
+- The LibraryCloud + LM Studio mashup — built end-to-end with a coding agent
+
+**Part 2 — Knowledge Management:**
+
+- **Codex Desktop** installed and authenticated via HarvardKey
+- A first **skill** introduced: `harvard-library-catalog` from `kltng/humanities-skills`
+- Three-way comparison of searching Harvard Library: (1) Antigravity prompt, (2) hand-written curl/Python, (3) Codex + skill — the skill version wins on every axis
+- **Obsidian** installed; the **Humanities Vault** (`codex-edition` branch) cloned and opened
+- Vault structure walked through: 5-layer curriculum (Foundations → Customization), 6 templates (Person, Text, Place, Event, Bibliography, Reading-Note), and the `My-Research/` workspace
+- First note created via Codex inside the vault (Su Shi as a Person entry)
+
+**What you should remember:** Codex + Obsidian + a humanities skill is your **research workstation**. Everything after this meeting builds on top of this stack.
+
+## Meeting 09 (Apr 01) — AI Coding Agents and Custom Providers
+
+A deep dive into the agent landscape — and the realization that **the same skills transfer across all of them**.
+
+**Three major AI coding agents:**
+
+| | Claude Code | Codex CLI | Opencode |
+|---|---|---|---|
+| Made by | Anthropic | OpenAI | Open-source community |
+| Model flexibility | Claude only | OpenAI default, others possible | Any provider |
+| Instruction file | `CLAUDE.md` | `AGENTS.md` | `AGENTS.md` |
+
+**What they share:** terminal-based, agentic, tool-using, MCP-compatible, instruction-file driven, permission-based.
+
+**Adding custom model providers** — the real superpower:
+
+- Class API proxy (`https://litellm.016801.xyz/v1`) for OpenAI models
+- Z.ai Coding Plan (`https://api.z.ai/api/coding/paas/v4`) for GLM models
+- Configured via environment variables (`CLASS_API_KEY`, `ZAI_API_KEY`) and `~/.codex/config.toml`
+- The trick: **let Codex edit its own config** — it knows the file format better than you do
+
+**Skills — the core lesson:**
+
+- **Without skills**, an agent asked "Check out all the people with the name Wang Chen from CBDB" wastes 8–15 tool calls guessing endpoints, mis-encoding Chinese characters, and getting lost in nested JSON
+- **With the `cbdb-api` skill installed**, the same agent answers in 2–3 tool calls, with correct encoding, complete fields, and built-in rate limiting
+- The model is identical in both cases — the difference is **knowledge**, not intelligence
+
+**18+ skills available** in `kltng/humanities-skills`: CBDB, JBDB, CHGIS/TGAZ, calendar conversion, Harvard Library, HathiTrust, Library of Congress, arXiv, Wikidata, Zotero, and more.
+
+**What you should remember:** Skills turn a generic AI into a domain expert. Master one agent and you have effectively learned all of them.
+
+## Meeting 10 (Apr 08) — The LLM Wiki Pattern
+
+We named the pattern your vault was already implementing.
+
+**Andrej Karpathy's "LLM Wiki"** (published April 4, 2026): instead of re-deriving answers from raw documents every session (the RAG approach), have the LLM **read sources once** and **write durable wiki pages** that compound over time.
+
+**Three layers:**
+
+1. **Raw Sources** — immutable; the AI never touches them
+2. **The Wiki** — markdown pages the AI owns and maintains
+3. **The Schema** — `CLAUDE.md` / `AGENTS.md` rules you write
+
+**Three operations:**
+
+1. **Ingest** — process a new source; create/update pages; add cross-references
+2. **Query** — ask a question; the AI synthesizes from the wiki and may file the answer back as a new page
+3. **Lint** — health checks: contradictions, stale claims, orphans, broken links
+
+**The big mapping:** every column of Karpathy's pattern lines up with something already in the **Obsidian Humanities Vault** — raw PDFs, Person/Text/Place/Event templates, `AGENTS.md`, Bases views, git history, wikilinks, YAML frontmatter, humanities-skills.
+
+**Hands-on ingest:** the *Song shi* passage on Wang Anshi → Person, Text, and Place entries automatically created and cross-linked.
+
+**What you should remember:** "The tedious part of maintaining a knowledge base is not the reading or thinking — it's the bookkeeping." LLMs are perfect for bookkeeping. You are perfect for curation, judgment, and going back to primary sources when it matters.
+
+## Meeting 11 (Apr 15) — Sharing LLM-Wikis + Model Independence
+
+The Assignment 3 work-in-progress meeting and the model-independence demonstration.
+
+**Part 1 — sharing your wikis:** every student walked through their vault structure, an example ingest, and one problem they hit. Discussion focused on schema design, template adherence, cross-referencing, source quality, and correction workflows.
+
+**Forward-linking is a feature, not a bug.** When the agent creates `[[Su Shi]]` before that page exists, it is *flagging a gap* — the link will resolve automatically once you ingest a Su Shi source.
+
+**Part 2 — model and app independence:** the punchline of the semester.
+
+| Layer | You can switch freely |
+|---|---|
+| AI model | Claude, GPT, GLM, Gemini, Llama, Qwen — any model reads/writes markdown |
+| AI coding agent | Claude Code, Codex, Opencode — all read `AGENTS.md` |
+| Note-taking app | Obsidian, VS Code, any text editor |
+| Operating system | macOS, Linux, Windows |
+
+**Hands-on:** the same wiki, the same `AGENTS.md`, the same templates — re-run with **Opencode + GLM-4.7** via the Z.ai Coding Plan. Same outputs, different vendor.
+
+**What you should remember:** Your schema is the most portable artifact you produced this semester. It will outlive whichever model is fashionable in 2027.
+
+---
+
+# What You Can Now Do
+
+By this point in the semester, you should be able to (without notes):
+
+- [ ] Explain what an LLM is, why it hallucinates, and why two runs of the same prompt can differ
+- [ ] Build and deploy a static personal website to GitHub Pages
+- [ ] Configure Git to use a privacy-preserving `noreply` email
+- [ ] Run a vision-language model locally to OCR a scanned PDF
+- [ ] Run a chat LLM locally via LM Studio and call it from `curl`
+- [ ] Write a `uv run` Python script that calls an HTTP API in a loop and saves results to CSV
+- [ ] Combine a cloud API (Harvard LibraryCloud) with a local LLM into one workflow
+- [ ] Install and authenticate at least two AI coding agents (Codex, Opencode, Claude Code)
+- [ ] Add a custom model provider (Class API or Z.ai) to a coding agent's config
+- [ ] Install a skill from `kltng/humanities-skills` and use it to query CBDB or another database
+- [ ] Set up an Obsidian vault and create structured notes from templates
+- [ ] Perform an "ingest" operation: feed a primary source to an agent and watch it create cross-linked Person / Text / Place / Event entries
+- [ ] Articulate why your vault is **model-independent** and **app-independent**
+
+If any line on that list feels shaky, jump back to the meeting linked above. The HTML versions are all on the course site.
+
+# The Throughline
+
+Five themes have run quietly through every meeting:
+
+1. **Local first, cloud second.** Whenever possible, we ran things on your own laptop — your data stays yours, you do not depend on a subscription, and you understand what is actually happening.
+2. **Plain text wins.** Markdown, YAML, CSV, JSON — every artifact you produced is human-readable, vendor-neutral, and will still open in fifty years.
+3. **Scripts and LLMs together.** Neither alone is enough. The hybrid is the workflow.
+4. **Skills beat raw intelligence.** A small model with the right skill installed routinely beats a frontier model fumbling around without one.
+5. **Bookkeeping is the bottleneck.** The reason your research wiki was hard to maintain before was not the thinking — it was the cross-referencing. That is exactly what agents are good at.
+
+---
+
+# Part 3: Today's Working Session
+
+## Assignment 3 Hand-in (Due Today)
+
+Submit your research wiki per the [Meeting 10 specification](../meeting_10/meeting_10.html#assignment-3-build-your-research-wiki):
+
+- `raw/` directory with at least 5 sources
+- `AGENTS.md` / `CLAUDE.md` with your schema
+- An `index.md` or Bases view
+- At least 10 wiki pages with YAML frontmatter and wikilinks
+- At least 2 pages enriched via a humanities skill
+- A `log.md` or git history + a one-paragraph reflection
+
+## Final Project Work Time
+
+The remainder of class is open work time on your final project.
+
+**Suggested checklist for the next week:**
+
+- Ingest 2–3 more sources directly relevant to your final project topic
+- Run a `lint` pass on your wiki: any contradictions? broken links? orphans?
+- Sketch your presentation: what *one* finding or insight will you show next week?
+- Decide what your "final product" looks like: the wiki itself? a Bases view? a Canvas diagram? a short paper that draws on the wiki?
+
+## Looking Ahead — Meeting 13 (April 29): Presentations
+
+Each student will present their final project. Plan for roughly 8–10 minutes plus questions. A simple structure works well if your final project is a wiki or a workflow:
+
+1. **The question** — what were you trying to learn?
+2. **The sources** — what went into your `raw/`?
+3. **The wiki** — show the structure and one or two key pages
+4. **The finding** — what did this workflow let you see that you would not have seen otherwise?
+5. **The honest reflection** — what did the agent get wrong? what did you have to fix by hand?
+
+# Resources
+
+- [Syllabus](../syllabus/syllabus.html)
+- [Meeting 01 — Introduction](../meeting_01/meeting_01.html)
+- [Meeting 02 — Landscape of the Agentic Approach](../meeting_02/meeting_02.html)
+- [Meeting 05 — Personal Website + OCR](../meeting_05/meeting_05.html)
+- [Meeting 06 — Privacy, GLM-OCR, Scripts vs. LLMs, LM Studio](../meeting_06/meeting_06.html)
+- [Meeting 07 — APIs with curl and Python](../meeting_07/meeting_07.html)
+- [Meeting 08 — Cloud APIs, Codex, Obsidian](../meeting_08/meeting_08.html)
+- [Meeting 09 — AI Coding Agents and Skills](../meeting_09/meeting_09.html)
+- [Meeting 10 — The LLM Wiki Pattern](../meeting_10/meeting_10.html)
+- [Meeting 11 — Sharing Wikis + Model Independence](../meeting_11/meeting_11.html)
+- [kltng/digital-china-wiki](https://github.com/kltng/digital-china-wiki) — today's practice repo
+- [kltng/humanities-skills](https://github.com/kltng/humanities-skills)
+- [kltng/obsidian_humanities (codex-edition branch)](https://github.com/kltng/obsidian_humanities/tree/codex-edition)
+- [Andrej Karpathy's LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- [GitHub Docs — Fork a repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
